@@ -4,7 +4,7 @@ Team Name: ScrumBot
 
 Team Members: Timothy Choy, Arkin Modi, Leon So
 
-This project is an implementation of ...
+This project is a remastering of a Discord meeting bot.
 
 The folders and files for this project are as follows: \
 Doc - Documentation for the project \
