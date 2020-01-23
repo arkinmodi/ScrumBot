@@ -1,28 +1,46 @@
-\documentclass[12pt, oneside]{article}   	
-\usepackage{geometry}                		
-\geometry{letterpaper}                   		
-\usepackage{graphicx}				
-\usepackage{amssymb, amsmath}
-\usepackage{cite}
-\usepackage{color}
+\documentclass[12pt]{article}
 
+\usepackage{graphicx}
+\usepackage{paralist}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=cyan,
+}
+\usepackage{xspace}
+\usepackage{amsfonts}
+\usepackage{amsmath}
 
+\newcommand{\latex}{\LaTeX\xspace}
 
-\title{SFWR 3XA3 - Problem Statement}
-\author{Group 304
-		\\ Choy, Timothy
-		\\ So, Leon
-		\\ Modi, Arkin
-		\\ Due: January 24, 2020
-		\\Professor: Dr. Bokhari
-		\\ Lab: L03}
-\date{}
+\oddsidemargin 0mm
+\evensidemargin 0mm
+\textwidth 160mm
+\textheight 200mm
+\renewcommand\baselinestretch{1.0}
+
+\pagestyle {plain}
+\pagenumbering{arabic}
+
+\newcounter{stepnum}
+
+\usepackage{titling}
+\setlength{\droptitle}{-10ex}
+
+\title{SE 3XA3: Problem Statement\\ScrumBot}
+\author{
+	Timothy Choy, 400135272\\
+	Leon So, 400127468\\
+	Arkin Modi, 400142497
+}
+\date{Last Updated: January 24, 2020}
 
 \begin{document}
 \maketitle
 
-\indent Scrum is an agile process framework widely used in industry for managing and coordinating collaborative projects. Scrum being a process based on the agile development method, follows a highly iterative process and often has heavy customer involvement, therefore it can be often be complex. It is often difficult to manage communication and coordination within the project due to the complexity of agile development processes. With Discord being a popular communication tool used by many teams of software developers today, our team would like to develop a solution to directly integrate the management of a scrum development cycle into the communication channels. Our solutions will allow for better management and organization of retrospectives, standups, and other scrum/agile processes used by software teams during routine communication.\\
+Scrum is an agile process framework widely used in industry for managing and coordinating collaborative projects. Scrum being a process based on the agile development method, follows a highly iterative process and often has heavy customer involvement, therefore it can be often be complex. It is often difficult to manage communication and coordination within the project due to the complexity of agile development processes. With Discord being a popular communication tool used by many teams of software developers today, our team would like to develop a solution to directly integrate the management of a scrum development cycle into the communication channels. Our solutions will allow for better management and organization of retrospectives, stand-ups, and other scrum/agile processes used by software teams during routine communication.\\
 
-\indent As a result, a well-integrated scrum management system may inefficiences surrounding the management of projects using the scrum framework, as well as communication within the agile process. This will help software development firms reduce costs and achieve better workflow. 
+As a result, a well-integrated scrum management system may reduce inefficiencies surrounding the management of projects using the scrum framework, as well as strengthen communication within the agile process. This will help software development firms reduce costs and achieve better workflow.Therefore, all members of the development and management team will be able to benefit from a scrum management system that is directly integrated into the communication channel.
 
-\end{document}  
+\end{document}
