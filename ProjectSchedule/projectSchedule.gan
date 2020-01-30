@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?><project name="Scrumbot" company="Scrumbot" webLink="https://gitlab.cas.mcmaster.ca/modia1/ScrumBot" view-date="2020-01-24" view-index="0" gantt-divider-location="615" resource-divider-location="300" version="2.8.10" locale="en_CA">
+    <description>
+        <![CDATA[Scrum is an agile process framework widely used in industry for managing and coordinating collaborative projects. Scrum being a process based on the agile development method, follows a highly iterative process and often has heavy customer involvement, therefore it can be often be complex. It is often difficult to manage communication and coordination within the project due to the complexity of agile development processes. With Discord being a popular communication tool used by many teams of software developers today, our team would like to develop a solution to directly integrate the management of a scrum development cycle into the communication channels. Our solution will allow for better management and organization of retrospectives, stand-ups, and other scrum/agile processes used by software teams during routine communication.]]>
+    </description>
+    <view zooming-state="default:0" id="gantt-chart">
+        <field id="tpd3" name="Name" width="394" order="0"/>
+        <field id="tpd4" name="Begin date" width="99" order="1"/>
+        <field id="tpd5" name="End date" width="101" order="2"/>
+    </view>
+    <view id="resource-table">
+        <field id="0" name="Name" width="148" order="0"/>
+        <field id="1" name="Default role" width="146" order="1"/>
+    </view>
+    <!-- -->
+    <calendars>
+        <day-types>
+            <day-type id="0"/>
+            <day-type id="1"/>
+            <default-week id="1" name="default" sun="0" mon="0" tue="0" wed="0" thu="0" fri="0" sat="0"/>
+            <only-show-weekends value="false"/>
+            <overriden-day-types/>
+            <days/>
+        </day-types>
+    </calendars>
+    <tasks empty-milestones="true">
+        <taskproperties>
+            <taskproperty id="tpd0" name="type" type="default" valuetype="icon"/>
+            <taskproperty id="tpd1" name="priority" type="default" valuetype="icon"/>
+            <taskproperty id="tpd2" name="info" type="default" valuetype="icon"/>
+            <taskproperty id="tpd3" name="name" type="default" valuetype="text"/>
+            <taskproperty id="tpd4" name="begindate" type="default" valuetype="date"/>
+            <taskproperty id="tpd5" name="enddate" type="default" valuetype="date"/>
+            <taskproperty id="tpd6" name="duration" type="default" valuetype="int"/>
+            <taskproperty id="tpd7" name="completion" type="default" valuetype="int"/>
+            <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
+            <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
+        </taskproperties>
+        <task id="155" name="Working on Problem Approval" color="#8cb6ce" meeting="false" start="2020-01-13" duration="7" complete="100" thirdDate="2020-01-10" thirdDate-constraint="0" expand="true">
+            <depend id="153" type="2" difference="0" hardness="Strong"/>
+            <task id="161" name="Original Project Information" color="#8cb6ce" meeting="false" start="2020-01-13" duration="7" complete="100" thirdDate="2020-01-08" thirdDate-constraint="0" expand="true"/>
+            <task id="163" name="Software Purpose and Scope" color="#8cb6ce" meeting="false" start="2020-01-13" duration="7" complete="100" thirdDate="2020-01-08" thirdDate-constraint="0" expand="true"/>
+            <task id="165" name="Specialized Hardware Requirements" color="#8cb6ce" meeting="false" start="2020-01-13" duration="7" complete="100" thirdDate="2020-01-08" thirdDate-constraint="0" expand="true"/>
+            <task id="167" name="Licenses" color="#8cb6ce" meeting="false" start="2020-01-13" duration="7" complete="100" thirdDate="2020-01-08" thirdDate-constraint="0" expand="true"/>
+            <task id="168" name="Programming Language" color="#8cb6ce" meeting="false" start="2020-01-13" duration="7" complete="100" thirdDate="2020-01-08" thirdDate-constraint="0" expand="true"/>
+            <task id="169" name="Domain Knowledge" color="#8cb6ce" meeting="false" start="2020-01-13" duration="7" complete="100" thirdDate="2020-01-08" thirdDate-constraint="0" expand="true"/>
+        </task>
+        <task id="153" name="Problem Approval Due" color="#8cb6ce" meeting="true" start="2020-01-20" duration="0" complete="100" thirdDate="2020-01-13" thirdDate-constraint="0" expand="true"/>
+        <task id="131" name="Working on Problem Statement" color="#8cb6ce" meeting="false" start="2020-01-20" duration="4" complete="100" thirdDate="2020-01-22" thirdDate-constraint="0" expand="true">
+            <depend id="116" type="2" difference="0" hardness="Strong"/>
+            <task id="173" name="Problem Statement" color="#8cb6ce" meeting="false" start="2020-01-20" duration="4" complete="100" thirdDate="2020-01-08" thirdDate-constraint="0" expand="true"/>
+            <task id="176" name="Stakeholders" color="#8cb6ce" meeting="false" start="2020-01-20" duration="4" complete="100" thirdDate="2020-01-08" thirdDate-constraint="0" expand="true"/>
+        </task>
+        <task id="116" name="Problem Statement Due" color="#8cb6ce" meeting="true" start="2020-01-24" duration="0" complete="100" thirdDate="2020-01-22" thirdDate-constraint="0" expand="true"/>
+        <task id="134" name="Working on Development Plan" color="#8cb6ce" meeting="false" start="2020-01-24" duration="7" complete="100" thirdDate="2020-01-22" thirdDate-constraint="0" expand="true">
+            <depend id="2" type="2" difference="0" hardness="Strong"/>
+            <task id="182" name="Team Meeting Plan" color="#8cb6ce" meeting="false" start="2020-01-24" duration="7" complete="100" thirdDate="2020-01-08" thirdDate-constraint="0" expand="true"/>
+            <task id="184" name="Team Communication Plan" color="#8cb6ce" meeting="false" start="2020-01-24" duration="7" complete="100" thirdDate="2020-01-24" thirdDate-constraint="0" expand="true"/>
+            <task id="186" name="Team Member Roles" color="#8cb6ce" meeting="false" start="2020-01-24" duration="7" complete="100" thirdDate="2020-01-22" thirdDate-constraint="0" expand="true"/>
+            <task id="188" name="Git Workflow Plan" color="#8cb6ce" meeting="false" start="2020-01-24" duration="7" complete="100" thirdDate="2020-01-24" thirdDate-constraint="0" expand="true"/>
+            <task id="190" name="Proof of Concept Demonstration Plan" color="#8cb6ce" meeting="false" start="2020-01-24" duration="7" complete="100" thirdDate="2020-01-24" thirdDate-constraint="0" expand="true"/>
+            <task id="192" name="Technology" color="#8cb6ce" meeting="false" start="2020-01-24" duration="7" complete="100" thirdDate="2020-01-24" thirdDate-constraint="0" expand="true"/>
+            <task id="194" name="Coding Style" color="#8cb6ce" meeting="false" start="2020-01-24" duration="7" complete="100" thirdDate="2020-01-24" thirdDate-constraint="0" expand="true"/>
+            <task id="196" name="Project Schedule" color="#8cb6ce" meeting="false" start="2020-01-24" duration="7" complete="100" thirdDate="2020-01-24" thirdDate-constraint="0" expand="true"/>
+            <task id="341" name="Gantt Chart" color="#8cb6ce" meeting="false" start="2020-01-24" duration="7" complete="100" thirdDate="2020-01-24" thirdDate-constraint="0" expand="true"/>
+            <task id="198" name="Project Review" color="#8cb6ce" meeting="false" start="2020-01-24" duration="7" complete="100" thirdDate="2020-01-24" thirdDate-constraint="0" expand="true"/>
+        </task>
+        <task id="2" name="Development Plan Due" color="#8cb6ce" meeting="true" start="2020-01-31" duration="0" complete="100" thirdDate="2015-11-06" thirdDate-constraint="0" expand="true"/>
+        <task id="140" name="Working on Requirements Documentation" color="#8cb6ce" meeting="false" start="2020-01-31" duration="7" complete="0" thirdDate="2020-01-19" thirdDate-constraint="0" expand="true">
+            <depend id="119" type="2" difference="0" hardness="Strong"/>
+            <task id="200" name="Project Drivers" color="#8cb6ce" meeting="false" start="2020-01-31" duration="7" complete="0" thirdDate="2020-01-25" thirdDate-constraint="0" expand="true"/>
+            <task id="203" name="Functional Requirements" color="#8cb6ce" meeting="false" start="2020-01-31" duration="7" complete="0" thirdDate="2020-01-31" thirdDate-constraint="0" expand="true"/>
+            <task id="205" name="Non-Functional Requirements" color="#8cb6ce" meeting="false" start="2020-01-31" duration="7" complete="0" thirdDate="2020-01-31" thirdDate-constraint="0" expand="true"/>
+            <task id="207" name="Project Issues" color="#8cb6ce" meeting="false" start="2020-01-31" duration="7" complete="0" thirdDate="2020-01-31" thirdDate-constraint="0" expand="true"/>
+        </task>
+        <task id="119" name="Requirements Document Due" color="#8cb6ce" meeting="true" start="2020-02-07" duration="0" complete="0" thirdDate="2020-01-22" thirdDate-constraint="0" expand="true"/>
+        <task id="121" name="Proof of Concept Demonstration" color="#8cb6ce" meeting="true" start="2020-02-14" duration="0" complete="0" thirdDate="2020-01-22" thirdDate-constraint="0" expand="true"/>
+        <task id="141" name="Working on Test Plan" color="#8cb6ce" meeting="false" start="2020-02-07" duration="21" complete="0" thirdDate="2020-01-19" thirdDate-constraint="0" expand="true">
+            <depend id="123" type="2" difference="0" hardness="Strong"/>
+            <task id="209" name="General Information" color="#8cb6ce" meeting="false" start="2020-02-07" duration="21" complete="0" thirdDate="2020-02-07" thirdDate-constraint="0" expand="true"/>
+            <task id="212" name="Plan" color="#8cb6ce" meeting="false" start="2020-02-07" duration="21" complete="0" thirdDate="2020-02-07" thirdDate-constraint="0" expand="true"/>
+            <task id="214" name="System Test Description" color="#8cb6ce" meeting="false" start="2020-02-07" duration="21" complete="0" thirdDate="2020-02-07" thirdDate-constraint="0" expand="true"/>
+            <task id="216" name="Tests for Proof of Concept" color="#8cb6ce" meeting="false" start="2020-02-07" duration="21" complete="0" thirdDate="2020-02-07" thirdDate-constraint="0" expand="true"/>
+            <task id="218" name="Comparison to Existing Implementation" color="#8cb6ce" meeting="false" start="2020-02-07" duration="21" complete="0" thirdDate="2020-02-07" thirdDate-constraint="0" expand="true"/>
+            <task id="220" name="Unit Testing Plan" color="#8cb6ce" meeting="false" start="2020-02-07" duration="21" complete="0" thirdDate="2020-02-07" thirdDate-constraint="0" expand="true"/>
+        </task>
+        <task id="123" name="Test Plan Due" color="#8cb6ce" meeting="true" start="2020-02-28" duration="0" complete="0" thirdDate="2020-01-22" thirdDate-constraint="0" expand="true"/>
+        <task id="146" name="Working on Design &amp; Documentation" color="#8cb6ce" meeting="false" start="2020-02-28" duration="14" complete="0" thirdDate="2020-01-31" thirdDate-constraint="0" expand="true">
+            <depend id="125" type="2" difference="0" hardness="Strong"/>
+            <task id="222" name="MG" color="#8cb6ce" meeting="false" start="2020-02-28" duration="14" complete="0" thirdDate="2020-02-28" thirdDate-constraint="0" expand="false">
+                <task id="228" name="Introduction" color="#8cb6ce" meeting="false" start="2020-02-28" duration="14" complete="0" thirdDate="2020-02-28" thirdDate-constraint="0" expand="true"/>
+                <task id="230" name="Anticipated and Unlikely Changes" color="#8cb6ce" meeting="false" start="2020-02-28" duration="14" complete="0" thirdDate="2020-03-01" thirdDate-constraint="0" expand="true"/>
+                <task id="235" name="Module Hierarchy" color="#8cb6ce" meeting="false" start="2020-02-28" duration="14" complete="0" thirdDate="2020-02-29" thirdDate-constraint="0" expand="true"/>
+                <task id="237" name="Connection Between Requirements and Design" color="#8cb6ce" meeting="false" start="2020-02-28" duration="14" complete="0" thirdDate="2020-02-28" thirdDate-constraint="0" expand="true"/>
+                <task id="239" name="Module Decomposition" color="#8cb6ce" meeting="false" start="2020-02-28" duration="14" complete="0" thirdDate="2020-02-28" thirdDate-constraint="0" expand="true"/>
+                <task id="241" name="Traceability Matrix" color="#8cb6ce" meeting="false" start="2020-02-28" duration="14" complete="0" thirdDate="2020-02-28" thirdDate-constraint="0" expand="true"/>
+                <task id="243" name="Use Hierarchy Between Modules" color="#8cb6ce" meeting="false" start="2020-02-28" duration="14" complete="0" thirdDate="2020-02-28" thirdDate-constraint="0" expand="true"/>
+            </task>
+            <task id="226" name="MIS" color="#8cb6ce" meeting="false" start="2020-02-28" duration="14" complete="0" thirdDate="2020-02-28" thirdDate-constraint="0" expand="true"/>
+        </task>
+        <task id="125" name="Design &amp; Document Due" color="#8cb6ce" meeting="true" start="2020-03-13" duration="0" complete="0" thirdDate="2020-01-22" thirdDate-constraint="0" expand="true"/>
+        <task id="127" name="Demonstration" color="#8cb6ce" meeting="true" start="2020-03-16" duration="0" complete="0" thirdDate="2020-01-22" thirdDate-constraint="0" expand="true"/>
+        <task id="246" name="Working on Test Report" color="#8cb6ce" meeting="false" start="2020-03-16" duration="21" complete="0" thirdDate="2020-02-26" thirdDate-constraint="0" expand="true">
+            <task id="248" name="Functional Requirements Evaluation" color="#8cb6ce" meeting="false" start="2020-03-16" duration="21" complete="0" thirdDate="2020-03-16" thirdDate-constraint="0" expand="true"/>
+            <task id="250" name="Nonfunctional Requirements Evaluation" color="#8cb6ce" meeting="false" start="2020-03-16" duration="21" complete="0" thirdDate="2020-03-16" thirdDate-constraint="0" expand="true"/>
+            <task id="252" name="Usability" color="#8cb6ce" meeting="false" start="2020-03-16" duration="21" complete="0" thirdDate="2020-03-16" thirdDate-constraint="0" expand="true"/>
+            <task id="254" name="Performance" color="#8cb6ce" meeting="false" start="2020-03-16" duration="21" complete="0" thirdDate="2020-03-16" thirdDate-constraint="0" expand="true"/>
+            <task id="256" name="Comparison to Existing Implementation" color="#8cb6ce" meeting="false" start="2020-03-16" duration="21" complete="0" thirdDate="2020-03-16" thirdDate-constraint="0" expand="true"/>
+            <task id="258" name="Unit Testing" color="#8cb6ce" meeting="false" start="2020-03-16" duration="21" complete="0" thirdDate="2020-03-16" thirdDate-constraint="0" expand="true"/>
+            <task id="260" name="Changes Due to Testing" color="#8cb6ce" meeting="false" start="2020-03-16" duration="21" complete="0" thirdDate="2020-03-16" thirdDate-constraint="0" expand="true"/>
+            <task id="263" name="Automated Testing" color="#8cb6ce" meeting="false" start="2020-03-16" duration="21" complete="0" thirdDate="2020-03-16" thirdDate-constraint="0" expand="true"/>
+            <task id="265" name="Trace to Requirements" color="#8cb6ce" meeting="false" start="2020-03-16" duration="21" complete="0" thirdDate="2020-03-16" thirdDate-constraint="0" expand="true"/>
+            <task id="267" name="Trace to Modules" color="#8cb6ce" meeting="false" start="2020-03-16" duration="21" complete="0" thirdDate="2020-03-16" thirdDate-constraint="0" expand="true"/>
+            <task id="269" name="Code Coverage Metrics" color="#8cb6ce" meeting="false" start="2020-03-16" duration="21" complete="0" thirdDate="2020-03-16" thirdDate-constraint="0" expand="true"/>
+        </task>
+        <task id="150" name="Working on Final Documentation" color="#8cb6ce" meeting="false" start="2020-03-16" duration="21" complete="0" thirdDate="2020-01-27" thirdDate-constraint="0" expand="true">
+            <depend id="129" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="129" name="Final Documentation Due" color="#8cb6ce" meeting="true" start="2020-04-06" duration="0" complete="0" thirdDate="2020-01-22" thirdDate-constraint="0" expand="true"/>
+    </tasks>
+    <resources>
+        <resource id="0" name="Arkin Modi" function="Default:0" contacts="modia1@mcmaster.ca" phone=""/>
+        <resource id="1" name="Leon So" function="1" contacts="sol4@mcmaster.ca" phone=""/>
+        <resource id="2" name="Timothy Choy" function="Default:0" contacts="choyt2@mcmaster.ca" phone=""/>
+    </resources>
+    <allocations>
+        <allocation task-id="131" resource-id="0" function="Default:0" responsible="false" load="33.3"/>
+        <allocation task-id="2" resource-id="0" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="134" resource-id="0" function="Default:0" responsible="false" load="33.3"/>
+        <allocation task-id="140" resource-id="0" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="119" resource-id="0" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="141" resource-id="0" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="146" resource-id="0" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="125" resource-id="0" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="123" resource-id="0" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="150" resource-id="0" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="129" resource-id="0" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="155" resource-id="0" function="Default:0" responsible="false" load="33.3"/>
+        <allocation task-id="153" resource-id="0" function="Default:0" responsible="false" load="33.3"/>
+        <allocation task-id="121" resource-id="0" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="116" resource-id="0" function="Default:0" responsible="false" load="33.3"/>
+        <allocation task-id="182" resource-id="0" function="Default:0" responsible="false" load="33.3"/>
+        <allocation task-id="184" resource-id="0" function="Default:0" responsible="false" load="33.3"/>
+        <allocation task-id="186" resource-id="0" function="Default:0" responsible="false" load="50.0"/>
+        <allocation task-id="194" resource-id="0" function="Default:0" responsible="false" load="100.0"/>
+        <allocation task-id="341" resource-id="0" function="Default:0" responsible="false" load="100.0"/>
+        <allocation task-id="131" resource-id="1" function="1" responsible="false" load="33.3"/>
+        <allocation task-id="2" resource-id="1" function="Default:0" responsible="false" load="100.0"/>
+        <allocation task-id="134" resource-id="1" function="1" responsible="true" load="33.3"/>
+        <allocation task-id="140" resource-id="1" function="Default:0" responsible="false" load="100.0"/>
+        <allocation task-id="119" resource-id="1" function="Default:0" responsible="false" load="100.0"/>
+        <allocation task-id="141" resource-id="1" function="Default:0" responsible="false" load="100.0"/>
+        <allocation task-id="146" resource-id="1" function="Default:0" responsible="false" load="100.0"/>
+        <allocation task-id="125" resource-id="1" function="Default:0" responsible="false" load="100.0"/>
+        <allocation task-id="123" resource-id="1" function="Default:0" responsible="false" load="100.0"/>
+        <allocation task-id="150" resource-id="1" function="Default:0" responsible="false" load="100.0"/>
+        <allocation task-id="129" resource-id="1" function="Default:0" responsible="false" load="100.0"/>
+        <allocation task-id="155" resource-id="1" function="1" responsible="true" load="33.3"/>
+        <allocation task-id="153" resource-id="1" function="1" responsible="true" load="33.3"/>
+        <allocation task-id="121" resource-id="1" function="Default:0" responsible="false" load="100.0"/>
+        <allocation task-id="161" resource-id="1" function="Default:0" responsible="true" load="50.0"/>
+        <allocation task-id="163" resource-id="1" function="1" responsible="true" load="100.0"/>
+        <allocation task-id="167" resource-id="1" function="1" responsible="true" load="100.0"/>
+        <allocation task-id="168" resource-id="1" function="1" responsible="true" load="100.0"/>
+        <allocation task-id="169" resource-id="1" function="1" responsible="true" load="100.0"/>
+        <allocation task-id="173" resource-id="1" function="1" responsible="true" load="50.0"/>
+        <allocation task-id="176" resource-id="1" function="1" responsible="false" load="100.0"/>
+        <allocation task-id="116" resource-id="1" function="1" responsible="true" load="33.3"/>
+        <allocation task-id="186" resource-id="1" function="1" responsible="false" load="50.0"/>
+        <allocation task-id="182" resource-id="1" function="1" responsible="false" load="33.3"/>
+        <allocation task-id="184" resource-id="1" function="1" responsible="false" load="33.3"/>
+        <allocation task-id="192" resource-id="1" function="1" responsible="false" load="100.0"/>
+        <allocation task-id="190" resource-id="1" function="1" responsible="false" load="50.0"/>
+        <allocation task-id="131" resource-id="2" function="Default:0" responsible="false" load="33.3"/>
+        <allocation task-id="2" resource-id="2" function="Default:0" responsible="false" load="100.0"/>
+        <allocation task-id="134" resource-id="2" function="Default:0" responsible="false" load="33.3"/>
+        <allocation task-id="140" resource-id="2" function="Default:0" responsible="false" load="100.0"/>
+        <allocation task-id="119" resource-id="2" function="Default:0" responsible="false" load="100.0"/>
+        <allocation task-id="141" resource-id="2" function="Default:0" responsible="false" load="100.0"/>
+        <allocation task-id="146" resource-id="2" function="Default:0" responsible="false" load="100.0"/>
+        <allocation task-id="125" resource-id="2" function="Default:0" responsible="false" load="100.0"/>
+        <allocation task-id="123" resource-id="2" function="Default:0" responsible="false" load="100.0"/>
+        <allocation task-id="150" resource-id="2" function="Default:0" responsible="false" load="100.0"/>
+        <allocation task-id="129" resource-id="2" function="Default:0" responsible="false" load="100.0"/>
+        <allocation task-id="155" resource-id="2" function="Default:0" responsible="false" load="33.3"/>
+        <allocation task-id="153" resource-id="2" function="Default:0" responsible="false" load="33.3"/>
+        <allocation task-id="121" resource-id="2" function="Default:0" responsible="false" load="100.0"/>
+        <allocation task-id="161" resource-id="2" function="Default:0" responsible="false" load="50.0"/>
+        <allocation task-id="165" resource-id="2" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="167" resource-id="2" function="Default:0" responsible="false" load="100.0"/>
+        <allocation task-id="173" resource-id="2" function="Default:0" responsible="false" load="50.0"/>
+        <allocation task-id="116" resource-id="2" function="Default:0" responsible="false" load="33.3"/>
+        <allocation task-id="182" resource-id="2" function="Default:0" responsible="false" load="33.3"/>
+        <allocation task-id="184" resource-id="2" function="Default:0" responsible="false" load="33.3"/>
+        <allocation task-id="196" resource-id="2" function="Default:0" responsible="false" load="100.0"/>
+        <allocation task-id="198" resource-id="2" function="Default:0" responsible="false" load="100.0"/>
+        <allocation task-id="190" resource-id="2" function="Default:0" responsible="false" load="50.0"/>
+        <allocation task-id="188" resource-id="2" function="Default:0" responsible="false" load="100.0"/>
+    </allocations>
+    <vacations/>
+    <previous/>
+    <roles roleset-name="Default"/>
+    <roles>
+        <role id="1" name="Project Lead"/>
+    </roles>
+</project>
