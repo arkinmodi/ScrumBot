@@ -3,6 +3,7 @@
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{hyperref}
+\usepackage{float}
 \usepackage{geometry}
 \geometry{a4paper, portrait, margin=1in}
 \hypersetup{
@@ -14,8 +15,8 @@
 \title{SE 3XA3: Development Plan\\ScrumBot}
 
 \author{
-	Team 304, ScrumBot
-		\\ Arkin Modi, modia1
+    Team 304, ScrumBot
+        \\ Arkin Modi, modia1
         \\ Leon So, sol4
         \\ Timothy Choy, choyt2
 }
@@ -35,6 +36,7 @@
             January 28, 2020 & Arkin Modi & Started Team Member Roles, Coding Style and Team Communication Plan sections\\
             January 29, 2020 & Leon So & Added to Team Meeting Plan section and Team Member Roles section table. Started Git Workflow Plan section and Technology section\\
             January 30, 2020 & Timothy Choy & Updated Proof of Concept Plan and Project Schedule sections\\
+            January 30, 2020 & Leon So & Updated Introduction\\
             January 30, 2020 & Everyone & Complete, revise, and update development plan\\
         \bottomrule
     \end{tabularx}
@@ -44,7 +46,7 @@
 
 \maketitle
 
-Put your introductory blurb here.
+\noindent This document outlines the Development Plan for 3XA3 Team 304's ScrumBot. This document outlines the team meeting plan, team communication plan, team member roles, Git workflow plan, proof of concept demonstration plan, technology, coding style, project schedule, and project review.
 
 \section{Team Meeting Plan}
 % When, Where, Frequency, Roles, Rules for Agenda
@@ -59,28 +61,29 @@ Communication outside of class with predominantly be done through Facebook Messe
 \section{Team Member Roles}
 The following table outlines the roles that each team member will be responsible for the course of this project.
 
-\begin{table}[ht]
+\begin{table}[H]
     \centering
+    \caption{Team Member Roles}
+    \vspace{5}
     \begin{tabular}{|l|l|}
         \hline
         \textbf{Role} & \textbf{Member(s)} \\
         \hline
-        Project Lead & \\
+        Project Lead & Leon So\\
         \hline
-        Scribe & \\
+        Scribe & Arkin Modi\\
         \hline
         Developer & Arkin Modi, Leon So, Timothy Choy \\
         \hline
         Documentation Expert & Arkin Modi, Leon So, Timothy Choy \\
         \hline
-        Git Expert & Timothy Choy \\
+        Git Expert & Arkin Modi \\
         \hline
         LaTeX Expert & Timothy Choy \\
         \hline
         Technology Expert & Leon So \\
         \hline
     \end{tabular}
-    \caption{Team Member Roles}
 \end{table}
 
 % \subsection{Role Responsibilities}
@@ -89,7 +92,7 @@ The following table outlines the roles that each team member will be responsible
 The master branch should always be a working branch which contains the most recent stable version of the application. Each push to master will have a tag to indicate the version of the application. Any development will be done on separate branches parallel to master, which will then be merged into master after new changes have been tested. Any hotfixes will be done in a new branch parallel to master.
 
 \section{Proof of Concept Demonstration Plan}
-
+The main challenges for this project will be testing the Discord bot and 
 
 \section{Technology}
 The main programming language used for this project will be Python3. The IDE used will be Visual Studio Code. The framework used for functional testing will be Pytest. All Python code written will be documented using the document generator Doxygen.
