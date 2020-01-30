@@ -3,6 +3,7 @@
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{hyperref}
+\usepackage{float}
 \usepackage{geometry}
 \geometry{a4paper, portrait, margin=1in}
 \hypersetup{
@@ -35,6 +36,7 @@
             January 28, 2020 & Arkin Modi & Started Team Member Roles, Coding Style and Team Communication Plan sections\\
             January 29, 2020 & Leon So & Added to Team Meeting Plan section and Team Member Roles section table. Started Git Workflow Plan section and Technology section\\
             January 30, 2020 & Timothy Choy & Updated Proof of Concept Plan and Project Schedule sections\\
+            January 30, 2020 & Leon So & Updated Introduction\\
             January 30, 2020 & Everyone & Complete, revise, and update development plan\\
         \bottomrule
     \end{tabularx}
@@ -44,51 +46,55 @@
 
 \maketitle
 
-Put your introductory blurb here.
+\noindent This document outlines the Development Plan for 3XA3 Team 304's ScrumBot. This document outlines the team meeting plan, team communication plan, team member roles, Git workflow plan, proof of concept demonstration plan, technology, coding style, project schedule, and project review.
 
 \section{Team Meeting Plan}
 % When, Where, Frequency, Roles, Rules for Agenda
-Meetings will primarily take place within the course's two lab session each week. If necessary, the project lead will schedule any additional meeting outside of course time with the consent of all team members. The time and location will be decided by the Project Lead at the time of scheduling. 
+Meetings will primarily take place within the course's two lab sessions each week. If necessary, the project lead will schedule any additional meeting outside of course time with the consent of all team members. The time and location will be decided by the Project Lead at the time of scheduling. 
 \\\\
 \noindent For each meeting, the role each member will play is as described in the Team Member Roles section. The project lead will also chair each meeting. The project lead is responsible for keeping the meeting on track and ensuring that the meeting is organized according to a meeting agenda. The meeting agenda should be reviewed at the start of each meeting. During each meeting, one team member will be in charge of keeping track of meeting minutes. The member in charge of keeping track of meeting minutes will alternate between the two members who are not the project lead. At the end of each meeting, the project lead is responsible for producing a written statement of all decisions made during the meeting. It is expected that by the end of each meeting, each member knows their role and upcoming tasks. At the end of each meeting, the team should also evaluate the effectiveness of the meeting.
 
 \section{Team Communication Plan}
 % Facebook Messenger, GitLab Issues, Gantt Chart
-Communication outside of class with predominantly be done through Facebook Messenger. Through Facebook Messenger, we will communicate any problems and inquires. The Gantt Chart will be used to keep track of the progress of all aspects of the project as well as plan out future work on a high level. Additionally, GitLab's issues feature will be used in parallel to the Gantt Chart to organize work assignment, deadlines, and work status (i.e. not started, in-progress, and completed).
+Communication outside of class will predominantly be done through Facebook Messenger. Through Facebook Messenger, the team members will communicate any problems and inquires. The Gantt Chart will be used to keep track of the progress of all aspects of the project as well as plan out future work on a high level. Additionally, GitLab's issues feature will be used in parallel to the Gantt Chart to organize work assignment, deadlines, and work status (i.e. not started, in-progress, and completed).
 
 \section{Team Member Roles}
 The following table outlines the roles that each team member will be responsible for the course of this project.
 
-\begin{table}[ht]
+\begin{table}[H]
     \centering
+    \caption{Team Member Roles}
+    \vspace{5pt}
     \begin{tabular}{|l|l|}
         \hline
         \textbf{Role} & \textbf{Member(s)} \\
         \hline
-        Project Lead & \\
+        Project Lead & Leon So\\
         \hline
-        Scribe & \\
+        Scribe & Arkin Modi\\
         \hline
         Developer & Arkin Modi, Leon So, Timothy Choy \\
         \hline
         Documentation Expert & Arkin Modi, Leon So, Timothy Choy \\
         \hline
-        Git Expert & Timothy Choy \\
+        Git Expert & Arkin Modi \\
         \hline
         LaTeX Expert & Timothy Choy \\
         \hline
         Technology Expert & Leon So \\
         \hline
     \end{tabular}
-    \caption{Team Member Roles}
 \end{table}
 
 % \subsection{Role Responsibilities}
 
 \section{Git Workflow Plan}
-The master branch should always be a working branch which contains the most recent stable version of the application. Each push to master will have a tag to indicate the version of the application. Any development will be done on separate branches parallel to master, which will then be merged into master after new changes have been tested. Any hotfixes will be done in a new branch parallel to master.
+The master branch should always be a working branch which contains the most recent stable version of the application. For any development of the application, each push to master will have a tag to indicate the version of the project. Any development will be done on separate branches parallel to master, which will then be merged into master after new changes have been tested. Any hot-fixes will be done in a new branch parallel to master.
 
 \section{Proof of Concept Demonstration Plan}
+The main challenges for this project will be testing the Discord bot and other challenges associated with implementing and connecting to various technologies (i.e. APIs), since this project heavily relies on the Discord API. Testing may prove difficult because it is never possible to cover all cases in the code, and building a Discord bot can pose many more unknown problems that we have little to no prior experience with.\\ \\
+To tackle the testing challenge, we plan on using Pytest to unit test the code, more specifically specification testing through testing our written specifications. We also plan on using exploratory testing techniques to find errors by creating a Discord server and running commands there. This will be accomplished by acting as testers ourselves, as well as enlisting other peers to achieve how users would actually use the bot. With these methods of testing, we can be confident that the code has been sufficiently tested and covered.\\ \\
+To tackle the challenges of connecting to various aPIs and systems, we plan on refining our requirements documents such that it outlines how each API is to be used and how our modules will interact with external interfaces. Detailed documentation will help us stay organized in the implementation stage of this project.
 
 
 \section{Technology}
@@ -99,7 +105,7 @@ The project will be written in Python following the \href{https://google.github.
 
 \section{Project Schedule}
 % Provide a pointer to your Gantt Chart.
-The project schedule is written in the form of a Gantt Chart and found in our repository under ./ProjectSchedule. From the Gitlab repo, it is found \href{https://gitlab.cas.mcmaster.ca/modia1/ScrumBot/tree/master/ProjectSchedule}{here}.
+The project schedule is written in the form of a Gantt Chart and found in our repository under ./ProjectSchedule. From the Gitlab repository, it is found \href{https://gitlab.cas.mcmaster.ca/modia1/ScrumBot/tree/master/ProjectSchedule}{here}.
 
 \section{Project Review}
 % This section will remain blank until revision 1
