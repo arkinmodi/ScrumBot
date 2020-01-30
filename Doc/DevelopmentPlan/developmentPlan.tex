@@ -1,4 +1,3 @@
-% !TeX root = ./developmentPlan.tex
 \documentclass{article}
 
 \usepackage{booktabs}
@@ -13,8 +12,8 @@
 \title{SE 3XA3: Development Plan\\ScrumBot}
 
 \author{
-	Team 304, ScrumBot
-		\\ Arkin Modi, modia1
+    Team 304, ScrumBot
+        \\ Arkin Modi, modia1
         \\ Leon So, sol4
         \\ Timothy Choy, choyt2
 }
@@ -32,6 +31,7 @@
         \midrule
             January 23, 2020 & Arkin Modi & Copy template\\
             January 28, 2020 & Arkin Modi & Started Team Member Roles, Coding Style and Team Communication Plan sections\\
+            January 29, 2020 & Leon So & Added to Team Meeting section, started Git Workflow Plan section and Technology section\\
         \bottomrule
     \end{tabularx}
 \end{table}
@@ -44,9 +44,9 @@ Put your introductory blurb here.
 
 \section{Team Meeting Plan}
 % When, Where, Frequency, Roles, Rules for Agenda
-Meetings will primarily take place within the course's two lab session each week. If necessary, the Project Lead will schedule any additional meeting outside of course time with the consent of all team members. The time and location will be decided by the Project Lead at the time of scheduling. 
+Meetings will primarily take place within the course's two lab session each week. If necessary, the project lead will schedule any additional meeting outside of course time with the consent of all team members. The time and location will be decided by the Project Lead at the time of scheduling. 
 \\\\
-\noindent For each meeting, the role each member will play is as described in the Team Member Roles section.
+\noindent For each meeting, the role each member will play is as described in the Team Member Roles section. The project lead will also chair each meeting. During each meeting, one team member will be in charge of keeping track of meeting minutes. The member in charge of keeping track of meeting minutes will alternate between the two members who are not the project lead. At the end of each meeting, the project lead is responsible for producing a written statement of all decisions made during the meeting. It is expected that by the end of each meeting, each member knows their role and upcoming tasks.
 
 \section{Team Communication Plan}
 % Facebook Messenger, GitLab Issues, Gantt Chart
@@ -75,6 +75,8 @@ The following table outlines the roles that each team member will be responsible
         \hline
         Technology Expert & Leon So \\
         \hline
+        Meeting Minutes & Arkin Modi, Leon So \\
+        \hline
     \end{tabular}
     \caption{Team Member Roles}
 \end{table}
@@ -82,10 +84,12 @@ The following table outlines the roles that each team member will be responsible
 % \subsection{Role Responsibilities}
 
 \section{Git Workflow Plan}
+The master branch should always be a working branch which contains the most recent stable version of the application. Each push to master will have a tag to indicate the version of the application. Any development will be done on separate branches parallel to master, which will then be merged into master after new changes have been tested. Any hotfixes will be done in a new branch parallel to master.
 
 \section{Proof of Concept Demonstration Plan}
 
 \section{Technology}
+The main programming language used for this project will be Python3. The IDE used will be Visual Studio Code. The framework used for functional testing will be Pytest. All Python code written will be documented using the document generator Doxygen.
 
 \section{Coding Style}
 The project will be written in Python following the \href{https://google.github.io/styleguide/pyguide.html}{Google Python Style Guide}.
