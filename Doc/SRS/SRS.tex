@@ -1,4 +1,3 @@
-% !TeX root = ./SRS.tex
 \documentclass[12pt, titlepage]{article}
 
 \usepackage{booktabs}
@@ -16,12 +15,12 @@
 \title{SE 3XA3: Software Requirements Specification\\ScrumBot}
 
 \author{
-	Team 304, ScrumBot
-		\\ Arkin Modi, modia1
+    Team 304, ScrumBot
+        \\ Arkin Modi, modia1
         \\ Leon So, sol4
         \\ Timothy Choy, choyt2
 }
-\date{Last Updated: January 23, 2020}
+\date{Last Updated: February 3, 2020}
 
 %\input{../Comments}
 
@@ -41,6 +40,7 @@
             \textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
         \midrule
             January 23, 2020 & Arkin Modi & Copy template\\
+            February 3, 2020 & Leon So & Worked on Stakeholders section\\
         \bottomrule
     \end{tabularx}
 \end{table}
@@ -49,17 +49,39 @@
 
 \pagenumbering{arabic}
 
-This document describes the requirements for ....  The template for the Software
-Requirements Specification (SRS) is a subset of the Volere
+This document describes the requirements for Scrumbot.  The template for the Software
+Requirements Specification (SRS) is a subset of the Volere.
 template~\citep{RobertsonAndRobertson2012}.  If you make further modifications
-to the template, you should explicity state what modifications were made.
+to the template, you should explicitly state what modifications were made.
 
 \section{Project Drivers}
 
 \subsection{The Purpose of the Project}
 
 \subsection{The Stakeholders}
-
+This solution will be used in an environment where the development team uses the scrum agile framework and uses Discord as their routine communication channel.
+\subsubsection{Roles in Scrum process}
+\begin{itemize}
+    \item Product Owner(s)
+    \begin{itemize}
+      \item[] The product owner(s) will benefit from the reduced development time through improved communication and efficient management of the project. The product owner(s) will also benefit as their ideas and requirements will be better organized, thus helping the development team more efficiently achieve the goals of the product owner(s).
+    \end{itemize}
+    \item Scrum Master
+    \begin{itemize}
+      \item[] The scrum master will be better able to coordinate scrum plans and division of tasks, as well as routine communication (i.e. retrospectives and stand-ups). With a scrum management system directly implemented into the communication channels, the scrum master will be able to directly manage the meeting information and their scrum development cycle during communication.
+    \end{itemize}
+    \item Development Team
+    \begin{itemize}
+      \item[] The development team will be able to more easily follow through on tasks assigned by the scrum master. The development team may easily refer to any relevant articles or information regarding their project. This will reduce inefficiencies and speedup communication within the development team. It will also reduce confusion, as all information concerning the development cycle will be available through their routine communication channel (Discord).
+    \end{itemize}
+\end{itemize}
+\subsubsection{Other stakeholders}
+\begin{itemize}
+    \item Development Firm
+    \begin{itemize}
+      \item[] The development firm will benefit through centralizing project resources, therefore improving the organization and management of the project. The development firm will therefore be able to reduce any costs associated with inefficiencies during the development process. This will also improve communication between members of the development firm.
+    \end{itemize}
+\end{itemize}
 \subsubsection{The Client}
 
 \subsubsection{The Customers}
