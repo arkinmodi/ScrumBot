@@ -162,9 +162,24 @@ It is assumed that the user will be deploying the Discord bot on Discord. It is 
     \item The system will output the 
 \end{itemize}
 
+\subsubsection{Style Requirements}
+\begin{itemize}
+    \item The system shall use short, clear, and descriptive role names
+\end{itemize}
+
 \subsection{Usability and Humanity Requirements}
+\subsubsection{Ease of Use Requirements}
 \begin{itemize}
     \item The system shall have intuitive user commands
+    \item The system shall be easy to use for ages 13+
+\end{itemize}
+\subsubsection{Personalization and Internationalization Requirements}
+\begin{itemize}
+    \item The system shall be used by English speakers only
+\end{itemize}
+\subsubsection{Learning Requirements}
+\begin{itemize}
+    \item The system shall have a help menu to explain commands to the user
 \end{itemize}
 
 \subsection{Performance Requirements}
@@ -174,7 +189,12 @@ It is assumed that the user will be deploying the Discord bot on Discord. It is 
 \end{itemize}
 \subsubsection{Precision or Accuracy Requirements}
 \begin{itemize}
-    \item The system shall have a meeting locations and schedules accuracy greater than 70\%.
+    \item The system shall have a meeting locations and schedules accuracy greater than 70\%
+    \item All meeting times should be accurate to within 30 seconds
+\end{itemize}
+\subsubsection{Reliability and Availability Requirements}
+\begin{itemize}
+    \item The system shall load and use the correct data for the team
 \end{itemize}
 
 \subsection{Operational and Environmental Requirements}
@@ -184,14 +204,25 @@ It is assumed that the user will be deploying the Discord bot on Discord. It is 
 \end{itemize}
 \subsubsection{Requirements for Interfacing with Adjacent Systems}
 \begin{itemize}
-    \item The system shall connect to Google API services
+    \item The system shall connect to Google's API services
+    \item The system shall connect to Discord's API services
+    \item The system shall connect to Trello's API services
 \end{itemize}
 
 \subsection{Maintainability and Support Requirements}
+\subsubsection{Maintainability Requirements}
 \begin{itemize}
     \item The code shall be documented using comments
     \item The code shall be documented using Doxygen
     \item The code documentation shall be easy to understand
+\end{itemize}
+\subsubsection{Supportability Requirements}
+\begin{itemize}
+    \item The system shall have a help menu available to users at all times
+\end{itemize}
+\subsubsection{Longevity Requirements}
+\begin{itemize}
+    \item The system will be made in modules to increase maintainability and longevity
 \end{itemize}
 
 \subsection{Security Requirements}
@@ -205,11 +236,10 @@ It is assumed that the user will be deploying the Discord bot on Discord. It is 
 \end{itemize}
 
 \subsection{Legal Requirements}
+N/A
 
 \subsection{Health and Safety Requirements}
-
-This section is not in the original Volere template, but health and safety are
-issues that should be considered for every engineering project.
+N/A
 
 \section{Project Issues}
 
