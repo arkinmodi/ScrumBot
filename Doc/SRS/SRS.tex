@@ -34,7 +34,7 @@
 \listoftables
 \listoffigures
 
-\begin{table}[bp]
+\begin{table}[!hbp]
     \caption{Revision History} \label{TblRevisionHistory}
     \begin{tabularx}{\textwidth}{llX}
         \toprule
@@ -43,7 +43,11 @@
             January 23, 2020 & Arkin Modi & Copy template\\
             February 3, 2020 & Leon So & Worked on Stakeholders section\\
             February 4, 2020 & Leon So & Worked on Purpose, Non-functional Requirements sections\\
-            February 8, 2020 & Leon So & Formatted and added non-functional requirements\\
+            February 8, 2020 & Leon So & Formatted and added non-functional requirements; Created terminology table; worked on Project Scope; Relevant Facts and Assumptions\\
+            February 8, 2020 & Arkin Modi & Worked on Mandated Constraints, Off-the-Shelf Solutions\\
+            February 8, 2020 & Timothy Choy & Worked on Look and Feel Requirements, Legal Requirements\\
+            February 8, 2020 & Timothy Choy & Updated SRS formatting\\
+            February 8, 2020 & Leon So & Add Functional Requirements, Update Stakeholders\\
         \bottomrule
     \end{tabularx}
 \end{table}
@@ -94,6 +98,10 @@ The customer of the ScrumBot is any firm looking to improve efficiency in commun
     \item Development Team
     \begin{itemize}
       \item[] The development team will be able to more easily follow through on tasks assigned by the scrum master. The development team may easily refer to any relevant articles or information regarding their project. This will reduce inefficiencies and speedup communication within the development team. It will also reduce confusion, as all information concerning the development cycle will be available through their routine communication channel (Discord).
+    \end{itemize}
+    \item Business Analyst
+    \begin{itemize}
+      \item[] The Business Analyst will be able to better coordinate communication concerning the project between the development team and the product owner(s). ScrumBot will also allow the Business Analyst to better: organize and monitor the progress of the project, update requirements, and analyse sprint progress.
     \end{itemize}
 \end{itemize}
 \subsubsection{Other stakeholders}
@@ -164,7 +172,7 @@ This product is designed to be used by software development teams using: Discord
 
 \subsection{Functional Requirements}
 \begin{enumerate}[{BE}1.]
-    \item Scrumbot gets added into a Discord channel
+    \item The development firm wants to add ScrumBot to its Discord channel
     \begin{enumerate}[{VP}1.]
         \item Viewpoint:
     \end{enumerate}
@@ -174,16 +182,21 @@ This product is designed to be used by software development teams using: Discord
         \item Viewpoint: Development Team
             \begin{enumerate}
                 \item The system shall update the project list of the development team
+                \item The system shall notify the development team of the new project
+                \item The system shall notify the development team of the scheduled first meeting
             \end{enumerate}
         \item Viewpoint: Business Analyst
             \begin{enumerate}
                 \item The system shall prompt the Business Analyst for the project name
                 \item The system shall prompt the Business Analyst for the project details
+                \item The system shall prompt the Business Analyst for first meeting details
                 \item The system shall append the project and its details to the project list
             \end{enumerate}
         \item Viewpoint: Scrum Master
             \begin{enumerate}
                 \item The system shall update the project list of the Scrum Master
+                \item The system shall notify the Scrum Master of the new project
+                \item The system shall notify the Scrum Master of the scheduled first meeting
             \end{enumerate}
     \end{enumerate}
 \end{enumerate}
