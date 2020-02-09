@@ -172,7 +172,7 @@ This application will be available for free to any user that has access to a Dis
 \begin{table}[H]
     \caption{Naming Conventions and Terminology}
     \centering
-    \begin{tabular}{ |p{5cm}|p{9cm}|  }
+    \begin{tabular}{ |p{5cm}|p{10.5cm}|  }
      \hline
      \textbf{Term} & \textbf{Definition} \\
      \hline
@@ -188,13 +188,19 @@ This application will be available for free to any user that has access to a Dis
      \hline
      Scrum & An Agile process framework\\
      \hline
-     Scrum Master & The facilitator for an agile development team\\
+     Scrum Master & The facilitator for an agile development team who plans, leads and organizes Scrum meetings\\
      \hline
      Stand-up & A daily coordination meeting used in the Scrum framework\\
      \hline
-      Sprint & A set time period where specific work has to be completed and made ready for review\\
+     Sprint & A set time period where specific work has to be completed and made ready for review\\
      \hline
      Retrospective & A team meeting for reflecting on an Scrum sprint\\
+     \hline
+     Business Analyst & Communicates and coordinates project requirements and deadlines between the Product Owner(s), Scrum Master, and Development Team\\
+     \hline
+     Grooming & A meeting where the Business Analyst communicates and coordinates project requirements and deadlines with the Scrum Master and Development Team\\
+     \hline
+     BE & Business Event\\
      \hline
     \end{tabular}
 \end{table}
@@ -275,7 +281,7 @@ This product is designed to be used by software development teams using: Discord
             \end{enumerate}
     \end{enumerate}
 
-    \item The Business Analyst wants to delete a project
+    \item The Business Analyst wants to remove a project
     \begin{enumerate}[{VP}1.] 
         \item Viewpoint: Development Firm
             \begin{enumerate}
@@ -290,6 +296,7 @@ This product is designed to be used by software development teams using: Discord
             \begin{enumerate}
                 \item The system shall ask the Business Analyst for confirmation
                 \item The system shall update the project list of
+                \item The system shall ask the Business Analyst if the project is completed or cancelled
             \end{enumerate}
         \item Viewpoint: Scrum Master
             \begin{enumerate}
@@ -326,7 +333,7 @@ This product is designed to be used by software development teams using: Discord
             \end{enumerate}
     \end{enumerate}
 
-    \item A stand-up meeting occurs % Meeting where you talk about what you did, daily
+    \item A stand-up meeting occurs     % Stand up - Meeting where you talk about what you did, daily
     \begin{enumerate}[{VP}1.] 
         \item Viewpoint: Development Firm
             \begin{enumerate}
@@ -346,6 +353,26 @@ This product is designed to be used by software development teams using: Discord
             \end{enumerate}
     \end{enumerate}
 
+    \item A retrospective meeting occurs     % Retrospective - Meeting where you reflect on the sprint, weekly or biweekly
+    \begin{enumerate}[{VP}1.] 
+        \item Viewpoint: Development Firm
+            \begin{enumerate}
+                \item[] N/A
+            \end{enumerate}
+        \item Viewpoint: Development Team
+            \begin{enumerate}
+                \item The system shall allow the development team members to see the sprint feedback
+            \end{enumerate}
+        \item Viewpoint: Business Analyst
+            \begin{enumerate}
+                \item[] N/A
+            \end{enumerate}
+        \item Viewpoint: Scrum Master
+            \begin{enumerate}
+                \item The system shall allow the Scrum Master to add feedback regarding the sprint
+            \end{enumerate}
+    \end{enumerate}
+    
     \item A grooming meeting occurs % Meeting where Business Analyst gives new project details to the team
     \begin{enumerate}[{VP}1.] 
         \item Viewpoint: Development Firm
