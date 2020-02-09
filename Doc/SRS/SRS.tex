@@ -4,6 +4,16 @@
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{hyperref}
+\usepackage{setspace}
+\usepackage{xspace}
+\usepackage{float}
+\usepackage{placeins}
+\usepackage{enumerate}
+\usepackage[shortlabels]{enumitem}
+
+% Document margins
+\usepackage[left=1in,top=1in,right=1in,bottom=1in]{geometry}
+
 \hypersetup{
     colorlinks,
     citecolor=black,
@@ -21,7 +31,7 @@
         \\ Leon So, sol4
         \\ Timothy Choy, choyt2
 }
-\date{Last Updated: February 3, 2020}
+\date{Last Updated: February 8, 2020}
 
 %\input{../Comments}
 
@@ -34,6 +44,8 @@
 \listoftables
 \listoffigures
 
+\newpage
+
 \begin{table}[!hbp]
     \caption{Revision History} \label{TblRevisionHistory}
     \begin{tabularx}{\textwidth}{llX}
@@ -44,22 +56,22 @@
             February 3, 2020 & Leon So & Worked on Stakeholders section\\
             February 4, 2020 & Leon So & Worked on Purpose, Non-functional Requirements sections\\
             February 8, 2020 & Leon So & Formatted and added non-functional requirements; Created terminology table; worked on Project Scope; Relevant Facts and Assumptions\\
-            February 8, 2020 & Arkin Modi & Worked on Mandated Constraints, Off-the-Shelf Solutions\\
+            February 8, 2020 & Arkin Modi & Worked on Mandated Constraints, Off-the-Shelf Solutions, New Problems\\
             February 8, 2020 & Timothy Choy & Worked on Look and Feel Requirements, Legal Requirements\\
-            February 8, 2020 & Timothy Choy & Updated SRS formatting\\
-            February 8, 2020 & Leon So & Add Functional Requirements, Update Stakeholders\\
+            February 8, 2020 & Timothy Choy & Updated SRS formatting, Functional Requirements\\
+            February 8, 2020 & Leon So & Add Functional Requirements, update Stakeholders section, worked on Project Issues Section\\
         \bottomrule
     \end{tabularx}
 \end{table}
+
+\FloatBarrier
 
 \newpage
 
 \pagenumbering{arabic}
 
-This document describes the requirements for Scrumbot.  The template for the Software
-Requirements Specification (SRS) is a subset of the Volere.
-template~\citep{RobertsonAndRobertson2012}.  If you make further modifications
-to the template, you should explicitly state what modifications were made.
+This document describes the requirements for Scrumbot. The template for the Software Requirements Specification (SRS) is a subset of the Volere template~\citep{RobertsonAndRobertson2012}.  
+% If you make further modifications to the template, you should explicitly state what modifications were made.
 
 \section{Project Drivers}
 
@@ -70,15 +82,18 @@ As a result, Scrumbot, a well-integrated scrum management system, can reduce ine
 
 \subsection{The Stakeholders}
 This solution will be used in an environment where the development team uses the scrum agile framework and uses Discord as their routine communication channel.
+
 \subsubsection{The Client}
 \begin{itemize}
     \item Dr. Ashgar Bokhari (3XA3)
     \begin{itemize}
-      \item[] The client for this project is Dr. Ashgar Bokhari - professor of the 3XA3 course.
+      \item[] The client for this project is Dr. Ashgar Bokhari - professor of the SFWRENG 3XA3 course.
     \end{itemize}
 \end{itemize}
+
 \subsubsection{The Customer}
 The customer of the ScrumBot is any firm looking to improve efficiency in communication and organization during the Scrum process of an agile software development cycle using the Scrum framework. This customer will likely be a software development firm (or the development department of a firm).
+
 \begin{itemize}
     \item Software Development Firm
     \begin{itemize}
@@ -154,6 +169,37 @@ This project has no monetary budget. If there are any necessary purchases for de
 This application will be available for free to any user that has access to a Discord server and a machine with Python 3 (and the dependencies) installed.
 
 \subsection{Naming Conventions and Terminology}
+\begin{table}[H]
+    \caption{Naming Conventions and Terminology}
+    \centering
+    \begin{tabular}{ |p{5cm}|p{9cm}|  }
+     \hline
+     \textbf{Term} & \textbf{Definition} \\
+     \hline
+     ScrumBot & The name of the Discord Bot \\
+     \hline
+     Discord & A cross-platform chat application\\
+     \hline
+     Trello & A web-based Kanban-style list-making application\\
+     \hline
+     Discord Bot & An automated chat bot that operates on Discord\\
+     \hline
+     Agile Development Method & A software development methodology\\
+     \hline
+     Scrum & An Agile process framework\\
+     \hline
+     Scrum Master & The facilitator for an agile development team\\
+     \hline
+     Stand-up & A daily coordination meeting used in the Scrum framework\\
+     \hline
+      Sprint & A set time period where specific work has to be completed and made ready for review\\
+     \hline
+     Retrospective & A team meeting for reflecting on an Scrum sprint\\
+     \hline
+    \end{tabular}
+\end{table}
+
+\FloatBarrier
 
 \subsection{Relevant Facts and Assumptions}
 
@@ -162,9 +208,10 @@ It is assumed that the user will be deploying the Discord bot on Discord. It is 
 \section{Functional Requirements}
 
 \subsection{The Scope of the Work and the Product}
+ScrumBot is a specialized chat bot (i.e. a Discord Bot) that runs on the Discord application. ScrumBot will allow users to better manage software development projects using the Scrum Agile Framework. The ScrumBot will have features which help software development teams organize and record Scrum meeting information, as well as features which will help software development teams stay on track. This will allow better organization of Scrum sprints, meetings  (i.e. sprint-planning, retrospectives  and  stand-ups) and  improve  efficiency  within  the communication channel.
 
 \subsubsection{The Context of the Work}
-This product is designed to be used by software development teams using: Discord as their main communication channel, an Agile development software design methodology, and Scrum agile process framework. Additionally, this application can be intregated with Trello, and Google Calendar and Maps.
+This product is designed to be used by software development teams using: Discord as their main communication channel, an Agile development software design methodology, and Scrum agile process framework. Additionally, this application can be integrated with Trello, and Google Calendar and Maps.
 
 \subsubsection{Work Partitioning}
 
@@ -202,211 +249,216 @@ This product is designed to be used by software development teams using: Discord
             \end{enumerate}
     \end{enumerate}
 
-    \item The Business Analyst wants to add a new project
-    \begin{enumerate}[{VP}1.] 
-        \item Viewpoint: Development Firm
-            \begin{enumerate}
-                \item The system shall add the project for all roles and personnel involved with the project
-            \end{enumerate}
-        \item Viewpoint: Development Team
-            \begin{enumerate}
-                \item The system shall update the project list of the development team
-                \item The system shall notify the development team of the new project
-                \item The system shall notify the development team of the scheduled first meeting
-            \end{enumerate}
-        \item Viewpoint: Business Analyst
-            \begin{enumerate}
-                \item The system shall prompt the Business Analyst for the project details (name, description, product owner)
-                \item The system shall prompt the Business Analyst for first meeting details
-                \item The system shall append the project and its details to the project list
-            \end{enumerate}
-        \item Viewpoint: Scrum Master
-            \begin{enumerate}
-                \item The system shall update the project list of the Scrum Master
-                \item The system shall notify the Scrum Master of the new project
-                \item The system shall notify the Scrum Master of the scheduled first meeting
-            \end{enumerate}
-    \end{enumerate}
+	\item The Business Analyst wants to add a new project
+	\begin{enumerate}[{VP}1.] 
+	    \item Viewpoint: Development Firm
+	        \begin{enumerate}
+	            \item The system shall add the project for all roles and personnel involved with the project
+	        \end{enumerate}
+	    \item Viewpoint: Development Team
+	        \begin{enumerate}
+	            \item The system shall update the project list of the development team
+	            \item The system shall notify the development team of the new project
+	            \item The system shall notify the development team of the scheduled first meeting
+	        \end{enumerate}
+		\item Viewpoint: Business Analyst
+			\begin{enumerate}
+			    \item The system shall prompt the Business Analyst for the project details (name, description, product owner)
+			    \item The system shall prompt the Business Analyst for first meeting details
+			    \item The system shall append the project and its details to the project list
+			\end{enumerate}
+		\item Viewpoint: Scrum Master
+			\begin{enumerate}
+			    \item The system shall update the project list of the Scrum Master
+			    \item The system shall notify the Scrum Master of the new project
+			    \item The system shall notify the Scrum Master of the scheduled first meeting
+			\end{enumerate}
+	\end{enumerate}
 
-    \item The Business Analyst wants to delete a project
-    \begin{enumerate}[{VP}1.] 
-        \item Viewpoint: Development Firm
-            \begin{enumerate}
-                \item The system shall remove the project for all roles and personnel involved with the project
-            \end{enumerate}
-        \item Viewpoint: Development Team
-            \begin{enumerate}
-                \item The system shall update the project list of the development team
-                \item The system shall notify the development team of the removed project
-            \end{enumerate}
-        \item Viewpoint: Business Analyst
-            \begin{enumerate}
-                \item The system shall ask the Business Analyst for confirmation
-                \item The system shall update the project list of
-            \end{enumerate}
-        \item Viewpoint: Scrum Master
-            \begin{enumerate}
-                \item The system shall update the project list of the Scrum Master
-                \item The system shall notify the Scrum Master of the removed project
-            \end{enumerate}
-    \end{enumerate}
-    
-    \item A sprint meeting occurs
-    \begin{enumerate}[{VP}1.] 
-        \item Viewpoint: Development Firm
-            \begin{enumerate}
-                \item[] N/A
-            \end{enumerate}
-        \item Viewpoint: Development Team
-            \begin{enumerate}
-                \item The system shall allow the Development Team to see new feedback
-                \item The system shall allow the Development Team to see the updated backlog tasks
-                \item The system shall allow the Development Team to see new goals
-                \item The system shall allow the Development Team to assign tasks to its developers
-                \item The system shall update the Trello Kanban board
-            \end{enumerate}
-        \item Viewpoint: Business Analyst
-            \begin{enumerate}
-                \item[] N/A
-            \end{enumerate}
-        \item Viewpoint: Scrum Master
-            \begin{enumerate}
-                \item The system shall allow the Scrum Master to add goals for the sprint
-                \item The system shall allow the Scrum Master to add feedback
-                \item The system shall allow the Scrum Master to add backlog tasks
-                \item The system shall update the Trello Kanban board
-            \end{enumerate}
-    \end{enumerate}
+	\item The Business Analyst wants to delete a project
+	\begin{enumerate}[{VP}1.] 
+	    \item Viewpoint: Development Firm
+	        \begin{enumerate}
+	            \item The system shall remove the project for all roles and personnel involved with the project
+	        \end{enumerate}
+	    \item Viewpoint: Development Team
+	        \begin{enumerate}
+	            \item The system shall update the project list of the development team
+	            \item The system shall notify the development team of the removed project
+	        \end{enumerate}
+		\item Viewpoint: Business Analyst
+			\begin{enumerate}
+			    \item The system shall ask the Business Analyst for confirmation
+			    \item The system shall update the project list of
+			\end{enumerate}
+		\item Viewpoint: Scrum Master
+			\begin{enumerate}
+	            \item The system shall update the project list of the Scrum Master
+	            \item The system shall notify the Scrum Master of the removed project
+			\end{enumerate}
+	\end{enumerate}
+	
+	\item A sprint-planning meeting occurs % Meeting where they plan the next sprint, approximately biweekly
+	\begin{enumerate}[{VP}1.] 
+	    \item Viewpoint: Development Firm
+	        \begin{enumerate}
+	            \item[] N/A
+	        \end{enumerate}
+	    \item Viewpoint: Development Team
+	        \begin{enumerate}
+	            \item The system shall allow the Development Team to see new feedback
+	            \item The system shall allow the Development Team to see the updated backlog tasks
+	            \item The system shall allow the Development Team to see new goals
+	            \item The system shall allow the Development Team to assign tasks to its developers
+	            \item The system shall update the Trello Kanban board
+	        \end{enumerate}
+		\item Viewpoint: Business Analyst
+			\begin{enumerate}
+			    \item[] N/A
+			\end{enumerate}
+		\item Viewpoint: Scrum Master
+			\begin{enumerate}
+	            \item The system shall allow the Scrum Master to add goals for the sprint
+	            \item The system shall allow the Scrum Master to add feedback
+	            \item The system shall allow the Scrum Master to add backlog tasks
+	            \item The system shall allow the Scrum Master to add tasks
+	            \item The system shall update the Trello Kanban board
+			\end{enumerate}
+	\end{enumerate}
 
-    \item A stand-up meeting occurs
-    \begin{enumerate}[{VP}1.] 
-        \item Viewpoint: Development Firm
-            \begin{enumerate}
-                \item[] N/A
-            \end{enumerate}
-        \item Viewpoint: Development Team
-            \begin{enumerate}
-                \item The system shall allow the development team to update and record their progress
-            \end{enumerate}
-        \item Viewpoint: Business Analyst
-            \begin{enumerate}
-                \item[] N/A
-            \end{enumerate}
-        \item Viewpoint: Scrum Master
-            \begin{enumerate}
-                \item The system shall allow the Scrum Master to update and record their progress
-            \end{enumerate}
-    \end{enumerate}
+	\item A stand-up meeting occurs % Meeting where you talk about what you did, daily
+	\begin{enumerate}[{VP}1.] 
+	    \item Viewpoint: Development Firm
+	        \begin{enumerate}
+	            \item[] N/A
+	        \end{enumerate}
+	    \item Viewpoint: Development Team
+	        \begin{enumerate}
+	            \item The system shall allow the development team to update and record their progress
+	        \end{enumerate}
+		\item Viewpoint: Business Analyst
+			\begin{enumerate}
+			    \item[] N/A
+			\end{enumerate}
+		\item Viewpoint: Scrum Master
+			\begin{enumerate}
+			    \item The system shall allow the Scrum Master to update and record their progress
+			\end{enumerate}
+	\end{enumerate}
 
-    \item A grooming meeting occurs
-    \begin{enumerate}[{VP}1.] 
-        \item Viewpoint: Development Firm
-            \begin{enumerate}
-                \item[] N/A
-            \end{enumerate}
-        \item Viewpoint: Development Team
-            \begin{enumerate}
-                \item The system shall allow the development team to see all updates regarding the project requirements, tasks, and deadlines
-            \end{enumerate}
-        \item Viewpoint: Business Analyst
-            \begin{enumerate}
-                \item The system shall allow the business analyst to update project requirements, tasks, and deadlines
-            \end{enumerate}
-        \item Viewpoint: Scrum Master
-            \begin{enumerate}
-                \item The system shall allow the Scrum Master to see all updates regarding the project requirements, tasks, and deadlines
-            \end{enumerate}
-    \end{enumerate}
+	\item A grooming meeting occurs % Meeting where Business Analyst gives new project details to the team
+	\begin{enumerate}[{VP}1.] 
+	    \item Viewpoint: Development Firm
+	        \begin{enumerate}
+	            \item[] N/A
+	        \end{enumerate}
+	    \item Viewpoint: Development Team
+	        \begin{enumerate}
+	            \item The system shall allow the development team to see all updates regarding the project requirements, tasks, and deadlines
+	        \end{enumerate}
+		\item Viewpoint: Business Analyst
+			\begin{enumerate}
+			    \item The system shall allow the business analyst to update project requirements and deadlines
+			\end{enumerate}
+		\item Viewpoint: Scrum Master
+			\begin{enumerate}
+			    \item The system shall allow the Scrum Master to see all updates regarding the project requirements, tasks, and deadlines
+			\end{enumerate}
+	\end{enumerate}
 \end{enumerate}
 
 \section{Non-functional Requirements}
 
 \subsection{Look and Feel Requirements}
-\begin{itemize}
-    \item The system will output the 
-\end{itemize}
+\subsubsection{Appearance Requirements}
+\begin{enumerate}[start=1, label={LF\arabic*.}]
+    \item The system shall follow the text format of the Discord application
+\end{enumerate}
 
 \subsubsection{Style Requirements}
-\begin{itemize}
+\begin{enumerate}[start=2, label={LF\arabic*.}]
     \item The system shall use short, clear, and descriptive role names
-\end{itemize}
+    \item The system shall colour code users based on their role
+\end{enumerate}
 
 \subsection{Usability and Humanity Requirements}
 \subsubsection{Ease of Use Requirements}
-\begin{itemize}
+\begin{enumerate}[start=1, label={UH\arabic*.}]
     \item The system shall have intuitive user commands
     \item The system shall be easy to use for ages 13+
-\end{itemize}
+\end{enumerate}
 \subsubsection{Personalization and Internationalization Requirements}
-\begin{itemize}
+\begin{enumerate}[start=3, label={UH\arabic*.}]
     \item The system shall be used by English speakers only
-\end{itemize}
+\end{enumerate}
 \subsubsection{Learning Requirements}
-\begin{itemize}
+\begin{enumerate}[start=4, label={UH\arabic*.}]
     \item The system shall have a help menu to explain commands to the user
-\end{itemize}
+\end{enumerate}
 
 \subsection{Performance Requirements}
 \subsubsection{Speed and Latency Requirements}
-\begin{itemize}
-    \item The system shall respond to user commands within 2 seconds.
-\end{itemize}
+\begin{enumerate}[start=1, label={P\arabic*.}]
+    \item The system shall respond to user commands within 2 seconds
+\end{enumerate}
 \subsubsection{Precision or Accuracy Requirements}
-\begin{itemize}
+\begin{enumerate}[start=2, label={P\arabic*.}]
     \item The system shall have a meeting locations and schedules accuracy greater than 70\%
     \item All meeting times should be accurate to within 30 seconds
-\end{itemize}
+\end{enumerate}
 \subsubsection{Reliability and Availability Requirements}
-\begin{itemize}
+\begin{enumerate}[start=4, label={P\arabic*.}]
     \item The system shall load and use the correct data for the team
-\end{itemize}
+\end{enumerate}
 
 \subsection{Operational and Environmental Requirements}
 \subsubsection{Expected Environment}
-\begin{itemize}
+\begin{enumerate}[start=1, label={OE\arabic*.}]
     \item The system shall be able to operated and be executed within the Discord application
-\end{itemize}
+\end{enumerate}
 \subsubsection{Requirements for Interfacing with Adjacent Systems}
-\begin{itemize}
+\begin{enumerate}[start=2, label={OE\arabic*.}]
     \item The system shall connect to Google's API services
     \item The system shall connect to Discord's API services
     \item The system shall connect to Trello's API services
-\end{itemize}
+\end{enumerate}
 
 \subsection{Maintainability and Support Requirements}
 \subsubsection{Maintainability Requirements}
-\begin{itemize}
+\begin{enumerate}[start=1, label={MS\arabic*.}]
     \item The code shall be documented using comments
     \item The code shall be documented using Doxygen
     \item The code documentation shall be easy to understand
-\end{itemize}
+\end{enumerate}
 \subsubsection{Supportability Requirements}
-\begin{itemize}
+\begin{enumerate}[start=4, label={MS\arabic*.}]
     \item The system shall have a help menu available to users at all times
-\end{itemize}
+\end{enumerate}
 \subsubsection{Longevity Requirements}
-\begin{itemize}
-    \item The system will be made in modules to increase maintainability and longevity
-\end{itemize}
+\begin{enumerate}[start=5, label={MS\arabic*.}]
+	\item The system will be made in modules to increase maintainability and longevity
+\end{enumerate}
 
 \subsection{Security Requirements}
-\begin{itemize}
+\begin{enumerate}[start=1, label={S\arabic*.}]
     \item The connection between the system and the APIs shall use HTTPS for security
-\end{itemize}
+\end{enumerate}
 
 \subsection{Cultural Requirements}
-\begin{itemize}
+\begin{enumerate}[start=1, label={C\arabic*.}]
     \item The system shall use Canadian English spelling
-\end{itemize}
+\end{enumerate}
 
 \subsection{Legal Requirements}
-N/A
+\begin{enumerate}[start=1, label={L\arabic*.}]
+    \item The system shall not violate any copyrighted properties.
+\end{enumerate}
 
 \subsection{Health and Safety Requirements}
 N/A
+% This section is not in the original Volere template, but health and safety are issues that should be considered for every engineering project.
 
 \section{Project Issues}
-
 \subsection{Open Issues}
 N/A
 
@@ -439,6 +491,11 @@ The server that will host the application will not be powerful enough to handle 
 In the future, if one or more of the API methods used become deprecated and removed, the application will cease to function.
 
 \subsection{Tasks}
+\subsubsection{Project Planning}
+
+
+\subsubsection{Planning of the Development Phases}
+
 
 \subsection{Migration to the New Product}
 \subsubsection{Requirements for Migration to the New Product}
@@ -455,12 +512,13 @@ There are currently no foreseen costs for this project. All software products us
 
 \subsection{User Documentation and Training}
 \subsubsection{User Documentation Requirements}
-
+N/A
 
 \subsubsection{Training Requirements}
 Basic knowledge in the use of Discord is needed to use this product. Knowledge of the Agile Development Method and the Scrum agile framework is also necessary for the user of this product. Documentation concerning ScrumBot and its commands will be provided to the users.
 
 \subsection{Waiting Room}
+There are no requirements in the waiting room.
 
 \subsection{Ideas for Solutions}
 
@@ -471,14 +529,10 @@ Basic knowledge in the use of Discord is needed to use this product. Knowledge o
 \newpage
 
 \section{Appendix}
-
-This section has been added to the Volere template.  This is where you can place
-additional information.
+% This section has been added to the Volere template.  This is where you can place additional information.
 
 \subsection{Symbolic Parameters}
-
-The definition of the requirements will likely call for SYMBOLIC\_CONSTANTS.
-Their values are defined in this section for easy maintenance.
+% The definition of the requirements will likely call for SYMBOLIC\_CONSTANTS. Their values are defined in this section for easy maintenance.
 
 
 \end{document}
