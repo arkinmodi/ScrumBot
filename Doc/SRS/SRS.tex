@@ -1,4 +1,3 @@
-% !TeX root = ./SRS.tex
 \documentclass[12pt, titlepage]{article}
 
 \usepackage{booktabs}
@@ -10,9 +9,13 @@
 \usepackage{placeins}
 \usepackage{enumerate}
 \usepackage[shortlabels]{enumitem}
+\usepackage{array}
+\usepackage{longtable}
 
 % Document margins
 \usepackage[left=1in,top=1in,right=1in,bottom=1in]{geometry}
+
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
 
 \hypersetup{
     colorlinks,
@@ -60,6 +63,7 @@
             February 8, 2020 & Timothy Choy & Worked on Look and Feel Requirements, Legal Requirements\\
             February 8, 2020 & Timothy Choy & Updated SRS formatting, Functional Requirements\\
             February 8, 2020 & Leon So & Add Functional Requirements, update Stakeholders section, worked on Project Issues Section\\
+            February 8, 2020 & Timothy Choy & Worked on Project Planning, Planning of the Development Phases, and Non-functional Requirements sections\\
         \bottomrule
     \end{tabularx}
 \end{table}
@@ -70,8 +74,8 @@
 
 \pagenumbering{arabic}
 
-This document describes the requirements for Scrumbot. The template for the Software Requirements Specification (SRS) is a subset of the Volere template~\citep{RobertsonAndRobertson2012}.  
-% If you make further modifications to the template, you should explicitly state what modifications were made.
+This document describes the requirements for Scrumbot. 
+%The template for the Software Requirements Specification (SRS) is a subset of the Volere template~\citep{RobertsonAndRobertson2012}. If you make further modifications to the template, you should explicitly state what modifications were made.
 
 \section{Project Drivers}
 
@@ -119,7 +123,7 @@ The customer of the ScrumBot is any firm looking to improve efficiency in commun
       \item[] The Business Analyst will be able to better coordinate communication concerning the project between the development team and the product owner(s). ScrumBot will also allow the Business Analyst to better: organize and monitor the progress of the project, update requirements, and analyse sprint progress.
     \end{itemize}
 \end{itemize}
-\subsubsection{Other stakeholders}
+% \subsubsection{Other stakeholders}
 
 
 \subsection{Mandated Constraints}
@@ -220,8 +224,39 @@ ScrumBot is a specialized chat bot (i.e. a Discord Bot) that runs on the Discord
 This product is designed to be used by software development teams using: Discord as their main communication channel, an Agile development software design methodology, and Scrum agile process framework. Additionally, this application can be integrated with Trello, and Google Calendar and Maps.
 
 \subsubsection{Work Partitioning}
+\begin{longtable}{|L{4cm}|L{3cm}|L{1.5cm}|L{6cm}|}
+    \caption{Work Partitioning}
+    \label{tab:my_label}\\
+    \hline
+    Event Name & Input & Output & Summary \\
+    \hline
+    Scrumbot Initialization & Development Firm & Discord channel & Adding the Discord bot to a Discord server for the first time\\
+    \hline
+    Project Creation & Development Firm & & Adding a new project to Scrumbot\\
+    \hline
+    Project Removal & Development Firm & & Removing a project from Scrumbot\\
+    \hline
+    Sprint-planning Meeting Occurs & Developers & Discord channel & A meeting is held where a sprint is planned, held prior to the sprint\\
+    \hline
+    Stand-up Meeting Occurs & Developers & Discord channel & A meeting is held, usually daily, where members record what they have done\\
+    \hline
+    Retrospective Meeting Occurs & Developers & Discord channel & A meeting is held where feedback is given on the previous sprint, held after the sprint\\
+    \hline
+    Grooming Meeting Occurs & Development Firm & Discord channel & A meeting in which the requirements of the project are specified by upper management\\
+    \hline
+    Meeting Creation & Development Firm & Discord channel & Creates a scheduled meeting into the Discord channel\\
+    \hline
+    Meeting Removal & Development Firm & Discord channel & Removes a scheduled meeting from the Discord channel\\
+    \hline
+    List Scheduled Meetings & Any Discord member & Discord channel & A command that lists all the scheduled meetings of a given member\\
+    \hline
+    List Tasks & Any Discord member & Discord & A command that lists all the scheduled tasks for a given member\\
+    \hline
+\end{longtable}
 
 \subsubsection{Individual Product Use Cases}
+This product is primarily used by software development firms, from start-ups to large companies, as these companies will be the most likely users of the Scrum agile framework. They would enjoy the benefit of using Discord as a means for quick communication, with integrated abilities to work on projects using Scrum.\\
+Another use case could be students who want to plan projects and work on them through the Scrum method. A lot of students would benefit from this over other forms of communication, such as Slack, a large portion of students already have access to Discord.
 
 \subsection{Functional Requirements}
 \begin{enumerate}[{BE}1.]
@@ -255,233 +290,234 @@ This product is designed to be used by software development teams using: Discord
             \end{enumerate}
     \end{enumerate}
 
-    \item The Business Analyst wants to add a new project
-    \begin{enumerate}[{VP}1.] 
-        \item Viewpoint: Development Firm
-            \begin{enumerate}
-                \item The system shall add the project for all roles and personnel involved with the project
-            \end{enumerate}
-        \item Viewpoint: Development Team
-            \begin{enumerate}
-                \item The system shall update the project list of the development team
-                \item The system shall notify the development team of the new project
-                \item The system shall notify the development team of the scheduled first meeting
-            \end{enumerate}
-        \item Viewpoint: Business Analyst
-            \begin{enumerate}
-                \item The system shall prompt the Business Analyst for the project details (name, description, product owner)
-                \item The system shall prompt the Business Analyst for first meeting details
-                \item The system shall append the project and its details to the project list
-            \end{enumerate}
-        \item Viewpoint: Scrum Master
-            \begin{enumerate}
-                \item The system shall update the project list of the Scrum Master
-                \item The system shall notify the Scrum Master of the new project
-                \item The system shall notify the Scrum Master of the scheduled first meeting
-            \end{enumerate}
-    \end{enumerate}
+	\item The Business Analyst wants to add a new project
+	\begin{enumerate}[{VP}1.] 
+	    \item Viewpoint: Development Firm
+	        \begin{enumerate}
+	            \item The system shall add the project for all roles and personnel involved with the project
+	        \end{enumerate}
+	    \item Viewpoint: Development Team
+	        \begin{enumerate}
+	            \item The system shall update the project list of the development team
+	            \item The system shall notify the development team of the new project
+	            \item The system shall notify the development team of the scheduled first meeting
+	        \end{enumerate}
+		\item Viewpoint: Business Analyst
+			\begin{enumerate}
+			    \item The system shall prompt the Business Analyst for the project details (name, description, product owner)
+			    \item The system shall prompt the Business Analyst for first meeting details
+			    \item The system shall append the project and its details to the project list
+			\end{enumerate}
+		\item Viewpoint: Scrum Master
+			\begin{enumerate}
+			    \item The system shall update the project list of the Scrum Master
+			    \item The system shall notify the Scrum Master of the new project
+			    \item The system shall notify the Scrum Master of the scheduled first meeting
+			\end{enumerate}
+	\end{enumerate}
 
-    \item The Business Analyst wants to remove a project
-    \begin{enumerate}[{VP}1.] 
-        \item Viewpoint: Development Firm
-            \begin{enumerate}
-                \item The system shall remove the project for all roles and personnel involved with the project
-            \end{enumerate}
-        \item Viewpoint: Development Team
-            \begin{enumerate}
-                \item The system shall update the project list of the development team
-                \item The system shall notify the development team of the removed project
-            \end{enumerate}
-        \item Viewpoint: Business Analyst
-            \begin{enumerate}
-                \item The system shall ask the Business Analyst for confirmation
-                \item The system shall update the project list of
-                \item The system shall ask the Business Analyst if the project is completed or cancelled
-            \end{enumerate}
-        \item Viewpoint: Scrum Master
-            \begin{enumerate}
-                \item The system shall update the project list of the Scrum Master
-                \item The system shall notify the Scrum Master of the removed project
-            \end{enumerate}
-    \end{enumerate}
-    
-    \item A sprint-planning meeting occurs % Meeting where they plan the next sprint, approximately biweekly
-    \begin{enumerate}[{VP}1.] 
-        \item Viewpoint: Development Firm
-            \begin{enumerate}
-                \item[] N/A
-            \end{enumerate}
-        \item Viewpoint: Development Team
-            \begin{enumerate}
-                \item The system shall allow the Development Team to see new feedback
-                \item The system shall allow the Development Team to see the updated backlog tasks
-                \item The system shall allow the Development Team to see new goals
-                \item The system shall allow the Development Team to assign tasks to its developers
-                \item The system shall update the Trello Kanban board
-            \end{enumerate}
-        \item Viewpoint: Business Analyst
-            \begin{enumerate}
-                \item[] N/A
-            \end{enumerate}
-        \item Viewpoint: Scrum Master
-            \begin{enumerate}
-                \item The system shall allow the Scrum Master to add goals for the sprint
-                \item The system shall allow the Scrum Master to add feedback
-                \item The system shall allow the Scrum Master to add backlog tasks
-                \item The system shall allow the Scrum Master to add tasks
-                \item The system shall update the Trello Kanban board
-            \end{enumerate}
-    \end{enumerate}
+	\item The Business Analyst wants to remove a project
+	\begin{enumerate}[{VP}1.] 
+	    \item Viewpoint: Development Firm
+	        \begin{enumerate}
+	            \item The system shall remove the project for all roles and personnel involved with the project
+	        \end{enumerate}
+	    \item Viewpoint: Development Team
+	        \begin{enumerate}
+	            \item The system shall update the project list of the development team
+	            \item The system shall notify the development team of the removed project
+	        \end{enumerate}
+		\item Viewpoint: Business Analyst
+			\begin{enumerate}
+			    \item The system shall ask the Business Analyst for confirmation
+			    \item The system shall update the project list of
+			    \item The system shall ask the Business Analyst if the project is completed or cancelled
+			\end{enumerate}
+		\item Viewpoint: Scrum Master
+			\begin{enumerate}
+	            \item The system shall update the project list of the Scrum Master
+	            \item The system shall notify the Scrum Master of the removed project
+			\end{enumerate}
+	\end{enumerate}
+	
+	\item A sprint-planning meeting occurs % Meeting where they plan the next sprint, approximately biweekly
+	\begin{enumerate}[{VP}1.] 
+	    \item Viewpoint: Development Firm
+	        \begin{enumerate}
+	            \item[] N/A
+	        \end{enumerate}
+	    \item Viewpoint: Development Team
+	        \begin{enumerate}
+	            \item The system shall allow the Development Team to see new feedback
+	            \item The system shall allow the Development Team to see the updated backlog tasks
+	            \item The system shall allow the Development Team to see new goals
+	            \item The system shall allow the Development Team to assign tasks to its developers
+	            \item The system shall update the Trello Kanban board
+	        \end{enumerate}
+		\item Viewpoint: Business Analyst
+			\begin{enumerate}
+			    \item[] N/A
+			\end{enumerate}
+		\item Viewpoint: Scrum Master
+			\begin{enumerate}
+	            \item The system shall allow the Scrum Master to add goals for the sprint
+	            \item The system shall allow the Scrum Master to add feedback
+	            \item The system shall allow the Scrum Master to add backlog tasks
+	            \item The system shall allow the Scrum Master to add tasks
+	            \item The system shall update the Trello Kanban board
+			\end{enumerate}
+	\end{enumerate}
 
-    \item A stand-up meeting occurs     % Stand up - Meeting where you talk about what you did, daily
-    \begin{enumerate}[{VP}1.] 
-        \item Viewpoint: Development Firm
-            \begin{enumerate}
-                \item[] N/A
-            \end{enumerate}
-        \item Viewpoint: Development Team
-            \begin{enumerate}
-                \item The system shall allow the development team to update and record their progress
-            \end{enumerate}
-        \item Viewpoint: Business Analyst
-            \begin{enumerate}
-                \item[] N/A
-            \end{enumerate}
-        \item Viewpoint: Scrum Master
-            \begin{enumerate}
-                \item The system shall allow the Scrum Master to update and record their progress
-            \end{enumerate}
-    \end{enumerate}
+	\item A stand-up meeting occurs     % Stand up - Meeting where you talk about what you did, daily
+	\begin{enumerate}[{VP}1.] 
+	    \item Viewpoint: Development Firm
+	        \begin{enumerate}
+	            \item[] N/A
+	        \end{enumerate}
+	    \item Viewpoint: Development Team
+	        \begin{enumerate}
+	            \item The system shall allow the development team to update and record their progress
+	        \end{enumerate}
+		\item Viewpoint: Business Analyst
+			\begin{enumerate}
+			    \item[] N/A
+			\end{enumerate}
+		\item Viewpoint: Scrum Master
+			\begin{enumerate}
+			    \item The system shall allow the Scrum Master to update and record their progress
+			\end{enumerate}
+	\end{enumerate}
 
     \item A retrospective meeting occurs     % Retrospective - Meeting where you reflect on the sprint, weekly or biweekly
-    \begin{enumerate}[{VP}1.] 
-        \item Viewpoint: Development Firm
-            \begin{enumerate}
-                \item[] N/A
-            \end{enumerate}
-        \item Viewpoint: Development Team
-            \begin{enumerate}
-                \item The system shall allow the development team members to see the sprint feedback
-            \end{enumerate}
-        \item Viewpoint: Business Analyst
-            \begin{enumerate}
-                \item[] N/A
-            \end{enumerate}
-        \item Viewpoint: Scrum Master
-            \begin{enumerate}
-                \item The system shall allow the Scrum Master to add feedback regarding the sprint
-            \end{enumerate}
-    \end{enumerate}
-    
-    \item A grooming meeting occurs % Meeting where Business Analyst gives new project details to the team
-    \begin{enumerate}[{VP}1.] 
-        \item Viewpoint: Development Firm
-            \begin{enumerate}
-                \item[] N/A
-            \end{enumerate}
-        \item Viewpoint: Development Team
-            \begin{enumerate}
-                \item The system shall allow the development team to see all updates regarding the project requirements, tasks, and deadlines
-            \end{enumerate}
-        \item Viewpoint: Business Analyst
-            \begin{enumerate}
-                \item The system shall allow the business analyst to update project requirements and deadlines
-            \end{enumerate}
-        \item Viewpoint: Scrum Master
-            \begin{enumerate}
-                \item The system shall allow the Scrum Master to see all updates regarding the project requirements, tasks, and deadlines
-            \end{enumerate}
-    \end{enumerate}
+	\begin{enumerate}[{VP}1.] 
+	    \item Viewpoint: Development Firm
+	        \begin{enumerate}
+	            \item[] N/A
+	        \end{enumerate}
+	    \item Viewpoint: Development Team
+	        \begin{enumerate}
+	            \item The system shall allow the development team members to see the sprint feedback
+	        \end{enumerate}
+		\item Viewpoint: Business Analyst
+			\begin{enumerate}
+			    \item[] N/A
+			\end{enumerate}
+		\item Viewpoint: Scrum Master
+			\begin{enumerate}
+			    \item The system shall allow the Scrum Master to add feedback regarding the sprint
+			\end{enumerate}
+	\end{enumerate}
+	
+	\item A grooming meeting occurs % Meeting where Business Analyst gives new project details to the team
+	\begin{enumerate}[{VP}1.] 
+	    \item Viewpoint: Development Firm
+	        \begin{enumerate}
+	            \item[] N/A
+	        \end{enumerate}
+	    \item Viewpoint: Development Team
+	        \begin{enumerate}
+	            \item The system shall allow the development team to see all updates regarding the project requirements, tasks, and deadlines
+	        \end{enumerate}
+		\item Viewpoint: Business Analyst
+			\begin{enumerate}
+			    \item The system shall allow the business analyst to update project requirements and deadlines
+			\end{enumerate}
+		\item Viewpoint: Scrum Master
+			\begin{enumerate}
+			    \item The system shall allow the Scrum Master to see all updates regarding the project requirements, tasks, and deadlines
+			\end{enumerate}
+	\end{enumerate}
 
-    \item User wants to add a meeting % Meeting where Business Analyst gives new project details to the team
-    \begin{enumerate}[{VP}1.] 
-        \item Viewpoint: Development Firm
-            \begin{enumerate}
-                \item[] N/A
-            \end{enumerate}
-        \item Viewpoint: Development Team
-            \begin{enumerate}
-                \item The system shall notify the invited members of the Development Team
-                \item The system shall prompt the invited members of the Development Team to accept or decline the meeting invitation
-            \end{enumerate}
-        \item Viewpoint: Business Analyst
-            \begin{enumerate}
-                \item The system shall prompt the user for the meeting subject, time, location, and room
-                \item The system shall prompt the user for the meeting participants
-                \item The system shall invite the participants
-                \item The system shall notify the invited Business Analyst if applicable
-                \item The system shall prompt the invited Business Analyst to accept or decline the meeting invitation, if applicable
-            \end{enumerate}
-        \item Viewpoint: Scrum Master
-            \begin{enumerate}
-                \item The system shall prompt the user for the meeting subject, time, location, and room
-                \item The system shall prompt the user for the meeting participants
-                \item The system shall invite the participants
-                \item The system shall notify the invited Scrum Master if applicable
-                \item The system shall prompt the invited Scrum Master to accept or decline the meeting invitation, if applicable
-            \end{enumerate}
-    \end{enumerate}
-    
-    \item User wants to cancel a meeting % Meeting where Business Analyst gives new project details to the team
-    \begin{enumerate}[{VP}1.] 
-        \item Viewpoint: Development Firm
-            \begin{enumerate}
-                \item[] N/A
-            \end{enumerate}
-        \item Viewpoint: Development Team
-            \begin{enumerate}
-                \item The system shall notify the participating members from the Development Team
-            \end{enumerate}
-        \item Viewpoint: Business Analyst
-            \begin{enumerate}
-                \item The system shall notify the Business Analyst if applicable
-            \end{enumerate}
-        \item Viewpoint: Scrum Master
-            \begin{enumerate}
-                \item The system shall notify the Scrum Master if applicable
-            \end{enumerate}
-    \end{enumerate}
-    
-    \item User wants to see the scheduled meetings
-    \begin{enumerate}[{VP}1.] 
-        \item Viewpoint: Development Firm
-            \begin{enumerate}
-                \item[] N/A
-            \end{enumerate}
-        \item Viewpoint: Development Team
-            \begin{enumerate}
-                \item The system shall display the list of meetings
-            \end{enumerate}
-        \item Viewpoint: Business Analyst
-            \begin{enumerate}
-                \item The system shall display the list of meetings
-            \end{enumerate}
-        \item Viewpoint: Scrum Master
-            \begin{enumerate}
-                \item The system shall display the list of meetings
-            \end{enumerate}
-    \end{enumerate}
-    
-    \item User wants to see the tasks
-    \begin{enumerate}[{VP}1.] 
-        \item Viewpoint: Development Firm
-            \begin{enumerate}
-                \item[] N/A
-            \end{enumerate}
-        \item Viewpoint: Development Team
-            \begin{enumerate}
-                \item The system shall display the Trello Kanban board
-            \end{enumerate}
-        \item Viewpoint: Business Analyst
-            \begin{enumerate}
-                \item[] N/A
-            \end{enumerate}
-        \item Viewpoint: Scrum Master
-            \begin{enumerate}
-                \item The system shall display the Trello kanban board
-            \end{enumerate}
-    \end{enumerate}
+	\item User wants to add a meeting % Meeting where Business Analyst gives new project details to the team
+	\begin{enumerate}[{VP}1.] 
+	    \item Viewpoint: Development Firm
+	        \begin{enumerate}
+	            \item[] N/A
+	        \end{enumerate}
+	    \item Viewpoint: Development Team
+	        \begin{enumerate}
+	            \item The system shall notify the invited members of the Development Team
+	            \item The system shall prompt the invited members of the Development Team to accept or decline the meeting invitation
+	        \end{enumerate}
+		\item Viewpoint: Business Analyst
+			\begin{enumerate}
+	            \item The system shall prompt the user for the meeting subject, time, location, and room
+	            \item The system shall prompt the user for the meeting participants
+	            \item The system shall invite the participants
+	            \item The system shall notify the invited Business Analyst if applicable
+	            \item The system shall prompt the invited Business Analyst to accept or decline the meeting invitation, if applicable
+			\end{enumerate}
+		\item Viewpoint: Scrum Master
+			\begin{enumerate}
+	            \item The system shall prompt the user for the meeting subject, time, location, and room
+	            \item The system shall prompt the user for the meeting participants
+	            \item The system shall invite the participants
+	            \item The system shall notify the invited Scrum Master if applicable
+	            \item The system shall prompt the invited Scrum Master to accept or decline the meeting invitation, if applicable
+			\end{enumerate}
+	\end{enumerate}
+	
+	\item User wants to cancel a meeting % Meeting where Business Analyst gives new project details to the team
+	\begin{enumerate}[{VP}1.] 
+	    \item Viewpoint: Development Firm
+	        \begin{enumerate}
+	            \item[] N/A
+	        \end{enumerate}
+	    \item Viewpoint: Development Team
+	        \begin{enumerate}
+	            \item The system shall notify the participating members from the Development Team
+	        \end{enumerate}
+		\item Viewpoint: Business Analyst
+			\begin{enumerate}
+	            \item The system shall notify the Business Analyst if applicable
+			\end{enumerate}
+		\item Viewpoint: Scrum Master
+			\begin{enumerate}
+	            \item The system shall notify the Scrum Master if applicable
+			\end{enumerate}
+	\end{enumerate}
+	
+	\item User wants to see the scheduled meetings
+	\begin{enumerate}[{VP}1.] 
+	    \item Viewpoint: Development Firm
+	        \begin{enumerate}
+	            \item[] N/A
+	        \end{enumerate}
+	    \item Viewpoint: Development Team
+	        \begin{enumerate}
+	            \item The system shall display the list of meetings
+	        \end{enumerate}
+		\item Viewpoint: Business Analyst
+			\begin{enumerate}
+	            \item The system shall display the list of meetings
+			\end{enumerate}
+		\item Viewpoint: Scrum Master
+			\begin{enumerate}
+	            \item The system shall display the list of meetings
+			\end{enumerate}
+	\end{enumerate}
+	
+	\item User wants to see the tasks
+	\begin{enumerate}[{VP}1.] 
+	    \item Viewpoint: Development Firm
+	        \begin{enumerate}
+	            \item[] N/A
+	        \end{enumerate}
+	    \item Viewpoint: Development Team
+	        \begin{enumerate}
+	            \item The system shall display the Trello Kanban board
+	        \end{enumerate}
+		\item Viewpoint: Business Analyst
+			\begin{enumerate}
+	            \item[] N/A
+			\end{enumerate}
+		\item Viewpoint: Scrum Master
+			\begin{enumerate}
+	            \item The system shall display the Trello kanban board
+			\end{enumerate}
+	\end{enumerate}
 \end{enumerate}
+
 
 \section{Non-functional Requirements}
 
@@ -583,7 +619,7 @@ N/A
 
 \section{Project Issues}
 \subsection{Open Issues}
-N/A
+There are currently no open issues.
 
 \subsection{Off-the-Shelf Solutions}
 \subsubsection{Ready-Made Products}
@@ -615,10 +651,42 @@ In the future, if one or more of the API methods used become deprecated and remo
 
 \subsection{Tasks}
 \subsubsection{Project Planning}
-
+The following tasks have been taken from the SFWRENG 3XA3 course outline found on Avenue.
+\begin{table}[h]
+    \centering
+    \caption{Tasks}
+    \begin{tabular}{|L{2cm}|L{6cm}|L{6cm}|}
+        \hline
+        Phase & Task & Due Date \\
+        \hline
+        Phase 1 & Proof of Concept Demonstration & February 13\\
+        \cline{2-3}
+         & Test Plan Creation & February 28\\
+        \cline{2-3}
+         & Design Document & March 13\\
+        \cline{2-3}
+         & Phase 1 Demonstration & March 16 - 20\\
+        \hline
+        Phase 2 & Revision to documentation & Throughout March 20 - 30\\
+        \cline{2-3}
+         & Final Demonstration & March 30 - April 3\\
+        \cline{2-3}
+         & Final Documentation & April 6\\
+        \hline
+        
+    \end{tabular}
+    \label{tab:task_table}
+\end{table}
 
 \subsubsection{Planning of the Development Phases}
-
+The development phases are split into two phases:
+\begin{enumerate}
+    \item Initial development and implementation
+    \item Post phase 1 demonstration, revisions to the documentation and implementing the revisions
+\end{enumerate}
+In phase 1, the structure of our project will be created, including our scope and design ideas. The first phase is important as we will design how every module in our program will interact with one another, and figure out all the pieces necessary to implement the project.\\
+The key turning point from phase 1 to phase 2 is the phase 1 demonstration, where our clients will see how the project is implemented and will provide feedback towards revisions of our project.\\
+Phase 2 will be about the modifications to our project post-demonstration. Our project will not expect major changes, but instead will be building off of what our clients have given through feedback.
 
 \subsection{Migration to the New Product}
 \subsubsection{Requirements for Migration to the New Product}
@@ -644,6 +712,7 @@ Basic knowledge in the use of Discord is needed to use this product. Knowledge o
 There are no requirements in the waiting room.
 
 \subsection{Ideas for Solutions}
+N/A
 
 \bibliographystyle{plainnat}
 
