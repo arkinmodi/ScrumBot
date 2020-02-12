@@ -16,9 +16,11 @@
 *.pyc
 *.class
 
+
 html/
 latex/
 
 .coverage
 bin/
 /.metadata/
+/.vscode/
