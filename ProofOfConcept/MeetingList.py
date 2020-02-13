@@ -16,5 +16,6 @@ class MeetingList:
             sorted_list.append(meeting_str)
         return sorted_list
 
-    # def remove_meeting(self):
+    def remove_meeting(self, id):
+        del self._meeting_list[id]
 
