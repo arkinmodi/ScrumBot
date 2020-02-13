@@ -42,3 +42,11 @@ while True:
             list_of_meetings.remove_meeting(id)
             print(list_of_meetings.list_meetings())
 
+        # if ("setDescription" in command):
+        #     # !setDescription [id] [Put your description here]
+        #     # e.g. !setDescription 0 This is the description
+        #     command = command.split(' ')
+        #     id = int(command[1])
+        #     list_of_meetings.remove_meeting(id)
+        #     print(list_of_meetings.list_meetings())
+
