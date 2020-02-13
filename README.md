@@ -12,6 +12,7 @@ Scrum is an agile process framework widely used in industry for managing and coo
 The folders and files for this project are as follows: \
 Doc - Documentation for the project \
 ProjectSchedule - Contains the project schedule Gantt Chart \
+ProofOfConcept - Contains the simple proof of concept Discord bot \
 ReferenceMaterial - Contains additional material, such as extra research and additional sources of interest \
 src - Source code
 
