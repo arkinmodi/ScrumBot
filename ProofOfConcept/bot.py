@@ -5,7 +5,6 @@ from discord.ext import commands
 from MeetingList import MeetingList
 import settings
 
-
 token = settings.TOKEN # Currently removed for security reasons
 
 bot = commands.Bot(command_prefix='!')
@@ -54,6 +53,12 @@ async def listMeeting(ctx):
     list = MeetingList.list_meetings()
     for i in list:
         await ctx.send(f'{i}')
+
+@bot.command(name='delMeeting', help='Deletes specified meeting given the meeting ID')
+async def delMeeting(ctx, id: int):
+    print(f'Deleting ID {id}')
+    MeetingList.remove_meeting(id)
+    await ctx.send(f'Deleted meeting {id}.')
 
 # @bot.command(name='setDescription', help='Set the description of a meeting. Usage: !setDescription <meetingID> <description>')
 # async def setDescription(ctx, *args):
