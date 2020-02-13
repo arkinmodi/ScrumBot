@@ -8,6 +8,7 @@ class MeetingList:
     def add_meeting(date: str, time: str, meeting_type: str):
         MeetingList._meeting_list[MeetingList._idCount] = Meeting(date, time, meeting_type)
         MeetingList._idCount += 1
+        return(MeetingList._idCount - 1)
     
     def list_meetings():
         sorted_list = []
