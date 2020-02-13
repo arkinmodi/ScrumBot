@@ -2,13 +2,15 @@
 import discord
 from discord.ext import commands
 
-from Meeting import *
+from MeetingList import MeetingList
 import settings
 
 
 token = settings.TOKEN # Currently removed for security reasons
 
 bot = commands.Bot(command_prefix='!')
+
+MeetingList.init()
 
 @bot.event
 async def on_ready():
@@ -37,19 +39,26 @@ async def purgeError(ctx, error):
         await ctx.send("You do not have permissions.")
 
 @bot.command(name='addMeeting', help='Adds a meeting in the form of: mm/dd/yyyy hh:mm meeting_type')
-async def addMeeting(ctx, *args: tuple):
+async def addMeeting(ctx, *args):
     print(args)
     date = args[0]
     time = args[1]
     meeting_type = ' '.join(args[2:])
 
-    meeting = Meeting(date, time, meeting_type)
-    await ctx.send(f'Added meeting on: {meeting.get_date_time()}')
+    mID = MeetingList.add_meeting(date, time, meeting_type)
+    datetime = MeetingList.get_meeting_datetime(mID)
+    await ctx.send(f'Added meeting {mID} on: {datetime}')
 
-@bot.command(name='setDescription', help='Set the description of a meeting. Usage: !setDescription <meetingID> <description>')
-async def setDescription(ctx, *args: tuple):
-    print(f'Set description for {args}')
-    meeting = args[0]
-    description = ' '.join(args[1:])
+@bot.command(name='listMeetings', help='Lists all added meetings')
+async def listMeeting(ctx):
+    list = MeetingList.list_meetings()
+    for i in list:
+        await ctx.send(f'{i}')
+
+# @bot.command(name='setDescription', help='Set the description of a meeting. Usage: !setDescription <meetingID> <description>')
+# async def setDescription(ctx, *args):
+#     print(f'Set description for {args}')
+#     meeting = args[0]
+#     description = ' '.join(args[1:])
 
 bot.run(token)
