@@ -25,3 +25,4 @@ latex/
 bin/
 /.metadata/
 .vscode/*
+.env
