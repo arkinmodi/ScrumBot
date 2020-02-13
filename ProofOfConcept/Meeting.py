@@ -10,15 +10,15 @@ class Meeting:
         self._description = "No description yet."
         print(self._date_time.strftime("(" + self._meeting_type + ")" + " Meeting at: %b %d, %Y at %I:%M%p"))
 
-    def get_date_time():
+    def get_date_time(self):
         return self._date_time.strftime("%b %d, %Y at %I:%M%p")
 
-    def get_meeting_type():
+    def get_meeting_type(self):
         return (self._meeting_type)
     
-    def get_description():
+    def get_description(self):
         return (self._description)
 
-    def set_description(desc: str):
+    def set_description(self, desc: str):
         self._description = desc
         return ("Updated meeting description: self._description")
