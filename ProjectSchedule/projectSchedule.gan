@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="Scrumbot" company="Scrumbot" webLink="https://gitlab.cas.mcmaster.ca/modia1/ScrumBot" view-date="2020-01-26" view-index="0" gantt-divider-location="615" resource-divider-location="300" version="2.8.10" locale="en_CA">
+<?xml version="1.0" encoding="UTF-8"?><project name="Scrumbot" company="Scrumbot" webLink="https://gitlab.cas.mcmaster.ca/modia1/ScrumBot" view-date="2020-01-28" view-index="0" gantt-divider-location="615" resource-divider-location="300" version="2.8.10" locale="en_CA">
     <description>
         <![CDATA[Scrum is an agile process framework widely used in industry for managing and coordinating collaborative projects. Scrum being a process based on the agile development method, follows a highly iterative process and often has heavy customer involvement, therefore it can be often be complex. It is often difficult to manage communication and coordination within the project due to the complexity of agile development processes. With Discord being a popular communication tool used by many teams of software developers today, our team would like to develop a solution to directly integrate the management of a scrum development cycle into the communication channels. Our solution will allow for better management and organization of retrospectives, stand-ups, and other scrum/agile processes used by software teams during routine communication.]]>
     </description>
@@ -65,7 +65,7 @@
             <task id="198" name="Project Review" color="#8cb6ce" meeting="false" start="2020-01-24" duration="7" complete="100" thirdDate="2020-01-24" thirdDate-constraint="0" expand="true"/>
         </task>
         <task id="2" name="Development Plan Due" color="#8cb6ce" meeting="true" start="2020-01-31" duration="0" complete="100" thirdDate="2015-11-06" thirdDate-constraint="0" expand="true"/>
-        <task id="140" name="Working on Requirements Documentation" color="#8cb6ce" meeting="false" start="2020-01-31" duration="9" complete="0" thirdDate="2020-01-19" thirdDate-constraint="0" expand="true">
+        <task id="140" name="Working on Requirements Documentation" color="#8cb6ce" meeting="false" start="2020-01-31" duration="9" complete="0" thirdDate="2020-01-19" thirdDate-constraint="0" expand="false">
             <depend id="119" type="2" difference="0" hardness="Strong"/>
             <task id="200" name="Project Drivers" color="#8cb6ce" meeting="false" start="2020-01-31" duration="9" complete="0" thirdDate="2020-01-25" thirdDate-constraint="0" expand="true"/>
             <task id="203" name="Functional Requirements" color="#8cb6ce" meeting="false" start="2020-01-31" duration="9" complete="0" thirdDate="2020-01-31" thirdDate-constraint="0" expand="true"/>
@@ -73,7 +73,11 @@
             <task id="207" name="Project Issues" color="#8cb6ce" meeting="false" start="2020-01-31" duration="9" complete="0" thirdDate="2020-01-31" thirdDate-constraint="0" expand="true"/>
         </task>
         <task id="119" name="Requirements Document Due" color="#8cb6ce" meeting="true" start="2020-02-09" duration="0" complete="0" thirdDate="2020-01-22" thirdDate-constraint="0" expand="true"/>
-        <task id="121" name="Proof of Concept Demonstration" color="#8cb6ce" meeting="true" start="2020-02-13" duration="0" complete="0" thirdDate="2020-01-22" thirdDate-constraint="0" expand="true"/>
+        <task id="397" name="Working on Proof of Concept" color="#8cb6ce" meeting="false" start="2020-02-11" duration="2" complete="0" thirdDate="2020-02-11" thirdDate-constraint="0" expand="true">
+            <depend id="121" type="2" difference="0" hardness="Strong"/>
+            <task id="398" name="Concept Code Development" color="#8cb6ce" meeting="false" start="2020-02-11" duration="2" complete="0" thirdDate="2020-01-26" thirdDate-constraint="0" expand="true"/>
+        </task>
+        <task id="121" name="Proof of Concept Presentation" color="#8cb6ce" meeting="true" start="2020-02-13" duration="0" complete="0" thirdDate="2020-01-22" thirdDate-constraint="0" expand="true"/>
         <task id="141" name="Working on Test Plan" color="#8cb6ce" meeting="false" start="2020-02-07" duration="21" complete="0" thirdDate="2020-01-19" thirdDate-constraint="0" expand="false">
             <depend id="123" type="2" difference="0" hardness="Strong"/>
             <task id="209" name="General Information" color="#8cb6ce" meeting="false" start="2020-02-07" duration="21" complete="0" thirdDate="2020-02-07" thirdDate-constraint="0" expand="true"/>
@@ -157,6 +161,7 @@
         <allocation task-id="258" resource-id="0" function="Default:0" responsible="false" load="100.0"/>
         <allocation task-id="269" resource-id="0" function="Default:0" responsible="false" load="100.0"/>
         <allocation task-id="200" resource-id="0" function="Default:0" responsible="false" load="50.0"/>
+        <allocation task-id="397" resource-id="0" function="Default:0" responsible="false" load="33.3"/>
         <allocation task-id="131" resource-id="1" function="1" responsible="false" load="33.3"/>
         <allocation task-id="2" resource-id="1" function="1" responsible="true" load="33.3"/>
         <allocation task-id="134" resource-id="1" function="1" responsible="true" load="33.3"/>
@@ -199,6 +204,8 @@
         <allocation task-id="200" resource-id="1" function="1" responsible="false" load="50.0"/>
         <allocation task-id="205" resource-id="1" function="1" responsible="false" load="20.0"/>
         <allocation task-id="207" resource-id="1" function="Default:0" responsible="false" load="15.0"/>
+        <allocation task-id="398" resource-id="1" function="Default:0" responsible="false" load="35.0"/>
+        <allocation task-id="397" resource-id="1" function="1" responsible="false" load="33.3"/>
         <allocation task-id="131" resource-id="2" function="Default:0" responsible="false" load="33.3"/>
         <allocation task-id="2" resource-id="2" function="Default:0" responsible="false" load="33.3"/>
         <allocation task-id="134" resource-id="2" function="Default:0" responsible="false" load="33.3"/>
@@ -237,6 +244,8 @@
         <allocation task-id="205" resource-id="2" function="Default:0" responsible="false" load="80.0"/>
         <allocation task-id="203" resource-id="2" function="Default:0" responsible="false" load="80.0"/>
         <allocation task-id="207" resource-id="2" function="Default:0" responsible="false" load="15.0"/>
+        <allocation task-id="398" resource-id="2" function="Default:0" responsible="true" load="65.0"/>
+        <allocation task-id="397" resource-id="2" function="Default:0" responsible="true" load="33.3"/>
     </allocations>
     <vacations/>
     <previous/>
