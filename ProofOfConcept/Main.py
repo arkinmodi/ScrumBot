@@ -21,3 +21,10 @@ while True:
 
             print(meeting.get_date_time())
             print(meeting.get_meeting_type())
+
+        if ("setDescription" in command):
+            command = command.split(' ')
+            desc = ("").join(command[1:])
+            meeting.set_description(desc)
+            print(meeting.get_description())
+
