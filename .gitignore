@@ -20,6 +20,7 @@
 html/
 latex/
 
+.env
 .coverage
 bin/
 /.metadata/

@@ -1,11 +1,12 @@
 # bot.py
-import os
 import discord
 from discord.ext import commands
 
 from Meeting import *
+import settings
 
-token = '' # Currently removed for security reasons
+
+token = settings.TOKEN # Currently removed for security reasons
 
 bot = commands.Bot(command_prefix='!')
 
@@ -19,7 +20,7 @@ async def hello(ctx):
 
 @bot.command(name='say', help='Make Scrumbot say something!', pass_context=True)
 async def say(ctx, *, msg = None):
-    print("log " + msg)
+    print(f'{ctx.author} log: ' + msg)
     await ctx.message.delete()
     await ctx.send(msg)
 
@@ -27,6 +28,7 @@ async def say(ctx, *, msg = None):
 @commands.has_permissions(administrator=True)
 async def purge(ctx, number: int):
     deleted = await ctx.channel.purge(limit=number)
+    print(f'{ctx.author} purged {len(deleted)} messages.')
     await ctx.send(f'Deleted {len(deleted)} messages.')
 
 @purge.error
@@ -35,7 +37,7 @@ async def purgeError(ctx, error):
         await ctx.send("You do not have permissions.")
 
 @bot.command(name='addMeeting', help='Adds a meeting in the form of: mm/dd/yyyy hh:mm meeting_type')
-async def addMeeting(ctx, *args):
+async def addMeeting(ctx, *args: tuple):
     print(args)
     date = args[0]
     time = args[1]
@@ -43,5 +45,11 @@ async def addMeeting(ctx, *args):
 
     meeting = Meeting(date, time, meeting_type)
     await ctx.send(f'Added meeting on: {meeting.get_date_time()}')
+
+@bot.command(name='setDescription', help='Set the description of a meeting. Usage: !setDescription <meetingID> <description>')
+async def setDescription(ctx, *args: tuple):
+    print(f'Set description for {args}')
+    meeting = args[0]
+    description = ' '.join(args[1:])
 
 bot.run(token)
