@@ -5,7 +5,7 @@ from discord.ext import commands
 
 from Meeting import *
 
-token = ''
+token = '' # Currently removed for security reasons
 
 bot = commands.Bot(command_prefix='!')
 
