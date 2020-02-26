@@ -78,7 +78,7 @@
             <task id="398" name="Concept Code Development" color="#8cb6ce" meeting="false" start="2020-02-11" duration="2" complete="0" thirdDate="2020-01-26" thirdDate-constraint="0" expand="true"/>
         </task>
         <task id="121" name="Proof of Concept Presentation" color="#8cb6ce" meeting="true" start="2020-02-13" duration="0" complete="0" thirdDate="2020-01-22" thirdDate-constraint="0" expand="true"/>
-        <task id="141" name="Working on Test Plan" color="#8cb6ce" meeting="false" start="2020-02-07" duration="21" complete="0" thirdDate="2020-01-19" thirdDate-constraint="0" expand="false">
+        <task id="141" name="Working on Test Plan" color="#8cb6ce" meeting="false" start="2020-02-07" duration="21" complete="0" thirdDate="2020-01-19" thirdDate-constraint="0" expand="true">
             <depend id="123" type="2" difference="0" hardness="Strong"/>
             <task id="209" name="General Information" color="#8cb6ce" meeting="false" start="2020-02-07" duration="21" complete="0" thirdDate="2020-02-07" thirdDate-constraint="0" expand="true"/>
             <task id="212" name="Plan" color="#8cb6ce" meeting="false" start="2020-02-07" duration="21" complete="0" thirdDate="2020-02-07" thirdDate-constraint="0" expand="true"/>
@@ -162,6 +162,7 @@
         <allocation task-id="269" resource-id="0" function="Default:0" responsible="false" load="100.0"/>
         <allocation task-id="200" resource-id="0" function="Default:0" responsible="false" load="50.0"/>
         <allocation task-id="397" resource-id="0" function="Default:0" responsible="false" load="33.3"/>
+        <allocation task-id="209" resource-id="0" function="Default:0" responsible="false" load="100.0"/>
         <allocation task-id="131" resource-id="1" function="1" responsible="false" load="33.3"/>
         <allocation task-id="2" resource-id="1" function="1" responsible="true" load="33.3"/>
         <allocation task-id="134" resource-id="1" function="1" responsible="true" load="33.3"/>
@@ -190,7 +191,7 @@
         <allocation task-id="192" resource-id="1" function="1" responsible="false" load="100.0"/>
         <allocation task-id="190" resource-id="1" function="1" responsible="false" load="50.0"/>
         <allocation task-id="203" resource-id="1" function="Default:0" responsible="false" load="20.0"/>
-        <allocation task-id="209" resource-id="1" function="Default:0" responsible="false" load="100.0"/>
+        <allocation task-id="209" resource-id="1" function="Default:0" responsible="false" load="0.0"/>
         <allocation task-id="218" resource-id="1" function="Default:0" responsible="false" load="100.0"/>
         <allocation task-id="222" resource-id="1" function="1" responsible="true" load="33.3"/>
         <allocation task-id="235" resource-id="1" function="Default:0" responsible="false" load="100.0"/>
