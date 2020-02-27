@@ -21,7 +21,7 @@ while True:
             time = command[2]
             meeting_type = ' '.join(command[3:])
 
-            MeetingList.add_meeting(date, time, meeting_type)
+            print(MeetingList.add_meeting(date, time, meeting_type))
             print(MeetingList.list_meetings())
             
             # print(meeting.get_date_time())

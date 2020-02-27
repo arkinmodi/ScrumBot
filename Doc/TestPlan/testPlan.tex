@@ -11,12 +11,18 @@
     urlcolor=blue
 }
 \usepackage[round]{natbib}
+\usepackage{float}
+\usepackage{setspace}
+\usepackage{xspace}
+
+% Document margins
+\usepackage[left=1in,top=1in,right=1in,bottom=1in]{geometry}
 
 \title{SE 3XA3: Test Plan\\ScrumBot}
 
 \author{
-	Team 304, ScrumBot
-		\\ Arkin Modi, modia1
+    Team 304, ScrumBot
+        \\ Arkin Modi, modia1
         \\ Leon So, sol4
         \\ Timothy Choy, choyt2
 }
@@ -25,18 +31,6 @@
 %\input{../Comments}
 
 \begin{document}
-
-\begin{table}[hp]
-    \caption{Revision History} \label{TblRevisionHistory}
-    \begin{tabularx}{\textwidth}{llX}
-        \toprule
-            \textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
-        \midrule
-            February 27, 2020 & Leon So & Add contribution table\\
-        \bottomrule
-    \end{tabularx}
-\end{table}
-
 \newpage
 \maketitle
 
@@ -45,7 +39,9 @@
 \listoftables
 \listoffigures
 
-\begin{table}[bp]
+\newpage
+
+\begin{table}[!h]
     \caption{Revision History} \label{TblRevisionHistory}
     \begin{tabularx}{\textwidth}{llX}
         \toprule
@@ -53,9 +49,11 @@
         \midrule
             January 23, 2020 & Arkin Modi & Copy template\\
             February 20, 2020 & Arkin Modi & Created the Purpose Section\\
+            February 27, 2020 & Timothy Choy, Leon So & Updated General Information section\\
         \bottomrule
     \end{tabularx}
 \end{table}
+
 
 \newpage
 
@@ -67,46 +65,45 @@
 The purpose of this document is to outline the testing, validation, and verification process of the functional and non-functional requirements, for the ScrumBot project. These test cases were conceived before the implementation and therefore will be used by the project members for future reference during the development process.
 
 \subsection{Scope}
-The test plan outlines all tests which will be conducted during this project, and the testing tools that will be used.
+% The test plan outlines all tests which will be conducted during this project, and the testing tools that will be used.
 
 \subsection{Acronyms, Abbreviations, and Symbols}
-	
+    
 \begin{table}[hbp]
-    \caption{\textbf{Table of Abbreviations}}
+    \caption{Table of Abbreviations}
     \label{Table}
     \begin{tabularx}{\textwidth}{p{3cm}X}
         \toprule
         \textbf{Abbreviation} & \textbf{Definition} \\
         \midrule
-        Abbreviation1 & Definition1\\
-        Abbreviation2 & Definition2\\
+        POC & Proof of Concept\\
+        SRS & Software Requirements Specification\\
         \bottomrule
     \end{tabularx}
 \end{table}
 
 \begin{table}[!htbp]
-    \caption{\textbf{Table of Definitions}}
+    \caption{Table of Definitions}
     \label{Table}
     \begin{tabularx}{\textwidth}{p{3cm}X}
         \toprule
         \textbf{Term} & \textbf{Definition}\\
         \midrule
-        Term1 & Definition1\\
+        Pytest & A unit testing framework for Python\\
         Term2 & Definition2\\
         \bottomrule
     \end{tabularx}
-\end{table}	
+\end{table} 
 
 \subsection{Overview of Document}
-
+% How we are testing
 
 \section{Plan}
-	
 \subsection{Software Description}
-
+Scrum is an Agile process framework widely used in industry for managing and coordinating collaborative projects. Scrum being a process based on the agile development method, follows a highly iterative process and often has heavy customer involvement, therefore it can be often be complex. With Discord being a popular communication tool used by many teams of software developers today, ScrumBot provides a solution that directly integrates the management of a scrum development cycle into the communication channels. ScrumBot will allow for better management and organization of retrospectives, stand-ups, and other scrum/agile stages used by software teams within their routine communication channel.
 
 \subsection{Test Team}
-
+Dr Asghar A Bokhari
 
 \subsection{Automated Testing Approach}
 
@@ -118,11 +115,11 @@ The test plan outlines all tests which will be conducted during this project, an
 See Gantt Chart at the following url, \url{https://gitlab.cas.mcmaster.ca/modia1/ScrumBot/-/blob/master/ProjectSchedule/}.
 
 \section{System Test Description}
-	
+    
 \subsection{Tests for Functional Requirements}
 
 \subsubsection{Area of Testing1}
-		
+        
 \paragraph{Title for Test}
 
 \begin{enumerate}
@@ -130,25 +127,25 @@ See Gantt Chart at the following url, \url{https://gitlab.cas.mcmaster.ca/modia1
 \item{test-id1\\}
 
 Type: Functional, Dynamic, Manual, Static etc.
-					
+                    
 Initial State: 
-					
+                    
 Input: 
-					
+                    
 Output: 
-					
+                    
 How test will be performed: 
-					
+                    
 \item{test-id2\\}
 
 Type: Functional, Dynamic, Manual, Static etc.
-					
+                    
 Initial State: 
-					
+                    
 Input: 
-					
+                    
 Output: 
-					
+                    
 How test will be performed: 
 
 \end{enumerate}
@@ -160,7 +157,7 @@ How test will be performed:
 \subsection{Tests for Nonfunctional Requirements}
 
 \subsubsection{Area of Testing1}
-		
+        
 \paragraph{Title for Test}
 
 \begin{enumerate}
@@ -168,25 +165,25 @@ How test will be performed:
 \item{test-id1\\}
 
 Type: 
-					
+                    
 Initial State: 
-					
+                    
 Input/Condition: 
-					
+                    
 Output/Result: 
-					
+                    
 How test will be performed: 
-					
+                    
 \item{test-id2\\}
 
 Type: Functional, Dynamic, Manual, Static etc.
-					
+                    
 Initial State: 
-					
+                    
 Input: 
-					
+                    
 Output: 
-					
+                    
 How test will be performed: 
 
 \end{enumerate}
@@ -200,7 +197,7 @@ How test will be performed:
 \section{Tests for Proof of Concept}
 
 \subsection{Area of Testing1}
-		
+        
 \paragraph{Title for Test}
 
 \begin{enumerate}
@@ -208,25 +205,25 @@ How test will be performed:
 \item{test-id1\\}
 
 Type: Functional, Dynamic, Manual, Static etc.
-					
+                    
 Initial State: 
-					
+                    
 Input: 
-					
+                    
 Output: 
-					
+                    
 How test will be performed: 
-					
+                    
 \item{test-id2\\}
 
 Type: Functional, Dynamic, Manual, Static etc.
-					
+                    
 Initial State: 
-					
+                    
 Input: 
-					
+                    
 Output: 
-					
+                    
 How test will be performed: 
 
 \end{enumerate}
@@ -235,14 +232,14 @@ How test will be performed:
 
 ...
 
-	
-\section{Comparison to Existing Implementation}	
-				
+    
+\section{Comparison to Existing Implementation} 
+                
 \section{Unit Testing Plan}
-		
+        
 \subsection{Unit testing of internal functions}
-		
-\subsection{Unit testing of output files}		
+        
+\subsection{Unit testing of output files}       
 
 \bibliographystyle{plainnat}
 
