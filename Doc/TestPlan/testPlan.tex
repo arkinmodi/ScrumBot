@@ -57,6 +57,7 @@
             February 27, 2020 & Arkin Modi & Worked on the Unit Testing Plan for internal functions and output files\\
             February 28, 2020 & Timothy Choy & Worked on the Proof of Concept Testing\\
             February 28, 2020 & Leon So & Worked on Tests for NFRs\\
+            February 28, 2020 & Timothy Choy & Updated Definitions, Worked on Tests for FRs\\
         \bottomrule
     \end{tabularx}
 \end{table}
@@ -89,8 +90,10 @@ This test plan will provide a method to fully test ScrumBot by performing tests 
         CI & Continuous Integration\\
         EDT & Eastern Daylight Time (UTC-4)\\
         EST & Eastern Standard Time (UTC-5)\\
+        FR & Functional Requirement\\
         HTTP & HyperText Transfer Protocol\\
         MVC & Model View Controller\\
+        NFR & Non-functional Requirement\\
         POC & Proof of Concept\\
         SRS & Software Requirements Specification\\
         UTC & Coordinated Universal Time\\
@@ -108,11 +111,12 @@ This test plan will provide a method to fully test ScrumBot by performing tests 
         Acceptance Testing & A method of testing which is conducted to determine if the requirements of the specification are met\\
         Boundary Testing & A method of testing where values are chosen on semantically significant boundaries\\
         Code Inspection & A method of static testing where developers walk through the code\\
-        Discord & A chat application\\
+        Discord & A chat application. The platform in which ScrumBot will be implemented.\\
         Dynamic Testing & A method of testing where code is executed\\
         Exploratory Testing & A method of testing where the tester simultaneously learns the code while testing it. It approaches testing from a user's viewpoint\\
         Fuzz Testing & A method of testing where random inputs are given to attempt to violate assertions\\
         Integration Testing & A method of testing where individual software modules are combined and tested as a group\\
+        Kanban Board & A method of scheduling tasks through categorizing tasks to improve efficiency\\
         Partition Testing & A method of testing where the input domain is partitioned and input values are selected from the partitions\\
         Pylint & A Python linter, used for static testing\\
         Pytest & A unit testing framework for Python\\
@@ -120,6 +124,7 @@ This test plan will provide a method to fully test ScrumBot by performing tests 
         Specification-based Testing & A method of testing where test cases are built based on the requirements specification\\
         Static Testing & A method of testing where code is not executed\\
         System Testing & A method of testing where the tests are performed on the system as a whole\\
+        Trello & A web based Kanban project management system\\
         Unit Testing & A method of testing focused on testing individual methods and functions\\
         \bottomrule
     \end{tabularx}
@@ -148,31 +153,147 @@ See Gantt Chart at the following URL, \url{https://gitlab.cas.mcmaster.ca/modia1
 \section{System Test Description}
 \subsection{Tests for Functional Requirements}
 
-\subsubsection{Business Event 1}
-		
-\paragraph{Installation}
+\subsubsection{Installation}
 
 \begin{enumerate}
-
-\item{test-id1}\\
-Type: Functional, Dynamic, Manual, Static etc.\\
-Initial State: \\
-Input: \\
-Output: \\
-How test will be performed: \\
-
-\item{test-id2}\\
-Type: Functional, Dynamic, Manual, Static etc.\\
-Initial State: \\
-Input: \\
-Output: \\
-How test will be performed: \\
-
+    \item{\textbf{BE1-1}}\\
+    Type: Specification-based, Dynamic, Manual\\
+    Initial State: A Discord channel is active\\
+    Input: ScrumBot is added into the channel\\
+    Output: Various notifications, such as a link to documentation and basic commands\\
+    How test will be performed: ScrumBot will be manually added to a Discord channel\\
 \end{enumerate}
 
-\subsubsection{Area of Testing2}
+\subsubsection{Project Creation}
 
-...
+\begin{enumerate}
+    \item{\textbf{BE2-1}}\\
+    Type: Specification-based, Dynamic, Manual, Static etc.\\
+    Initial State: \\
+    Input: \\
+    Output: \\
+    How test will be performed: \\
+\end{enumerate}
+
+\subsubsection{Project Removal}
+
+\begin{enumerate}
+    \item{\textbf{BE3-1}}\\
+    Type: Specification-based, Dynamic, Manual, Static etc.\\
+    Initial State: \\
+    Input: \\
+    Output: \\
+    How test will be performed: \\
+\end{enumerate}
+
+\subsubsection{Sprint-planning Meeting}
+
+\begin{enumerate}
+    \item{\textbf{BE4-1}}\\
+    Type: Specification-based, Dynamic, Manual, Static etc.\\
+    Initial State: \\
+    Input: \\
+    Output: \\
+    How test will be performed: \\
+\end{enumerate}
+
+\subsubsection{Stand-up Meeting}
+
+\begin{enumerate}
+    \item{\textbf{BE5-1}}\\
+    Type: Specification-based, Dynamic, Manual, Static etc.\\
+    Initial State: \\
+    Input: \\
+    Output: \\
+    How test will be performed: \\
+\end{enumerate}
+
+\subsubsection{Retrospective Meeting}
+
+\begin{enumerate}
+    \item{\textbf{BE6-1}}\\
+    Type: Specification-based, Dynamic, Manual, Static etc.\\
+    Initial State: \\
+    Input: \\
+    Output: \\
+    How test will be performed: \\
+\end{enumerate}
+
+\subsubsection{Grooming Meeting}
+
+\begin{enumerate}
+    \item{\textbf{BE7-1}}\\
+    Type: Specification-based, Dynamic, Manual, Static etc.\\
+    Initial State: \\
+    Input: \\
+    Output: \\
+    How test will be performed: \\
+\end{enumerate}
+
+\subsubsection{Add a Meeting}
+
+\begin{enumerate}
+    \item{\textbf{BE8-1}}\\
+    Type: Dynamic, Unit\\
+    Initial State: ScrumBot active in Discord channel\\
+    Input: Pytest file is run\\
+    Output: Pytest output\\
+    How test will be performed: The test will be performed through Pytest, where tests will run the command to add meetings, focusing on the parameters entered to create meetings\\
+    
+    \item{\textbf{BE8-2}}\\
+    Type: Specification-based, Dynamic, Boundary, Manual\\
+    Initial State: ScrumBot active in Discord channel\\
+    Input: Cancel meeting command is entered, with a specified meeting\\
+    Output: The specified meeting will be removed, otherwise an error message is raised\\
+    How test will be performed: The test will be performed manually through commands entered in Discord. Manual testing primarily will focus on if notifications are sent to the proper people (development team members, business analysts and scrum masters), as well as the interactions between ScrumBot and the tester\\
+\end{enumerate}
+
+\subsubsection{Cancel a Meeting}
+
+\begin{enumerate}
+    \item{\textbf{BE9-1}}\\
+    Type: Dynamic, Boundary, Unit\\
+    Initial State: ScrumBot active in Discord channel\\
+    Input: Pytest file is run\\
+    Output: Pytest output\\
+    How test will be performed: The test will be performed through Pytest, where tests will run the command to cancel meetings, in situations where the meeting exists and where the meeting does not exist\\
+    
+    \item{\textbf{BE9-2}}\\
+    Type: Specification-based, Dynamic, Manual\\
+    Initial State: ScrumBot active in Discord channel\\
+    Input: Cancel meeting command is entered, with a specified meeting\\
+    Output: The specified meeting will be removed, otherwise an error message is raised\\
+    How test will be performed: The test will be performed manually through commands entered in Discord. Manual testing primarily will focus on if notifications are sent to the proper people (development team members, business analysts and scrum masters)\\
+\end{enumerate}
+
+\subsubsection{List Scheduled Meetings}
+
+\begin{enumerate}
+    \item{\textbf{BE10-1}}\\
+    Type: Specification-based, Dynamic, Boundary, Unit\\
+    Initial State: ScrumBot active in Discord channel\\
+    Input: Pytest file is run\\
+    Output: Pytest output\\
+    How test will be performed: The test will be performed through Pytest, where tests will run the command to list meetings, in situations where there are meetings scheduled and when there are no meetings\\
+    
+    \item{\textbf{BE10-2}}\\
+    Type: Specification-based, Dynamic, Boundary, Manual\\
+    Initial State: ScrumBot active in Discord channel\\
+    Input: The list scheduled meetings command is entered into Discord\\
+    Output: ScrumBot should list out the list of scheduled meetings\\
+    How test will be performed: The test will be performed manually through commands entered in Discord. Test cases be similar to the unit tests above\\
+\end{enumerate}
+
+\subsubsection{See Tasks}
+
+\begin{enumerate}
+    \item{\textbf{BE11-1}}\\
+    Type: Specification-based, Dynamic, Manual\\
+    Initial State: ScrumBot active in Discord channel\\
+    Input: The see tasks command is entered into Discord\\
+    Output: A link to the Trello Kanban board, if integrated\\
+    How test will be performed: The test will be performed manually through commands entered in Discord.\\
+\end{enumerate}
 
 \subsection{Tests for Non-Functional Requirements}
 
@@ -351,8 +472,8 @@ The proof of concept demonstration for ScrumBot consisted on a simple Python dis
 \end{enumerate}
 
 \subsection{Resolution}
-To resolve these issues, we have taken the list of business events from our SRS and have assigned priority to the events. In the case where ScrumBot will not be able to fulfill all the requirements in the given timeframe, ScrumBot will still be able to function as the prioritized functionalities will be implemented.\\
-\noindent In regards to the chosen architectural style, we have decided on using MVC as our primary architectural style. This best suits ScrumBot as the view module will be all the input and output from Discord, our controller module will be the commands run, and our model module will be the databases containing all the meeting information.\\
+To resolve these issues, we have taken the list of business events from our SRS and have assigned priority to the events. In the case where ScrumBot will not be able to fulfill all the requirements in the given timeframe, ScrumBot will still be able to function as the prioritized functionalities will be implemented.\\ \\
+\noindent In regards to the chosen architectural style, we have decided on using MVC as our primary architectural style. This best suits ScrumBot as the view module will be all the input and output from Discord, our controller module will be the commands run, and our model module will be the databases containing all the meeting information.\\ \\
 \noindent To tackle the issue regarding time zones, we plan on writing our times in EST or EDT, based on the date scheduled for the meeting. The choice is simply because of our current location, and makes it simpler for us to test and create meetings. However, a new feature we plan on implementing is the ability to convert between time zones given a meeting.
 	
 \section{Comparison to Existing Implementation}
