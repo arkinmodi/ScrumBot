@@ -223,14 +223,14 @@ Input/Condition: User wants to connect their Google services to ScrumBot\\
 Output/Result: ScrumBot should be connect to the User's Google account through Google API services\\
 How test will be performed: The test team will attempt to connect their Google services to ScrumBot
 
-\item{NFRT-OE2}\\
+\item{NFRT-OE3}\\
 Type: Dynamic, Manual\\
 Initial State: ScrumBot not yet registered as a public bot\\
 Input/Condition: ScrumBot register with Discord API services and deployed publically\\
 Output/Result: ScrumBot should be a public bot registered with Discord\\
 How test will be performed: The test team will follow documentation provided by Discord to add ScrumBot as a public bot
 
-\item{NFRT-OE3}\\
+\item{NFRT-OE4}\\
 Type: Dynamic, Manual\\
 Initial State: ScrumBot added to Discord channel not yet connected to users' Trello services\\
 Input/Condition: User wants to connect their Trello services to ScrumBot\\
@@ -241,13 +241,6 @@ How test will be performed: The test team will attempt to connect their Trello s
 \paragraph{Installability Requirements}
 \begin{enumerate}
 
-\item{NFRT-OE4}\\
-Type: Dynamic, Manual\\
-Initial State: ScrumBot not yet added to Discord channel\\
-Input/Condition: User without expertise in Discord bots wants to install ScrumBot\\
-Output/Result: ScrumBot added to Discord channel\\
-How test will be performed: An inexperienced user will attempt to add ScrumBot to a Discord channel by following the provided documentation
-
 \item{NFRT-OE5}\\
 Type: Dynamic, Manual\\
 Initial State: ScrumBot not yet added to Discord channel\\
@@ -257,10 +250,47 @@ How test will be performed: An inexperienced user will attempt to add ScrumBot t
 
 \item{NFRT-OE6}\\
 Type: Dynamic, Manual\\
-Initial State: ScrumBot added to Discord channel not yet connected to users' Trello services\\
-Input/Condition: User wants to connect their Trello services to ScrumBot\\
-Output/Result: ScrumBot should be connect to the User's Trello account through Trello API services\\
-How test will be performed: The test team will attempt to connect their Trello services to ScrumBot
+Initial State: ScrumBot not yet added to Discord channel\\
+Input/Condition: Start installation of ScrumBot\\
+Output/Result: ScrumBot takes less than 5 minutes to install\\
+How test will be performed: Test team will install ScrumBot and time the installation
+
+\item{NFRT-OE7}\\
+Type: Dynamic, Manual\\
+Initial State: ScrumBot installed\\
+Input/Condition: Start uninstalling Scrumbot\\
+Output/Result: ScrumBot is uninstalled\\
+How test will be performed: The test team will attempt to uninstall ScrumBot
+\end{enumerate}
+
+
+\subsubsection{Maintainability and Support Requirements}
+\paragraph{Maintainability Requirements}
+\begin{enumerate}
+
+\item{NFRT-MS1}\\
+Type: Static, Manual, Code Inspection\\
+Initial State: N/A\\
+Input/Condition: N/A\\
+Output/Result: The code is well documented with comments\\
+How test will be performed: The test team will inspect the code and check if the code is adequately documented using comments
+\item{NFRT-MS2}\\
+Type: Static, Manual\\
+Initial State: No Doxygen documents generated yet\\
+Input/Condition: Generate Doxygen HTML and pdf\\
+Output/Result: The Doxygen documentation is successfully compiled and generated\\
+How test will be performed: The test team will try to generate Doxygen HTML and pdf
+\end{enumerate}
+
+\paragraph{Supportability Requirements}
+\begin{enumerate}
+
+\item{NFRT-MS4}\\
+Type: Dynamic, Manual\\
+Initial State: ScrumBot is active on the Discord channel\\
+Input/Condition: User wants to open help menu\\
+Output/Result: Help menu is displayed in the Discord chat\\
+How test will be performed: The test team will attempt to open the help menu in the Discord chat
 \end{enumerate}
 
 \subsubsection{Security Requirements}
