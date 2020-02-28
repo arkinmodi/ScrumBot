@@ -140,9 +140,9 @@ See Gantt Chart at the following URL, \url{https://gitlab.cas.mcmaster.ca/modia1
 \section{System Test Description}
 \subsection{Tests for Functional Requirements}
 
-\subsubsection{Area of Testing1}
+\subsubsection{Business Event 1}
         
-\paragraph{Title for Test}
+\paragraph{Installation}
 
 \begin{enumerate}
 
@@ -176,7 +176,22 @@ Type: Dynamic, Manual\\
 Initial State: No commands being made\\
 Input: Command entered\\
 Output: Response should be received within 2 seconds of the input being sent
-How test will be performed: The user will enter a command into the Discord channel with ScrumBot active. ScrumBot should provide a response within 2ms of the command being entered.
+How test will be performed: The user will enter a command into the Discord channel with ScrumBot active. ScrumBot should provide a response within 2ms of the command being entered
+\end{enumerate}
+\paragraph{Meeting Schedule Accuracy}
+\begin{enumerate}
+\item{NFRT-P2}\\
+Type: Dynamic, Manual\\
+Initial State: No meetings schedules\\
+Input: Schedule meeting command with meeting details\\
+Output: The meeting is added to the meeting list with the correct location
+How test will be performed: The user will enter the command to schedule a meeting and the meeting details into the Discord channel with ScrumBot active
+\item{NFRT-P3}\\
+Type: Dynamic, Manual\\
+Initial State: No meetings schedules\\
+Input: Schedule meeting command with meeting details\\
+Output: The meeting is added to the meeting list with the correct time
+How test will be performed: The user will enter the command to schedule a meeting and the meeting details into the Discord channel with ScrumBot active
 \end{enumerate}
 
 \subsubsection{Security Requirements}
