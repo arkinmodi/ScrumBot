@@ -176,29 +176,40 @@ How test will be performed: \\
 
 \subsection{Tests for Non-Functional Requirements}
 
+\subsubsection{Usability and Humanity Requirements}
+\paragraph{Learning Requirements}
+\begin{enumerate}
+\item{\textbf{NFRT-UH4}}\\
+Type: Dynamic, Manual\\
+Initial State: ScrumBot active in Discord channel\\
+Input: Help command entered\\
+Output: ScrumBot should output help menu\\
+How test will be performed: The user will enter help menu into Discord chat with ScrumBot active
+\end{enumerate}
+
 \subsubsection{Performance Requirements}
 \paragraph{Response Speed}
 \begin{enumerate}
-\item{NFRT-P1}\\
+\item{\textbf{NFRT-P1}}\\
 Type: Dynamic, Manual\\
 Initial State: No commands being made\\
 Input: Command entered\\
-Output: Response should be received within 2 seconds of the input being sent
+Output: Response should be received within 2 seconds of the input being sent\\
 How test will be performed: The user will enter a command into the Discord channel with ScrumBot active. ScrumBot should provide a response within 2ms of the command being entered
 \end{enumerate}
 \paragraph{Meeting Schedule Accuracy}
 \begin{enumerate}
-\item{NFRT-P2}\\
+\item{\textbf{NFRT-P2}}\\
 Type: Dynamic, Manual\\
 Initial State: No meetings schedules\\
 Input: Schedule meeting command with meeting details\\
-Output: The meeting is added to the meeting list with the correct location
+Output: The meeting is added to the meeting list with the correct location\\
 How test will be performed: The user will enter the command to schedule a meeting and the meeting details into the Discord channel with ScrumBot active
-\item{NFRT-P3}\\
+\item{\textbf{NFRT-P3}}\\
 Type: Dynamic, Manual\\
 Initial State: No meetings schedules\\
 Input: Schedule meeting command with meeting details\\
-Output: The meeting is added to the meeting list with the correct time
+Output: The meeting is added to the meeting list with the correct time\\
 How test will be performed: The user will enter the command to schedule a meeting and the meeting details into the Discord channel with ScrumBot active
 \end{enumerate}
 
@@ -206,7 +217,7 @@ How test will be performed: The user will enter the command to schedule a meetin
 \paragraph{Expected Environment}
 \begin{enumerate}
 
-\item{NFRT-OE1}\\
+\item{\textbf{NFRT-OE1}}\\
 Type: Dynamic, Manual\\
 Initial State: New Discord channel without ScrumBot\\
 Input/Condition: Add ScrumBot to the Discord channel\\
@@ -216,21 +227,21 @@ How test will be performed: The test team will follow the provided installation 
 \paragraph{Requirements for Interfacing with Adjacent Systems}
 \begin{enumerate}
 
-\item{NFRT-OE2}\\
+\item{\textbf{NFRT-OE2}}\\
 Type: Dynamic, Manual\\
 Initial State: ScrumBot added to Discord channel not yet connected to users' Google services\\
 Input/Condition: User wants to connect their Google services to ScrumBot\\
 Output/Result: ScrumBot should be connect to the User's Google account through Google API services\\
 How test will be performed: The test team will attempt to connect their Google services to ScrumBot
 
-\item{NFRT-OE3}\\
+\item{\textbf{NFRT-OE3}}\\
 Type: Dynamic, Manual\\
 Initial State: ScrumBot not yet registered as a public bot\\
 Input/Condition: ScrumBot register with Discord API services and deployed publically\\
 Output/Result: ScrumBot should be a public bot registered with Discord\\
 How test will be performed: The test team will follow documentation provided by Discord to add ScrumBot as a public bot
 
-\item{NFRT-OE4}\\
+\item{\textbf{NFRT-OE4}}\\
 Type: Dynamic, Manual\\
 Initial State: ScrumBot added to Discord channel not yet connected to users' Trello services\\
 Input/Condition: User wants to connect their Trello services to ScrumBot\\
@@ -241,21 +252,21 @@ How test will be performed: The test team will attempt to connect their Trello s
 \paragraph{Installability Requirements}
 \begin{enumerate}
 
-\item{NFRT-OE5}\\
+\item{\textbf{NFRT-OE5}}\\
 Type: Dynamic, Manual\\
 Initial State: ScrumBot not yet added to Discord channel\\
 Input/Condition: User without expertise in Discord bots wants to install ScrumBot\\
 Output/Result: ScrumBot added to Discord channel\\
 How test will be performed: An inexperienced user will attempt to add ScrumBot to a Discord channel by following the provided documentation
 
-\item{NFRT-OE6}\\
+\item{\textbf{NFRT-OE6}}\\
 Type: Dynamic, Manual\\
 Initial State: ScrumBot not yet added to Discord channel\\
 Input/Condition: Start installation of ScrumBot\\
 Output/Result: ScrumBot takes less than 5 minutes to install\\
 How test will be performed: Test team will install ScrumBot and time the installation
 
-\item{NFRT-OE7}\\
+\item{\textbf{NFRT-OE7}}\\
 Type: Dynamic, Manual\\
 Initial State: ScrumBot installed\\
 Input/Condition: Start uninstalling Scrumbot\\
@@ -268,13 +279,13 @@ How test will be performed: The test team will attempt to uninstall ScrumBot
 \paragraph{Maintainability Requirements}
 \begin{enumerate}
 
-\item{NFRT-MS1}\\
+\item{\textbf{NFRT-MS1}}\\
 Type: Static, Manual, Code Inspection\\
 Initial State: N/A\\
 Input/Condition: N/A\\
 Output/Result: The code is well documented with comments\\
 How test will be performed: The test team will inspect the code and check if the code is adequately documented using comments
-\item{NFRT-MS2}\\
+\item{\textbf{NFRT-MS2}}\\
 Type: Static, Manual\\
 Initial State: No Doxygen documents generated yet\\
 Input/Condition: Generate Doxygen HTML and pdf\\
@@ -285,7 +296,7 @@ How test will be performed: The test team will try to generate Doxygen HTML and 
 \paragraph{Supportability Requirements}
 \begin{enumerate}
 
-\item{NFRT-MS4}\\
+\item{\textbf{NFRT-MS4}}\\
 Type: Dynamic, Manual\\
 Initial State: ScrumBot is active on the Discord channel\\
 Input/Condition: User wants to open help menu\\
@@ -297,7 +308,7 @@ How test will be performed: The test team will attempt to open the help menu in 
 \paragraph{HTTP Connections}
 \begin{enumerate}
 
-\item{NFRT-S1}\\
+\item{\textbf{NFRT-S1}}\\
 Type: Static, Manual, Code Inspection\\
 Initial State: N/A\\
 Input/Condition: N/A\\
