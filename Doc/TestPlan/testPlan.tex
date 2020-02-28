@@ -51,6 +51,7 @@
             February 20, 2020 & Arkin Modi & Created the Purpose Section\\
             February 27, 2020 & Timothy Choy, Leon So & Updated General Information section\\
             February 27, 2020 & Arkin Modi & Worked on Test Team, Automated Testing Approach, and Testing Tools\\
+            February 27, 2020 & Arkin Modi & Worked on the Unit Testing Plan for internal functions and output files\\
         \bottomrule
     \end{tabularx}
 \end{table}
@@ -90,8 +91,10 @@ The purpose of this document is to outline the testing, validation, and verifica
         \toprule
         \textbf{Term} & \textbf{Definition}\\
         \midrule
+        Acceptance Testing & A method of testing which is conducted to determine if the requirements of the specification are met\\
+        Integration Testing & A method of testing where individual software modules are combined and tested as a group\\
         Pytest & A unit testing framework for Python\\
-        Term2 & Definition2\\
+        System Testing & A method of testing where the tests are performed on the system as a whole\\
         \bottomrule
     \end{tabularx}
 \end{table} 
@@ -236,30 +239,29 @@ How test will be performed:
 
     
 \section{Comparison to Existing Implementation} 
-                
+N/A
+
 \section{Unit Testing Plan}
-        
+Unit testing will be performed through the use of the Pytest testing framework.
+
 \subsection{Unit testing of internal functions}
-        
+Unit testing of internal functions will be performed for every function to ensure robustness. These tests will consist of a combination of partition testing and fuzz testing. Through this, verifying that the functions react in a predictable way. Following this, the functions will then undergo integration testing, to verify the compliance of the system with the SRS. During integration testing, stubs and drivers will be created as needed. For the testing of internal functions, the team will aim for a coverage of at minimum 85\%.
+
 \subsection{Unit testing of output files}       
+The only output file will be the application executable, which shall be tested for correctness as a whole as well as the fulfillment of the SRS. This testing will take the form of system testing and acceptance testing. The system testing will test the performance, the behavior under extreme/varying load, and scalability with the number of users. The acceptance testing will ensure the SRS has been fulfilled.
 
 \bibliographystyle{plainnat}
-
 \bibliography{SRS}
-
 \newpage
 
 \section{Appendix}
+% This is where you can place additional information.
 
-This is where you can place additional information.
+% \subsection{Symbolic Parameters}
+% The definition of the test cases will call for SYMBOLIC\_CONSTANTS.
+% Their values are defined in this section for easy maintenance.
 
-\subsection{Symbolic Parameters}
-
-The definition of the test cases will call for SYMBOLIC\_CONSTANTS.
-Their values are defined in this section for easy maintenance.
-
-\subsection{Usability Survey Questions?}
-
-This is a section that would be appropriate for some teams.
+% \subsection{Usability Survey Questions?}
+% This is a section that would be appropriate for some teams.
 
 \end{document}
