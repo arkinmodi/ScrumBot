@@ -536,65 +536,67 @@ How test will be performed: The test team will inspect the code and check if all
 \newpage
 \begin{landscape}
 \subsection{Traceability Between Test Cases and Requirements}
-% \noindent The left-hand column on the matrices correspond to requirements from the SRS. The top row correspond to the test cases.\\\\
-\noindent For the Traceability Matrix: Functional Requirement, the ``FRT-'' has been drop from the test cases names (top row in the table) due to page space limitations.
+\noindent Test IDs correspond to the tests found in this document. Requirement IDs correspond to the requirements found in the SRS.
+
 \begin{table}[H]
     \centering
     \caption{Traceability Matrix: Functional Requirement}
     \begin{tabular}{l|ccccccccccc}
         \textbf{Test IDs} & \multicolumn{11}{c}{\textbf{Requirement IDs}}\\
         \hline
-        % ~ & \textbf{FRT-BE1} & \textbf{FRT-BE2} & \textbf{FRT-BE3} & \textbf{FRT-BE4} & \textbf{FRT-BE5} & \textbf{FRT-BE6} & \textbf{FRT-BE7} & \textbf{FRT-BE8-1} & \textbf{FRT-BE8-2} & \textbf{FRT-BE9-1} & \textbf{FRT-BE9-2} & \textbf{FRT-BE10-1} & \textbf{FRT-BE10-2} & \textbf{FRT-BE11}\\
-        % ~ & \textbf{BE1} & \textbf{BE2} & \textbf{BE3} & \textbf{BE4} & \textbf{BE5} & \textbf{BE6} & \textbf{BE7} & \textbf{BE8-1} & \textbf{BE8-2} & \textbf{BE9-1} & \textbf{BE9-2} & \textbf{BE10-1} & \textbf{BE10-2} & \textbf{BE11}\\
-        % \textbf{BE1}    & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
-        % \textbf{BE2}    & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
-        % \textbf{BE3}    & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
-        % \textbf{BE4}    & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
-        % \textbf{BE5}    & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
-        % \textbf{BE6}    & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
-        % \textbf{BE7}    & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
-        % \textbf{BE8}    & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & X & ~ & ~ & ~ & ~ & ~\\
-        % \textbf{BE9}    & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & X & ~ & ~ & ~\\
-        % \textbf{BE10}   & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & X & ~\\
-        % \textbf{BE11}   & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X\\
-        
         ~ & \textbf{BE1} & \textbf{BE2} & \textbf{BE3} & \textbf{BE4} & \textbf{BE5} & \textbf{BE6} & \textbf{BE7} & \textbf{BE8} & \textbf{BE9} & \textbf{BE10} & \textbf{BE11}\\
-        \textbf{FRT-BE1} & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
-        \textbf{FRT-BE1} & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{FRT-BE1}    & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{FRT-BE2-1}  & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{FRT-BE2-2}  & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{FRT-BE3-1}  & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{FRT-BE3-2}  & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{FRT-BE4-1}  & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{FRT-BE4-2}  & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{FRT-BE5-1}  & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{FRT-BE5-2}  & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{FRT-BE6-1}  & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~\\
+        \textbf{FRT-BE6-2}  & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~\\
+        \textbf{FRT-BE7-1}  & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~\\
+        \textbf{FRT-BE7-2}  & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~\\
+        \textbf{FRT-BE8-1}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~\\
+        \textbf{FRT-BE8-2}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~\\
+        \textbf{FRT-BE9-1}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~\\
+        \textbf{FRT-BE9-2}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~\\
+        \textbf{FRT-BE10-1} & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~\\
+        \textbf{FRT-BE10-2} & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~\\
+        \textbf{FRT-BE11}   & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X\\
     \end{tabular}
     \label{Traceability Matrix: Functional Requirement}
 \end{table}
 
-\newpage
-\noindent For the Traceability Matrix: Non-Functional Requirement, the ``NFRT-'' has been drop from the test cases names (top row in the table) due to page space limitations.
 \begin{table}[H]
     \centering
     \caption{Traceability Matrix: Non-Functional Requirement}
     \begin{adjustbox}{width=\paperwidth}
-    \begin{tabular}{l|cccccccccccccccccccc}
-        \textbf{Req.} & \multicolumn{20}{c}{\textbf{Test IDs}}\\
+    \begin{tabular}{l|ccccccccccccccccccc}
+        \textbf{Test IDs} & \multicolumn{19}{c}{\textbf{Requirement IDs}}\\
         \hline
-        % ~ & \textbf{NFRT-UH13-1} & \textbf{NFRT-UH13-2} & \textbf{NFRT-UH13-3} & \textbf{NFRT-UH4} & \textbf{NFRT-P1} & \textbf{NFRT-P2} & \textbf{NFRT-P3} & \textbf{NFRT-OE1} & \textbf{NFRT-OE2} & \textbf{NFRT-OE3} & \textbf{NFRT-OE4} & \textbf{NFRT-OE5} & \textbf{NFRT-OE6} & \textbf{NFRT-OE7} & \textbf{NFRT-MS1} & \textbf{NFRT-MS2} & \textbf{NFRT-MS3} & \textbf{NFRT-MS4-1} & \textbf{NFRT-MS4-2} & \textbf{NFRT-S1}\\
-        ~ & \textbf{UH13-1} & \textbf{UH13-2} & \textbf{UH13-3} & \textbf{UH4} & \textbf{P1} & \textbf{P2} & \textbf{P3} & \textbf{OE1} & \textbf{OE2} & \textbf{OE3} & \textbf{OE4} & \textbf{OE5} & \textbf{OE6} & \textbf{OE7} & \textbf{MS1} & \textbf{MS2} & \textbf{MS3} & \textbf{MS4-1} & \textbf{MS4-2} & \textbf{S1}\\
-        \textbf{UH1}    & X & X & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
-        \textbf{UH2}    & X & X & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
-        \textbf{UH3}    & X & X & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
-        \textbf{UH4}    & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
-        \textbf{P1}     & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
-        \textbf{P2}     & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
-        \textbf{P3}     & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
-        \textbf{OE1}    & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
-        \textbf{OE2}    & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
-        \textbf{OE3}    & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
-        \textbf{OE4}    & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
-        \textbf{OE5}    & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
-        \textbf{OE6}    & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
-        \textbf{OE7}    & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~\\
-        \textbf{MS1}    & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~\\
-        \textbf{MS2}    & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~\\
-        \textbf{MS3}    & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~\\
-        \textbf{MS4}    & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & X & ~\\
-        \textbf{S1}     & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X\\
+        ~ & \textbf{UH1} & \textbf{UH2} & \textbf{UH3} & \textbf{UH4} & \textbf{P1} & \textbf{P2} & \textbf{P3} & \textbf{OE1} & \textbf{OE2} & \textbf{OE3} & \textbf{OE4} & \textbf{OE5} & \textbf{OE6} & \textbf{OE7} & \textbf{MS1} & \textbf{MS2} & \textbf{MS3} & \textbf{MS4} & \textbf{S1}\\
+        \textbf{NFRT-UH13-1}    & X & X & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-UH13-2}    & X & X & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-UH13-3}    & X & X & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-UH4}       & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-P1}        & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-P2}        & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-P3}        & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-OE1}       & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-OE2}       & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-OE3}       & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-OE4}       & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-OE5}       & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-OE6}       & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-OE7}       & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-MS1}       & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-MS2}       & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~\\
+        \textbf{NFRT-MS3}       & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~\\
+        \textbf{NFRT-MS4-1}     & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~\\
+        \textbf{NFRT-MS4-2}     & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~\\
+        \textbf{NFRT-S1}        & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X\\
     \end{tabular}
     \end{adjustbox}
     \label{Traceability Matrix: Non-Functional Requirement}
