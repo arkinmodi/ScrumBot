@@ -60,8 +60,8 @@
             February 28, 2020 & Timothy Choy & Worked on the Proof of Concept Testing\\
             February 28, 2020 & Leon So & Worked on Tests for NFRs\\
             February 28, 2020 & Timothy Choy & Updated Definitions, Worked on Tests for FRs\\
-            February 28, 2020 & Leon So & Worked on Usability Survey\\
-            February 28, 2020 & Arkin Modi & Worked on Traceability Matrices\\
+            February 28, 2020 & Leon So & Worked on Usability Survey, Worked on Tests for FRs\\
+            February 28, 2020 & Arkin Modi & Worked on Traceability Matrices and Tests for FRs\\
         \bottomrule
     \end{tabularx}
 \end{table}
@@ -182,12 +182,19 @@ See Gantt Chart at the following URL, \url{https://gitlab.cas.mcmaster.ca/modia1
 \subsubsection{Project Removal}
 
 \begin{enumerate}
-    \item{\textbf{FRT-BE3}}\\
-    Type: Specification-based, Dynamic, Manual, Static etc.\\
-    Initial State: \\
-    Input: \\
-    Output: \\
-    How test will be performed: \\
+    \item{\textbf{FRT-BE3-1}}\\
+    Type: Specification-based, Dynamic, Manual, Boundary\\
+    Initial State: ScrumBot active in Discord channel\\
+    Input: project ID\\
+    Output: The system shall as the Business Analyst of the project for confirmation. If confirmed, the project should be removed from project list. The system shall then ask if the project has been completed or cancelled. All project collaborators should be notified that the project has been removed.\\
+    How test will be performed: The test team will attempt to remove a project in the Discord channel using an chat member account that is assigned with the role of Business Analyst. This test will be done manually in the chat channel where commands to remove a project will be entered. Boundary cases will also be tested, such as attempting to remove a project from an empty project list\\
+    
+    \item{\textbf{FRT-BE3-2}}\\
+    Type: Dynamic, Unit, Boundary\\
+    Initial State: ScrumBot active in Discord channel\\
+    Input: Pytest file is run\\
+    Output: Pytest output\\
+    How test will be performed: The test will be performed through Pytest, where the test will run the command to add a project, focusing on the parameters entered to remove projects. The Pytest file will also include tests which tests boundary conditions, such as attempting to remove a project from an empty project list\\
 \end{enumerate}
 
 \subsubsection{Sprint-planning Meeting}
@@ -204,23 +211,37 @@ See Gantt Chart at the following URL, \url{https://gitlab.cas.mcmaster.ca/modia1
 \subsubsection{Stand-up Meeting}
 
 \begin{enumerate}
-    \item{\textbf{FRT-BE5}}\\
-    Type: Specification-based, Dynamic, Manual, Static etc.\\
-    Initial State: \\
-    Input: \\
-    Output: \\
-    How test will be performed: \\
+    \item{\textbf{FRT-BE5-1}}\\
+    Type: Dynamic, Manual\\
+    Initial State: ScrumBot active in Discord channel\\
+    Input: Stand-up meeting command is run\\
+    Output: ScrumBot outputs message stating the stand-up meeting has started with relevant commands for stand-up meetings\\
+    How test will be performed: A tester will execute the command to start the meeting from an user account assigned the role of Scrum Master\\
+    
+    \item{\textbf{FRT-BE5-2}}\\
+    Type: Specification-based, Dynamic, Manual\\
+    Initial State: ScrumBot active in Discord channel, Stand-up meeting in progress\\
+    Input: Progress information is entered\\
+    Output: ScrumBot stores progress information and the corresponding member\\
+    How test will be performed: A tester with Scrum Master role will start a stand-up meeting in the channel. The members of the test team will test commands to add and update progress from various user accounts with the Development Team member role and Scrum Master role\\
 \end{enumerate}
 
 \subsubsection{Retrospective Meeting}
 
 \begin{enumerate}
-    \item{\textbf{FRT-BE6}}\\
-    Type: Specification-based, Dynamic, Manual, Static etc.\\
-    Initial State: \\
-    Input: \\
-    Output: \\
-    How test will be performed: \\
+    \item{\textbf{FRT-BE6-1}}\\
+    Type: Dynamic, Manual\\
+    Initial State: ScrumBot active in Discord channel\\
+    Input: Retrospective meeting command is run\\
+    Output: ScrumBot outputs message stating the stand-up meeting has started with relevant commands for retrospective meetings\\
+    How test will be performed: A tester will execute the command to start the meeting from an user account assigned the role of Scrum Master\\
+    
+    \item{\textbf{FRT-BE6-2}}\\
+    Type: Specification-based, Dynamic, Manual\\
+    Initial State: ScrumBot active in Discord channel, Retrospective meeting in progress\\
+    Input: Feedback and details are entered by the Scrum Master\\
+    Output: ScrumBot stores the feedback and corresponding details and feedback is visible to all members of the development team\\
+    How test will be performed: A tester with Scrum Master role will start a retrospective meeting in the channel. A tester with the role of Scrum Master will add feedback. Another member of the test team with the role of Development Team member will see if the feedback and feedback details are visible\\
 \end{enumerate}
 
 \subsubsection{Grooming Meeting}
