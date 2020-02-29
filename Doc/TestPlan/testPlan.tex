@@ -297,7 +297,35 @@ See Gantt Chart at the following URL, \url{https://gitlab.cas.mcmaster.ca/modia1
 
 \subsection{Tests for Non-Functional Requirements}
 
+\subsubsection{Look and Feel Requirements}
+\paragraph{Appearance Requirements}
+\begin{enumerate}
+\item{\textbf{NFRT-UH1 to NFRT-UH3}}\\
+Type: Manual, Dynamic, Checklist\\
+Initial State: ScrumBot active in Discord channel\\
+Input: Set of all ScrumBot commands entered\\
+Output: ScrumBot outputs text formatted according to the text format of ScrumBot\\
+How test will be performed: The test team will run commands in the Discord chat with ScrumBot active and check if the text format is appropriate and in accordance with Discord's text format
+\end{enumerate}
+
+\paragraph{Style Requirements}
+\begin{enumerate}
+\item{\textbf{NFRT-UH1 to NFRT-UH3}}\\
+Type: Manual, Dynamic, Checklist\\
+Initial State: ScrumBot active in Discord channel\\
+Input: One of each role available is added\\
+Output: ScrumBot adds the roles and permissions to the assigned users. The role names should be short, clear, and descriptive. The roles should be colour coded\\
+How test will be performed: The test team will add roles in the Discord channel. One of each role available will be assigned
+\end{enumerate}
+
 \subsubsection{Usability and Humanity Requirements}
+\paragraph{Ease of Use \& Personalization and Internationalization Requirements}
+\begin{enumerate}
+\item{\textbf{NFRT-UH1 to NFRT-UH3}}\\
+Type: Manual, Usability Survey\\
+How test will be performed: The test team will ask a sample set of users to answer questions on a usability survey after using ScrumBot for the first time
+\end{enumerate}
+
 \paragraph{Learning Requirements}
 \begin{enumerate}
 \item{\textbf{NFRT-UH4}}\\
@@ -305,7 +333,7 @@ Type: Dynamic, Manual\\
 Initial State: ScrumBot active in Discord channel\\
 Input: Help command entered\\
 Output: ScrumBot should output help menu\\
-How test will be performed: The user will enter help menu into Discord chat with ScrumBot active
+How test will be performed: The test team will enter the help command into Discord chat with ScrumBot active
 \end{enumerate}
 
 \subsubsection{Performance Requirements}
@@ -316,7 +344,7 @@ Type: Dynamic, Manual\\
 Initial State: No commands being made\\
 Input: Command entered\\
 Output: Response should be received within 2 seconds of the input being sent\\
-How test will be performed: The user will enter a command into the Discord channel with ScrumBot active. ScrumBot should provide a response within 2ms of the command being entered
+How test will be performed: The test team will enter a command into the Discord channel with ScrumBot active. ScrumBot should provide a response within 2ms of the command being entered
 \end{enumerate}
 \paragraph{Meeting Schedule Accuracy}
 \begin{enumerate}
@@ -325,13 +353,13 @@ Type: Dynamic, Manual\\
 Initial State: No meetings schedules\\
 Input: Schedule meeting command with meeting details\\
 Output: The meeting is added to the meeting list with the correct location\\
-How test will be performed: The user will enter the command to schedule a meeting and the meeting details into the Discord channel with ScrumBot active
+How test will be performed: The test team will enter the command to schedule a meeting and the meeting details into the Discord channel with ScrumBot active
 \item{\textbf{NFRT-P3}}\\
 Type: Dynamic, Manual\\
 Initial State: No meetings schedules\\
 Input: Schedule meeting command with meeting details\\
 Output: The meeting is added to the meeting list with the correct time\\
-How test will be performed: The user will enter the command to schedule a meeting and the meeting details into the Discord channel with ScrumBot active
+How test will be performed: The test team will enter the command to schedule a meeting and the meeting details into the Discord channel with ScrumBot active
 \end{enumerate}
 
 \subsubsection{Operational and Environmental Requirements}
@@ -412,6 +440,12 @@ Initial State: No Doxygen documents generated yet\\
 Input/Condition: Generate Doxygen HTML and pdf\\
 Output/Result: The Doxygen documentation is successfully compiled and generated\\
 How test will be performed: The test team will try to generate Doxygen HTML and pdf
+\item{\textbf{NFRT-MS3}}\\
+Type: Static, Manual, Code Inspection\\
+Initial State: N/A\\
+Input/Condition: N/A\\
+Output/Result: The code documentation is easy to understand\\
+How test will be performed: The test team will review the code documentation and make sure it is easily understandable. The test team will survey other developers and verify that they too can easily understand the documentation
 \end{enumerate}
 
 \paragraph{Supportability Requirements}
@@ -423,6 +457,17 @@ Initial State: ScrumBot is active on the Discord channel\\
 Input/Condition: User wants to open help menu\\
 Output/Result: Help menu is displayed in the Discord chat\\
 How test will be performed: The test team will attempt to open the help menu in the Discord chat
+\end{enumerate}
+
+\paragraph{Longevity Requirements}
+\begin{enumerate}
+
+\item{\textbf{NFRT-MS4}}\\
+Type: Static, Manual, Code Inspection\\
+Initial State: N/A\\
+Input/Condition: N/A\\
+Output/Result: System is modularized into classes\\
+How test will be performed: The test team will perform a code inspection to ensure that the system is separated into modules
 \end{enumerate}
 
 \subsubsection{Security Requirements}
