@@ -16,6 +16,7 @@
 \usepackage{xspace}
 \usepackage{pdflscape}
 \usepackage{adjustbox}
+\usepackage{booktabs}
 
 % Document margins
 \usepackage[left=1in,top=1in,right=1in,bottom=1in]{geometry}
@@ -74,7 +75,7 @@
 \section{General Information}
 
 \subsection{Purpose}
-The purpose of this document is to outline the testing, validation, and verification process of the functional and non-functional requirements, for the ScrumBot project. These test cases were conceived before the implementation and therefore will be used by the project members for future reference during the development process.
+The purpose of this document is to outline the testing, validation, and verification process of the functional and non-functional requirements, for the ScrumBot project. These test cases were conceived before the implementation and therefore will be used by the project members for future reference during the development process and testing process.
 
 \subsection{Scope}
 % The test plan outlines all tests which will be conducted during this project, and the testing tools that will be used.
@@ -136,11 +137,11 @@ This test plan will provide a method to fully test ScrumBot by performing tests 
 
 \subsection{Overview of Document}
 % The overview of this document
-This document outlines a test plan that fully encompasses all requirements of ScrumBot, as stated in the SRS. This document includes relevant information concerning: test team, automated testing, testing tools, testing schedule, unit-testing, and test cases.
+This document outlines a test plan that fully encompasses all requirements of ScrumBot specified in the SRS. This document includes relevant information concerning: test team, automated testing, testing tools, testing schedule, unit-testing, and test cases.
 
 \section{Plan}
 \subsection{Software Description}
-Scrum is an Agile process framework widely used in industry for managing and coordinating collaborative projects. Scrum being a process based on the agile development method, follows a highly iterative process and often has heavy customer involvement, therefore it can be often be complex. With Discord being a popular communication tool used by many teams of software developers today, ScrumBot provides a solution that directly integrates the management of a scrum development cycle into the communication channels. ScrumBot will allow for better management and organization of retrospectives, stand-ups, and other scrum/agile stages used by software teams within their routine communication channel.
+Scrum is an Agile process framework widely used in industry for managing and coordinating collaborative projects. Scrum being a process based on the agile development method, follows a highly iterative process and often has heavy customer involvement, therefore it can be often be complex. With Discord being a popular communication tool used by many teams of software developers today, ScrumBot provides a solution that directly integrates the management of a scrum development cycle into the communication channels. ScrumBot will allow for better management and organization of retrospectives, stand-ups, and other scrum/agile stages used by software teams within their routine communication channel. ScrumBot will provide features to add and manage Scrum meetings, as
 
 \subsection{Test Team}
 The test team will consist of all the members of the project: Arkin Modi, Leon So, and Timothy Choy.
@@ -171,12 +172,19 @@ See Gantt Chart at the following URL, \url{https://gitlab.cas.mcmaster.ca/modia1
 \subsubsection{Project Creation}
 
 \begin{enumerate}
-    \item{\textbf{FRT-BE2}}\\
-    Type: Specification-based, Dynamic, Manual, Static etc.\\
-    Initial State: \\
-    Input: \\
-    Output: \\
-    How test will be performed: \\
+    \item{\textbf{FRT-BE2-1}}\\
+    Type: Specification-based, Dynamic, Manual, Boundary\\
+    Initial State: ScrumBot active in Discord channel\\
+    Input: Add project command is entered, with specified details\\
+    Output: Confirmation message\\
+    How test will be performed: The test will be performed manually through commands entered in Discord. Manual testing will focus if the notifications are sent to the correct people as well as the interactions between ScrumBot and the tester\\
+    
+    \item{\textbf{FRT-BE2-2}}
+    Type: Specification-based, Dynamic, Unit, Boundary\\
+    Initial State: ScrumBot active in Discord channel\\
+    Input: Pytest file is run\\
+    Output: Pytest output\\
+    How test will be performed: The test will be performed through Pytest, where tests will run the command to add a project, focusing on the parameters entered to create projects\\
 \end{enumerate}
 
 \subsubsection{Project Removal}
@@ -197,15 +205,22 @@ See Gantt Chart at the following URL, \url{https://gitlab.cas.mcmaster.ca/modia1
     How test will be performed: The test will be performed through Pytest, where the test will run the command to add a project, focusing on the parameters entered to remove projects. The Pytest file will also include tests which tests boundary conditions, such as attempting to remove a project from an empty project list\\
 \end{enumerate}
 
-\subsubsection{Sprint-planning Meeting}
+\subsubsection{Sprint-Planning Meeting}
 
 \begin{enumerate}
-    \item{\textbf{FRT-BE4}}\\
-    Type: Specification-based, Dynamic, Manual, Static etc.\\
-    Initial State: \\
-    Input: \\
-    Output: \\
-    How test will be performed: \\
+    \item{\textbf{FRT-BE4-1}}\\
+    Type: Dynamic, Manual\\
+    Initial State: ScrumBot active in Discord channel\\
+    Input: Sprint-planning meeting command is run\\
+    Output: ScrumBot outputs message stating that a sprint-planning meeting has started with relevant commands for sprint-planning meetings\\
+    How test will be performed: A tester will execute the command to start the meeting from a user account assigned to the role of Scrum Master\\
+    
+    \item{\textbf{FRT-BE4-2}}\\
+    Type: Specification-based, Dynamic, Manual\\
+    Initial State: ScrumBot active in Discord channel, Sprint-planning meeting in progress\\
+    Input: Progress information is entered\\
+    Output: ScrumBot stores or shows information based on the input\\
+    How test will be performed: A tester with the Scrum Master role will run commands to see if they can add goals, feedback, backlog tasks, tasks, as well as update the Trello board. A tester with the Development Team role will run commands to check whether or not they can see new feedback, updated backlog tasks, new goals, as well as assign tasks and update the Trello board\\
 \end{enumerate}
 
 \subsubsection{Stand-up Meeting}
@@ -239,7 +254,7 @@ See Gantt Chart at the following URL, \url{https://gitlab.cas.mcmaster.ca/modia1
     \item{\textbf{FRT-BE6-2}}\\
     Type: Specification-based, Dynamic, Manual\\
     Initial State: ScrumBot active in Discord channel, Retrospective meeting in progress\\
-    Input: Feedback and details are entered by the Scrum Master\\
+    Input: Feedback and details are entered using command\\
     Output: ScrumBot stores the feedback and corresponding details and feedback is visible to all members of the development team\\
     How test will be performed: A tester with Scrum Master role will start a retrospective meeting in the channel. A tester with the role of Scrum Master will add feedback. Another member of the test team with the role of Development Team member will see if the feedback and feedback details are visible\\
 \end{enumerate}
@@ -247,12 +262,19 @@ See Gantt Chart at the following URL, \url{https://gitlab.cas.mcmaster.ca/modia1
 \subsubsection{Grooming Meeting}
 
 \begin{enumerate}
-    \item{\textbf{FRT-BE7}}\\
-    Type: Specification-based, Dynamic, Manual, Static etc.\\
-    Initial State: \\
-    Input: \\
-    Output: \\
+    \item{\textbf{FRT-BE7-1}}\\
+    Type: Specification-based, Dynamic, Manual\\
+    Initial State: ScrumBot active in Discord channel\\
+    Input: Grooming meeting command is run\\
+    Output: ScrumBot outputs message stating the grooming meeting has started with relevant commands for grooming meetings\\
     How test will be performed: \\
+    
+    \item{\textbf{FRT-BE7-2}}\\
+    Type: Specification-based, Dynamic, Manual\\
+    Initial State: ScrumBot active in Discord channel, Grooming meeting in progress\\
+    Input: Progress information is entered\\
+    Output: ScrumBot stores the information and shows any necessary information\\
+    How test will be performed: A tester with the role of Scrum Master or Development Team will see all updates regarding project requirements, tasks and deadlines. A tester with the role of Business Analyst will see the same, excluding tasks\\
 \end{enumerate}
 
 \subsubsection{Add a Meeting}
@@ -317,7 +339,7 @@ See Gantt Chart at the following URL, \url{https://gitlab.cas.mcmaster.ca/modia1
     Initial State: ScrumBot active in Discord channel\\
     Input: The see tasks command is entered into Discord\\
     Output: A link to the Trello Kanban board, if integrated\\
-    How test will be performed: The test will be performed manually through commands entered in Discord.\\
+    How test will be performed: The test will be performed manually through commands entered in Discord\\
 \end{enumerate}
 
 \subsection{Tests for Non-Functional Requirements}
@@ -371,6 +393,7 @@ Input: Command entered\\
 Output: Response should be received within 2 seconds of the input being sent\\
 How test will be performed: The test team will enter a command into the Discord channel with ScrumBot active. ScrumBot should provide a response within 2ms of the command being entered
 \end{enumerate}
+
 \paragraph{Meeting Schedule Accuracy}
 \begin{enumerate}
 \item{\textbf{NFRT-P2}}\\
@@ -379,6 +402,7 @@ Initial State: No meetings schedules\\
 Input: Schedule meeting command with meeting details\\
 Output: The meeting is added to the meeting list with the correct location\\
 How test will be performed: The test team will enter the command to schedule a meeting and the meeting details into the Discord channel with ScrumBot active
+
 \item{\textbf{NFRT-P3}}\\
 Type: Dynamic, Manual\\
 Initial State: No meetings schedules\\
@@ -459,12 +483,14 @@ Initial State: N/A\\
 Input/Condition: N/A\\
 Output/Result: The code is well documented with comments\\
 How test will be performed: The test team will inspect the code and check if the code is adequately documented using comments
+
 \item{\textbf{NFRT-MS2}}\\
 Type: Static, Manual\\
 Initial State: No Doxygen documents generated yet\\
 Input/Condition: Generate Doxygen HTML and pdf\\
 Output/Result: The Doxygen documentation is successfully compiled and generated\\
 How test will be performed: The test team will try to generate Doxygen HTML and pdf
+
 \item{\textbf{NFRT-MS3}}\\
 Type: Static, Manual, Code Inspection\\
 Initial State: N/A\\
@@ -510,25 +536,31 @@ How test will be performed: The test team will inspect the code and check if all
 \newpage
 \begin{landscape}
 \subsection{Traceability Between Test Cases and Requirements}
-\noindent The left-hand column on the matrices correspond to requirements from the SRS. The top row correspond to the test cases.\\\\
+% \noindent The left-hand column on the matrices correspond to requirements from the SRS. The top row correspond to the test cases.\\\\
 \noindent For the Traceability Matrix: Functional Requirement, the ``FRT-'' has been drop from the test cases names (top row in the table) due to page space limitations.
 \begin{table}[H]
     \centering
     \caption{Traceability Matrix: Functional Requirement}
-    \begin{tabular}{lcccccccccccccc}
+    \begin{tabular}{l|ccccccccccc}
+        \textbf{Test IDs} & \multicolumn{11}{c}{\textbf{Requirement IDs}}\\
+        \hline
         % ~ & \textbf{FRT-BE1} & \textbf{FRT-BE2} & \textbf{FRT-BE3} & \textbf{FRT-BE4} & \textbf{FRT-BE5} & \textbf{FRT-BE6} & \textbf{FRT-BE7} & \textbf{FRT-BE8-1} & \textbf{FRT-BE8-2} & \textbf{FRT-BE9-1} & \textbf{FRT-BE9-2} & \textbf{FRT-BE10-1} & \textbf{FRT-BE10-2} & \textbf{FRT-BE11}\\
-        ~ & \textbf{BE1} & \textbf{BE2} & \textbf{BE3} & \textbf{BE4} & \textbf{BE5} & \textbf{BE6} & \textbf{BE7} & \textbf{BE8-1} & \textbf{BE8-2} & \textbf{BE9-1} & \textbf{BE9-2} & \textbf{BE10-1} & \textbf{BE10-2} & \textbf{BE11}\\
-        \textbf{BE1}    & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
-        \textbf{BE2}    & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
-        \textbf{BE3}    & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
-        \textbf{BE4}    & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
-        \textbf{BE5}    & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
-        \textbf{BE6}    & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
-        \textbf{BE7}    & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
-        \textbf{BE8}    & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & X & ~ & ~ & ~ & ~ & ~\\
-        \textbf{BE9}    & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & X & ~ & ~ & ~\\
-        \textbf{BE10}   & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & X & ~\\
-        \textbf{BE11}   & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X\\
+        % ~ & \textbf{BE1} & \textbf{BE2} & \textbf{BE3} & \textbf{BE4} & \textbf{BE5} & \textbf{BE6} & \textbf{BE7} & \textbf{BE8-1} & \textbf{BE8-2} & \textbf{BE9-1} & \textbf{BE9-2} & \textbf{BE10-1} & \textbf{BE10-2} & \textbf{BE11}\\
+        % \textbf{BE1}    & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        % \textbf{BE2}    & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        % \textbf{BE3}    & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        % \textbf{BE4}    & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        % \textbf{BE5}    & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        % \textbf{BE6}    & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        % \textbf{BE7}    & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        % \textbf{BE8}    & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & X & ~ & ~ & ~ & ~ & ~\\
+        % \textbf{BE9}    & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & X & ~ & ~ & ~\\
+        % \textbf{BE10}   & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & X & ~\\
+        % \textbf{BE11}   & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X\\
+        
+        ~ & \textbf{BE1} & \textbf{BE2} & \textbf{BE3} & \textbf{BE4} & \textbf{BE5} & \textbf{BE6} & \textbf{BE7} & \textbf{BE8} & \textbf{BE9} & \textbf{BE10} & \textbf{BE11}\\
+        \textbf{FRT-BE1} & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{FRT-BE1} & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
     \end{tabular}
     \label{Traceability Matrix: Functional Requirement}
 \end{table}
@@ -539,7 +571,9 @@ How test will be performed: The test team will inspect the code and check if all
     \centering
     \caption{Traceability Matrix: Non-Functional Requirement}
     \begin{adjustbox}{width=\paperwidth}
-    \begin{tabular}{lcccccccccccccccccccc}
+    \begin{tabular}{l|cccccccccccccccccccc}
+        \textbf{Req.} & \multicolumn{20}{c}{\textbf{Test IDs}}\\
+        \hline
         % ~ & \textbf{NFRT-UH13-1} & \textbf{NFRT-UH13-2} & \textbf{NFRT-UH13-3} & \textbf{NFRT-UH4} & \textbf{NFRT-P1} & \textbf{NFRT-P2} & \textbf{NFRT-P3} & \textbf{NFRT-OE1} & \textbf{NFRT-OE2} & \textbf{NFRT-OE3} & \textbf{NFRT-OE4} & \textbf{NFRT-OE5} & \textbf{NFRT-OE6} & \textbf{NFRT-OE7} & \textbf{NFRT-MS1} & \textbf{NFRT-MS2} & \textbf{NFRT-MS3} & \textbf{NFRT-MS4-1} & \textbf{NFRT-MS4-2} & \textbf{NFRT-S1}\\
         ~ & \textbf{UH13-1} & \textbf{UH13-2} & \textbf{UH13-3} & \textbf{UH4} & \textbf{P1} & \textbf{P2} & \textbf{P3} & \textbf{OE1} & \textbf{OE2} & \textbf{OE3} & \textbf{OE4} & \textbf{OE5} & \textbf{OE6} & \textbf{OE7} & \textbf{MS1} & \textbf{MS2} & \textbf{MS3} & \textbf{MS4-1} & \textbf{MS4-2} & \textbf{S1}\\
         \textbf{UH1}    & X & X & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
@@ -610,7 +644,7 @@ These survey questions will be used to test usability requirements.
 \begin{enumerate}
     \item Are you 13+ years old?
     \item (On a scale from 1-10) How intuitive did you find ScrumBot's commands?
-    \item Did you find ScrumBot commands unncesscarily complex?
+    \item Did you find ScrumBot commands unnecessarily complex?
     \item Did you find ScrumBot easy to use?
     \item Would you use ScrumBot on a regular basis?
     \item Do you agree that the language used by ScrumBot is appropriate for English speakers?
