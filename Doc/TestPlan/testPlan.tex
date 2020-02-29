@@ -14,6 +14,8 @@
 \usepackage{float}
 \usepackage{setspace}
 \usepackage{xspace}
+\usepackage{pdflscape}
+\usepackage{adjustbox}
 
 % Document margins
 \usepackage[left=1in,top=1in,right=1in,bottom=1in]{geometry}
@@ -59,6 +61,7 @@
             February 28, 2020 & Leon So & Worked on Tests for NFRs\\
             February 28, 2020 & Timothy Choy & Updated Definitions, Worked on Tests for FRs\\
             February 28, 2020 & Leon So & Worked on Usability Survey\\
+            February 28, 2020 & Arkin Modi & Worked on Traceability Matrices\\
         \bottomrule
     \end{tabularx}
 \end{table}
@@ -157,7 +160,7 @@ See Gantt Chart at the following URL, \url{https://gitlab.cas.mcmaster.ca/modia1
 \subsubsection{Installation}
 
 \begin{enumerate}
-    \item{\textbf{BE1-1}}\\
+    \item{\textbf{FRT-BE1}}\\
     Type: Specification-based, Dynamic, Manual\\
     Initial State: A Discord channel is active\\
     Input: ScrumBot is added into the channel\\
@@ -168,7 +171,7 @@ See Gantt Chart at the following URL, \url{https://gitlab.cas.mcmaster.ca/modia1
 \subsubsection{Project Creation}
 
 \begin{enumerate}
-    \item{\textbf{BE2-1}}\\
+    \item{\textbf{FRT-BE2}}\\
     Type: Specification-based, Dynamic, Manual, Static etc.\\
     Initial State: \\
     Input: \\
@@ -179,7 +182,7 @@ See Gantt Chart at the following URL, \url{https://gitlab.cas.mcmaster.ca/modia1
 \subsubsection{Project Removal}
 
 \begin{enumerate}
-    \item{\textbf{BE3-1}}\\
+    \item{\textbf{FRT-BE3}}\\
     Type: Specification-based, Dynamic, Manual, Static etc.\\
     Initial State: \\
     Input: \\
@@ -190,7 +193,7 @@ See Gantt Chart at the following URL, \url{https://gitlab.cas.mcmaster.ca/modia1
 \subsubsection{Sprint-planning Meeting}
 
 \begin{enumerate}
-    \item{\textbf{BE4-1}}\\
+    \item{\textbf{FRT-BE4}}\\
     Type: Specification-based, Dynamic, Manual, Static etc.\\
     Initial State: \\
     Input: \\
@@ -201,7 +204,7 @@ See Gantt Chart at the following URL, \url{https://gitlab.cas.mcmaster.ca/modia1
 \subsubsection{Stand-up Meeting}
 
 \begin{enumerate}
-    \item{\textbf{BE5-1}}\\
+    \item{\textbf{FRT-BE5}}\\
     Type: Specification-based, Dynamic, Manual, Static etc.\\
     Initial State: \\
     Input: \\
@@ -212,7 +215,7 @@ See Gantt Chart at the following URL, \url{https://gitlab.cas.mcmaster.ca/modia1
 \subsubsection{Retrospective Meeting}
 
 \begin{enumerate}
-    \item{\textbf{BE6-1}}\\
+    \item{\textbf{FRT-BE6}}\\
     Type: Specification-based, Dynamic, Manual, Static etc.\\
     Initial State: \\
     Input: \\
@@ -223,7 +226,7 @@ See Gantt Chart at the following URL, \url{https://gitlab.cas.mcmaster.ca/modia1
 \subsubsection{Grooming Meeting}
 
 \begin{enumerate}
-    \item{\textbf{BE7-1}}\\
+    \item{\textbf{FRT-BE7}}\\
     Type: Specification-based, Dynamic, Manual, Static etc.\\
     Initial State: \\
     Input: \\
@@ -234,14 +237,14 @@ See Gantt Chart at the following URL, \url{https://gitlab.cas.mcmaster.ca/modia1
 \subsubsection{Add a Meeting}
 
 \begin{enumerate}
-    \item{\textbf{BE8-1}}\\
+    \item{\textbf{FRT-BE8-1}}\\
     Type: Dynamic, Unit\\
     Initial State: ScrumBot active in Discord channel\\
     Input: Pytest file is run\\
     Output: Pytest output\\
     How test will be performed: The test will be performed through Pytest, where tests will run the command to add meetings, focusing on the parameters entered to create meetings\\
     
-    \item{\textbf{BE8-2}}\\
+    \item{\textbf{FRT-BE8-2}}\\
     Type: Specification-based, Dynamic, Boundary, Manual\\
     Initial State: ScrumBot active in Discord channel\\
     Input: Cancel meeting command is entered, with a specified meeting\\
@@ -252,14 +255,14 @@ See Gantt Chart at the following URL, \url{https://gitlab.cas.mcmaster.ca/modia1
 \subsubsection{Cancel a Meeting}
 
 \begin{enumerate}
-    \item{\textbf{BE9-1}}\\
+    \item{\textbf{FRT-BE9-1}}\\
     Type: Dynamic, Boundary, Unit\\
     Initial State: ScrumBot active in Discord channel\\
     Input: Pytest file is run\\
     Output: Pytest output\\
     How test will be performed: The test will be performed through Pytest, where tests will run the command to cancel meetings, in situations where the meeting exists and where the meeting does not exist\\
     
-    \item{\textbf{BE9-2}}\\
+    \item{\textbf{FRT-BE9-2}}\\
     Type: Specification-based, Dynamic, Manual\\
     Initial State: ScrumBot active in Discord channel\\
     Input: Cancel meeting command is entered, with a specified meeting\\
@@ -270,14 +273,14 @@ See Gantt Chart at the following URL, \url{https://gitlab.cas.mcmaster.ca/modia1
 \subsubsection{List Scheduled Meetings}
 
 \begin{enumerate}
-    \item{\textbf{BE10-1}}\\
+    \item{\textbf{FRT-BE10-1}}\\
     Type: Specification-based, Dynamic, Boundary, Unit\\
     Initial State: ScrumBot active in Discord channel\\
     Input: Pytest file is run\\
     Output: Pytest output\\
     How test will be performed: The test will be performed through Pytest, where tests will run the command to list meetings, in situations where there are meetings scheduled and when there are no meetings\\
     
-    \item{\textbf{BE10-2}}\\
+    \item{\textbf{FRT-BE10-2}}\\
     Type: Specification-based, Dynamic, Boundary, Manual\\
     Initial State: ScrumBot active in Discord channel\\
     Input: The list scheduled meetings command is entered into Discord\\
@@ -288,7 +291,7 @@ See Gantt Chart at the following URL, \url{https://gitlab.cas.mcmaster.ca/modia1
 \subsubsection{See Tasks}
 
 \begin{enumerate}
-    \item{\textbf{BE11-1}}\\
+    \item{\textbf{FRT-BE11}}\\
     Type: Specification-based, Dynamic, Manual\\
     Initial State: ScrumBot active in Discord channel\\
     Input: The see tasks command is entered into Discord\\
@@ -301,7 +304,7 @@ See Gantt Chart at the following URL, \url{https://gitlab.cas.mcmaster.ca/modia1
 \subsubsection{Look and Feel Requirements}
 \paragraph{Appearance Requirements}
 \begin{enumerate}
-\item{\textbf{NFRT-UH1 to NFRT-UH3}}\\
+\item{\textbf{NFRT-UH13-1}}\\
 Type: Manual, Dynamic, Checklist\\
 Initial State: ScrumBot active in Discord channel\\
 Input: Set of all ScrumBot commands entered\\
@@ -311,7 +314,7 @@ How test will be performed: The test team will run commands in the Discord chat 
 
 \paragraph{Style Requirements}
 \begin{enumerate}
-\item{\textbf{NFRT-UH1 to NFRT-UH3}}\\
+\item{\textbf{NFRT-UH13-2}}\\
 Type: Manual, Dynamic, Checklist\\
 Initial State: ScrumBot active in Discord channel\\
 Input: One of each role available is added\\
@@ -322,7 +325,7 @@ How test will be performed: The test team will add roles in the Discord channel.
 \subsubsection{Usability and Humanity Requirements}
 \paragraph{Ease of Use \& Personalization and Internationalization Requirements}
 \begin{enumerate}
-\item{\textbf{NFRT-UH1 to NFRT-UH3}}\\
+\item{\textbf{NFRT-UH13-3}}\\
 Type: Manual, Usability Survey\\
 How test will be performed: The test team will ask a sample set of users to answer questions on a usability survey after using ScrumBot for the first time
 \end{enumerate}
@@ -452,7 +455,7 @@ How test will be performed: The test team will review the code documentation and
 \paragraph{Supportability Requirements}
 \begin{enumerate}
 
-\item{\textbf{NFRT-MS4}}\\
+\item{\textbf{NFRT-MS4-1}}\\
 Type: Dynamic, Manual\\
 Initial State: ScrumBot is active on the Discord channel\\
 Input/Condition: User wants to open help menu\\
@@ -463,7 +466,7 @@ How test will be performed: The test team will attempt to open the help menu in 
 \paragraph{Longevity Requirements}
 \begin{enumerate}
 
-\item{\textbf{NFRT-MS4}}\\
+\item{\textbf{NFRT-MS4-2}}\\
 Type: Static, Manual, Code Inspection\\
 Initial State: N/A\\
 Input/Condition: N/A\\
@@ -483,28 +486,65 @@ Output/Result: All connections between the system and the APIs use HTTPS request
 How test will be performed: The test team will inspect the code and check if all connections between the system and APIs use HTTP requests
 \end{enumerate}
 
+\newpage
+\begin{landscape}
 \subsection{Traceability Between Test Cases and Requirements}
+\noindent The left-hand column on the matrices correspond to requirements from the SRS. The top row correspond to the test cases.\\\\
+\noindent For the Traceability Matrix: Functional Requirement, the ``FRT-'' has been drop from the test cases names (top row in the table) due to page space limitations.
 \begin{table}[H]
     \centering
     \caption{Traceability Matrix: Functional Requirement}
-    \begin{tabular}{lcc}
-        ~ & \textbf{FRT-??} & \textbf{FRT-??}\\
-        \textbf{REQ?} & X & ~\\
-        \textbf{REQ?} & ~ & X\\
+    \begin{tabular}{lcccccccccccccc}
+        % ~ & \textbf{FRT-BE1} & \textbf{FRT-BE2} & \textbf{FRT-BE3} & \textbf{FRT-BE4} & \textbf{FRT-BE5} & \textbf{FRT-BE6} & \textbf{FRT-BE7} & \textbf{FRT-BE8-1} & \textbf{FRT-BE8-2} & \textbf{FRT-BE9-1} & \textbf{FRT-BE9-2} & \textbf{FRT-BE10-1} & \textbf{FRT-BE10-2} & \textbf{FRT-BE11}\\
+        ~ & \textbf{BE1} & \textbf{BE2} & \textbf{BE3} & \textbf{BE4} & \textbf{BE5} & \textbf{BE6} & \textbf{BE7} & \textbf{BE8-1} & \textbf{BE8-2} & \textbf{BE9-1} & \textbf{BE9-2} & \textbf{BE10-1} & \textbf{BE10-2} & \textbf{BE11}\\
+        \textbf{BE1}    & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{BE2}    & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{BE3}    & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{BE4}    & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{BE5}    & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{BE6}    & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{BE7}    & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{BE8}    & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & X & ~ & ~ & ~ & ~ & ~\\
+        \textbf{BE9}    & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & X & ~ & ~ & ~\\
+        \textbf{BE10}   & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & X & ~\\
+        \textbf{BE11}   & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X\\
     \end{tabular}
     \label{Traceability Matrix: Functional Requirement}
 \end{table}
 
+\newpage
+\noindent For the Traceability Matrix: Non-Functional Requirement, the ``NFRT-'' has been drop from the test cases names (top row in the table) due to page space limitations.
 \begin{table}[H]
     \centering
     \caption{Traceability Matrix: Non-Functional Requirement}
-    \begin{tabular}{lcc}
-        ~ & \textbf{NFRT-P1} & \textbf{NFRT-S1}\\
-        \textbf{P1} & X & ~\\
-        \textbf{S1} & ~ & X\\
+    \begin{adjustbox}{width=\paperwidth}
+    \begin{tabular}{lcccccccccccccccccccc}
+        % ~ & \textbf{NFRT-UH13-1} & \textbf{NFRT-UH13-2} & \textbf{NFRT-UH13-3} & \textbf{NFRT-UH4} & \textbf{NFRT-P1} & \textbf{NFRT-P2} & \textbf{NFRT-P3} & \textbf{NFRT-OE1} & \textbf{NFRT-OE2} & \textbf{NFRT-OE3} & \textbf{NFRT-OE4} & \textbf{NFRT-OE5} & \textbf{NFRT-OE6} & \textbf{NFRT-OE7} & \textbf{NFRT-MS1} & \textbf{NFRT-MS2} & \textbf{NFRT-MS3} & \textbf{NFRT-MS4-1} & \textbf{NFRT-MS4-2} & \textbf{NFRT-S1}\\
+        ~ & \textbf{UH13-1} & \textbf{UH13-2} & \textbf{UH13-3} & \textbf{UH4} & \textbf{P1} & \textbf{P2} & \textbf{P3} & \textbf{OE1} & \textbf{OE2} & \textbf{OE3} & \textbf{OE4} & \textbf{OE5} & \textbf{OE6} & \textbf{OE7} & \textbf{MS1} & \textbf{MS2} & \textbf{MS3} & \textbf{MS4-1} & \textbf{MS4-2} & \textbf{S1}\\
+        \textbf{UH1}    & X & X & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{UH2}    & X & X & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{UH3}    & X & X & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{UH4}    & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{P1}     & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{P2}     & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{P3}     & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{OE1}    & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{OE2}    & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{OE3}    & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{OE4}    & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{OE5}    & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{OE6}    & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{OE7}    & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{MS1}    & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~\\
+        \textbf{MS2}    & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~\\
+        \textbf{MS3}    & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~\\
+        \textbf{MS4}    & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & X & ~\\
+        \textbf{S1}     & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X\\
     \end{tabular}
+    \end{adjustbox}
     \label{Traceability Matrix: Non-Functional Requirement}
 \end{table}
+\end{landscape}
 
 \section{Tests for Proof of Concept}
 
