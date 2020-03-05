@@ -1,4 +1,3 @@
-% !TeX root = ./MG.tex
 \documentclass[12pt, titlepage]{article}
 
 \usepackage{fullpage}
@@ -6,9 +5,9 @@
 \usepackage{multirow}
 \usepackage{booktabs}
 \usepackage{tabularx}
+\usepackage{hyperref}
 \usepackage{graphicx}
 \usepackage{float}
-\usepackage{hyperref}
 \hypersetup{
     colorlinks,
     citecolor=black,
@@ -30,15 +29,15 @@
 \newcommand{\mthemnum}{M\themnum}
 \newcommand{\mref}[1]{M\ref{#1}}
 
-\title{SE 3XA3: Software Requirements Specification\\ScrumBot}
+\title{SE 3XA3: Module Guide\\ScrumBot}
 
 \author{
-	Team 304, ScrumBot
-		\\ Arkin Modi, modia1
+  Team 304, ScrumBot
+    \\ Arkin Modi, modia1
         \\ Leon So, sol4
         \\ Timothy Choy, choyt2
 }
-\date{Last Updated: January 23, 2020}
+\date{Last Updated: \today}
 
 %\input{../../Comments}
 
@@ -58,6 +57,7 @@
             \textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
         \midrule
             January 23, 2020 & Arkin Modi & Copy template\\
+            March 5, 2020 & Leon So & Introduction, Anticipated Changes, Unlikely Changes, Module Hierachy\\
         \bottomrule
     \end{tabularx}
 \end{table}
@@ -67,15 +67,16 @@
 \pagenumbering{arabic}
 
 \section{Introduction}
+ScrumBot is a Discord chat bot which allows software development teams to manage their
+Scrum agile software development process directly within the Discord application.\\
 
 Decomposing a system into modules is a commonly accepted approach to developing
-software.  A module is a work assignment for a programmer or programming
-team~\citep{ParnasEtAl1984}.  We advocate a decomposition
+software.  The Module Guide (MG) developed by \citep{ParnasEtAl1984} specified the modular structure of the system. A module is a work assignment for a programmer or programming team~\citep{ParnasEtAl1984}.  Decomposition of the system into modules is
 based on the principle of information hiding~\citep{Parnas1972a}.  This
 principle supports design for change, because the ``secrets'' that each module
 hides represent likely future changes.  Design for change is valuable in SC,
 where modifications are frequent, especially during initial development as the
-solution space is explored.  
+solution space is explored.\\
 
 Our design follows the rules layed out by \citet{ParnasEtAl1984}, as follows:
 \begin{itemize}
@@ -133,11 +134,12 @@ adapted here is called design for
 change.
 
 \begin{description}
-\item[\refstepcounter{acnum} \actheacnum \label{acHardware}:] The specific
-  hardware on which the software is running.
-\item[\refstepcounter{acnum} \actheacnum \label{acInput}:] The format of the
-  initial input data.
-\item ...
+\item[\refstepcounter{acnum} \actheacnum \label{acHardware}:] The format of the input data
+\item[\refstepcounter{acnum} \actheacnum \label{acInput}:] The format of the output data
+\item[\refstepcounter{acnum} \actheacnum \label{acInput}:] The specific hardware hosting the Discord bot
+\item[\refstepcounter{acnum} \actheacnum \label{acInput}:] The URL used to connect to the hosting server
+\item[\refstepcounter{acnum} \actheacnum \label{acInput}:] The format of the response from the server
+\item[\refstepcounter{acnum} \actheacnum \label{acInput}:] The Discord channel interacting with the bot
 \end{description}
 
 \subsection{Unlikely Changes} \label{SecUchange}
@@ -150,11 +152,11 @@ will potentially need to be modified. Hence, it is not intended that these
 decisions will be changed.
 
 \begin{description}
-\item[\refstepcounter{ucnum} \uctheucnum \label{ucIO}:] Input/Output devices
-  (Input: File and/or Keyboard, Output: File, Memory, and/or Screen).
+\item[\refstepcounter{ucnum} \uctheucnum \label{ucIO}:] User input by keyboard input.
+\item[\refstepcounter{ucnum} \uctheucnum \label{ucIO}:] Output on Discord chat.
 \item[\refstepcounter{ucnum} \uctheucnum \label{ucInput}:] There will always be
   a source of input data external to the software.
-\item ...
+\item[\refstepcounter{ucnum} \uctheucnum \label{ucInput}:] The system will be interfacing with the Discord application
 \end{description}
 
 \section{Module Hierarchy} \label{SecMH}
@@ -165,8 +167,13 @@ below, which are leaves in the hierarchy tree, are the modules that will
 actually be implemented.
 
 \begin{description}
-\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Hardware-Hiding Module
-\item ...
+\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Meeting Type Module
+\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Meeting Module
+\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Meeting List Module
+\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Task Module
+\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Task List Module
+\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Project Module
+\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Project List Module
 \end{description}
 
 
