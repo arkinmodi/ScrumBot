@@ -11,6 +11,7 @@ token = settings.TOKEN
 bot = commands.Bot(command_prefix="!", description='ScrumBot')
 
 ## @brief Sends a message to the terminal stating that the Discord bot is ready to use.
+#  @details When ScrumBot is ready, it sends the terminal its name and id.
 @bot.event
 async def on_ready():
     print('Logged in as')
@@ -18,6 +19,8 @@ async def on_ready():
     print(f'id: {bot.user.id}')
     print('------')
 
+## @brief ScrumBot initializer. Loads all startup extensions.
+#  @throws Exception if any extensions fail to load.
 if __name__ == "__main__":
     for extension in startup_extensions:
         try:
