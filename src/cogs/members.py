@@ -14,12 +14,13 @@ class MembersCog(commands.Cog, name="Member Commands"):
         self.bot = bot
 
     ## @brief Gets the list of roles of a specific member in a guild, or the person initiating the command if no parameter is given.
-    @commands.command(name='role', aliases=['perms', 'role_for'])
+    @commands.command(name='role', aliases=['perms', 'role_for'], brief="Lists the roles of a user.")
     @commands.guild_only()
     async def get_roles(self, ctx, *, member: discord.Member=None):
         if not member:
             member = ctx.author
 
+        print(f'[Log] get_role from {ctx.author} for {member}')
         roles = '\n'.join([role.name for role in member.roles if role.name != '@everyone'])
         
         embed = discord.Embed(title='Roles for:', description=member.name, colour=member.colour)

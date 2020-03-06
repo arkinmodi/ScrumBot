@@ -21,9 +21,11 @@ class AdminCog(commands.Cog, name="Admin Commands"):
         try:
             self.bot.load_extension(cog)
         except Exception as e:
-            await ctx.send(f'```Error: failed to load {cog}```')
+            print(f'[Log] Failed to load {cog}')
+            await ctx.send(f'> Error: failed to load **{cog}**')
             return
-        await ctx.send(f'{cog} loaded.')
+        print(f'[Log] Successfully loaded {cog}')
+        await ctx.send(f'> **{cog}** loaded')
     
     ## @brief Unloads a cog from the bot.
     #  @param cog A string having the name of the python file, usually in the form of 'cogs.<file_name>'.g 
@@ -34,9 +36,11 @@ class AdminCog(commands.Cog, name="Admin Commands"):
         try:
             self.bot.unload_extension(cog)
         except Exception as e:
-            await ctx.send(f'```Error: failed to unload {cog}```')
+            print(f'[Log] Failed to unload {cog}')
+            await ctx.send(f'> Error: failed to unload **{cog}**')
             return
-        await ctx.send(f'{cog} unloaded.')
+        print(f'[Log] Successfully unloaded {cog}')
+        await ctx.send(f'> **{cog}** unloaded')
 
     ## @brief Reloads a cog in the bot.
     #  @param cog A string having the name of the python file, usually in the form of 'cogs.<file_name>'.g 
@@ -48,9 +52,11 @@ class AdminCog(commands.Cog, name="Admin Commands"):
             self.bot.unload_extension(cog)
             self.bot.load_extension(cog)
         except Exception as e:
-            await ctx.send(f'```Error: failed to reload {cog}```')
+            print(f'[Log] Failed to reload {cog}')
+            await ctx.send(f'> Error: failed to reload **{cog}**')
             return
-        await ctx.send(f'{cog} reloaded.')
+        print(f'[Log] Successfully reloaded {cog}')
+        await ctx.send(f'> **{cog}** reloaded')
 
     ## @brief Purges messages from the Discord channel.
     #  @param number An integer representing the max amount of messages to delete.
@@ -59,8 +65,8 @@ class AdminCog(commands.Cog, name="Admin Commands"):
     @commands.guild_only()
     async def purge_msg(self, ctx, *, number: int):
         deleted = await ctx.channel.purge(limit=number)
-        print(f'{ctx.author} purged {len(deleted)} messages.')
-        await ctx.send(f'```Deleted {len(deleted)} messages.```')
+        print(f'[Log] {ctx.author} purged {len(deleted)} messages.')
+        await ctx.send(f'> Deleted **{len(deleted)}** messages')
 
 ## @brief The setup command for this cog.
 #  @param bot The bot defined in bot.py.

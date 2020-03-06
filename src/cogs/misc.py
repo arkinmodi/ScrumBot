@@ -14,22 +14,22 @@ class MiscCog(commands.Cog, name="Miscellaneous"):
 
     ## @brief Pings the bot to send a pong back.
     #  @details Used to test the latency of the bot.
-    @commands.command()
+    @commands.command(brief="Pong")
     async def ping(self, ctx):
-        print(f'[Log] "ping" from {ctx.author}.')
+        print(f'[Log] ping from {ctx.author}.')
         await ctx.send('pong')
 
     ## @brief Say hello to ScrumBot.
-    @commands.command()
+    @commands.command(brief="ScrumBot says hi!")
     async def hello(self, ctx):
-        print(f'[Log] "hello" from {ctx.author}.')
+        print(f'[Log] hello from {ctx.author}.')
         await ctx.send(f'Hello {ctx.author.mention}!')
 
     ## @brief Make ScrumBot say something.
     #  @details ScrumBot will delete the original message and replace it with its own message.
-    @commands.command()
+    @commands.command(brief="Make ScrumBot say something.")
     async def say(self, ctx, *, msg=None):
-        print(f'[Log] "say" {msg} from {ctx.author}.')
+        print(f'[Log] say "{msg}" from {ctx.author}.')
         await ctx.message.delete()
         await ctx.send(msg)
 
