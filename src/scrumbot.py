@@ -4,10 +4,14 @@
 #  @date Mar 5, 2020
 
 from discord.ext import commands
-import settings
+
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+TOKEN = os.getenv('TOKEN')
 
 startup_extensions = ["cogs.misc", "cogs.admin", "cogs.members"]
-token = settings.TOKEN
 bot = commands.Bot(command_prefix="!", description='ScrumBot')
 
 ## @brief Sends a message to the terminal stating that the Discord bot is ready to use.
@@ -29,4 +33,4 @@ if __name__ == "__main__":
             exc = f'{type(e).__name__}: {e}'
             print(f'Failed to load extension {extension}\n{exc}')
 
-    bot.run(token, bot=True, reconnect=True)
+    bot.run(TOKEN, bot=True, reconnect=True)
