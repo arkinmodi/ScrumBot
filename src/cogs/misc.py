@@ -7,8 +7,8 @@ import discord
 from discord.ext import commands
 
 ## @brief Miscellaneous Discord commands.
-class MiscCog(commands.Cog, name="Miscellaneous"):
-    ## @brief MiscCog constructor
+class Misc(commands.Cog, name="Miscellaneous"):
+    ## @brief Misc constructor
     def __init__(self, bot):
         self.bot = bot
 
@@ -36,4 +36,4 @@ class MiscCog(commands.Cog, name="Miscellaneous"):
 ## @brief The setup command for this cog.
 #  @param bot The bot defined in bot.py.
 def setup(bot):
-    bot.add_cog(MiscCog(bot))
+    bot.add_cog(Misc(bot))
