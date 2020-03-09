@@ -1,4 +1,4 @@
-## @file bot.py
+## @file scrumbot.py
 #  @author Arkin Modi, Leon So, Timothy Choy
 #  @brief The main controller for ScrumBot. Initializes the Discord bot.
 #  @date Mar 5, 2020
