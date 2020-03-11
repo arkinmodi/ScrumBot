@@ -8,7 +8,7 @@ from discord.ext import commands
 
 ## @brief Discord commands related to members of the guild.
 #  @details These commands are only to be used inside a guild.
-class Members(commands.Cog, name="Member Commands"):
+class MembersCog(commands.Cog, name="Member Commands"):
     ## @brief Members constructor    
     def __init__(self, bot):
         self.bot = bot
@@ -33,4 +33,4 @@ class Members(commands.Cog, name="Member Commands"):
 ## @brief The setup command for this cog.
 #  @param bot The bot defined in bot.py.
 def setup(bot):
-    bot.add_cog(Members(bot))
+    bot.add_cog(MembersCog(bot))

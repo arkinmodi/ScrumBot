@@ -7,7 +7,7 @@ from discord.ext import commands
 
 ## @brief Discord commands related to administrative actions in a guild.
 #  @details These commands should only be run by administrators of guilds.
-class Admin(commands.Cog, name="Admin Commands"):
+class AdminCog(commands.Cog, name="Admin Commands"):
     ## @brief Admin constructor
     def __init__(self, bot):
         self.bot = bot
@@ -71,4 +71,4 @@ class Admin(commands.Cog, name="Admin Commands"):
 ## @brief The setup command for this cog.
 #  @param bot The bot defined in bot.py.
 def setup(bot):
-    bot.add_cog(Admin(bot))
+    bot.add_cog(AdminCog(bot))
