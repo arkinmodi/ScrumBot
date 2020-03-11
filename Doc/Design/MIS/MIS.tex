@@ -1,0 +1,115 @@
+\documentclass[12pt, titlepage]{article}
+
+\usepackage{fullpage}
+\usepackage[round]{natbib}
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{hhline}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=red,
+    urlcolor=blue
+}
+\usepackage[round]{natbib}
+
+\newcounter{acnum}
+\newcommand{\actheacnum}{AC\theacnum}
+\newcommand{\acref}[1]{AC\ref{#1}}
+
+\newcounter{ucnum}
+\newcommand{\uctheucnum}{UC\theucnum}
+\newcommand{\uref}[1]{UC\ref{#1}}
+
+\newcounter{mnum}
+\newcommand{\mthemnum}{M\themnum}
+\newcommand{\mref}[1]{M\ref{#1}}
+
+\title{SE 3XA3: Module Interface Specification\\ScrumBot}
+
+\author{
+	Team 304, ScrumBot
+		\\ Arkin Modi, modia1
+        \\ Leon So, sol4
+        \\ Timothy Choy, choyt2
+}
+\date{Last Updated: \today}
+
+\begin{document}
+
+\maketitle
+
+\begin{table}[H]
+    \caption{Revision History} \label{TblRevisionHistory}
+    \begin{tabularx}{\textwidth}{llX}
+        \toprule
+            \textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
+        \midrule
+            March 9, 2020 & Timothy Choy & Copy template\\
+            March 10, 2020 & Leon So & MeetingList module\\
+        \bottomrule
+    \end{tabularx}
+\end{table}
+
+\newpage
+
+%% MEETING LIST
+\section* {MeetingList}
+
+\subsection*{Template Module}
+
+MeetingList is a Seq of Meeting
+
+\newpage
+
+%% Meeting
+\section* {Meeting}
+
+\subsection*{Module}
+
+Meeting
+
+\subsection* {Uses}
+
+None
+
+\subsection* {Syntax}
+
+\subsubsection* {Exported Constants}
+
+None
+
+\subsubsection* {Exported Types}
+
+None
+
+\subsubsection* {Exported Access Programs}
+
+
+\subsection* {Semantics}
+
+\subsubsection* {Environment Variables}
+
+\subsubsection* {State Variables}
+
+
+\subsubsection* {State Invariant}
+
+None
+
+\subsubsection* {Assumptions}
+
+None
+
+\subsubsection* {Access Routine Semantics}
+
+
+\newpage
+\end{document}
