@@ -16,5 +16,10 @@ class projectCog(commands.Cog, name="Project commands"):
     async def add_project(self, ctx, *args):
         raise NotImplementedError
 
+    @commands.command(name="rmProject", aliases=['removeProject', 'rmProj', 'removeProj'], brief="Removes a project.")
+    @commands.guild_only()
+    async def rm_project(self, ctx, *args):
+        raise NotImplementedError
+
 def setup(bot):
     bot.add_cog(projectCog(bot))

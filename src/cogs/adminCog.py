@@ -26,21 +26,6 @@ class AdminCog(commands.Cog, name="Admin Commands"):
             return
         print(f'[Log] Successfully loaded {cog}')
         await ctx.send(f'> **{cog}** loaded')
-    
-    ## @brief Unloads a cog from the bot.
-    #  @param cog A string having the name of the python file, usually in the form of 'cogs.<file_name>'.g 
-    #  @throws Exception if the extension fails to unload.
-    @commands.command(name='unload', hidden=True)
-    @commands.is_owner()
-    async def unload(self, ctx, *, cog: str):
-        try:
-            self.bot.unload_extension(cog)
-        except Exception as e:
-            print(f'[Log] Failed to unload {cog}')
-            await ctx.send(f'> Error: failed to unload **{cog}**')
-            return
-        print(f'[Log] Successfully unloaded {cog}')
-        await ctx.send(f'> **{cog}** unloaded')
 
     ## @brief Reloads a cog in the bot.
     #  @param cog A string having the name of the python file, usually in the form of 'cogs.<file_name>'.g 
@@ -57,6 +42,21 @@ class AdminCog(commands.Cog, name="Admin Commands"):
             return
         print(f'[Log] Successfully reloaded {cog}')
         await ctx.send(f'> **{cog}** reloaded')
+    
+    ## @brief Unloads a cog from the bot.
+    #  @param cog A string having the name of the python file, usually in the form of 'cogs.<file_name>'.g 
+    #  @throws Exception if the extension fails to unload.
+    @commands.command(name='unload', hidden=True)
+    @commands.is_owner()
+    async def unload(self, ctx, *, cog: str):
+        try:
+            self.bot.unload_extension(cog)
+        except Exception as e:
+            print(f'[Log] Failed to unload {cog}')
+            await ctx.send(f'> Error: failed to unload **{cog}**')
+            return
+        print(f'[Log] Successfully unloaded {cog}')
+        await ctx.send(f'> **{cog}** unloaded')
 
 ## @brief The setup command for this cog.
 #  @param bot The bot defined in bot.py.
