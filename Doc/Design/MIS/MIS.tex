@@ -54,7 +54,8 @@
         \midrule
             March 9, 2020 & Timothy Choy & Copy template, ScrumBot Module\\
             March 10, 2020 & Leon So & MeetingList module\\
-            March 11, 2020 & Leon So & Meeting module\\
+            March 11, 2020 & Leon So & Meeting module, MeetingTypes Module\\
+            March 11, 2020 & Leon So & Project module, ProjectList Module, Meeting module, MeetingTypes Module, Generic Dict Module\\
         \bottomrule
     \end{tabularx}
 \end{table}
@@ -86,48 +87,84 @@ None
 
 \newpage
 
-% %% GENERIC LIST MODULE
-% \section*{Generic List Module}
-% \subsection*{Generic Template Module}
-% List(T)
+%% GENERIC LIST MODULE
+\section*{Generic Dictionary Module}
+\subsection*{Generic Template Module}
+Dict(T)
 
-% \subsection*{Uses}
-% N/A
+\subsection*{Uses}
+N/A
 
-% \subsection*{Syntax}
-% \subsubsection*{Exported Types}
-% List = ?
-% \subsubsection*{Exported Constants}
-% None
-% \subsubsection* {Exported Access Programs}
-% \begin{table}[!htb]
-%     \begin{tabular}{|p{3cm}|p{3cm}|p{3cm}|p{4.5cm}|}
-%         \hline
-%         \textbf{Routine Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
-%         \hline
-%         new List & seq of T & List & none\\
-%         add & T & List & none\\
-%         remove & T & List & out\_of\_range\\
-%         toSeq & & seq of T & \\\hline
-%     \end{tabular}
-%     \caption{Caption}
-%     \label{tab:my_label}
-% \end{table}
+\subsection*{Syntax}
+\subsubsection*{Exported Types}
+Dict = ?
+\subsubsection*{Exported Constants}
+None
+\subsubsection* {Exported Access Programs}
+\begin{tabular}{|p{3cm}|p{3cm}|p{3cm}|p{4.5cm}|}
+    \hline
+    \textbf{Routine Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+    \hline
+    new Dict & & Dict &\\
+    \hline
+    add & T & &\\
+    \hline
+    remove & $\mathbb{N}$ & & KeyError\\
+    \hline
+    toSeq & & set of ($\mathbb{N}$,T) & \\
+    \hline
+\end{tabular}
 
-% \newpage
+\subsection*{Semantics}
+\subsubsection*{State Variables}
+D: set of ($\mathbb{N}$,T) \\
+c: $\mathbb{N}$
+\subsubsection*{State Invariant}
+$|D| \geq 0$\\
+$c \geq 0$
 
+\subsection*{Assumptions \& Design Decision}
+\begin{itemize}
+  \item The Dict(T) constructor is called for each object instance before any other access routine is called for that object.
+\end{itemize}
+
+\subsection*{Access Routine Semantics}
+\noindent new Dict():
+\begin{itemize}
+    \item transition: $D, c := \langle \rangle, 0$
+    
+    \item output: $out := self$
+\end{itemize}
+
+\noindent add(e):
+\begin{itemize}
+    \item transition: $D :=  D\ ||\ \langle c,\ e \rangle, c := c + 1$
+\end{itemize}
+
+\noindent remove(id):
+\begin{itemize}
+    \item transition: $D :=  D - \langle id, e \rangle$
+    \item exception: $exc := \langle id, e \rangle \notin D \Rightarrow \text{KeyError}$
+\end{itemize}
+
+\noindent toSeq():
+\begin{itemize}
+    \item output: $D$
+\end{itemize}
+
+\newpage
 %% MEETING LIST
 \section* {MeetingList Module}
 
 \subsection*{Template Module}
-MeetingList is a Seq of Meeting
+MeetingList is a Dict of Meeting
 
 \newpage
 
 %% Meeting
-\section* {Meeting Module}
+\section* {Generic Meeting Module}
 
-\subsection*{Module}
+\subsection*{Template Module}
 
 Meeting
 
@@ -152,16 +189,22 @@ Meeting = ?
     \textbf{Routine Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
     \hline
     new Meeting & String, Date, Time, MeetingT & Meeting & invalid\_argument\\
+    \hline
     new Meeting & String, Date, Time, MeetingT, String & Meeting & invalid\_argument\\
+    \hline
+    getDetails & & String &\\
+    \hline
+    setDescription & String & & \\
     \hline
 \end{tabular}
 
 \subsection* {Semantics}
-
-\subsubsection* {Environment Variables}
-
 \subsubsection* {State Variables}
-
+Name: String\\
+T: Time\\
+D: Date\\
+Type: MeetingT\\
+Desc: String
 \subsubsection* {State Invariant}
 
 None
@@ -171,6 +214,52 @@ None
 None
 
 \subsubsection* {Access Routine Semantics}
+\noindent new Meeting(name, date, time, type)
+\begin{itemize}
+    \item transition: 
+    \item output: $out := self$
+\end{itemize}
 
 \newpage
+
+%% Grooming Meeting
+\section*{Grooming Meeting}
+\subsection*{}
+
+\newpage
+
+%% Project List Module
+\section* {ProjectList Module}
+\subsection*{Template Module}
+ProjectList is a Dict of Project
+
+\newpage
+
+%% Meeting
+\section* {Project Module}
+\subsection* {Uses}
+
+\subsection* {Syntax}
+
+\subsubsection* {Exported Constants}
+
+None
+
+\subsubsection* {Exported Types}
+
+Project = ?
+
+\subsubsection* {Exported Access Programs}
+
+\begin{tabular}{|l|l|l|l|}
+    \hline
+    \textbf{Routine Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+    \hline
+    new Project & String & Project & invalid\_argument\\
+    \hline
+    getDescription & & String &\\
+    \hline
+    setDescription & String & &\\
+    \hline
+\end{tabular}
 \end{document}
