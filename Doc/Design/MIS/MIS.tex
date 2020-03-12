@@ -153,96 +153,403 @@ $c \geq 0$
 \end{itemize}
 
 \newpage
+
+%% MEETING TYPES
+\section* {MeetingTypes Module}
+
+\subsection* {Module}
+MeetingTypes
+
+\subsection*{Uses}
+N/A
+
+\subsection*{Syntax}
+\subsubsection*{Exported Constants}
+N/A
+
+\subsubsection*{Exported Types}
+MeetingT = \{Grooming, StandUp, Retrospective, SprintPlanning\}
+
+\subsubsection*{Exported Access Programs}
+None
+
+\subsection*{Semantics}
+\subsubsection* {State Variables}
+None
+
+\subsubsection* {State Invariant}
+None
+
+\newpage
+
+%% GENERIC LIST MODULE
+\section*{Generic Dictionary Module}
+
+\subsection*{Generic Template Module}
+Dict(T)
+
+\subsection*{Uses}
+N/A
+
+\subsection*{Syntax}
+\subsubsection*{Exported Types}
+Dict = ?
+
+\subsubsection*{Exported Constants}
+None
+
+\subsubsection* {Exported Access Programs}
+\begin{tabular}{|p{3cm}|p{3cm}|p{3cm}|p{4.5cm}|}
+    \hline
+    \textbf{Routine Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+    \hline
+    new Dict(T) & & Dict(T) &\\
+    \hline
+    add & T & &\\
+    \hline
+    remove & $\mathbb{N}$ & & KeyError\\
+    \hline
+    to\_seq & & seq of ($\mathbb{N}$,T) & \\
+    \hline
+\end{tabular}
+
+\subsection*{Semantics}
+\subsubsection*{State Variables}
+d: seq of ($\mathbb{N}$,T) \\
+c: $\mathbb{N}$
+
+\subsubsection*{State Invariant}
+$|d| \geq 0$\\
+$c \geq 0$
+
+\subsection*{Assumptions \& Design Decisions}
+\begin{itemize}
+  \item The Dict(T) constructor is called for each object instance before any other access routine is called for that object.
+\end{itemize}
+
+\subsection*{Access Routine Semantics}
+\noindent new Dict():
+\begin{itemize}
+    \item transition: $d, c := \langle \rangle, 0$
+    
+    \item output: $out :=$ self
+\end{itemize}
+
+\noindent add($e$):
+\begin{itemize}
+    \item transition: $d :=  d\ ||\ \langle c,\ e \rangle, c := c + 1$
+\end{itemize}
+
+\noindent remove($id$):
+\begin{itemize}
+    \item transition: $d :=  d - \langle id, e \rangle$
+    \item exception: $exc := \langle id, e \rangle \notin d \Rightarrow \text{KeyError}$
+\end{itemize}
+
+\noindent to\_seq():
+\begin{itemize}
+    \item output: $out := d$ such that $(\forall i \in \mathbb{N} \mid 0 \leq i < |d| - 1 \cdot d[i] \leq d[i + 1] )$
+\end{itemize}
+
+\newpage
 %% MEETING LIST
 \section* {MeetingList Module}
 
 \subsection*{Template Module}
-MeetingList is a Dict of Meeting
+MeetingList is a Dict(Meeting)
 
 \newpage
 
 %% Meeting
-\section* {Generic Meeting Module}
+\section* {Meeting Module}
 
-\subsection*{Template Module}
-
+\subsection*{Module}
 Meeting
 
 \subsection* {Uses}
-
 MeetingTypes
 
 \subsection* {Syntax}
-
 \subsubsection* {Exported Constants}
-
 None
 
 \subsubsection* {Exported Types}
-
 Meeting = ?
 
 \subsubsection* {Exported Access Programs}
-
 \begin{tabular}{|l|l|l|l|}
     \hline
     \textbf{Routine Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
     \hline
-    new Meeting & String, Date, Time, MeetingT & Meeting & invalid\_argument\\
+    new Meeting & String, Date, Time, MeetingT & Meeting & \\
     \hline
-    new Meeting & String, Date, Time, MeetingT, String & Meeting & invalid\_argument\\
+    new Meeting & String, Date, Time, MeetingT, String & Meeting & \\
     \hline
-    getDetails & & String &\\
+    get\_name & & String &\\
     \hline
-    setDescription & String & & \\
+    get\_date & & Date &\\
+    \hline
+    get\_time & & Time &\\
+    \hline
+    get\_type & & MeetingT &\\
+    \hline
+    get\_description & & String &\\
+    \hline
+    set\_description & String & & \\
     \hline
 \end{tabular}
 
 \subsection* {Semantics}
 \subsubsection* {State Variables}
-Name: String\\
-T: Time\\
-D: Date\\
-Type: MeetingT\\
-Desc: String
-\subsubsection* {State Invariant}
+$name$: String\\
+$date$: Date\\
+$time$: Time\\
+$type$: MeetingT\\
+$desc$: String
 
+\subsubsection* {State Invariant}
 None
 
 \subsubsection* {Assumptions}
+\begin{itemize}
+  \item The Meeting constructor is called for each object instance before any other access routine is called for that object.
+\end{itemize}
 
-None
 
 \subsubsection* {Access Routine Semantics}
-\noindent new Meeting(name, date, time, type)
+\noindent new Meeting($n$, $d$, $t$, $type$)
 \begin{itemize}
-    \item transition: 
-    \item output: $out := self$
+    \item transition: $name,\ time,\ date,\ type,\ desc := n,\ d,\ t,\ type,\ \text{None}$
+    \item output: $out :=$ self
+\end{itemize}
+
+\noindent new Meeting($n$, $d$, $t$, $type$, $desc$)
+\begin{itemize}
+    \item transition: $name,\ time,\ date,\ type,\ desc := n,\ d,\ t,\ type,\ desc$
+    \item output: $out :=$ self
+\end{itemize}
+
+\noindent get\_name()
+\begin{itemize}
+    \item output: $out := name$
+\end{itemize}
+
+\noindent get\_date()
+\begin{itemize}
+    \item output: $out := date$
+\end{itemize}
+
+\noindent get\_time()
+\begin{itemize}
+    \item output: $out := time$
+\end{itemize}
+
+\noindent get\_type()
+\begin{itemize}
+    \item output: $out := type$
+\end{itemize}
+
+\noindent get\_description()
+\begin{itemize}
+    \item output: $out := desc$
+\end{itemize}
+
+\noindent set\_description($s$)
+\begin{itemize}
+    \item transition: $desc := s$
 \end{itemize}
 
 \newpage
 
-%% Grooming Meeting
-\section*{Grooming Meeting}
-\subsection*{}
+\section*{Task List Module}
+
+\subsection*{Template Module}
+TaskList is a Dict(Task)
+
+\newpage
+
+\section*{Task Module}
+
+\subsection*{Module}
+Task
+
+\subsection*{Uses}
+None
+
+\subsection* {Syntax}
+\subsubsection* {Exported Constants}
+None
+
+\subsubsection* {Exported Types}
+Task = ?
+
+\subsubsection* {Exported Access Programs}
+\begin{tabular}{|l|l|l|l|}
+    \hline
+    \textbf{Routine Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+    \hline
+    new Task & String, Date, Time & Task & \\
+    \hline
+    new Task & String, Date, Time, Details & Task & \\
+    \hline
+    get\_deadline & & (Date, Time) & \\
+    \hline
+    get\_details & & String & \\
+    \hline
+    get\_feedback & & seq of String& \\
+    \hline
+    add\_feedback & String & & \\
+    \hline
+    rm\_feedback & $\mathbb{N}$ &&\\
+    \hline
+    set\_details & String & & \\
+    \hline
+\end{tabular}
+
+\subsection*{Semantics}
+\subsubsection*{State Variables}
+$name$: String\\
+$deadline$: (Date, Time) \\
+$details$: String\\
+$feedback$: seq of String
+
+\subsubsection*{State Invariant}
+None
+
+\subsubsection*{Assumptions}
+\begin{itemize}
+  \item The Task constructor is called for each object instance before any other access routine is called for that object.
+\end{itemize}
+
+\subsubsection*{Access Routine Semantics}
+\noindent new Task($s, d, t$)
+\begin{itemize}
+    \item transition: $name, deadline, details := s, (d, t), \text{None}$
+    \item output: $out :=$ self
+\end{itemize}
+
+\noindent new Task($s, d, t, details$)
+\begin{itemize}
+    \item transition: $name, deadline, details := s, (d, t), details$
+    \item output: $out :=$ self
+\end{itemize}
+
+\noindent get\_deadline()
+\begin{itemize}
+    \item output: $out := deadline$
+\end{itemize}
+
+\noindent get\_details()
+\begin{itemize}
+    \item output: $out := (details = \text{None} \Rightarrow ``\text{No details}"\ |\ details)$
+\end{itemize}
+
+\noindent get\_feedback()
+\begin{itemize}
+    \item output: $out := feedback$
+\end{itemize}
+
+\noindent add\_feedback($s$)
+\begin{itemize}
+    \item transition: $feedback := feedback\ ||\ s$
+\end{itemize}
+\newpage
+
+\noindent rm\_feedback($s$)
+\begin{itemize}
+    \item transition: $feedback := feedback - s$
+\end{itemize}
+
+\noindent set\_details($s$)
+\begin{itemize}
+    \item transition: $details := s$
+\end{itemize}
+
+\newpage
+
+%% Sprint
+\section* {Sprint Module}
+
+\subsection*{Module}
+Sprint
+
+\subsection* {Uses}
+TaskList, Task 
+
+\subsection* {Syntax}
+\subsubsection* {Exported Constants}
+None
+
+\subsubsection* {Exported Types}
+Sprint = ?
+
+\subsubsection* {Exported Access Programs}
+\begin{tabular}{|l|l|l|l|}
+    \hline
+    \textbf{Routine Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+    \hline
+    new Sprint & $\mathbb{N}$ & Sprint & \\
+    \hline
+    get\_tasks & & seq of Task &\\
+    \hline
+    add\_task & Task & & \\
+    \hline
+    rm\_task & $\mathbb{N}$ & &\\
+    \hline
+\end{tabular}
+
+\subsection*{Semantics}
+\subsubsection*{State Variables}
+$sprint\_num$: $\mathbb{N}$\\
+$tasks$: TaskList
+\subsubsection*{State Invariant}
+None
+
+\subsubsection*{Assumptions}
+\begin{itemize}
+  \item The Sprint constructor is called for each object instance before any other access routine is called for that object.
+\end{itemize}
+
+\subsubsection*{Access Routine Semantics}
+\noindent new Sprint($n$)
+\begin{itemize}
+    \item transition: $sprint\_num, tasks := n, TaskList()$
+    \item output: $out :=$ self
+\end{itemize}
+
+\noindent get\_task($n$)
+\begin{itemize}
+    \item output: $out := tasks.to\_seq()$
+\end{itemize}
+
+\noindent add\_task($task$)
+\begin{itemize}
+    \item transition: $tasks := tasks.add(task)$
+\end{itemize}
+
+\noindent rm\_task($n$)
+\begin{itemize}
+    \item transition: $tasks := tasks.renove(n)$
+\end{itemize}
 
 \newpage
 
 %% Project List Module
 \section* {ProjectList Module}
+
 \subsection*{Template Module}
-ProjectList is a Dict of Project
+ProjectList is a Dict(Project)
 
 \newpage
 
-%% Meeting
+%% Project
 \section* {Project Module}
 
 \subsection*{Module}
 Project
 
 \subsection* {Uses}
-Dict(T)
+Sprint, Tasklist, Task
 
 \subsection* {Syntax}
 \subsubsection* {Exported Constants}
@@ -260,19 +567,25 @@ Project = ?
     \hline
     new Project & String, String & Project & \\
     \hline
-    get\_deadlines & & Seq of (String, Date, Time)& \\
-    \hline
     get\_desc & & String &\\
     \hline
-    get\_rqes & & Seq of String & \\
+    get\_meetings & & seq of Meeting &\\
+    \hline
+    get\_rqes & & seq of String & \\
+    \hline
+    get\_sprints & & seq of Sprint & \\
     \hline
     set\_desc & String & &\\
     \hline
-    add\_deadline & String, Date, Time & & \\
+    add\_meeting & Meeting & & \\
     \hline
     add\_rqe & String & & \\
     \hline
-    rm\_deadline & $\mathbb{N}$ &  & IndexError\\
+    pop\_sprint & $\mathbb{N}$ & & IndexError\\
+    \hline
+    push\_sprint & Sprint & & \\
+    \hline
+    rm\_meeting & $\mathbb{N}$ &  &\\
     \hline
     rm\_rqe & $\mathbb{N}$ &  & IndexError\\
     \hline
@@ -282,31 +595,29 @@ Project = ?
 \subsubsection*{State Variables}
 $name$: String\\
 $desc$: String\\
+$meetings$: MeetingList\\
 $rqes$: seq of String\\
-$deadline$: seq of (String, Date, Time)
+$sprints$: seq of Sprint
 
 \subsubsection*{State Invariant}
 None
 
 \subsubsection*{Assumptions}
-None
+\begin{itemize}
+  \item The Project constructor is called for each object instance before any other access routine is called for that object.
+\end{itemize}
 
 \subsubsection*{Access Routine Semantics}
 \noindent new Project($n$)
 \begin{itemize}
-    \item transition: $name, desc, rqes, deadlines := n,\ \text{None},\ [],\ []$
+    \item transition: $name, desc, rqes, sprints := n,\ \text{None},\ [],\ []$
     \item output: $out :=$ self
 \end{itemize}
 
 \noindent new Project($n$, $d$)
 \begin{itemize}
-    \item transition: $name, desc, rqes, deadlines := n,\ d,\ [],\ []$
+    \item transition: $name, desc, rqes, sprints := n,\ d,\ [],\ []$
     \item output: $out :=$ self
-\end{itemize}
-
-\noindent get\_deadlines()
-\begin{itemize}
-    \item output: $out := deadlines$
 \end{itemize}
 
 \noindent get\_desc()
@@ -314,9 +625,19 @@ None
     \item output: $out := (desc = \text{None} \Rightarrow ``\text{No description}"\ |\ desc)$
 \end{itemize}
 
+\noindent get\_meetings()
+\begin{itemize}
+    \item output: $out := meetings.to_seq()$
+\end{itemize}
+
 \noindent get\_rqes()
 \begin{itemize}
     \item output: $out := rqes$
+\end{itemize}
+
+\noindent get\_sprints()
+\begin{itemize}
+    \item output: $out := sprints$
 \end{itemize}
 
 \noindent set\_desc($s$)
@@ -324,9 +645,9 @@ None
     \item transition: $desc := s$
 \end{itemize}
 
-\noindent add\_deadline($s, d, t$)
+\noindent add\_meeting($meeting$)
 \begin{itemize}
-    \item transition: $deadline := deadline\ ||\ (s, d, t)$
+    \item transition: $meetings := meetings.add(meeting)$
 \end{itemize}
 
 \noindent add\_rqe($s$)
@@ -334,15 +655,25 @@ None
     \item transition: $rqes := rqes\ ||\ s$
 \end{itemize}
 
-\noindent rm\_deadline($n$)
+\noindent pop\_sprint()
 \begin{itemize}
-    \item transition: $deadline := deadline - deadline[n]$
-    \item exception: $exc := n \geq |deadline| \Rightarrow \text{IndexError}$
+    \item transition: $sprints := sprints[0: |sprints| - 2]$
+    \item exception: $exc := |sprints| = 0 \Rightarrow \text{IndexError}$
+\end{itemize}
+
+\noindent push\_sprint($sprint$)
+\begin{itemize}
+    \item transition: $sprints := sprints\ ||\ sprint$
+\end{itemize}
+
+\noindent rm\_meeting($n$)
+\begin{itemize}
+    \item transition: $meetings := meetings.remove(n)$
 \end{itemize}
 
 \noindent rm\_rqe($n$)
 \begin{itemize}
     \item transition: $rqes := rqes - rqes[n]$
-    \item exception: $exc := n \geq |rqes| \Rightarrow \text{IndexError}$
 \end{itemize}
+
 \end{document}
