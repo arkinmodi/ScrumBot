@@ -35,8 +35,8 @@
 \title{SE 3XA3: Module Interface Specification\\ScrumBot}
 
 \author{
-	Team 304, ScrumBot
-		\\ Arkin Modi, modia1
+    Team 304, ScrumBot
+        \\ Arkin Modi, modia1
         \\ Leon So, sol4
         \\ Timothy Choy, choyt2
 }
@@ -52,25 +52,80 @@
         \toprule
             \textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
         \midrule
-            March 9, 2020 & Timothy Choy & Copy template\\
+            March 9, 2020 & Timothy Choy & Copy template, ScrumBot Module\\
             March 10, 2020 & Leon So & MeetingList module\\
+            March 11, 2020 & Leon So & Meeting module\\
         \bottomrule
     \end{tabularx}
 \end{table}
 
 \newpage
 
+%% MEETING TYPES
+\section* {MeetingTypes Module}
+
+\subsection* {Module}
+MeetingTypes
+
+\subsection*{Uses}
+N/A
+
+\subsection*{Syntax}
+\subsubsection*{Exported Constants}
+N/A
+\subsubsection*{Exported Types}
+MeetingT = \{Grooming, StandUp, Retrospective, SprintPlanning\}
+\subsubsection*{Exported Access Programs}
+None
+
+\subsection*{Semantics}
+\subsubsection* {State Variables}
+None
+\subsubsection* {State Invariant}
+None
+
+\newpage
+
+% %% GENERIC LIST MODULE
+% \section*{Generic List Module}
+% \subsection*{Generic Template Module}
+% List(T)
+
+% \subsection*{Uses}
+% N/A
+
+% \subsection*{Syntax}
+% \subsubsection*{Exported Types}
+% List = ?
+% \subsubsection*{Exported Constants}
+% None
+% \subsubsection* {Exported Access Programs}
+% \begin{table}[!htb]
+%     \begin{tabular}{|p{3cm}|p{3cm}|p{3cm}|p{4.5cm}|}
+%         \hline
+%         \textbf{Routine Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+%         \hline
+%         new List & seq of T & List & none\\
+%         add & T & List & none\\
+%         remove & T & List & out\_of\_range\\
+%         toSeq & & seq of T & \\\hline
+%     \end{tabular}
+%     \caption{Caption}
+%     \label{tab:my_label}
+% \end{table}
+
+% \newpage
+
 %% MEETING LIST
-\section* {MeetingList}
+\section* {MeetingList Module}
 
 \subsection*{Template Module}
-
 MeetingList is a Seq of Meeting
 
 \newpage
 
 %% Meeting
-\section* {Meeting}
+\section* {Meeting Module}
 
 \subsection*{Module}
 
@@ -78,7 +133,7 @@ Meeting
 
 \subsection* {Uses}
 
-None
+MeetingTypes
 
 \subsection* {Syntax}
 
@@ -88,17 +143,24 @@ None
 
 \subsubsection* {Exported Types}
 
-None
+Meeting = ?
 
 \subsubsection* {Exported Access Programs}
 
+\begin{tabular}{|l|l|l|l|}
+    \hline
+    \textbf{Routine Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+    \hline
+    new Meeting & String, Date, Time, MeetingT & Meeting & invalid\_argument\\
+    new Meeting & String, Date, Time, MeetingT, String & Meeting & invalid\_argument\\
+    \hline
+\end{tabular}
 
 \subsection* {Semantics}
 
 \subsubsection* {Environment Variables}
 
 \subsubsection* {State Variables}
-
 
 \subsubsection* {State Invariant}
 
@@ -109,7 +171,6 @@ None
 None
 
 \subsubsection* {Access Routine Semantics}
-
 
 \newpage
 \end{document}
