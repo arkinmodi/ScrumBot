@@ -1,4 +1,4 @@
-## @file admin.py
+## @file adminCog.py
 #  @author Arkin Modi, Leon So, Timothy Choy
 #  @brief A cog containing administrative commands.
 #  @date Mar 6, 2020
@@ -57,16 +57,6 @@ class AdminCog(commands.Cog, name="Admin Commands"):
             return
         print(f'[Log] Successfully reloaded {cog}')
         await ctx.send(f'> **{cog}** reloaded')
-
-    ## @brief Purges messages from the Discord channel.
-    #  @param number An integer representing the max amount of messages to delete.
-    @commands.command(name='purge', hidden=True)
-    @commands.is_owner()
-    @commands.guild_only()
-    async def purge_msg(self, ctx, *, number: int):
-        deleted = await ctx.channel.purge(limit=number)
-        print(f'[Log] {ctx.author} purged {len(deleted)} messages.')
-        await ctx.send(f'> Deleted **{len(deleted)}** messages')
 
 ## @brief The setup command for this cog.
 #  @param bot The bot defined in bot.py.

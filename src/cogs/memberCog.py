@@ -1,4 +1,4 @@
-## @file members.py
+## @file memberCog.py
 #  @author Arkin Modi, Leon So, Timothy Choy
 #  @brief A cog containing commands suited for members of the guild.
 #  @date Mar 6, 2020
