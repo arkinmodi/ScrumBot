@@ -237,29 +237,112 @@ ProjectList is a Dict of Project
 
 %% Meeting
 \section* {Project Module}
+
+\subsection*{Module}
+Project
+
 \subsection* {Uses}
+Dict(T)
 
 \subsection* {Syntax}
-
 \subsubsection* {Exported Constants}
-
 None
 
 \subsubsection* {Exported Types}
-
 Project = ?
 
 \subsubsection* {Exported Access Programs}
-
 \begin{tabular}{|l|l|l|l|}
     \hline
     \textbf{Routine Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
     \hline
-    new Project & String & Project & invalid\_argument\\
+    new Project & String & Project & \\
     \hline
-    getDescription & & String &\\
+    new Project & String, String & Project & \\
     \hline
-    setDescription & String & &\\
+    get\_deadlines & & Seq of (String, Date, Time)& \\
+    \hline
+    get\_desc & & String &\\
+    \hline
+    get\_rqes & & Seq of String & \\
+    \hline
+    set\_desc & String & &\\
+    \hline
+    add\_deadline & String, Date, Time & & \\
+    \hline
+    add\_rqe & String & & \\
+    \hline
+    rm\_deadline & $\mathbb{N}$ &  & IndexError\\
+    \hline
+    rm\_rqe & $\mathbb{N}$ &  & IndexError\\
     \hline
 \end{tabular}
+
+\subsection*{Semantics}
+\subsubsection*{State Variables}
+$name$: String\\
+$desc$: String\\
+$rqes$: seq of String\\
+$deadline$: seq of (String, Date, Time)
+
+\subsubsection*{State Invariant}
+None
+
+\subsubsection*{Assumptions}
+None
+
+\subsubsection*{Access Routine Semantics}
+\noindent new Project($n$)
+\begin{itemize}
+    \item transition: $name, desc, rqes, deadlines := n,\ \text{None},\ [],\ []$
+    \item output: $out :=$ self
+\end{itemize}
+
+\noindent new Project($n$, $d$)
+\begin{itemize}
+    \item transition: $name, desc, rqes, deadlines := n,\ d,\ [],\ []$
+    \item output: $out :=$ self
+\end{itemize}
+
+\noindent get\_deadlines()
+\begin{itemize}
+    \item output: $out := deadlines$
+\end{itemize}
+
+\noindent get\_desc()
+\begin{itemize}
+    \item output: $out := (desc = \text{None} \Rightarrow ``\text{No description}"\ |\ desc)$
+\end{itemize}
+
+\noindent get\_rqes()
+\begin{itemize}
+    \item output: $out := rqes$
+\end{itemize}
+
+\noindent set\_desc($s$)
+\begin{itemize}
+    \item transition: $desc := s$
+\end{itemize}
+
+\noindent add\_deadline($s, d, t$)
+\begin{itemize}
+    \item transition: $deadline := deadline\ ||\ (s, d, t)$
+\end{itemize}
+
+\noindent add\_rqe($s$)
+\begin{itemize}
+    \item transition: $rqes := rqes\ ||\ s$
+\end{itemize}
+
+\noindent rm\_deadline($n$)
+\begin{itemize}
+    \item transition: $deadline := deadline - deadline[n]$
+    \item exception: $exc := n \geq |deadline| \Rightarrow \text{IndexError}$
+\end{itemize}
+
+\noindent rm\_rqe($n$)
+\begin{itemize}
+    \item transition: $rqes := rqes - rqes[n]$
+    \item exception: $exc := n \geq |rqes| \Rightarrow \text{IndexError}$
+\end{itemize}
 \end{document}
