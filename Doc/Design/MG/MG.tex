@@ -32,8 +32,8 @@
 \title{SE 3XA3: Module Guide\\ScrumBot}
 
 \author{
-  Team 304, ScrumBot
-    \\ Arkin Modi, modia1
+	Team 304, ScrumBot
+		\\ Arkin Modi, modia1
         \\ Leon So, sol4
         \\ Timothy Choy, choyt2
 }
@@ -50,7 +50,7 @@
 \listoftables
 \listoffigures
 
-\begin{table}[bp]
+\begin{table}[H]
     \caption{Revision History} \label{TblRevisionHistory}
     \begin{tabularx}{\textwidth}{llX}
         \toprule
@@ -58,6 +58,8 @@
         \midrule
             January 23, 2020 & Arkin Modi & Copy template\\
             March 5, 2020 & Leon So & Introduction, Anticipated Changes, Unlikely Changes, Module Hierachy\\
+            March 10, 2020 & Arkin Modi & Worked on Module Hierarchy\\
+            March 11, 2020 & Arkin Modi & Worked on the Introduction\\
         \bottomrule
     \end{tabularx}
 \end{table}
@@ -67,8 +69,17 @@
 \pagenumbering{arabic}
 
 \section{Introduction}
-ScrumBot is a Discord chat bot which allows software development teams to manage their
-Scrum agile software development process directly within the Discord application.\\
+\subsection{Overview}
+Scrum is an Agile process framework widely used in industry for managing and coordinating collaborative projects. Scrum follows a highly iterative process and often has heavy customer involvement, therefore it can be often be complex. With Discord being a popular communication tool used by many teams of software developers today, ScrumBot provides a solution that directly integrates the management of a scrum development cycle into the communication channels. ScrumBot will allow for better management and organization of retrospectives, stand-ups, and other scrum/agile stages used by software teams within their routine communication channel. ScrumBot will provide features to add and manage Scrum meetings, as well as to store information relevant to those meetings. ScrumBot will also allow Scrum roles to be assigned to members of the Discord channel.
+
+% ScrumBot is a Discord chat bot which allows software development teams to manage their Scrum agile software development process directly within the Discord application.\\
+
+\subsection{Context}
+Prior to this document, the Software Requirements Specification (SRS) was created to outline all the functional and non-functional requirements this project must satisfy. The purpose of this document is to provide a high-level structure to the implementation of this project by decomposing the idea into modules. The decomposition into modules enables a clearer form to satisfy the requirements of the project.\\
+
+\noindent The Module Interface Specification was created in parallel to this document. It describes the operations that each module shall perform.
+
+\subsection{Design Principles}
 
 Decomposing a system into modules is a commonly accepted approach to developing
 software.  The Module Guide (MG) developed by \citep{ParnasEtAl1984} specified the modular structure of the system. A module is a work assignment for a programmer or programming team~\citep{ParnasEtAl1984}.  Decomposition of the system into modules is
@@ -136,7 +147,6 @@ change.
 \begin{description}
 \item[\refstepcounter{acnum} \actheacnum \label{acHardware}:] The format of the input data
 \item[\refstepcounter{acnum} \actheacnum \label{acInput}:] The format of the output data
-\item[\refstepcounter{acnum} \actheacnum \label{acInput}:] The specific hardware hosting the Discord bot
 \item[\refstepcounter{acnum} \actheacnum \label{acInput}:] The URL used to connect to the hosting server
 \item[\refstepcounter{acnum} \actheacnum \label{acInput}:] The format of the response from the server
 \item[\refstepcounter{acnum} \actheacnum \label{acInput}:] The Discord channel interacting with the bot
@@ -160,20 +170,20 @@ decisions will be changed.
 \end{description}
 
 \section{Module Hierarchy} \label{SecMH}
-
 This section provides an overview of the module design. Modules are summarized
 in a hierarchy decomposed by secrets in Table \ref{TblMH}. The modules listed
 below, which are leaves in the hierarchy tree, are the modules that will
 actually be implemented.
 
 \begin{description}
-\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Meeting Type Module
-\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Meeting Module
-\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Meeting List Module
-\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Task Module
-\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Task List Module
-\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Project Module
-\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Project List Module
+    \item [\refstepcounter{mnum} \mthemnum \label{m1}:] ScrumBot Module
+    \item [\refstepcounter{mnum} \mthemnum \label{m2}:] Meeting Types Module
+    \item [\refstepcounter{mnum} \mthemnum \label{m3}:] Meeting List Module
+    \item [\refstepcounter{mnum} \mthemnum \label{m4}:] Meeting Module
+    % \item [\refstepcounter{mnum} \mthemnum \label{m4}:] Task Module
+    % \item [\refstepcounter{mnum} \mthemnum \label{m5}:] Task List Module
+    % \item [\refstepcounter{mnum} \mthemnum \label{m6}:] Project Module
+    % \item [\refstepcounter{mnum} \mthemnum \label{m7}:] Project List Module
 \end{description}
 
 
@@ -187,17 +197,13 @@ actually be implemented.
 {Hardware-Hiding Module} & ~ \\
 \midrule
 
-\multirow{7}{0.3\textwidth}{Behaviour-Hiding Module} & ?\\
-& ?\\
-& ?\\
-& ?\\
-& ?\\
-& ?\\
-& ?\\ 
-& ?\\
+\multirow{2}{0.3\textwidth}{Behaviour-Hiding Module} 
+& ScrumBot Module \textcolor{red}{(POSSIBLY SOFTWARE DECISION MODULE)}\\
+& Meeting Module\\
 \midrule
 
-\multirow{3}{0.3\textwidth}{Software Decision Module} & {?}\\
+\multirow{3}{0.3\textwidth}{Software Decision Module} 
+& Meeting List Module\\ % Data Structure
 & ?\\
 & ?\\
 \bottomrule
@@ -254,13 +260,12 @@ selected.
 \item[Implemented By:] --
 \end{description}
 
-\subsubsection{Input Format Module (\mref{mInput})}
+\subsubsection{Meeting Module (\mref{m2})}
 
 \begin{description}
-\item[Secrets:]The format and structure of the input data.
-\item[Services:]Converts the input data into the data structure used by the
-  input parameters module.
-\item[Implemented By:] [Your Program Name Here]
+    \item[Secrets:]The format and structure of the input data.
+    \item[Services:]Converts the input data into the data structure used by the input parameters module.
+    \item[Implemented By:] [Your Program Name Here]
 \end{description}
 
 \subsubsection{Etc.}
@@ -289,50 +294,50 @@ requirements and between the modules and the anticipated changes.
 % the table should use mref, the requirements should be named, use something
 % like fref
 \begin{table}[H]
-\centering
-\begin{tabular}{p{0.2\textwidth} p{0.6\textwidth}}
-\toprule
-\textbf{Req.} & \textbf{Modules}\\
-\midrule
-R1 & \mref{mHH}, \mref{mInput}, \mref{mParams}, \mref{mControl}\\
-R2 & \mref{mInput}, \mref{mParams}\\
-R3 & \mref{mVerify}\\
-R4 & \mref{mOutput}, \mref{mControl}\\
-R5 & \mref{mOutput}, \mref{mODEs}, \mref{mControl}, \mref{mSeqDS}, \mref{mSolver}, \mref{mPlot}\\
-R6 & \mref{mOutput}, \mref{mODEs}, \mref{mControl}, \mref{mSeqDS}, \mref{mSolver}, \mref{mPlot}\\
-R7 & \mref{mOutput}, \mref{mEnergy}, \mref{mControl}, \mref{mSeqDS}, \mref{mPlot}\\
-R8 & \mref{mOutput}, \mref{mEnergy}, \mref{mControl}, \mref{mSeqDS}, \mref{mPlot}\\
-R9 & \mref{mVerifyOut}\\
-R10 & \mref{mOutput}, \mref{mODEs}, \mref{mControl}\\
-R11 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
-\bottomrule
-\end{tabular}
-\caption{Trace Between Requirements and Modules}
-\label{TblRT}
+    \centering
+    \begin{tabular}{p{0.2\textwidth} p{0.6\textwidth}}
+        \toprule
+        \textbf{Req.} & \textbf{Modules}\\
+        \midrule
+        R1 & \mref{mHH}, \mref{mInput}, \mref{mParams}, \mref{mControl}\\
+        R2 & \mref{mInput}, \mref{mParams}\\
+        R3 & \mref{mVerify}\\
+        R4 & \mref{mOutput}, \mref{mControl}\\
+        R5 & \mref{mOutput}, \mref{mODEs}, \mref{mControl}, \mref{mSeqDS}, \mref{mSolver}, \mref{mPlot}\\
+        R6 & \mref{mOutput}, \mref{mODEs}, \mref{mControl}, \mref{mSeqDS}, \mref{mSolver}, \mref{mPlot}\\
+        R7 & \mref{mOutput}, \mref{mEnergy}, \mref{mControl}, \mref{mSeqDS}, \mref{mPlot}\\
+        R8 & \mref{mOutput}, \mref{mEnergy}, \mref{mControl}, \mref{mSeqDS}, \mref{mPlot}\\
+        R9 & \mref{mVerifyOut}\\
+        R10 & \mref{mOutput}, \mref{mODEs}, \mref{mControl}\\
+        R11 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
+        \bottomrule
+    \end{tabular}
+    \caption{Trace Between Requirements and Modules}
+    \label{TblRT}
 \end{table}
 
 \begin{table}[H]
-\centering
-\begin{tabular}{p{0.2\textwidth} p{0.6\textwidth}}
-\toprule
-\textbf{AC} & \textbf{Modules}\\
-\midrule
-\acref{acHardware} & \mref{mHH}\\
-\acref{acInput} & \mref{mInput}\\
-\acref{acParams} & \mref{mParams}\\
-\acref{acVerify} & \mref{mVerify}\\
-\acref{acOutput} & \mref{mOutput}\\
-\acref{acVerifyOut} & \mref{mVerifyOut}\\
-\acref{acODEs} & \mref{mODEs}\\
-\acref{acEnergy} & \mref{mEnergy}\\
-\acref{acControl} & \mref{mControl}\\
-\acref{acSeqDS} & \mref{mSeqDS}\\
-\acref{acSolver} & \mref{mSolver}\\
-\acref{acPlot} & \mref{mPlot}\\
-\bottomrule
-\end{tabular}
-\caption{Trace Between Anticipated Changes and Modules}
-\label{TblACT}
+    \centering
+    \begin{tabular}{p{0.2\textwidth} p{0.6\textwidth}}
+        \toprule
+        \textbf{AC} & \textbf{Modules}\\
+        \midrule
+        \acref{acHardware} & \mref{mHH}\\
+        \acref{acInput} & \mref{mInput}\\
+        \acref{acParams} & \mref{mParams}\\
+        \acref{acVerify} & \mref{mVerify}\\
+        \acref{acOutput} & \mref{mOutput}\\
+        \acref{acVerifyOut} & \mref{mVerifyOut}\\
+        \acref{acODEs} & \mref{mODEs}\\
+        \acref{acEnergy} & \mref{mEnergy}\\
+        \acref{acControl} & \mref{mControl}\\
+        \acref{acSeqDS} & \mref{mSeqDS}\\
+        \acref{acSolver} & \mref{mSolver}\\
+        \acref{acPlot} & \mref{mPlot}\\
+        \bottomrule
+    \end{tabular}
+    \caption{Trace Between Anticipated Changes and Modules}
+    \label{TblACT}
 \end{table}
 
 \section{Use Hierarchy Between Modules} \label{SecUse}
