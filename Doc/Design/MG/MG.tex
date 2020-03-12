@@ -60,6 +60,7 @@
             March 5, 2020 & Leon So & Introduction, Anticipated Changes, Unlikely Changes, Module Hierachy\\
             March 10, 2020 & Arkin Modi & Worked on Module Hierarchy\\
             March 11, 2020 & Arkin Modi & Worked on the Introduction\\
+            March 12, 2020 & Arkin Modi & Worked on Introduction, Anticipated and Unlikely Changes,  Module Hierarchy, and Module Decomposition\\
         \bottomrule
     \end{tabularx}
 \end{table}
@@ -69,7 +70,8 @@
 \pagenumbering{arabic}
 
 \section{Introduction}
-\subsection{Overview}
+\subsection{Overview} 
+% Copied from Test Plan
 Scrum is an Agile process framework widely used in industry for managing and coordinating collaborative projects. Scrum follows a highly iterative process and often has heavy customer involvement, therefore it can be often be complex. With Discord being a popular communication tool used by many teams of software developers today, ScrumBot provides a solution that directly integrates the management of a scrum development cycle into the communication channels. ScrumBot will allow for better management and organization of retrospectives, stand-ups, and other scrum/agile stages used by software teams within their routine communication channel. ScrumBot will provide features to add and manage Scrum meetings, as well as to store information relevant to those meetings. ScrumBot will also allow Scrum roles to be assigned to members of the Discord channel.
 
 % ScrumBot is a Discord chat bot which allows software development teams to manage their Scrum agile software development process directly within the Discord application.\\
@@ -79,8 +81,39 @@ Prior to this document, the Software Requirements Specification (SRS) was create
 
 \noindent The Module Interface Specification was created in parallel to this document. It describes the operations that each module shall perform.
 
-\subsection{Design Principles}
+% After completing the first stage of the design, the Software Requirements
+% Specification (SRS), the Module Guide (MG) is developed~\citep{ParnasEtAl1984}. The MG
+% specifies the modular structure of the system and is intended to allow both
+% designers and maintainers to easily identify the parts of the software.  The
+% potential readers of this document are as follows:
 
+% \begin{itemize}
+% \item New project members: This document can be a guide for a new project member
+%   to easily understand the overall structure and quickly find the
+%   relevant modules they are searching for.
+% \item Maintainers: The hierarchical structure of the module guide improves the
+%   maintainers' understanding when they need to make changes to the system. It is
+%   important for a maintainer to update the relevant sections of the document
+%   after changes have been made.
+% \item Designers: Once the module guide has been written, it can be used to
+%   check for consistency, feasibility and flexibility. Designers can verify the
+%   system in various ways, such as consistency among modules, feasibility of the
+%   decomposition, and flexibility of the design.
+% \end{itemize}
+
+% The rest of the document is organized as follows. Section
+% \ref{SecChange} lists the anticipated and unlikely changes of the software
+% requirements. Section \ref{SecMH} summarizes the module decomposition that
+% was constructed according to the likely changes. Section \ref{SecConnection}
+% specifies the connections between the software requirements and the
+% modules. Section \ref{SecMD} gives a detailed description of the
+% modules. Section \ref{SecTM} includes two traceability matrices. One checks
+% the completeness of the design against the requirements provided in the SRS. The
+% other shows the relation between anticipated changes and the modules. Section
+% \ref{SecUse} describes the use relation between modules.
+
+\subsection{Design Principles}
+% Copied from template
 Decomposing a system into modules is a commonly accepted approach to developing
 software.  The Module Guide (MG) developed by \citep{ParnasEtAl1984} specified the modular structure of the system. A module is a work assignment for a programmer or programming team~\citep{ParnasEtAl1984}.  Decomposition of the system into modules is
 based on the principle of information hiding~\citep{Parnas1972a}.  This
@@ -89,7 +122,7 @@ hides represent likely future changes.  Design for change is valuable in SC,
 where modifications are frequent, especially during initial development as the
 solution space is explored.\\
 
-Our design follows the rules layed out by \citet{ParnasEtAl1984}, as follows:
+The design follows the rules layed out by \citet{ParnasEtAl1984}, as follows:
 \begin{itemize}
 \item System details that are likely to change independently should be the
   secrets of separate modules.
@@ -97,37 +130,6 @@ Our design follows the rules layed out by \citet{ParnasEtAl1984}, as follows:
 \item Any other program that requires information stored in a module's data
   structures must obtain it by calling access programs belonging to that module.
 \end{itemize}
-
-After completing the first stage of the design, the Software Requirements
-Specification (SRS), the Module Guide (MG) is developed~\citep{ParnasEtAl1984}. The MG
-specifies the modular structure of the system and is intended to allow both
-designers and maintainers to easily identify the parts of the software.  The
-potential readers of this document are as follows:
-
-\begin{itemize}
-\item New project members: This document can be a guide for a new project member
-  to easily understand the overall structure and quickly find the
-  relevant modules they are searching for.
-\item Maintainers: The hierarchical structure of the module guide improves the
-  maintainers' understanding when they need to make changes to the system. It is
-  important for a maintainer to update the relevant sections of the document
-  after changes have been made.
-\item Designers: Once the module guide has been written, it can be used to
-  check for consistency, feasibility and flexibility. Designers can verify the
-  system in various ways, such as consistency among modules, feasibility of the
-  decomposition, and flexibility of the design.
-\end{itemize}
-
-The rest of the document is organized as follows. Section
-\ref{SecChange} lists the anticipated and unlikely changes of the software
-requirements. Section \ref{SecMH} summarizes the module decomposition that
-was constructed according to the likely changes. Section \ref{SecConnection}
-specifies the connections between the software requirements and the
-modules. Section \ref{SecMD} gives a detailed description of the
-modules. Section \ref{SecTM} includes two traceability matrices. One checks
-the completeness of the design against the requirements provided in the SRS. The
-other shows the relation between anticipated changes and the modules. Section
-\ref{SecUse} describes the use relation between modules.
 
 \section{Anticipated and Unlikely Changes} \label{SecChange}
 
@@ -145,11 +147,10 @@ adapted here is called design for
 change.
 
 \begin{description}
-\item[\refstepcounter{acnum} \actheacnum \label{acHardware}:] The format of the input data
-\item[\refstepcounter{acnum} \actheacnum \label{acInput}:] The format of the output data
+\item[\refstepcounter{acnum} \actheacnum \label{acInput}:] The format of the input data
 \item[\refstepcounter{acnum} \actheacnum \label{acInput}:] The URL used to connect to the hosting server
 \item[\refstepcounter{acnum} \actheacnum \label{acInput}:] The format of the response from the server
-\item[\refstepcounter{acnum} \actheacnum \label{acInput}:] The Discord channel interacting with the bot
+\item[\refstepcounter{acnum} \actheacnum \label{acInput}:] The format of the output data
 \end{description}
 
 \subsection{Unlikely Changes} \label{SecUchange}
@@ -162,11 +163,11 @@ will potentially need to be modified. Hence, it is not intended that these
 decisions will be changed.
 
 \begin{description}
-\item[\refstepcounter{ucnum} \uctheucnum \label{ucIO}:] User input by keyboard input.
-\item[\refstepcounter{ucnum} \uctheucnum \label{ucIO}:] Output on Discord chat.
-\item[\refstepcounter{ucnum} \uctheucnum \label{ucInput}:] There will always be
-  a source of input data external to the software.
+\item[\refstepcounter{ucnum} \uctheucnum \label{ucIO}:] 
+\item[\refstepcounter{ucnum} \uctheucnum \label{ucInput}:] There will always be a source of input data external to the software
 \item[\refstepcounter{ucnum} \uctheucnum \label{ucInput}:] The system will be interfacing with the Discord application
+\item[\refstepcounter{ucnum} \uctheucnum \label{ucInput}:] The data structure of a meeting
+\item[\refstepcounter{ucnum} \uctheucnum \label{ucInput}:] The data structure of a project
 \end{description}
 
 \section{Module Hierarchy} \label{SecMH}
@@ -176,14 +177,19 @@ below, which are leaves in the hierarchy tree, are the modules that will
 actually be implemented.
 
 \begin{description}
-    \item [\refstepcounter{mnum} \mthemnum \label{m1}:] ScrumBot Module
-    \item [\refstepcounter{mnum} \mthemnum \label{m2}:] Meeting Types Module
-    \item [\refstepcounter{mnum} \mthemnum \label{m3}:] Meeting List Module
-    \item [\refstepcounter{mnum} \mthemnum \label{m4}:] Meeting Module
-    % \item [\refstepcounter{mnum} \mthemnum \label{m4}:] Task Module
-    % \item [\refstepcounter{mnum} \mthemnum \label{m5}:] Task List Module
-    % \item [\refstepcounter{mnum} \mthemnum \label{m6}:] Project Module
-    % \item [\refstepcounter{mnum} \mthemnum \label{m7}:] Project List Module
+    \item [\refstepcounter{mnum} \mthemnum \label{m1}:] Hardware-Hiding Module
+    \item [\refstepcounter{mnum} \mthemnum \label{m2}:] ScrumBot Module
+    \item [\refstepcounter{mnum} \mthemnum \label{m3}:] Meeting Types Module
+    \item [\refstepcounter{mnum} \mthemnum \label{m4}:] Meeting List Module
+    \item [\refstepcounter{mnum} \mthemnum \label{m5}:] Project List Module
+    \item [\refstepcounter{mnum} \mthemnum \label{m6}:] Project Module
+    \item [\refstepcounter{mnum} \mthemnum \label{m7}:] Grooming Meeting Module
+    \item [\refstepcounter{mnum} \mthemnum \label{m8}:] Generic Dictionary
+    Module
+    \item [\refstepcounter{mnum} \mthemnum \label{m9}:] Meeting Module
+    \item [\refstepcounter{mnum} \mthemnum \label{m10}:] Task Module
+    \item [\refstepcounter{mnum} \mthemnum \label{m11}:] Task List Module
+    \item [\refstepcounter{mnum} \mthemnum \label{m12}:] Sprint Module
 \end{description}
 
 
@@ -197,15 +203,21 @@ actually be implemented.
 {Hardware-Hiding Module} & ~ \\
 \midrule
 
-\multirow{2}{0.3\textwidth}{Behaviour-Hiding Module} 
-& ScrumBot Module \textcolor{red}{(POSSIBLY SOFTWARE DECISION MODULE)}\\
-& Meeting Module\\
+\multirow{1}{0.3\textwidth}{Behaviour-Hiding Module} 
+& ScrumBot Module\\ % Interface with Discord
 \midrule
 
-\multirow{3}{0.3\textwidth}{Software Decision Module} 
-& Meeting List Module\\ % Data Structure
-& ?\\
-& ?\\
+\multirow{5}{0.3\textwidth}{Software Decision Module} 
+& Meeting List Module\\         % Data Structure
+& Meeting Types Module\\        % Data Structure
+& Project List Module\\         % Data Structure
+& Project Module\\              % Data Structure
+& Grooming Meeting Module\\     % Data Structure
+& Generic Dictionary Module\\   % Data Structure
+& Meeting Module\\              % Data Structure
+& Task Module\\
+& Task List Module\\
+& Sprint Module\\
 \bottomrule
 
 \end{tabular}
@@ -237,54 +249,89 @@ that the module is not a leaf and will not have to be implemented. Whether or
 not this module is implemented depends on the programming language
 selected.
 
-\subsection{Hardware Hiding Modules (\mref{mHH})}
-
+\subsection{Hardware Hiding Modules (\mref{m1})}
 \begin{description}
-\item[Secrets:]The data structure and algorithm used to implement the virtual
-  hardware.
-\item[Services:]Serves as a virtual hardware used by the rest of the
-  system. This module provides the interface between the hardware and the
-  software. So, the system can use it to display outputs or to accept inputs.
-\item[Implemented By:] OS
+    \item[Secrets:] The data structure and algorithm used to implement the virtual hardware.
+    \item[Services:] Serves as a virtual hardware used by the rest of the system. This module provides the interface between the hardware and the software. So, the system can use it to display outputs or to accept inputs.
+    \item[Implemented By:] OS
 \end{description}
 
 \subsection{Behaviour-Hiding Module}
 
+% \begin{description}
+% \item[Secrets:]The contents of the required behaviours.
+% \item[Services:]Includes programs that provide externally visible behaviour of
+%   the system as specified in the software requirements specification (SRS)
+%   documents. This module serves as a communication layer between the
+%   hardware-hiding module and the software decision module. The programs in this
+%   module will need to change if there are changes in the SRS.
+% \item[Implemented By:] --
+% \end{description}
+
+% \begin{description}
+%     \item[Secrets:] The design decision based on mathematical theorems, physical facts, or programming considerations. The secrets of this module are \emph{not} described in the SRS.
+%     \item[Services:] Includes data structure and algorithms used in the system that do not provide direct interaction with the user. 
+%     % Changes in these modules are more likely to be motivated by a desire to
+%     % improve performance than by externally imposed changes.
+%     \item[Implemented By:] --
+% \end{description}
+
+\subsubsection{ScrumBot Module (\mref{m2})}
 \begin{description}
-\item[Secrets:]The contents of the required behaviours.
-\item[Services:]Includes programs that provide externally visible behaviour of
-  the system as specified in the software requirements specification (SRS)
-  documents. This module serves as a communication layer between the
-  hardware-hiding module and the software decision module. The programs in this
-  module will need to change if there are changes in the SRS.
-\item[Implemented By:] --
+    \item[Secrets:] The format and structure of the input data.
+    \item[Services:] Converts the input data into the data structure used by the input parameters module.
+    \item[Implemented By:] scrumbot.py
 \end{description}
-
-\subsubsection{Meeting Module (\mref{m2})}
-
-\begin{description}
-    \item[Secrets:]The format and structure of the input data.
-    \item[Services:]Converts the input data into the data structure used by the input parameters module.
-    \item[Implemented By:] [Your Program Name Here]
-\end{description}
-
-\subsubsection{Etc.}
-
 
 \subsection{Software Decision Module}
-
+\subsubsection{Meeting List Module (\mref{m3})}
 \begin{description}
-\item[Secrets:] The design decision based on mathematical theorems, physical
-  facts, or programming considerations. The secrets of this module are
-  \emph{not} described in the SRS.
-\item[Services:] Includes data structure and algorithms used in the system that
-  do not provide direct interaction with the user. 
-  % Changes in these modules are more likely to be motivated by a desire to
-  % improve performance than by externally imposed changes.
-\item[Implemented By:] --
+    \item[Secrets:] 
+    \item[Services:] 
+    \item[Implemented By:] 
 \end{description}
 
-\subsubsection{Etc.}
+\subsubsection{Meeting Types Module (\mref{m4})}
+\begin{description}
+    \item[Secrets:] 
+    \item[Services:] 
+    \item[Implemented By:] 
+\end{description}
+
+\subsubsection{Project List Module (\mref{m5})}
+\begin{description}
+    \item[Secrets:] 
+    \item[Services:] 
+    \item[Implemented By:] 
+\end{description}
+
+\subsubsection{Project Module (\mref{m6})}
+\begin{description}
+    \item[Secrets:] 
+    \item[Services:] 
+    \item[Implemented By:] 
+\end{description}
+
+\subsubsection{Grooming Meeting Module (\mref{m7})}
+\begin{description}
+    \item[Secrets:] 
+    \item[Services:] 
+    \item[Implemented By:] 
+\end{description}
+
+\subsubsection{Generic Dictionary Module (\mref{m8})}
+\begin{description}
+    \item[Secrets:] The data structure of a dictionary
+    \item[Services:] Provides basic functionality of a dictionary (add, remove, output data)
+    \item[Implemented By:] dictionary.py
+\end{description}
+
+\subsubsection{Meeting Module (\mref{m9})}
+\begin{description}
+    \item[Secrets:] The data structure of a meeting
+    \item[Services:] Provides a data structure to for a meeting with an initializer, accesser and a mutater
+    \item[Implemented By:] meeting.py
+\end{description}
 
 \section{Traceability Matrix} \label{SecTM}
 
