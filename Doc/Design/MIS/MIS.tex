@@ -62,100 +62,438 @@
             March 12, 2020 & Arkin Modi & Fix Formatting\\
             March 12, 2020 & Leon So & Dict, Meeting, Project, Task, TaskList, Sprint Modules\\
             March 12, 2020 & Timothy Choy & Project, Meeting Modules\\
+            March 12, 2020 & Timothy Choy & Completed ScrumBot module\\
         \bottomrule
     \end{tabularx}
 \end{table}
 
 \newpage
+%% SCRUM BOT
+\section* {ScrumBot Module}
 
-%% MEETING TYPES
-\section* {MeetingTypes Module}
+\subsection*{Module}
+AdminCog, ProjectCog, MeetingCog, MemberCog, Scrumbot, SprintCog, TaskCog
 
-\subsection* {Module}
-MeetingTypes
+\subsection* {Uses}
+discord\\
+discord.ext.commands
 
-\subsection*{Uses}
-N/A
-
-\subsection*{Syntax}
-\subsubsection*{Exported Constants}
-N/A
-\subsubsection*{Exported Types}
-MeetingT = \{Grooming, StandUp, Retrospective, SprintPlanning\}
-\subsubsection*{Exported Access Programs}
+\subsection* {Syntax}
+\subsubsection* {Exported Constants}
 None
 
-\subsection*{Semantics}
+\subsubsection* {Exported Types}
+None
+
+\subsubsection* {Exported Access Programs}
+\begin{table}[!htb]
+    \centering
+    \begin{tabular}{|p{3cm}|p{3cm}|p{3cm}|p{4.5cm}|}
+        \hline
+        \textbf{Routine Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+        \hline
+        on\_ready & & & \\
+        \hline
+    \end{tabular}
+    \caption{ScrumBot Programs}
+    \label{tab:scrumbot}
+\end{table}
+
+\begin{table}[!htb]
+    \centering
+    \begin{tabular}{|p{3cm}|p{3cm}|p{3cm}|p{4.5cm}|}
+        \hline
+        \textbf{Routine Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+        \hline
+        load & commands.Cogs & String & MissingRole, Exception \\
+        \hline
+        reload & commands.Cogs & String & MissingRole, Exception \\
+        \hline
+        unload & commands.Cogs & String & MissingRole, Exception \\
+        \hline
+    \end{tabular}
+    \caption{Admin Programs}
+    \label{tab:admin}
+\end{table}
+
+\begin{table}[!htb]
+    \centering
+    \begin{tabular}{|p{3cm}|p{3cm}|p{3cm}|p{4.5cm}|}
+        \hline
+        \textbf{Routine Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+        \hline
+        get\_roles & & discord.embed & \\
+        \hline
+        get\_roles & String & discord.embed & \\
+        \hline
+    \end{tabular}
+    \caption{Member Programs}
+    \label{tab:members}
+\end{table}
+
+\begin{table}[!htb]
+    \centering
+    \begin{tabular}{|p{3.5cm}|p{4cm}|p{3cm}|p{3cm}|}
+        \hline
+        \textbf{Routine Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+        \hline
+        add\_meeting & $\mathbb{N}$, String, Date, Time, MeetingT & String & MissingRole\\
+        \hline
+        add\_meeting & $\mathbb{N}$, String, Date, Time, MeetingT, String & String & MissingRole\\
+        \hline
+        add\_project & String & String & MissingRole \\
+        \hline
+        add\_project & String, String & String & MissingRole \\
+        \hline
+        add\_rqe & $\mathbb{N}$, String & String & MissingRole \\
+        \hline
+        add\_sprint & $\mathbb{N}$ & String & MissingRole \\
+        \hline
+        get\_project\_desc & $\mathbb{N}$ & discord.embed & \\
+        \hline
+        get\_rqes & $\mathbb{N}$ & discord.embed & \\
+        \hline
+        get\_sprints & $\mathbb{N}$ & discord.embed & \\
+        \hline
+        list\_meetings & $\mathbb{N}$ & discord.embed & \\
+        \hline
+        list\_projects & & discord.embed & \\
+        \hline
+        rm\_last\_sprint & $\mathbb{N}$ & String & MissingRole \\
+        \hline
+        rm\_meeting & $\mathbb{N}$, $\mathbb{N}$ & String & MissingRole \\
+        \hline
+        rm\_project & $\mathbb{N}$ & String & MissingRole \\
+        \hline
+        rm\_rqe & $\mathbb{N}$ & String & MissingRole \\
+        \hline
+        set\_project\_desc & $\mathbb{N}$, String & String & MissingRole \\
+        \hline
+    \end{tabular}
+    \caption{Project Programs}
+    \label{tab:project}
+\end{table}
+
+\begin{table}[!htb]
+    \centering
+    \begin{tabular}{|p{3cm}|p{3cm}|p{3cm}|p{4.5cm}|}
+        \hline
+        \textbf{Routine Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+        \hline
+        get\_meeting\_desc & $\mathbb{N}$, $\mathbb{N}$ & discord.embed & \\
+        \hline
+        set\_meeting\_desc & $\mathbb{N}$, $\mathbb{N}$, String & String & MissingRole \\
+        \hline
+    \end{tabular}
+    \caption{Meeting Programs}
+    \label{tab:meetings}
+\end{table}
+
+\begin{table}[!htb]
+    \centering
+    \begin{tabular}{|p{3cm}|p{5.5cm}|p{2.5cm}|p{2.5cm}|}
+        \hline
+        \textbf{Routine Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+        \hline
+        add\_task & $\mathbb{N}$, $\mathbb{N}$, String, Date, Time & String & MissingRole\\
+        \hline
+        add\_task & $\mathbb{N}$, $\mathbb{N}$, String, Date, Time, String & String & MissingRole \\
+        \hline
+        list\_tasks & $\mathbb{N}$, $\mathbb{N}$ & discord.embed & \\
+        \hline
+        rm\_task & $\mathbb{N}$, $\mathbb{N}$, $\mathbb{N}$ & String & MissingRole \\
+        \hline
+    \end{tabular}
+    \caption{Sprint Programs}
+    \label{tab:sprint}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|p{3cm}|p{3cm}|p{3cm}|p{4.5cm}|}
+        \hline
+        \textbf{Routine Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+        \hline
+        add\_feedback & $\mathbb{N}$, $\mathbb{N}$, $\mathbb{N}$, String & String & MissingRole \\
+        \hline
+        get\_details & $\mathbb{N}$, $\mathbb{N}$, $\mathbb{N}$ & discord.embed & \\
+        \hline
+        list\_feedback & $\mathbb{N}$, $\mathbb{N}$, $\mathbb{N}$ & discord.embed & \\
+        \hline
+        rm\_feedback & $\mathbb{N}$, $\mathbb{N}$, $\mathbb{N}$, $\mathbb{N}$ & String & MissingRole \\
+        \hline
+        set\_details & $\mathbb{N}$, $\mathbb{N}$, String & String & MissingRole \\
+        \hline
+    \end{tabular}
+    \caption{Task Programs}
+    \label{tab:task}
+\end{table}
+
+\subsection* {Semantics}
+\subsubsection* {Environment Variables}
+TOKEN: A string constant containing the information linking ScrumBot to Discord's API
+
 \subsubsection* {State Variables}
-None
+startup\_extensions: A list of command cogs.
+
 \subsubsection* {State Invariant}
 None
 
-\newpage
+\subsubsection* {Assumptions}
+This module is the interface between the users and the code. The input taken for the export access programs are text-based commands in Discord, and the output is also in text channels as text output. The methods also keep an output in the terminal as a log of commands used.\\ \\
+The exception to this assumption is the access routine on\_ready as the output for the method is found in the terminal only. Due to this, there is no output value in the exported access programs table.\\ \\
+Though it is comprised of multiple files with many different purposes, the main purpose for these files are the same. For this reason, they have been grouped together into one module, with the secret being communication between the client from Discord and the system.\\ \\
+It is assumed that author refers to the user that initiated the command.\\ \\
 
-%% GENERIC LIST MODULE
-\section*{Generic Dictionary Module}
-\subsection*{Generic Template Module}
-Dict(T)
+\subsubsection* {Access Routine Semantics}
 
-\subsection*{Uses}
-N/A
-
-\subsection*{Syntax}
-\subsubsection*{Exported Types}
-Dict = ?
-\subsubsection*{Exported Constants}
-None
-\subsubsection* {Exported Access Programs}
-\begin{tabular}{|p{3cm}|p{3cm}|p{3cm}|p{4.5cm}|}
-    \hline
-    \textbf{Routine Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
-    \hline
-    new Dict & & Dict &\\
-    \hline
-    add & T & &\\
-    \hline
-    remove & $\mathbb{N}$ & & KeyError\\
-    \hline
-    toSeq & & set of ($\mathbb{N}$,T) & \\
-    \hline
-\end{tabular}
-
-\subsection*{Semantics}
-\subsubsection*{State Variables}
-D: set of ($\mathbb{N}$,T) \\
-c: $\mathbb{N}$
-\subsubsection*{State Invariant}
-$|D| \geq 0$\\
-$c \geq 0$
-
-\subsection*{Assumptions \& Design Decision}
+\noindent \textbf{ScrumBot Programs\\}
+\noindent on\_ready()
 \begin{itemize}
-  \item The Dict(T) constructor is called for each object instance before any other access routine is called for that object.
+    \item transition: waits for ScrumBot to connect to Discord's API servers using the TOKEN, and upon successful connection, will print out the bot's name and id to the terminal. It is a check for successful connection to the server.
 \end{itemize}
 
-\subsection*{Access Routine Semantics}
-\noindent new Dict():
+\noindent \textbf{Admin Programs\\}
+\noindent load($cog$)
 \begin{itemize}
-    \item transition: $D, c := \langle \rangle, 0$
+    \item transition: attempts to load a Cog into ScrumBot through the use of the command \texttt{load\_extension(cog)}
     
-    \item output: $out := self$
+    \item output: $out :=$ $(exc \Rightarrow ``\text{Error: failed to load}"\ ||\ cog\ |\ \lnot\ exc \Rightarrow cog\ ||\ ``\text{loaded}")$
+    
+    \item exception:\\
+    \begin{tabular}{|p{12cm}|l|}
+        \hhline{~|-|}
+        \multicolumn{1}{r|}{} & \multicolumn{1}{l|}{$exc :=$}\\
+        \hhline{|-|-|}
+        author\_role $\neq$ admin & MissingRole\\
+        \hhline{|-|-|}
+        any issue with loading cog & Exception\\
+        \hhline{|-|-|}
+    \end{tabular}
 \end{itemize}
 
-\noindent add(e):
+\noindent reload($cog$)
 \begin{itemize}
-    \item transition: $D :=  D\ ||\ \langle c,\ e \rangle, c := c + 1$
+    \item transition: attempts to reload the cog in ScrumBot through unloading the cog then loading the cog
+    
+    \item output: $out :=$ $(exc \Rightarrow ``\text{Error: failed to reload}"\ ||\ cog\ |\ \lnot\ exc \Rightarrow cog\ ||\ ``\text{reloaded}")$
+    
+    \item exception:\\
+    \begin{tabular}{|p{12cm}|l|}
+        \hhline{~|-|}
+        \multicolumn{1}{r|}{} & \multicolumn{1}{l|}{$exc :=$}\\
+        \hhline{|-|-|}
+        author\_role $\neq$ admin & MissingRole\\
+        \hhline{|-|-|}
+        any issue with unloading or loading cog & Exception\\
+        \hhline{|-|-|}
+    \end{tabular}
 \end{itemize}
 
-\noindent remove(id):
+\noindent unload($cog$)
 \begin{itemize}
-    \item transition: $D :=  D - \langle id, e \rangle$
-    \item exception: $exc := \langle id, e \rangle \notin D \Rightarrow \text{KeyError}$
+    \item transition: attempts to unload a cog from ScrumBot
+    
+    \item output: $out :=$ $(exc \Rightarrow ``\text{Error: failed to unload}"\ ||\ cog\ |\ \lnot\ exc \Rightarrow cog\ ||\ ``\text{unloaded}")$
+    
+    \item exception:\\
+    \begin{tabular}{|p{12cm}|l|}
+        \hhline{~|-|}
+        \multicolumn{1}{r|}{} & \multicolumn{1}{l|}{$exc :=$}\\
+        \hhline{|-|-|}
+        author\_role $\neq$ admin & MissingRole\\
+        \hhline{|-|-|}
+        any issue with unloading cog & Exception\\
+        \hhline{|-|-|}
+    \end{tabular}
 \end{itemize}
 
-\noindent toSeq():
+\noindent \textbf{Member Programs\\}
+\noindent get\_roles()
 \begin{itemize}
-    \item output: $D$
+    \item transition: finds all roles that are assigned to the author
+    \item output: $out :=$ a discord.embed such that it contains the chosen author's name, icon, and a list of their roles
+\end{itemize}
+
+\noindent get\_roles($name$)
+\begin{itemize}
+    \item transition: takes in the name of a Discord user and finds all roles that are assigned to that user
+    \item output: $out :=$ a discord.embed such that it contains the chosen user's name, icon, and a list of their roles
+\end{itemize}
+
+\noindent \textbf{Project Programs\\}
+\noindent add\_meeting($n, name, date, time, meeting$)
+\begin{itemize}
+    \item transition: new Meeting($name, date, time, meeting$), add it to project $n$ using add\_meeting
+    \item output: $out :=$ $(exc \Rightarrow ``\text{MissingRole: You have insufficient permissions}"\ |\ \lnot\ exc \Rightarrow ``\text{Successfully added meeting}")$
+    \item exception: $exc :=$ author\_role $\neq$ Scrum Master $\Rightarrow$ MissingRole
+\end{itemize}
+
+\noindent add\_meeting($n, name, date, time, meeting, desc$)
+\begin{itemize}
+    \item transition: new Meeting($name, date, time, meeting, desc$), add it to project $n$ using add\_meeting
+    \item output: $out :=$ $(exc \Rightarrow ``\text{MissingRole: You have insufficient permissions}"\ |\ \lnot\ exc \Rightarrow ``\text{Successfully added meeting}")$
+    \item exception: $exc :=$ author\_role $\neq$ Scrum Master $\Rightarrow$ MissingRole
+\end{itemize}
+
+\noindent add\_project($name$)
+\begin{itemize}
+    \item transition: new Project($name$)
+    \item output: $out :=$ $(exc \Rightarrow ``\text{MissingRole: You have insufficient permissions}"\ |\ \lnot\ exc \Rightarrow ``\text{Successfully added project}")$
+    \item exception: $exc :=$ author\_role $\neq$ admin $\Rightarrow$ MissingRole
+\end{itemize}
+
+\noindent add\_project($name, desc$)
+\begin{itemize}
+    \item transition: new Project($name, desc$)
+    \item output: $out :=$ $(exc \Rightarrow ``\text{MissingRole: You have insufficient permissions}"\ |\ \lnot\ exc \Rightarrow ``\text{Successfully added project}")$
+    \item exception: $exc :=$ author\_role $\neq$ admin $\Rightarrow$ MissingRole
+\end{itemize}
+
+\noindent add\_rqe($n, s$)
+\begin{itemize}
+    \item transition: add\_rqe($s$) in project $n$
+    \item output: $out :=$ $(exc \Rightarrow ``\text{MissingRole: You have insufficient permissions}"\ |\ \lnot\ exc \Rightarrow ``\text{Successfully added requirements}")$
+    \item exception: $exc :=$ author\_role $\neq$ Business Analyst $\Rightarrow$ MissingRole
+\end{itemize}
+
+\noindent add\_sprint($n$)
+\begin{itemize}
+    \item transition: new Sprint(), then add the sprint to project $n$ using add\_sprint(sprint)
+    \item output: $out :=$ $(exc \Rightarrow ``\text{MissingRole: You have insufficient permissions}"\ |\ \lnot\ exc \Rightarrow ``\text{Successfully added a sprint}")$
+    \item exception: $exc :=$ author\_role $\neq$ Scrum Master $\Rightarrow$ MissingRole
+\end{itemize}
+
+\noindent get\_project\_desc($n$)
+\begin{itemize}
+    \item output: $out :=$ A discord.embed such that it contains the project name and description of project $n$
+\end{itemize}
+
+\noindent get\_rqes($n$)
+\begin{itemize}
+    \item output: $out :=$ A discord.embed such that it contains the project name and list of requirements of project $n$
+\end{itemize}
+
+\noindent get\_sprints($n$)
+\begin{itemize}
+    \item output: $out :=$ A discord.embed such that it contains the project name and list of sprints of project $n$
+\end{itemize}
+
+\noindent list\_meetings($n$)
+\begin{itemize}
+    \item output: $out :=$ A discord.embed such that it contains the project name and list of meetings of project $n$, as well as show the times for all the meetings
+\end{itemize}
+
+\noindent list\_projects()
+\begin{itemize}
+    \item output: $out :=$ A discord.embed containing all the created projects, identified by their name
+\end{itemize}
+
+\noindent rm\_last\_sprint($n$)
+\begin{itemize}
+    \item transition: removes the last sprint of project $n$ using rm\_sprint()
+    \item output: $out :=$ $(exc \Rightarrow ``\text{MissingRole: You have insufficient permissions}"\ |\ \lnot\ exc \Rightarrow ``\text{Successfully removed a sprint}")$
+    \item exception: $exc :=$ author\_role $\neq$ Scrum Master $\Rightarrow$ MissingRole
+\end{itemize}
+
+\noindent rm\_meeting($n, m$)
+\begin{itemize}
+    \item transition: removes a meeting from project $n$ using rm\_meeting($m$)
+    \item output: $out :=$ $(exc \Rightarrow ``\text{MissingRole: You have insufficient permissions}"\ |\ \lnot\ exc \Rightarrow ``\text{Successfully removed a meeting}")$
+    \item exception: $exc :=$ author\_role $\neq$ Scrum Master $\Rightarrow$ MissingRole
+\end{itemize}
+
+\noindent rm\_project($n$)
+\begin{itemize}
+    \item transition: removes a project by their project id using remove($n$)
+    \item output: $out :=$ $(exc \Rightarrow ``\text{MissingRole: You have insufficient permissions}"\ |\ \lnot\ exc \Rightarrow ``\text{Successfully removed a project}")$
+    \item exception: $exc :=$ author\_role $\neq$ admin $\Rightarrow$ MissingRole
+\end{itemize}
+
+\noindent rm\_rqe($n, m$)
+\begin{itemize}
+    \item transition: remove requirement $m$ from project $n$ using rm\_rqe($m$)
+    \item output: $out :=$ $(exc \Rightarrow ``\text{MissingRole: You have insufficient permissions}"\ |\ \lnot\ exc \Rightarrow ``\text{Successfully removed a requirement}")$
+    \item exception: $exc :=$ author\_role $\neq$ Business Analyst $\Rightarrow$ MissingRole
+\end{itemize}
+
+\noindent set\_project\_desc($n, s$)
+\begin{itemize}
+    \item transition: set\_desc($s$) in project $n$
+    \item output: $out :=$ $(exc \Rightarrow ``\text{MissingRole: You have insufficient permissions}"\ |\ \lnot\ exc \Rightarrow ``\text{Successfully set description}")$
+    \item exception: $exc :=$ author\_role $\neq$ Business Analyst $\land$ author\_role $\neq$ admin $\Rightarrow$ MissingRole
+\end{itemize}
+
+\noindent \textbf{Meeting Programs\\}
+\noindent get\_meeting\_desc($n, m$)
+\begin{itemize}
+    \item output: $out :=$ A discord.embed such that it contains the meeting description of meeting $m$ in project $n$, showing the meeting name and project name as well
+\end{itemize}
+
+\noindent set\_meeting\_desc($n, m, s$)
+\begin{itemize}
+    \item transition: set\_desc($s$) for meeting $m$ in project $n$
+    \item output: $out :=$ $(exc \Rightarrow ``\text{MissingRole: You have insufficient permissions}"\ |\ \lnot\ exc \Rightarrow ``\text{Successfully set description}")$
+    \item exception: $exc :=$ author\_role $\neq$ Scrum Master $\Rightarrow$ MissingRole
+\end{itemize}
+
+\noindent \textbf{Sprint Programs\\}
+\noindent add\_task($n, m, name, date, time$)
+\begin{itemize}
+    \item transition: new Task($name, date, time$) then add\_task(task) in sprint $m$, project $n$
+    \item output: $out :=$ $(exc \Rightarrow ``\text{MissingRole: You have insufficient permissions}"\ |\ \lnot\ exc \Rightarrow ``\text{Successfully added task}")$
+    \item exception: $exc :=$ author\_role $\neq$ Scrum Master $\Rightarrow$ MissingRole
+\end{itemize}
+
+\noindent add\_task($n, m, name, date, time, detail$)
+\begin{itemize}
+    \item transition: new Task($name, date, time, detail$) then add\_task(task) in sprint $m$, project $n$
+    \item output: $out :=$ $(exc \Rightarrow ``\text{MissingRole: You have insufficient permissions}"\ |\ \lnot\ exc \Rightarrow ``\text{Successfully added task}")$
+    \item exception: $exc :=$ author\_role $\neq$ Scrum Master $\land$ author\_role $\neq$ Business Analyst $\Rightarrow$ MissingRole
+\end{itemize}
+
+\noindent list\_tasks($n, m$)
+\begin{itemize}
+    \item output: $out :=$ A discord.embed such that it lists all the tasks of sprint $m$ in project $n$, as well as their deadlines
+\end{itemize}
+
+\noindent rm\_task($n, m, k$)
+\begin{itemize}
+    \item transition: rm\_task($k$) in sprint $m$ in project $n$
+    \item output: $out :=$ $(exc \Rightarrow ``\text{MissingRole: You have insufficient permissions}"\ |\ \lnot\ exc \Rightarrow ``\text{Successfully removed task}")$
+    \item exception: $exc :=$ author\_role $\neq$ Scrum Master $\land$ author\_role $\neq$ Business Analyst $\Rightarrow$ MissingRole
+\end{itemize}
+
+\noindent \textbf{Task Programs\\}
+\noindent add\_feedback($n, m, k, s$)
+\begin{itemize}
+    \item transition: add\_feedback($s$) in task $k$, sprint $m$, project $n$
+    \item output: $out :=$ $(exc \Rightarrow ``\text{MissingRole: You have insufficient permissions}"\ |\ \lnot\ exc \Rightarrow ``\text{Successfully added feedback}")$
+    \item exception: $exc :=$ author\_role $\neq$ Scrum Master $\Rightarrow$ MissingRole
+\end{itemize}
+
+\noindent get\_details($n, m, k$)
+\begin{itemize}
+    \item output: $out :=$ A discord.embed such that it shows the details of task $k$, in sprint $m$, in project $n$, using get\_details()
+\end{itemize}
+
+\noindent list\_feedback($n, m, k$)
+\begin{itemize}
+    \item output: $out :=$ A discord.embed such that it lists all the feedback of task $k$, in sprint $m$, in project $n$, using get\_feedback()
+\end{itemize}
+
+\noindent rm\_feedback($n, m, k, x$)
+\begin{itemize}
+    \item transition: rm\_feedback($x$) for task $k$ in sprint $m$ in project $n$
+    \item output: $out :=$ $(exc \Rightarrow ``\text{MissingRole: You have insufficient permissions}"\ |\ \lnot\ exc \Rightarrow ``\text{Successfully removed feedback}")$
+    \item exception: $exc :=$ author\_role $\neq$ Scrum Master $\Rightarrow$ MissingRole
+\end{itemize}
+
+\noindent set\_details($n, m, s$)
+\begin{itemize}
+    \item transition: set\_details($s$) for task $k$ in sprint $m$ in project $n$
+    \item output: $out :=$ $(exc \Rightarrow ``\text{MissingRole: You have insufficient permissions}"\ |\ \lnot\ exc \Rightarrow ``\text{Successfully set details}")$
+    \item exception: $exc :=$ author\_role $\neq$ Scrum Master $\land$ author\_role $\neq$ Business Analyst $\Rightarrow$ MissingRole
 \end{itemize}
 
 \newpage
@@ -229,9 +567,9 @@ $|d| \geq 0$\\
 $c \geq 0$
 
 \subsection*{Assumptions \& Design Decisions}
-\begin{itemize}
-  \item The Dict(T) constructor is called for each object instance before any other access routine is called for that object.
-\end{itemize}
+The Dict(T) constructor is called for each object instance before any other access routine is called for that object.\\ \\
+It is assumed that the first term in Dict is referred to as the "key" and the second term is the "value".
+
 
 \subsection*{Access Routine Semantics}
 \noindent new Dict():
@@ -254,7 +592,7 @@ $c \geq 0$
 
 \noindent to\_seq():
 \begin{itemize}
-    \item output: $out := d$ such that $(\forall i \in \mathbb{N} \mid 0 \leq i < |d| - 1 \cdot d[i] \leq d[i + 1] )$
+    \item output: $out := d$ such that $(\forall i \in \mathbb{N} \mid 0 \leq i < |d| \cdot d[i].key() \leq d[i + 1].key())$
 \end{itemize}
 
 \newpage
@@ -299,9 +637,9 @@ Meeting = ?
     \hline
     get\_type & & MeetingT &\\
     \hline
-    get\_description & & String &\\
+    get\_desc & & String &\\
     \hline
-    set\_description & String & & \\
+    set\_desc & String & & \\
     \hline
 \end{tabular}
 
@@ -355,12 +693,12 @@ None
     \item output: $out := type$
 \end{itemize}
 
-\noindent get\_description()
+\noindent get\_desc()
 \begin{itemize}
     \item output: $out := desc$
 \end{itemize}
 
-\noindent set\_description($s$)
+\noindent set\_desc($s$)
 \begin{itemize}
     \item transition: $desc := s$
 \end{itemize}
@@ -494,7 +832,7 @@ Sprint = ?
     \hline
     \textbf{Routine Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
     \hline
-    new Sprint & $\mathbb{N}$ & Sprint & \\
+    new Sprint & & Sprint & \\
     \hline
     get\_tasks & & seq of Task &\\
     \hline
@@ -506,8 +844,8 @@ Sprint = ?
 
 \subsection*{Semantics}
 \subsubsection*{State Variables}
-$sprint\_num$: $\mathbb{N}$\\
 $tasks$: TaskList
+
 \subsubsection*{State Invariant}
 None
 
@@ -519,7 +857,7 @@ None
 \subsubsection*{Access Routine Semantics}
 \noindent new Sprint($n$)
 \begin{itemize}
-    \item transition: $sprint\_num, tasks := n, TaskList()$
+    \item transition: $tasks := TaskList()$
     \item output: $out :=$ self
 \end{itemize}
 
@@ -535,7 +873,7 @@ None
 
 \noindent rm\_task($n$)
 \begin{itemize}
-    \item transition: $tasks := tasks.renove(n)$
+    \item transition: $tasks := tasks.remove(n)$
 \end{itemize}
 
 \newpage
@@ -587,13 +925,13 @@ Project = ?
     \hline
     add\_rqe & String & & \\
     \hline
-    pop\_sprint & $\mathbb{N}$ & & IndexError\\
-    \hline
-    push\_sprint & Sprint & & \\
+    add\_sprint & Sprint & & \\
     \hline
     rm\_meeting & $\mathbb{N}$ &  &\\
     \hline
     rm\_rqe & $\mathbb{N}$ &  & IndexError\\
+    \hline
+    rm\_sprint & & & IndexError\\
     \hline
 \end{tabular}
 
@@ -603,10 +941,11 @@ $name$: String\\
 $desc$: String\\
 $meetings$: MeetingList\\
 $rqes$: seq of String\\
-$sprints$: seq of Sprint
+$sprints$: seq of Sprint\\
+$c$: $\mathbb{N}$
 
 \subsubsection*{State Invariant}
-None
+$c = |sprints|\ \land\ c \geq 0$ 
 
 \subsubsection*{Assumptions}
 \begin{itemize}
@@ -661,15 +1000,9 @@ None
     \item transition: $rqes := rqes\ ||\ s$
 \end{itemize}
 
-\noindent pop\_sprint()
+\noindent add\_sprint($sprint$)
 \begin{itemize}
-    \item transition: $sprints := sprints[0: |sprints| - 2]$
-    \item exception: $exc := |sprints| = 0 \Rightarrow \text{IndexError}$
-\end{itemize}
-
-\noindent push\_sprint($sprint$)
-\begin{itemize}
-    \item transition: $sprints := sprints\ ||\ sprint$
+    \item transition: $sprints, c := sprints\ ||\ sprint, c + 1$
 \end{itemize}
 
 \noindent rm\_meeting($n$)
@@ -680,6 +1013,12 @@ None
 \noindent rm\_rqe($n$)
 \begin{itemize}
     \item transition: $rqes := rqes - rqes[n]$
+\end{itemize}
+
+\noindent rm\_sprint()
+\begin{itemize}
+    \item transition: $sprints, c := sprints[0: |sprints| - 2], c - 1$
+    \item exception: $exc := c = 0 \Rightarrow \text{IndexError}$
 \end{itemize}
 
 \end{document}
