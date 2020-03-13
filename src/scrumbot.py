@@ -11,7 +11,7 @@ from dotenv import load_dotenv
 load_dotenv()
 TOKEN = os.getenv('TOKEN')
 
-startup_extensions = ["cogs.adminCog", "cogs.memberCog", "cogs.meetingCog", "cogs.projectCog"]
+startup_extensions = ["cogs.adminCog", "cogs.meetingCog", "cogs.memberCog", "cogs.projectCog", "cogs.sprintCog", "cogs.taskCog"]
 bot = commands.Bot(command_prefix="!", description='ScrumBot')
 
 ## @brief Sends a message to the terminal stating that the Discord bot is ready to use.

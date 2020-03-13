@@ -23,7 +23,7 @@ class MeetingCog(commands.Cog, name="Meeting Commands"):
     async def rm_meeting(self, ctx, *args):
         raise NotImplementedError
 
-    @commands.command(name="listMeetings", brief="List all scheduled meetings.")
+    @commands.command(name="listMeetings", aliases=['meetings'], brief="List all scheduled meetings.")
     @commands.guild_only()
     async def list_meetings(self, ctx):
         raise NotImplementedError
