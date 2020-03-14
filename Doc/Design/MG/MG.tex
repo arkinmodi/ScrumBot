@@ -57,11 +57,12 @@
             \textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
         \midrule
             January 23, 2020 & Arkin Modi & Copy template\\
-            March 5, 2020 & Leon So & Introduction, Anticipated Changes, Unlikely Changes, Module Hierachy\\
+            March 5, 2020 & Leon So & Introduction, Anticipated Changes, Unlikely Changes, Module Hierarchy\\
             March 10, 2020 & Arkin Modi & Worked on Module Hierarchy\\
             March 11, 2020 & Arkin Modi & Worked on the Introduction\\
             March 12, 2020 & Arkin Modi & Worked on Introduction, Anticipated and Unlikely Changes, Module Hierarchy, Module Decomposition, Traceability Matrix and Use Hierarchy Between Modules\\
             March 12, 2020 & Leon So & Anticipated Changes and Unlikely Changes\\
+            March 13, 2020 & Arkin Modi & Worked on Use Hierarchy Between Modules, Traceability Matrix, Module Decomposition, and Module Hierarchy\\
         \bottomrule
     \end{tabularx}
 \end{table}
@@ -192,6 +193,7 @@ actually be implemented.
     \item [\refstepcounter{mnum} \mthemnum \label{m8}:] Sprint Module
     \item [\refstepcounter{mnum} \mthemnum \label{m9}:] Project List Module
     \item [\refstepcounter{mnum} \mthemnum \label{m10}:] Project Module
+    \item [\refstepcounter{mnum} \mthemnum \label{m11}:] Generic Dictionary Module
 \end{description}
 
 
@@ -218,6 +220,7 @@ actually be implemented.
 & Sprint Module\\           % Data Structure
 & Project List Module\\     % Data Structure
 & Project Module\\          % Data Structure
+& Generic Dictionary Module\\   % Data Structure
 \bottomrule
 
 \end{tabular}
@@ -276,64 +279,64 @@ Only the leaf modules in the hierarchy have to be implemented. If a dash (\emph{
 \begin{description}
     \item[Secrets:] Exported type (data structure)
     \item[Services:] None
-    \item[Implemented By:] 
+    \item[Implemented By:] meetingTypes.py
 \end{description}
 
 \subsubsection{Meeting List Module (\mref{m4})}
 \begin{description}
     \item[Secrets:] Data structure for a list of meetings
     \item[Services:] Provides the ability to add, remove, and output all data
-    \item[Implemented By:] 
+    \item[Implemented By:] meetingList.py
 \end{description}
 
 \subsubsection{Meeting Module (\mref{m5})}
 \begin{description}
     \item[Secrets:] Data structure of a meeting
     \item[Services:] Provides the ability to initialize, access (name, date, time, type, and description) and mutate (description only) a meeting
-    \item[Implemented By:] 
+    \item[Implemented By:] meeting.py
 \end{description}
 
 \subsubsection{Task List Module (\mref{m6})}
 \begin{description}
     \item[Secrets:] Data structure for a list of tasks
     \item[Services:] Provides the ability to add, remove, and output all data
-    \item[Implemented By:] 
+    \item[Implemented By:] taskList.py
 \end{description}
 
 \subsubsection{Task Module (\mref{m7})}
 \begin{description}
     \item[Secrets:] Data structure of a task
     \item[Services:] Provides the ability to initialize, access (deadline, details and feedback) and mutate (feedback and details) a task
-    \item[Implemented By:] 
+    \item[Implemented By:] task.py
 \end{description}
 
 \subsubsection{Sprint Module (\mref{m8})}
 \begin{description}
     \item[Secrets:] Data structure of a sprint
     \item[Services:] Provides the ability to initialize, access (all tasks) and mutate (task) a sprint
-    \item[Implemented By:] 
+    \item[Implemented By:] sprint.py
 \end{description}
 
 \subsubsection{Project List Module (\mref{m9})}
 \begin{description}
     \item[Secrets:] Data structure for a list of projects
     \item[Services:] Provides the ability to add, remove, and output all data
-    \item[Implemented By:]
+    \item[Implemented By:] projectList.py
 \end{description}
 
 \subsubsection{Project Module (\mref{m10})}
 \begin{description}
     \item[Secrets:] Data structure for a project
     \item[Services:] Provides the ability to initialize, access (description, meetings, requirements and sprints) and mutate (description, meetings, requirements and sprints) a project
-    \item[Implemented By:]
+    \item[Implemented By:] project.py
 \end{description}
 
-% \subsubsection{Generic Dictionary Module (\mref{m?})}
-% \begin{description}
-%     \item[Secrets:] Data structure of a dictionary
-%     \item[Services:] Provides basic functionality of a dictionary (add, remove, output all data)
-%     \item[Implemented By:] dictionary.py
-% \end{description}
+\subsubsection{Generic Dictionary Module (\mref{m11})}
+\begin{description}
+    \item[Secrets:] Data structure of a dictionary
+    \item[Services:] Provides basic functionality of a dictionary (add, remove, output all data)
+    \item[Implemented By:] dictionary.py
+\end{description}
 
 \section{Traceability Matrix} \label{SecTM}
 
@@ -346,33 +349,33 @@ requirements and between the modules and the anticipated changes.
     \centering
     \begin{tabular}{p{0.2\textwidth} p{0.6\textwidth}}
         \toprule
-        \textbf{Req.} & \textbf{Modules}\\
+        \textbf{Requirements} & \textbf{Modules}\\
         \midrule
         BE1 & \mref{m2}\\
-        BE2 & \mref{mInput}\\
-        BE3 & \mref{mVerify}\\
-        BE4 & \mref{mOutput}\\
-        BE5 & \mref{mOutput}\\
-        BE6 & \mref{mOutput}\\
-        BE7 & \mref{mOutput}\\
-        BE8 & \mref{mOutput}\\
-        BE9 & \mref{mVerifyOut}\\
-        BE10 & \mref{mOutput}\\
-        BE11 & \mref{mOutput}\\
-        LF1 & ~\\
-        LF2 & ~\\
-        LF3 & ~\\
-        UH1 & ~\\
+        BE2 & \mref{m2}, \mref{m9}, \mref{m10}, \mref{m11}\\
+        BE3 & \mref{m2}, \mref{m9}, \mref{m11}\\
+        BE4 & \mref{m2}, \mref{m8}, \mref{m9}, \mref{m10}, \mref{m11}\\
+        BE5 & \mref{m2}, \mref{m8}, \mref{m9}, \mref{m10}, \mref{m11}\\
+        BE6 & \mref{m2}, \mref{m8}, \mref{m9}, \mref{m10}, \mref{m11}\\
+        BE7 & \mref{m2}, \mref{m8}, \mref{m9}, \mref{m10}, \mref{m11}\\
+        BE8 & \mref{m2}, \mref{m9}, \mref{m10}, \mref{m11}\\
+        BE9 & \mref{m2}, \mref{m9}, \mref{m10}, \mref{m11}\\
+        BE10 & \mref{m2}, \mref{m9}, \mref{m10}, \mref{m11}\\
+        BE11 & \mref{m2}, \mref{m8}, \mref{m9}, \mref{m10}, \mref{m11}\\
+        LF1 & \mref{m2}\\
+        LF2 & \mref{m2}\\
+        LF3 & \mref{m2}\\
+        UH1 & \mref{m2}\\
         UH2 & ~\\
         UH3 & ~\\
-        UH4 & ~\\
+        UH4 & \mref{m2}\\
         P1 & ~\\
         P2 & ~\\
         P3 & ~\\
-        P4 & ~\\
-        OE1 & ~\\
+        P4 & \mref{m2}\\
+        OE1 & \mref{m2}\\
         OE2 & ~\\
-        OE3 & ~\\
+        OE3 & \mref{m2}\\
         OE4 & ~\\
         OE5 & ~\\
         OE6 & ~\\
@@ -383,7 +386,7 @@ requirements and between the modules and the anticipated changes.
         MS3 & ~\\
         MS4 & ~\\
         MS5 & ~\\
-        S1 & ~\\
+        S1 & \mref{m2}\\
         C1 & ~\\
         L1 & ~\\
         HS1 & ~\\
@@ -416,7 +419,7 @@ In this section, the uses hierarchy between modules is provided. \citet{Parnas19
 
 \begin{figure}[H]
     \centering
-    %\includegraphics[width=0.7\textwidth]{UsesHierarchy.png}
+    \includegraphics[width=0.7\textwidth]{"UsesHierarchy".png}
     \caption{Use hierarchy among modules}
     \label{FigUH}
 \end{figure}
