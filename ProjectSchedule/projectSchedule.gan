@@ -182,10 +182,11 @@
         <allocation task-id="402" resource-id="0" function="Default:0" responsible="false" load="5.0"/>
         <allocation task-id="405" resource-id="0" function="Default:0" responsible="false" load="100.0"/>
         <allocation task-id="416" resource-id="0" function="Default:0" responsible="false" load="33.3"/>
-        <allocation task-id="228" resource-id="0" function="Default:0" responsible="false" load="100.0"/>
-        <allocation task-id="230" resource-id="0" function="Default:0" responsible="false" load="50.0"/>
+        <allocation task-id="230" resource-id="0" function="Default:0" responsible="false" load="30.0"/>
         <allocation task-id="235" resource-id="0" function="Default:0" responsible="false" load="100.0"/>
         <allocation task-id="237" resource-id="0" function="Default:0" responsible="false" load="100.0"/>
+        <allocation task-id="228" resource-id="0" function="Default:0" responsible="false" load="100.0"/>
+        <allocation task-id="241" resource-id="0" function="Default:0" responsible="false" load="100.0"/>
         <allocation task-id="131" resource-id="1" function="1" responsible="false" load="33.3"/>
         <allocation task-id="2" resource-id="1" function="1" responsible="true" load="33.3"/>
         <allocation task-id="134" resource-id="1" function="1" responsible="true" load="33.3"/>
@@ -234,7 +235,7 @@
         <allocation task-id="403" resource-id="1" function="Default:0" responsible="false" load="80.0"/>
         <allocation task-id="407" resource-id="1" function="Default:0" responsible="false" load="50.0"/>
         <allocation task-id="416" resource-id="1" function="Default:0" responsible="false" load="33.3"/>
-        <allocation task-id="230" resource-id="1" function="Default:0" responsible="false" load="50.0"/>
+        <allocation task-id="230" resource-id="1" function="Default:0" responsible="false" load="70.0"/>
         <allocation task-id="426" resource-id="1" function="Default:0" responsible="false" load="100.0"/>
         <allocation task-id="408" resource-id="1" function="1" responsible="false" load="100.0"/>
         <allocation task-id="432" resource-id="1" function="Default:0" responsible="false" load="100.0"/>
@@ -269,7 +270,6 @@
         <allocation task-id="212" resource-id="2" function="Default:0" responsible="false" load="33.3"/>
         <allocation task-id="216" resource-id="2" function="Default:0" responsible="false" load="100.0"/>
         <allocation task-id="222" resource-id="2" function="Default:0" responsible="false" load="33.3"/>
-        <allocation task-id="241" resource-id="2" function="Default:0" responsible="false" load="100.0"/>
         <allocation task-id="226" resource-id="2" function="Default:0" responsible="false" load="33.3"/>
         <allocation task-id="127" resource-id="2" function="Default:0" responsible="false" load="33.3"/>
         <allocation task-id="246" resource-id="2" function="Default:0" responsible="false" load="33.3"/>
