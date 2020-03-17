@@ -3,7 +3,7 @@
 #  @brief A class representing tasks during the software development cycle
 #  @date Mar 17, 2020
 
-## @brief Class representing tasks
+## @brief Class representing task object
 #  @details Class representing tasks with fields name, deadline, details and feedback
 class Task():
 
@@ -43,6 +43,7 @@ class Task():
      ## @brief Mutator for removing feedback from task
     def rm_feedback(self, s):
         return self.feedback.remove(s)
+        # return self.feedback.del(i) -- if remove by index instead?
 
      ## @brief Mutator for setting details of a task
     def set_details(self, s):
