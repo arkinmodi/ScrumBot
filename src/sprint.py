@@ -11,7 +11,7 @@ class Sprint():
 
     ## @brief Constructor for Sprint object
     def __init__(self):
-        tasks = TaskList()
+        self.tasks = TaskList()
 
     ## @brief Accessor for list of tasks
     def get_tasks(self):
