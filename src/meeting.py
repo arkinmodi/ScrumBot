@@ -3,7 +3,7 @@
 #  @brief Class representing Meeting objects
 #  @date Mar 21, 2020
 
-from meetingTypes import meetingTypes
+from meetingTypes import *
 
 ## @brief Meeting class
 class Meeting():
