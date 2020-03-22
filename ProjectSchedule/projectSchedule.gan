@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="Scrumbot" company="Scrumbot" webLink="https://gitlab.cas.mcmaster.ca/modia1/ScrumBot" view-date="2020-03-04" view-index="0" gantt-divider-location="515" resource-divider-location="300" version="2.8.10" locale="en_CA">
+<?xml version="1.0" encoding="UTF-8"?><project name="Scrumbot" company="Scrumbot" webLink="https://gitlab.cas.mcmaster.ca/modia1/ScrumBot" view-date="2020-03-15" view-index="0" gantt-divider-location="515" resource-divider-location="300" version="2.8.10" locale="en_CA">
     <description>
         <![CDATA[Scrum is an agile process framework widely used in industry for managing and coordinating collaborative projects. Scrum being a process based on the agile development method, follows a highly iterative process and often has heavy customer involvement, therefore it can be often be complex. It is often difficult to manage communication and coordination within the project due to the complexity of agile development processes. With Discord being a popular communication tool used by many teams of software developers today, our team would like to develop a solution to directly integrate the management of a scrum development cycle into the communication channels. Our solution will allow for better management and organization of retrospectives, stand-ups, and other scrum/agile processes used by software teams during routine communication.]]>
     </description>
@@ -78,20 +78,6 @@
             <task id="398" name="Concept Code Development" color="#8cb6ce" meeting="false" start="2020-02-11" duration="2" complete="0" thirdDate="2020-01-26" thirdDate-constraint="0" expand="true"/>
         </task>
         <task id="121" name="Proof of Concept Presentation" color="#8cb6ce" meeting="true" start="2020-02-13" duration="0" complete="0" thirdDate="2020-01-22" thirdDate-constraint="0" expand="true"/>
-        <task id="141" name="Working on Test Plan" color="#8cb6ce" meeting="false" start="2020-02-07" duration="21" complete="0" thirdDate="2020-01-19" thirdDate-constraint="0" expand="false">
-            <depend id="123" type="2" difference="0" hardness="Strong"/>
-            <task id="209" name="General Information" color="#8cb6ce" meeting="false" start="2020-02-07" duration="21" complete="0" thirdDate="2020-02-07" thirdDate-constraint="0" expand="true"/>
-            <task id="212" name="Plan" color="#8cb6ce" meeting="false" start="2020-02-07" duration="21" complete="0" thirdDate="2020-02-07" thirdDate-constraint="0" expand="true"/>
-            <task id="214" name="System Test Description" color="#8cb6ce" meeting="false" start="2020-02-07" duration="21" complete="0" thirdDate="2020-02-07" thirdDate-constraint="0" expand="false">
-                <task id="402" name="Tests for Functional Requirements" color="#8cb6ce" meeting="false" start="2020-02-07" duration="21" complete="0" thirdDate="2020-01-28" thirdDate-constraint="0" expand="true"/>
-                <task id="403" name="Tests for Non-Functional Requirements" color="#8cb6ce" meeting="false" start="2020-02-07" duration="21" complete="0" thirdDate="2020-02-03" thirdDate-constraint="0" expand="true"/>
-                <task id="405" name="Traceability Between Tests Cases and Requirements" color="#8cb6ce" meeting="false" start="2020-02-07" duration="21" complete="0" thirdDate="2020-02-03" thirdDate-constraint="0" expand="true"/>
-            </task>
-            <task id="216" name="Tests for Proof of Concept" color="#8cb6ce" meeting="false" start="2020-02-07" duration="21" complete="0" thirdDate="2020-02-07" thirdDate-constraint="0" expand="true"/>
-            <task id="218" name="Comparison to Existing Implementation" color="#8cb6ce" meeting="false" start="2020-02-07" duration="21" complete="0" thirdDate="2020-02-07" thirdDate-constraint="0" expand="true"/>
-            <task id="220" name="Unit Testing Plan" color="#8cb6ce" meeting="false" start="2020-02-07" duration="21" complete="0" thirdDate="2020-02-07" thirdDate-constraint="0" expand="true"/>
-        </task>
-        <task id="123" name="Test Plan Due" color="#8cb6ce" meeting="true" start="2020-02-28" duration="0" complete="0" thirdDate="2020-01-22" thirdDate-constraint="0" expand="true"/>
         <task id="146" name="Working on Design &amp; Documentation" color="#8cb6ce" meeting="false" start="2020-03-05" duration="8" complete="0" thirdDate="2020-01-31" thirdDate-constraint="0" expand="false">
             <depend id="125" type="2" difference="0" hardness="Strong"/>
             <task id="222" name="MG" color="#8cb6ce" meeting="false" start="2020-03-05" duration="8" complete="0" thirdDate="2020-02-28" thirdDate-constraint="0" expand="true">
@@ -117,8 +103,23 @@
             </task>
         </task>
         <task id="125" name="Design &amp; Document Due" color="#8cb6ce" meeting="true" start="2020-03-13" duration="0" complete="0" thirdDate="2020-01-22" thirdDate-constraint="0" expand="true"/>
+        <task id="141" name="Working on Test Plan" color="#8cb6ce" meeting="false" start="2020-02-07" duration="21" complete="0" thirdDate="2020-01-19" thirdDate-constraint="0" expand="false">
+            <depend id="123" type="2" difference="0" hardness="Strong"/>
+            <task id="209" name="General Information" color="#8cb6ce" meeting="false" start="2020-02-07" duration="21" complete="0" thirdDate="2020-02-07" thirdDate-constraint="0" expand="true"/>
+            <task id="212" name="Plan" color="#8cb6ce" meeting="false" start="2020-02-07" duration="21" complete="0" thirdDate="2020-02-07" thirdDate-constraint="0" expand="true"/>
+            <task id="214" name="System Test Description" color="#8cb6ce" meeting="false" start="2020-02-07" duration="21" complete="0" thirdDate="2020-02-07" thirdDate-constraint="0" expand="true">
+                <task id="402" name="Tests for Functional Requirements" color="#8cb6ce" meeting="false" start="2020-02-07" duration="21" complete="0" thirdDate="2020-01-28" thirdDate-constraint="0" expand="true"/>
+                <task id="403" name="Tests for Non-Functional Requirements" color="#8cb6ce" meeting="false" start="2020-02-07" duration="21" complete="0" thirdDate="2020-02-03" thirdDate-constraint="0" expand="true"/>
+                <task id="405" name="Traceability Between Tests Cases and Requirements" color="#8cb6ce" meeting="false" start="2020-02-07" duration="21" complete="0" thirdDate="2020-02-03" thirdDate-constraint="0" expand="true"/>
+            </task>
+            <task id="216" name="Tests for Proof of Concept" color="#8cb6ce" meeting="false" start="2020-02-07" duration="21" complete="0" thirdDate="2020-02-07" thirdDate-constraint="0" expand="true"/>
+            <task id="218" name="Comparison to Existing Implementation" color="#8cb6ce" meeting="false" start="2020-02-07" duration="21" complete="0" thirdDate="2020-02-07" thirdDate-constraint="0" expand="true"/>
+            <task id="220" name="Unit Testing Plan" color="#8cb6ce" meeting="false" start="2020-02-07" duration="21" complete="0" thirdDate="2020-02-07" thirdDate-constraint="0" expand="true"/>
+        </task>
+        <task id="123" name="Test Plan Due" color="#8cb6ce" meeting="true" start="2020-02-28" duration="0" complete="0" thirdDate="2020-01-22" thirdDate-constraint="0" expand="true"/>
         <task id="127" name="Demonstration" color="#8cb6ce" meeting="true" start="2020-03-16" duration="0" complete="0" thirdDate="2020-01-22" thirdDate-constraint="0" expand="true"/>
         <task id="246" name="Working on Test Report" color="#8cb6ce" meeting="false" start="2020-03-16" duration="21" complete="0" thirdDate="2020-02-26" thirdDate-constraint="0" expand="false">
+            <depend id="129" type="2" difference="0" hardness="Strong"/>
             <task id="250" name="Nonfunctional Requirements Evaluation" color="#8cb6ce" meeting="false" start="2020-03-16" duration="21" complete="0" thirdDate="2020-03-16" thirdDate-constraint="0" expand="true"/>
             <task id="252" name="Usability" color="#8cb6ce" meeting="false" start="2020-03-16" duration="21" complete="0" thirdDate="2020-03-16" thirdDate-constraint="0" expand="true">
                 <task id="391" name="Functional Requirements Evaluation" color="#8cb6ce" meeting="false" start="2020-03-16" duration="21" complete="0" thirdDate="2020-03-16" thirdDate-constraint="0" expand="true"/>
@@ -136,7 +137,7 @@
             <depend id="129" type="2" difference="0" hardness="Strong"/>
         </task>
         <task id="129" name="Final Documentation Due" color="#8cb6ce" meeting="true" start="2020-04-06" duration="0" complete="0" thirdDate="2020-01-22" thirdDate-constraint="0" expand="true"/>
-        <task id="416" name="Coding" color="#8cb6ce" meeting="false" start="2020-03-05" duration="32" complete="0" thirdDate="2020-02-23" thirdDate-constraint="0" expand="false">
+        <task id="416" name="Coding" color="#8cb6ce" meeting="false" start="2020-03-05" duration="32" complete="0" thirdDate="2020-02-23" thirdDate-constraint="0" expand="true">
             <task id="437" name="ScrumBot Module" color="#8cb6ce" meeting="false" start="2020-03-05" duration="32" complete="0" thirdDate="2020-02-24" thirdDate-constraint="0" expand="true"/>
             <task id="438" name="Meeting Types Module" color="#8cb6ce" meeting="false" start="2020-03-05" duration="32" complete="0" thirdDate="2020-02-24" thirdDate-constraint="0" expand="true"/>
             <task id="439" name="Meeting List Module" color="#8cb6ce" meeting="false" start="2020-03-05" duration="32" complete="0" thirdDate="2020-02-24" thirdDate-constraint="0" expand="true"/>
@@ -148,7 +149,7 @@
             <task id="480" name="Project List Module" color="#8cb6ce" meeting="false" start="2020-03-05" duration="32" complete="0" thirdDate="2020-02-24" thirdDate-constraint="0" expand="true"/>
             <task id="448" name="Generic Dictionary Module" color="#8cb6ce" meeting="false" start="2020-03-05" duration="32" complete="0" thirdDate="2020-02-24" thirdDate-constraint="0" expand="true"/>
         </task>
-        <task id="485" name="Code Testing" color="#8cb6ce" meeting="false" start="2020-03-05" duration="32" complete="0" thirdDate="2020-02-23" thirdDate-constraint="0" expand="true" cost-manual-value="0.00000000000000" cost-calculated="true">
+        <task id="485" name="Code Testing" color="#8cb6ce" meeting="false" start="2020-03-05" duration="32" complete="0" thirdDate="2020-02-23" thirdDate-constraint="0" expand="false" cost-manual-value="0.00000000000000" cost-calculated="true">
             <task id="487" name="ScrumBot Module Unit Testing" color="#8cb6ce" meeting="false" start="2020-03-05" duration="32" complete="0" thirdDate="2020-02-24" thirdDate-constraint="0" expand="true" cost-manual-value="0.0" cost-calculated="true"/>
             <task id="489" name="Meeting Types Module Unit Testing" color="#8cb6ce" meeting="false" start="2020-03-05" duration="32" complete="0" thirdDate="2020-02-24" thirdDate-constraint="0" expand="true" cost-manual-value="0.0" cost-calculated="true"/>
             <task id="491" name="Meeting List Module Unit Testing" color="#8cb6ce" meeting="false" start="2020-03-05" duration="32" complete="0" thirdDate="2020-02-24" thirdDate-constraint="0" expand="true" cost-manual-value="0.0" cost-calculated="true"/>
@@ -177,7 +178,6 @@
         <allocation task-id="146" resource-id="0" function="Default:0" responsible="false" load="33.3"/>
         <allocation task-id="125" resource-id="0" function="Default:0" responsible="false" load="33.3"/>
         <allocation task-id="123" resource-id="0" function="Default:0" responsible="false" load="33.3"/>
-        <allocation task-id="150" resource-id="0" function="Default:0" responsible="false" load="33.3"/>
         <allocation task-id="129" resource-id="0" function="Default:0" responsible="false" load="33.3"/>
         <allocation task-id="155" resource-id="0" function="Default:0" responsible="false" load="33.3"/>
         <allocation task-id="153" resource-id="0" function="Default:0" responsible="false" load="33.3"/>
@@ -211,11 +211,6 @@
         <allocation task-id="237" resource-id="0" function="Default:0" responsible="false" load="100.0"/>
         <allocation task-id="228" resource-id="0" function="Default:0" responsible="false" load="100.0"/>
         <allocation task-id="241" resource-id="0" function="Default:0" responsible="false" load="100.0"/>
-        <allocation task-id="443" resource-id="0" function="Default:0" responsible="false" load="100.0"/>
-        <allocation task-id="444" resource-id="0" function="Default:0" responsible="false" load="100.0"/>
-        <allocation task-id="445" resource-id="0" function="Default:0" responsible="false" load="100.0"/>
-        <allocation task-id="480" resource-id="0" function="Default:0" responsible="false" load="100.0"/>
-        <allocation task-id="447" resource-id="0" function="Default:0" responsible="false" load="100.0"/>
         <allocation task-id="485" resource-id="0" function="Default:0" responsible="false" load="33.3"/>
         <allocation task-id="495" resource-id="0" function="Default:0" responsible="false" load="100.0"/>
         <allocation task-id="497" resource-id="0" function="Default:0" responsible="false" load="100.0"/>
@@ -232,7 +227,6 @@
         <allocation task-id="146" resource-id="1" function="1" responsible="true" load="33.3"/>
         <allocation task-id="125" resource-id="1" function="1" responsible="true" load="33.3"/>
         <allocation task-id="123" resource-id="1" function="1" responsible="true" load="33.3"/>
-        <allocation task-id="150" resource-id="1" function="1" responsible="true" load="33.3"/>
         <allocation task-id="129" resource-id="1" function="1" responsible="true" load="33.3"/>
         <allocation task-id="155" resource-id="1" function="1" responsible="true" load="33.3"/>
         <allocation task-id="153" resource-id="1" function="1" responsible="true" load="33.3"/>
@@ -278,16 +272,21 @@
         <allocation task-id="433" resource-id="1" function="Default:0" responsible="false" load="100.0"/>
         <allocation task-id="434" resource-id="1" function="Default:0" responsible="false" load="100.0"/>
         <allocation task-id="435" resource-id="1" function="Default:0" responsible="false" load="100.0"/>
-        <allocation task-id="438" resource-id="1" function="1" responsible="false" load="100.0"/>
-        <allocation task-id="439" resource-id="1" function="Default:0" responsible="false" load="100.0"/>
+        <allocation task-id="438" resource-id="1" function="Default:0" responsible="false" load="50.0"/>
+        <allocation task-id="439" resource-id="1" function="Default:0" responsible="false" load="50.0"/>
         <allocation task-id="442" resource-id="1" function="Default:0" responsible="false" load="100.0"/>
-        <allocation task-id="448" resource-id="1" function="Default:0" responsible="false" load="100.0"/>
+        <allocation task-id="448" resource-id="1" function="Default:0" responsible="false" load="50.0"/>
         <allocation task-id="485" resource-id="1" function="Default:0" responsible="false" load="33.3"/>
         <allocation task-id="489" resource-id="1" function="1" responsible="false" load="100.0"/>
         <allocation task-id="491" resource-id="1" function="Default:0" responsible="false" load="100.0"/>
         <allocation task-id="493" resource-id="1" function="Default:0" responsible="false" load="100.0"/>
         <allocation task-id="505" resource-id="1" function="Default:0" responsible="false" load="100.0"/>
         <allocation task-id="543" resource-id="1" function="Default:0" responsible="false" load="33.3"/>
+        <allocation task-id="443" resource-id="1" function="1" responsible="false" load="50.0"/>
+        <allocation task-id="444" resource-id="1" function="1" responsible="false" load="100.0"/>
+        <allocation task-id="445" resource-id="1" function="1" responsible="false" load="100.0"/>
+        <allocation task-id="447" resource-id="1" function="1" responsible="false" load="50.0"/>
+        <allocation task-id="480" resource-id="1" function="1" responsible="false" load="50.0"/>
         <allocation task-id="131" resource-id="2" function="Default:0" responsible="false" load="33.3"/>
         <allocation task-id="2" resource-id="2" function="Default:0" responsible="false" load="33.3"/>
         <allocation task-id="134" resource-id="2" function="Default:0" responsible="false" load="33.3"/>
@@ -297,7 +296,6 @@
         <allocation task-id="146" resource-id="2" function="Default:0" responsible="false" load="33.3"/>
         <allocation task-id="125" resource-id="2" function="Default:0" responsible="false" load="33.3"/>
         <allocation task-id="123" resource-id="2" function="Default:0" responsible="false" load="33.3"/>
-        <allocation task-id="150" resource-id="2" function="Default:0" responsible="false" load="33.3"/>
         <allocation task-id="129" resource-id="2" function="Default:0" responsible="false" load="33.3"/>
         <allocation task-id="155" resource-id="2" function="Default:0" responsible="false" load="33.3"/>
         <allocation task-id="153" resource-id="2" function="Default:0" responsible="false" load="33.3"/>
@@ -339,6 +337,13 @@
         <allocation task-id="485" resource-id="2" function="Default:0" responsible="false" load="33.3"/>
         <allocation task-id="487" resource-id="2" function="Default:0" responsible="false" load="100.0"/>
         <allocation task-id="543" resource-id="2" function="Default:0" responsible="false" load="33.3"/>
+        <allocation task-id="150" resource-id="2" function="Default:0" responsible="false" load="100.0"/>
+        <allocation task-id="448" resource-id="2" function="Default:0" responsible="false" load="50.0"/>
+        <allocation task-id="439" resource-id="2" function="Default:0" responsible="false" load="50.0"/>
+        <allocation task-id="438" resource-id="2" function="Default:0" responsible="false" load="50.0"/>
+        <allocation task-id="447" resource-id="2" function="Default:0" responsible="false" load="50.0"/>
+        <allocation task-id="480" resource-id="2" function="Default:0" responsible="false" load="50.0"/>
+        <allocation task-id="443" resource-id="2" function="Default:0" responsible="false" load="50.0"/>
     </allocations>
     <vacations/>
     <previous/>
