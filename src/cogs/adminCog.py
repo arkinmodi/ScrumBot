@@ -15,7 +15,7 @@ class AdminCog(commands.Cog, name="Admin Commands"):
     ## @brief Loads a new cog into the bot.
     #  @param cog A string having the name of the python file, usually in the form of 'cogs.<file_name>'.
     #  @throws Exception if the extension fails to load.
-    @commands.command(name='load', hidden=True)
+    @commands.command(name='load')
     @commands.is_owner()
     async def load(self, ctx, *, cog: str):
         try:
@@ -30,7 +30,7 @@ class AdminCog(commands.Cog, name="Admin Commands"):
     ## @brief Reloads a cog in the bot.
     #  @param cog A string having the name of the python file, usually in the form of 'cogs.<file_name>'.g 
     #  @throws Exception if the extension fails to reload.
-    @commands.command(name='reload', hidden=True)
+    @commands.command(name='reload')
     @commands.is_owner()
     async def reload(self, ctx, *, cog: str):
         try:
@@ -46,7 +46,7 @@ class AdminCog(commands.Cog, name="Admin Commands"):
     ## @brief Unloads a cog from the bot.
     #  @param cog A string having the name of the python file, usually in the form of 'cogs.<file_name>'.g 
     #  @throws Exception if the extension fails to unload.
-    @commands.command(name='unload', hidden=True)
+    @commands.command(name='unload')
     @commands.is_owner()
     async def unload(self, ctx, *, cog: str):
         try:

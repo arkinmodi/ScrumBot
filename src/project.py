@@ -4,6 +4,7 @@
 #  @date Mar 21, 2020
 
 from meetingTypes import *
+from meetingList import MeetingList
 from task import *
 from taskList import *
 from sprint import *
@@ -81,10 +82,10 @@ class Project():
     ## @brief Mutator for removing a requirement from project
     #  @param n Index of requirement to be removed
     def rm_rqe(self, n):
-        self.rqes.del(n)
+        self.rqes.delete(n)
 
     ## @brief Mutator for removing a sprint from project
-    def rm_sprint(self)
+    def rm_sprint(self):
         if (self.c==0):
             raise IndexError
         else:

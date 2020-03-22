@@ -16,13 +16,13 @@ class Dict():
     ## @brief Adds a new entry
     #  @param e New entry to be added to the Dict
     def add(self, e):
-        self.d[c] = e
+        self.d[self.c] = e
         self.c += 1
 
     ## @brief Remove an entry with key id 
     #  @param id Key of the entry
     #  @throws KeyError If ID does not exist
-    def remove(id):
+    def remove(self, id):
         if id in self.d:
             del self.d[id]
         else:
