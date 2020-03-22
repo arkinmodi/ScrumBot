@@ -51,7 +51,10 @@ class Meeting():
 
     ## @brief Accessor for description of meeting
     def get_desc(self):
-        return self.desc
+        if (self.desc == None):
+            return "No description"
+        else:
+            return self.desc
 
     ## @brief Mutator for descripton of meeting
     #  @param s New description for meeting
