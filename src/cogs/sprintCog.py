@@ -11,5 +11,22 @@ class SprintCog(commands.Cog, name="Sprint Commands"):
     def __init__(self, bot):
         self.bot = bot
 
+    @commands.command(name="addTask", brief="Add a task to a sprint.")
+    @commands.guild_only()
+    @commands.has_role("Scrum Master")
+    async def add_task(self, ctx, a: int, b: int, *s):
+        raise NotImplementedError
+
+    @commands.command(name="listTasks", brief="List all tasks of a sprint.")
+    @commands.guild_only()
+    async def list_tasks(self, ctx, a: int, b: int):
+        raise NotImplementedError
+
+    @commands.command(name="rmTask", aliases=["removeTask"], brief="Removes a task in a sprint.")
+    @commands.guild_only()
+    @commands.has_role("Scrum Master")
+    async def rm_task(self, ctx, a: int, b: int, c: int):
+        raise NotImplementedError
+
 def setup(bot):
     bot.add_cog(SprintCog(bot))

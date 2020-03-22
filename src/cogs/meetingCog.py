@@ -11,21 +11,15 @@ class MeetingCog(commands.Cog, name="Meeting Commands"):
     def __init__(self, bot):
         self.bot = bot
 
-    ## @brief Adds a meeting to a given project.
-    @commands.command(name="addMeeting", brief="Create a meeting.")
+    @commands.command(name="getMeetingDesc", aliases=["getMeetingDescription"], brief="Get the description of a given meeting.")
     @commands.guild_only()
-    async def add_meeting(self, ctx, *args):
+    async def get_meeting_desc(self, ctx, a: int, b: int):
         raise NotImplementedError
 
-    ## @brief Removes a given meeting from the list of meetings.
-    @commands.command(name="removeMeeting", brief="Remove a meeting.")
+    @commands.command(name="setMeetingDesc", aliases=["setMeetingDescription"], brief="Set a meeting description.")
     @commands.guild_only()
-    async def rm_meeting(self, ctx, *args):
-        raise NotImplementedError
-
-    @commands.command(name="listMeetings", aliases=['meetings'], brief="List all scheduled meetings.")
-    @commands.guild_only()
-    async def list_meetings(self, ctx):
+    @commands.has_role("Scrum Master")
+    async def set_meeting_desc(self, ctx, a: int, b: int, *s):
         raise NotImplementedError
 
 def setup(bot):
