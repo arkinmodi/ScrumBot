@@ -21,7 +21,7 @@ class projectCog(commands.Cog, name="Project Commands"):
     @commands.command(name="addMeeting", brief="Add a meeting to a project.")
     @commands.guild_only()
     @commands.has_role("Scrum Master")
-    async def add_meeting(self, ctx, n: int, *s):
+    async def add_meeting(self, ctx, n: int, *, s):
         raise NotImplementedError
 
     @commands.command(name="addProject", brief="Add a project to the guild.")
@@ -69,16 +69,22 @@ class projectCog(commands.Cog, name="Project Commands"):
     async def list_meetings(self, ctx, n: int):
         raise NotImplementedError
 
-    @commands.command(name="listProjects", brief="List all projects in a guild.")
+    @commands.command(name="listProjects", aliases=["listProject"], brief="List all projects in a guild.")
     @commands.guild_only()
     async def list_projects(self, ctx):
-        print(sorted(self.project_list.to_seq()))
-        # lst = '\n'.join(self.project_list.to_seq())
+        print(f'[Log] list_projects from {ctx.author}')
+        
+        seq = [f'id: {i} - name: {j.get_name()} - desc: {j.get_desc()}' for i, j in self.project_list.to_seq()]
+        lst = '\n'.join(seq)
 
-        # embed = discord.Embed(title='List of Projects')
-        # embed.add_field(name='\uFEFF', value=lst)
+        if (not seq):
+            await ctx.send(f'> No current projects.')
+            return
 
-        # await ctx.send(content=None, embed=embed)
+        embed = discord.Embed(title='List of Projects')
+        embed.add_field(name='\uFEFF', value=lst)
+
+        await ctx.send(content=None, embed=embed)
 
     @commands.command(name="rmLastSprint", aliases=["removeLastSprint", "rmSprint", "removeSprint"], brief="Remove the last sprint of a project.")
     @commands.guild_only()
@@ -96,7 +102,9 @@ class projectCog(commands.Cog, name="Project Commands"):
     @commands.guild_only()
     @commands.is_owner()
     async def rm_project(self, ctx, n: int):
-        raise NotImplementedError
+        print(f'[Log] rm_project from {ctx.author}, project: {n}')
+        self.project_list.remove(n)
+        await ctx.send(f'> Removed project {n}')
 
     @commands.command(name="rmRqe", aliases=["removeRqe", "rmReq", "rmRequirement"], brief="Removes a requirement from a project.")
     @commands.guild_only()
@@ -106,9 +114,11 @@ class projectCog(commands.Cog, name="Project Commands"):
 
     @commands.command(name="setProjectDesc", aliases=["setProjectDescription"], brief="Set a description for a given project.")
     @commands.guild_only()
-    @commands.has_role(["Business Analyst", "Admin"])
-    async def set_project_desc(self, ctx, n: int, *s):
-        raise NotImplementedError
+    @commands.has_role("Business Analyst")
+    async def set_project_desc(self, ctx, n: int, *, s):
+        print(f'[Log] set_project_desc from {ctx.author}, project: {n}, desc: {s}')
+        self.project_list[n].set_desc(s)
+        await ctx.send(f'> Successfully updated description for project {n}.')
 
 def setup(bot):
     bot.add_cog(projectCog(bot))

@@ -19,6 +19,9 @@ class Dict():
         self.d[self.c] = e
         self.c += 1
 
+    def update(self, id, e):
+        self.d[id] = e
+
     ## @brief Remove an entry with key id 
     #  @param id Key of the entry
     #  @throws KeyError If ID does not exist
@@ -30,6 +33,8 @@ class Dict():
     
     ## @brief Returns a dictionary with keys in sorted order
     def to_seq(self):
-        return self.d
-    
+        seq = []
+        for key in sorted(self.d):
+            seq.append([key, self.d[key]])
+        return seq
 
