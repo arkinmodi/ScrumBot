@@ -14,6 +14,10 @@ class Task():
         self.details = d
         self.feedback = []
 
+    ## @brief Accessor for name of task
+    def get_name(self):
+        return self.name
+
     ## @brief Accessor for deadline of task
     def get_deadline(self):
         return self.deadline

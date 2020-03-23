@@ -10,6 +10,9 @@ def main():
     print("Flag 1")
     sprint1.add_task(task1)
     print(sprint1.get_tasks())
+    print(sprint1.get_tasks()[0])
+    print(sprint1.get_tasks()[0].get_name())
+
 
 if __name__== "__main__":
   main()
