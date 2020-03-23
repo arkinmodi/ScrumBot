@@ -8,14 +8,7 @@
 class Task():
 
     ## @brief Constructor for Task object
-    def __init__(self, s, dt):
-        self.name = s
-        self.deadline = dt
-        self.details = None
-        self.feedback = []
-
-    ## @brief Constructor for Task object
-    def __init__(self, s, dt, d):
+    def __init__(self, s, dt, d=None):
         self.name = s
         self.deadline = dt
         self.details = d

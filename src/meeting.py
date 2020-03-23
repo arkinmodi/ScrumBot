@@ -8,25 +8,13 @@ from meetingTypes import *
 ## @brief Meeting class
 class Meeting():
 
-    ## @brief Meeting constructor (no description)
-    #  @param n Name of meeting
-    #  @param d Date of meeting
-    #  @param t Time of meeting
-    #  @param mType Type of meeting
-    def __init__(self, n, d, t, mType):
-        self.name = n
-        self.date = d
-        self.time = t
-        self.mType = mType
-        self.desc = None
-
-    ## @brief Meeting constructor (with description)
+    ## @brief Meeting constructor
     #  @param n Name of meeting
     #  @param d Date of meeting
     #  @param t Time of meeting
     #  @param mType Type of meeting
     #  @param desc Descripton of meeting
-    def __init__(self, n, d, t, mType, desc):
+    def __init__(self, n, d, t, mType, desc=None):
         self.name = n
         self.date = d
         self.time = t
