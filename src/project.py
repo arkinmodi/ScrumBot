@@ -55,6 +55,12 @@ class Project():
     def add_meeting(self, meeting):
         self.meetings.add(meeting)
 
+    ## @brief Mutator for updating existing meetings
+    #  @param id key value of meeting
+    #  @param meeting Meeting to be updated
+    def update_meeting(self, id, meeting):
+        self.meetings.update(id, meeting)
+
     ## @brief Mutator for adding a requirement to project
     #  @param s Requirement to be added
     def add_rqe(self, s):

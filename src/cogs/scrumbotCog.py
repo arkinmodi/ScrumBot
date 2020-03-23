@@ -37,7 +37,10 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
         m = MeetingTypes.from_str(m_type)
         meeting = Meeting(name, d, t, m, s)
 
-        proj = self.project_list.to_seq()[n][1]
+        proj = self.__get_project(n)
+        if (not proj):
+            return
+
         proj.add_meeting(meeting)
 
         self.project_list.update(n, proj)
@@ -59,7 +62,10 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
     @commands.has_role("Business Analyst")
     async def add_rqe(self, ctx, n: int, *, s):
         print(f'[Log] add_rqe from {ctx.author}, project: {n}, rqe: {s}')
-        proj = self.project_list.to_seq()[n][1]
+
+        proj = self.__get_project(n)
+        if (not proj):
+            return
         proj.add_rqe(s)
 
         self.project_list.update(n, proj)
@@ -71,7 +77,11 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
     async def add_sprint(self, ctx, n: int):
         print(f'[Log] add_sprint from {ctx.author}, project: {n}')
         sprint = Sprint()
-        proj = self.project_list.to_seq()[n][1]
+
+        proj = self.__get_project(n)                
+        if (not proj):
+            return
+
         proj.add_sprint(sprint)
 
         self.project_list.update(n, proj)
@@ -81,10 +91,14 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
     @commands.guild_only()
     async def get_project_desc(self, ctx, n: int):
         print(f'[Log] get_project_desc from {ctx.author}, project: {n}')
-        proj = self.project_list.to_seq()[n][1]
-        desc = proj.get_desc()
 
-        embed = discord.Embed(title=f'Project {proj.get_name()}')
+        proj = self.__get_project(n)                
+        if (not proj):
+            return
+
+        desc = f'Project Name: {proj.get_name()}\nDescription: {proj.get_desc()}'
+
+        embed = discord.Embed(title='Project Description')
         embed.add_field(name='\uFEFF', value=f'Description: {desc}')
         await ctx.send(content=None, embed=embed)
 
@@ -92,7 +106,11 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
     @commands.guild_only()
     async def get_rqes(self, ctx, n: int):
         print(f'[Log] get_rqes from {ctx.author}, project: {n}')
-        proj = self.project_list.to_seq()[n][1]
+
+        proj = self.__get_project(n)
+        if (not proj):
+            return
+
         if (not proj.get_rqes()):
             await ctx.send(f' No current requirements in {proj.get_name()}.')
             return
@@ -108,7 +126,11 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
     @commands.guild_only()
     async def get_sprints(self, ctx, n: int):
         print(f'[Log] get_sprints from {ctx.author}, project: {n}')
-        proj = self.project_list.to_seq()[n][1]
+
+        proj = self.__get_project(n)
+        if (not proj):
+            return
+            
         if (not proj.get_sprints()):
             await ctx.send(f'> No current sprints in {proj.get_name()}.')
             return
@@ -124,7 +146,11 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
     @commands.guild_only()
     async def list_meetings(self, ctx, n: int):
         print(f'[Log] list_meetings from {ctx.author}, project: {n}')
-        proj = self.project_list.to_seq()[n][1]
+
+        proj = self.__get_project(n)                
+        if (not proj):
+            return
+            
         seq = [f'id: {i} - name: {j.get_name()}, on {str(j.get_time())} at {str(j.get_date())}' for i, j in proj.get_meetings()]
         lst = '\n'.join(seq)
 
@@ -158,7 +184,11 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
     @commands.has_role("Scrum Master")
     async def rm_last_sprint(self, ctx, n: int):
         print(f'[Log] rm_last_sprint from {ctx.author}, project: {n}')
-        proj = self.project_list.to_seq()[n][1]
+
+        proj = self.__get_project(n)
+        if (not proj):
+            return
+
         try:
             proj.rm_sprint()
         except IndexError as e:
@@ -174,7 +204,11 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
     @commands.has_role("Scrum Master")
     async def rm_meeting(self, ctx, n: int, m: int):
         print(f'[Log] rm_meeting from {ctx.author}, project: {n}, meeting: {m}')
-        proj = self.project_list.to_seq()[n][1]
+
+        proj = self.__get_project(n)
+        if (not proj):
+            return
+            
         proj.rm_meeting(m)
 
         self.project_list.update(n, proj)
@@ -194,7 +228,11 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
     @commands.has_role("Business Analyst")
     async def rm_rqe(self, ctx, n: int, m: int):
         print(f'[Log] rm_rqe from {ctx.author}, project: {n}, rqe: {m}')
-        proj = self.project_list.to_seq()[n][1]
+
+        proj = self.__get_project(n)
+        if (not proj):
+            return
+            
         proj.rm_rqe(m)
 
         self.project_list.update(n, proj)
@@ -206,7 +244,11 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
     @commands.has_role("Business Analyst")
     async def set_project_desc(self, ctx, n: int, *, s):
         print(f'[Log] set_project_desc from {ctx.author}, project: {n}, desc: {s}')
-        proj = self.project_list.to_seq()[n][1]
+
+        proj = self.__get_project(n)
+        if (not proj):
+            return
+                       
         proj.set_desc(s)
 
         self.project_list.update(n, proj)
@@ -215,21 +257,46 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
     # MEETING COG
     @commands.command(name="getMeetingDesc", aliases=["getMeetingDescription"], brief="Get the description of a given meeting.")
     @commands.guild_only()
-    async def get_meeting_desc(self, ctx, a: int, b: int):
-        raise NotImplementedError
+    async def get_meeting_desc(self, ctx, n: int, m: int):
+        print(f'[Log] get_meeting_desc from {ctx.author}, project: {n}, meeting: {m}')
+        proj = self.__get_project(n)
+        meeting = self.__get_meeting(n, m)        
+        if (not meeting):
+            return
+        
+        lst = f'Project Name: {proj.get_name()}\nMeeting Name: {meeting.get_name()}\nDescription: {meeting.get_desc()}'
+        print(lst)
+        embed = discord.Embed(title='Meeting Description')
+        embed.add_field(name='\uFEFF', value=lst)
+        await ctx.send(content=None, embed=embed)
 
     @commands.command(name="setMeetingDesc", aliases=["setMeetingDescription"], brief="Set a meeting description.")
     @commands.guild_only()
     @commands.has_role("Scrum Master")
-    async def set_meeting_desc(self, ctx, a: int, b: int, *s):
-        raise NotImplementedError
+    async def set_meeting_desc(self, ctx, n: int, m: int, *, s):
+        print(f'[Log] set_meeting_desc from {ctx.author}, project: {n}, meeting: {m}, desc: {s}')
+        proj = self.__get_project(n)
+        meeting = self.__get_meeting(n, m)
+        if (not meeting):
+            return
+        
+        meeting.set_desc(s)
+        proj.update_meeting(m, meeting)
+        await ctx.send(f'> Successfully updated description for {meeting.get_name()}.')
 
     # SPRINT COG
     @commands.command(name="addTask", brief="Add a task to a sprint.")
     @commands.guild_only()
     @commands.has_role("Scrum Master")
-    async def add_task(self, ctx, a: int, b: int, *s):
-        raise NotImplementedError
+    async def add_task(self, ctx, n: int, m: int, name, date, time):
+        print(f'[Log] add_task from {ctx.author}, project: {n}, meeting: {m}, name: {name}, date: {date}, time: {time}')
+        date_val = [int(i) for i in date.split('/')]
+        time_val = [int(i) for i in time.split(':')]
+
+        d = dt.date(date_val[0], date_val[1], date_val[2])
+        t = dt.time(time_val[0], time_val[1])
+        
+        
 
     @commands.command(name="listTasks", brief="List all tasks of a sprint.")
     @commands.guild_only()
@@ -335,6 +402,24 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
         embed.add_field(name='\uFEFF', value=roles)
 
         await ctx.send(content=None, embed=embed)
+
+    def __get_project(self, n):
+        proj_key = self.project_list.to_seq()
+        for i in range(len(proj_key)):
+            if (proj_key[i][0] == n):
+                return proj_key[i][1]
+        return None
+
+    def __get_meeting(self, n, m):
+        proj = self.__get_project(n)
+        if (not proj):
+            return None
+        
+        meet_key = proj.get_meetings()
+        for i in range(len(meet_key)):
+            if (meet_key[i][0] == m):
+                return meet_key[i][1]
+        return None
 
 def setup(bot):
     bot.add_cog(scrumbotCog(bot))
