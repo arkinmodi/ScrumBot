@@ -30,6 +30,6 @@ class Dict():
     
     ## @brief Returns a dictionary with keys in sorted order
     def to_seq(self):
-        return sorted(self.d.keys())
+        return self.d
     
 
