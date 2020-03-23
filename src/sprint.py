@@ -5,6 +5,7 @@
 
 from task import *
 from taskList import *
+import datetime as dt
 
 ## @brief Class representing Sprint objects
 class Sprint():
@@ -12,6 +13,11 @@ class Sprint():
     ## @brief Constructor for Sprint object
     def __init__(self):
         self.tasks = TaskList()
+        self.date = dt.date.today()
+
+    ## @brief Accessor for date of sprint
+    def get_date(self):
+        return self.date.strftime("%b %d, %Y")
 
     ## @brief Accessor for list of tasks
     def get_tasks(self):

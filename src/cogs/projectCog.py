@@ -11,6 +11,7 @@ sys.path.append("/mnt/c/Users/timch/Desktop/ScrumBot/src")
 from project import *
 from projectList import ProjectList
 from meeting import *
+from sprint import *
 import meetingTypes
 
 import datetime as dt
@@ -35,11 +36,12 @@ class projectCog(commands.Cog, name="Project Commands"):
         m = MeetingTypes.from_str(m_type)
         meeting = Meeting(name, d, t, m, s)
 
-        val = self.project_list.to_seq()[n][1]
-        print(val)
-        self.project_list.update(n, val.add_meeting(meeting))
+        proj = self.project_list.to_seq()[n][1]
+        proj.add_meeting(meeting)
+
+        self.project_list.update(n, proj)
         
-        await ctx.send(f'> Added meeting **{name}** to project {n}')
+        await ctx.send(f'> Added meeting **{name}** to {proj.get_name()}.')
 
     @commands.command(name="addProject", brief="Add a project to the guild.")
     @commands.guild_only()
@@ -54,19 +56,37 @@ class projectCog(commands.Cog, name="Project Commands"):
     @commands.command(name="addRqe", aliases=["addRequirement", "addReq"], brief="Add a requirement to a project.")
     @commands.guild_only()
     @commands.has_role("Business Analyst")
-    async def add_rqe(self, ctx, a: int, *s):
-        raise NotImplementedError
+    async def add_rqe(self, ctx, n: int, *, s):
+        print(f'[Log] add_rqe from {ctx.author}, project: {n}, rqe: {s}')
+        proj = self.project_list.to_seq()[n][1]
+        proj.add_rqe(s)
+
+        self.project_list.update(n, proj)
+
+        await ctx.send(f'> Added requirement {s} to {proj.get_name()}.')
 
     @commands.command(name="addSprint", brief="Add a sprint to a project.")
     @commands.guild_only()
     @commands.has_role("Scrum Master")
     async def add_sprint(self, ctx, n: int):
-        raise NotImplementedError
+        print(f'[Log] add_sprint from {ctx.author}, project: {n}')
+        sprint = Sprint()
+        proj = self.project_list.to_seq()[n][1]
+        proj.add_sprint(sprint)
+
+        self.project_list.update(n, proj)
+        await ctx.send(f'> Added a new sprint to {proj.get_name()}.')
 
     @commands.command(name="getProjectDesc", aliases=["getProjectDescription", "getProjDesc"], brief="Get the description of a project.")
     @commands.guild_only()
     async def get_project_desc(self, ctx, n: int):
-        raise NotImplementedError
+        print(f'[Log] get_project_desc from {ctx.author}, project: {n}')
+        proj = self.project_list.to_seq()[n][1]
+        desc = proj.get_desc()
+
+        embed = discord.Embed(title=f'Project {proj.get_name()}')
+        embed.add_field(name='\uFEFF', value=f'Description: {desc}')
+        await ctx.send(content=None, embed=embed)
 
     @commands.command(name="getRqes", aliases=["getRequirements", "getReqs"], brief="Get the requirements of a project.")
     @commands.guild_only()
@@ -76,17 +96,34 @@ class projectCog(commands.Cog, name="Project Commands"):
     @commands.command(name="getSprints", brief="Get the sprints of a project.")
     @commands.guild_only()
     async def get_sprints(self, ctx, n: int):
-        raise NotImplementedError
+        print(f'[Log] get_sprints from {ctx.author}, project: {n}')
+        proj = self.project_list.to_seq()[n][1]
+        if (not proj.get_sprints()):
+            await ctx.send(f'> No current sprints in {proj.get_name()}.')
+            return
+
+        sprint_lst = [f'Sprint {i} - Created on: {proj.get_sprints()[i].get_date()}' for i in range(len(proj.get_sprints()))]
+        lst = '\n'.join(sprint_lst)
+
+        embed = discord.Embed(title=f'List of Sprints', description=f'For project {proj.get_name()}:')
+        embed.add_field(name='\uFEFF', value=lst)
+        await ctx.send(content=None, embed=embed)
 
     @commands.command(name="listMeetings", brief="List all meetings of a project.")
     @commands.guild_only()
     async def list_meetings(self, ctx, n: int):
         print(f'[Log] list_meetings from {ctx.author}, project: {n}')
         proj = self.project_list.to_seq()[n][1]
-        print(proj.get_meetings())
+        seq = [f'id: {i} - name: {j.get_name()}, on {str(j.get_time())} at {str(j.get_date())}' for i, j in proj.get_meetings()]
+        lst = '\n'.join(seq)
 
-        #seq = [f'id: {i} - name: {j.get_name()} - date: ' for i, j in proj.get_meetings()]
-        #lst = '\n'.join(seq)
+        if (not seq):
+            await ctx.send(f'> No current projects in {proj.get_name()}.')
+            return
+        
+        embed = discord.Embed(title='List of Meetings', description=f'For project {proj.get_name()}')
+        embed.add_field(name='\uFEFF', value=lst)
+        await ctx.send(content=None, embed=embed)
 
     @commands.command(name="listProjects", aliases=["listProject"], brief="List all projects in a guild.")
     @commands.guild_only()
@@ -114,8 +151,14 @@ class projectCog(commands.Cog, name="Project Commands"):
     @commands.command(name="rmMeeting", aliases=["removeMeeting"], brief="Removes a meeting from a project.")
     @commands.guild_only()
     @commands.has_role("Scrum Master")
-    async def rm_meeting(self, ctx, a: int, b: int):
-        raise NotImplementedError
+    async def rm_meeting(self, ctx, n: int, m: int):
+        print(f'[Log] rm_meeting from {ctx.author}, project: {n}, meeting: {m}')
+        proj = self.project_list.to_seq()[n][1]
+        proj.rm_meeting(m)
+
+        self.project_list.update(n, proj)
+        await ctx.send(f'> Removed meeting {m} from {proj.get_name()}.')
+
 
     @commands.command(name="rmProject", aliases=["removeProject"], brief="Removes a project from the guild.")
     @commands.guild_only()
@@ -123,7 +166,7 @@ class projectCog(commands.Cog, name="Project Commands"):
     async def rm_project(self, ctx, n: int):
         print(f'[Log] rm_project from {ctx.author}, project: {n}')
         self.project_list.remove(n)
-        await ctx.send(f'> Removed project {n}')
+        await ctx.send(f'> Removed project {n}.')
 
     @commands.command(name="rmRqe", aliases=["removeRqe", "rmReq", "rmRequirement"], brief="Removes a requirement from a project.")
     @commands.guild_only()
@@ -136,10 +179,11 @@ class projectCog(commands.Cog, name="Project Commands"):
     @commands.has_role("Business Analyst")
     async def set_project_desc(self, ctx, n: int, *, s):
         print(f'[Log] set_project_desc from {ctx.author}, project: {n}, desc: {s}')
-        val = self.project_list.to_seq()[n][1]
+        proj = self.project_list.to_seq()[n][1]
+        proj.set_desc(s)
 
-        self.project_list.update(n, Project(val.get_name(), s))
-        await ctx.send(f'> Successfully updated description for project {n}.')
+        self.project_list.update(n, Project(proj))
+        await ctx.send(f'> Successfully updated description for {proj.get_name()}.')
 
 def setup(bot):
     bot.add_cog(projectCog(bot))
