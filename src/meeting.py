@@ -14,11 +14,11 @@ class Meeting():
     #  @param t Time of meeting
     #  @param mType Type of meeting
     #  @param desc Descripton of meeting
-    def __init__(self, n, d, t, mType, desc=None):
+    def __init__(self, n, d, t, m_type, desc=None):
         self.name = n
         self.date = d
         self.time = t
-        self.mType = mType
+        self.m_type = m_type
         self.desc = desc
 
     ## @brief Accessor for name of meeting
@@ -35,7 +35,7 @@ class Meeting():
 
     ## @brief Accessor for type of meeting
     def get_type(self):
-        return self.mType
+        return self.m_type
 
     ## @brief Accessor for description of meeting
     def get_desc(self):

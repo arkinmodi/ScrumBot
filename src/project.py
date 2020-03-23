@@ -60,7 +60,6 @@ class Project():
     def add_rqe(self, s):
         self.rqes.append(s)
 
-
     ## @brief Mutator for adding a sprint to project
     #  @param sprint Sprint to be added
     def add_sprint(self, sprint):
