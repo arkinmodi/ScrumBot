@@ -19,13 +19,12 @@ class Sprint():
 
     ## @brief Mutator for adding task to list
     #  @param task Task to be added
-    def add_task(task):
+    def add_task(self, task):
         self.tasks.add(task)
 
-    
     ## @brief Mutator for removing task from list
     #  @param n Key-value of task to be removed
-    def rm_task(n):
+    def rm_task(self, n):
         self.tasks.remove(n)
 
     
