@@ -11,21 +11,10 @@ from sprint import *
 
 ## @brief Class representing Project objects
 class Project():
-
-    ## @brief Project constructor (no description)
-    #  @param n Name of project
-    def __init__(self, n):
-        self.name = n
-        self.desc = None
-        self.meetings = MeetingList()
-        self.rqes = []
-        self.sprints = []
-        self.c = 0
-
-    ## @brief Prject constructor (with description)
+    ## @brief Prject constructor
     #  @param n Name of project
     #  @param d Descripton of project
-    def __init__(self, n, d):
+    def __init__(self, n, d=None):
         self.name = n
         self.desc = d
         self.meetings = MeetingList()

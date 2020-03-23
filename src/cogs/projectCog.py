@@ -5,7 +5,7 @@
 
 import discord
 from discord.ext import commands
-import os, sys
+import sys
 sys.path.append("/mnt/c/Users/timch/Desktop/ScrumBot/src")
 
 from project import *
@@ -27,7 +27,7 @@ class projectCog(commands.Cog, name="Project Commands"):
     @commands.command(name="addProject", brief="Add a project to the guild.")
     @commands.guild_only()
     @commands.is_owner()
-    async def add_project(self, ctx, name, *, desc: str=None):
+    async def add_project(self, ctx, name, *, desc=None):
         print(f'[Log] add_project from {ctx.author}, name: {name}, desc: {desc}')
         if (not desc):
             proj = Project(name)
@@ -72,7 +72,7 @@ class projectCog(commands.Cog, name="Project Commands"):
     @commands.command(name="listProjects", brief="List all projects in a guild.")
     @commands.guild_only()
     async def list_projects(self, ctx):
-        print(self.project_list.to_seq())
+        print(sorted(self.project_list.to_seq()))
         # lst = '\n'.join(self.project_list.to_seq())
 
         # embed = discord.Embed(title='List of Projects')
