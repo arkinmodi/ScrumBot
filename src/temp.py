@@ -31,6 +31,10 @@ def main():
     sprint1.get_tasks()[0][1].set_details("details1 new")
     print(sprint1.get_tasks()[0][1].get_details())
 
+    print ("Flag 6") # remove task
+    sprint1.rm_task(0)
+    print(sprint1.get_tasks())
+
 
 if __name__== "__main__":
   main()
