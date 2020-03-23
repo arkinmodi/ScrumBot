@@ -62,7 +62,6 @@ class projectCog(commands.Cog, name="Project Commands"):
         proj.add_rqe(s)
 
         self.project_list.update(n, proj)
-
         await ctx.send(f'> Added requirement {s} to {proj.get_name()}.')
 
     @commands.command(name="addSprint", brief="Add a sprint to a project.")
@@ -91,9 +90,20 @@ class projectCog(commands.Cog, name="Project Commands"):
     @commands.command(name="getRqes", aliases=["getRequirements", "getReqs"], brief="Get the requirements of a project.")
     @commands.guild_only()
     async def get_rqes(self, ctx, n: int):
-        raise NotImplementedError
+        print(f'[Log] get_rqes from {ctx.author}, project: {n}')
+        proj = self.project_list.to_seq()[n][1]
+        if (not proj.get_rqes()):
+            await ctx.send(f' No current requirements in {proj.get_name()}.')
+            return
+        
+        rqe_lst = [f'{i}. {proj.get_rqes()[i]}' for i in range(len(proj.get_rqes()))]
+        lst = '\n'.join(rqe_lst)
 
-    @commands.command(name="getSprints", brief="Get the sprints of a project.")
+        embed = discord.Embed(title=f'List of Requirements', description=f'{proj.get_name()}:')
+        embed.add_field(name='\uFEFF', value=lst)
+        await ctx.send(content=None, embed=embed)
+
+    @commands.command(name="getSprints", aliases=["listSprints"], brief="Get the sprints of a project.")
     @commands.guild_only()
     async def get_sprints(self, ctx, n: int):
         print(f'[Log] get_sprints from {ctx.author}, project: {n}')
@@ -105,7 +115,7 @@ class projectCog(commands.Cog, name="Project Commands"):
         sprint_lst = [f'Sprint {i} - Created on: {proj.get_sprints()[i].get_date()}' for i in range(len(proj.get_sprints()))]
         lst = '\n'.join(sprint_lst)
 
-        embed = discord.Embed(title=f'List of Sprints', description=f'For project {proj.get_name()}:')
+        embed = discord.Embed(title=f'List of Sprints', description=f'{proj.get_name()}:')
         embed.add_field(name='\uFEFF', value=lst)
         await ctx.send(content=None, embed=embed)
 
@@ -121,7 +131,7 @@ class projectCog(commands.Cog, name="Project Commands"):
             await ctx.send(f'> No current projects in {proj.get_name()}.')
             return
         
-        embed = discord.Embed(title='List of Meetings', description=f'For project {proj.get_name()}')
+        embed = discord.Embed(title='List of Meetings', description=f'{proj.get_name()}')
         embed.add_field(name='\uFEFF', value=lst)
         await ctx.send(content=None, embed=embed)
 
@@ -146,7 +156,17 @@ class projectCog(commands.Cog, name="Project Commands"):
     @commands.guild_only()
     @commands.has_role("Scrum Master")
     async def rm_last_sprint(self, ctx, n: int):
-        raise NotImplementedError
+        print(f'[Log] rm_last_sprint from {ctx.author}, project: {n}')
+        proj = self.project_list.to_seq()[n][1]
+        try:
+            proj.rm_sprint()
+        except IndexError as e:
+            print(f'[Error] rm_last_sprint raised IndexError')
+            await ctx.send(f'> Sprint list is empty! Cannot remove last sprint.')
+            return
+        
+        await ctx.send(f'> Removed last sprint from {proj.get_name()}.')
+
 
     @commands.command(name="rmMeeting", aliases=["removeMeeting"], brief="Removes a meeting from a project.")
     @commands.guild_only()
@@ -172,7 +192,13 @@ class projectCog(commands.Cog, name="Project Commands"):
     @commands.guild_only()
     @commands.has_role("Business Analyst")
     async def rm_rqe(self, ctx, n: int, m: int):
-        raise NotImplementedError
+        print(f'[Log] rm_rqe from {ctx.author}, project: {n}, rqe: {m}')
+        proj = self.project_list.to_seq()[n][1]
+        proj.rm_rqe(m)
+
+        self.project_list.update(n, proj)
+        await ctx.send(f'> Removed requirement from {proj.get_name()}.')
+
 
     @commands.command(name="setProjectDesc", aliases=["setProjectDescription"], brief="Set a description for a given project.")
     @commands.guild_only()
@@ -182,7 +208,7 @@ class projectCog(commands.Cog, name="Project Commands"):
         proj = self.project_list.to_seq()[n][1]
         proj.set_desc(s)
 
-        self.project_list.update(n, Project(proj))
+        self.project_list.update(n, proj)
         await ctx.send(f'> Successfully updated description for {proj.get_name()}.')
 
 def setup(bot):
