@@ -14,6 +14,8 @@ from meeting import *
 from sprint import *
 import meetingTypes
 
+from task import *
+
 import datetime as dt
 
 ## @brief Discord commands related to scrumbot
@@ -288,26 +290,54 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
     @commands.command(name="addTask", brief="Add a task to a sprint.")
     @commands.guild_only()
     @commands.has_role("Scrum Master")
-    async def add_task(self, ctx, n: int, m: int, name, date, time):
-        print(f'[Log] add_task from {ctx.author}, project: {n}, meeting: {m}, name: {name}, date: {date}, time: {time}')
+    async def add_task(self, ctx, n: int, name, date, time, *, s=None):
+        print(f'[Log] add_task from {ctx.author}, project: {n}, name: {name}, date: {date}, time: {time}, detail: {s}')
         date_val = [int(i) for i in date.split('/')]
         time_val = [int(i) for i in time.split(':')]
 
-        d = dt.date(date_val[0], date_val[1], date_val[2])
-        t = dt.time(time_val[0], time_val[1])
-        
-        
+        datetime = dt.datetime(date_val[0], date_val[1], date_val[2], time_val[0], time_val[1])
+        proj = self.__get_project(n)
+        if (not proj or len(proj.get_sprints()) <= 0):
+            return
 
+        task = Task(name, datetime, s)
+        sprint = proj.get_sprints()[-1]
+        sprint.add_task(task)
+
+        await ctx.send(f'> Added {name} to {proj.get_name()}.')
+        
     @commands.command(name="listTasks", brief="List all tasks of a sprint.")
     @commands.guild_only()
-    async def list_tasks(self, ctx, a: int, b: int):
-        raise NotImplementedError
+    async def list_tasks(self, ctx, n: int, m: int):
+        print(f'[Log] list_tasks from {ctx.author}, project: {n}, sprint: {m}')
+        proj = self.__get_project(n)
+        if (not proj or len(proj.get_sprints()) <= 0):
+            return
+        sprint = proj.get_sprints()[m]
+
+        seq = [f'id: {i} - name: {j.get_name()}, due: {j.get_deadline()}' for i, j in sprint.get_tasks()]
+        lst = '\n'.join(seq)
+
+        if (not seq):
+            await ctx.send(f'> No current tasks in given sprint.')
+            return
+        
+        embed = discord.Embed(title='List of Tasks', description=f'{proj.get_name()}, sprint {m}')
+        embed.add_field(name='\uFEFF', value=lst)
+        await ctx.send(content=None, embed=embed)
 
     @commands.command(name="rmTask", aliases=["removeTask"], brief="Removes a task in a sprint.")
     @commands.guild_only()
     @commands.has_role("Scrum Master")
-    async def rm_task(self, ctx, a: int, b: int, c: int):
-        raise NotImplementedError
+    async def rm_task(self, ctx, n: int, m: int):
+        print(f'[Log] rm_task from {ctx.author}, project: {n}, task: {m}')
+        proj = self.__get_project(n)
+        if (not proj):
+            return
+        
+        sprint = proj.get_sprints()[-1]
+        sprint.rm_task(m)
+        await ctx.send(f'> Removed task {m} in {proj.get_name()}.')
 
     # TASK COG
     @commands.command(name="addFeedback", brief="Add feedback to a specific task.")
