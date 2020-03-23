@@ -34,7 +34,7 @@ class projectCog(commands.Cog, name="Project Commands"):
         else:
             proj = Project(name, desc)
         self.project_list.add(proj)
-        
+
         await ctx.send(f'> Added project **{name}**')
 
     @commands.command(name="addRqe", aliases=["addRequirement", "addReq"], brief="Add a requirement to a project.")
@@ -72,12 +72,13 @@ class projectCog(commands.Cog, name="Project Commands"):
     @commands.command(name="listProjects", brief="List all projects in a guild.")
     @commands.guild_only()
     async def list_projects(self, ctx):
-        lst = '\n'.join(self.project_list.to_seq())
+        print(self.project_list.to_seq())
+        # lst = '\n'.join(self.project_list.to_seq())
 
-        embed = discord.Embed(title='List of Projects')
-        embed.add_field(name='\uFEFF', value=lst)
+        # embed = discord.Embed(title='List of Projects')
+        # embed.add_field(name='\uFEFF', value=lst)
 
-        await ctx.send(content=None, embed=embed)
+        # await ctx.send(content=None, embed=embed)
 
     @commands.command(name="rmLastSprint", aliases=["removeLastSprint", "rmSprint", "removeSprint"], brief="Remove the last sprint of a project.")
     @commands.guild_only()

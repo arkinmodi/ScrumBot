@@ -29,7 +29,7 @@ class Dict():
             raise KeyError
     
     ## @brief Returns a dictionary with keys in sorted order
-    def to_seq():
-        return sorted(wordsFreqDict.keys())
+    def to_seq(self):
+        return sorted(self.d.keys())
     
 
