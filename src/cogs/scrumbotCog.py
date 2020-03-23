@@ -329,44 +329,109 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
     @commands.command(name="rmTask", aliases=["removeTask"], brief="Removes a task in a sprint.")
     @commands.guild_only()
     @commands.has_role("Scrum Master")
-    async def rm_task(self, ctx, n: int, m: int):
-        print(f'[Log] rm_task from {ctx.author}, project: {n}, task: {m}')
+    async def rm_task(self, ctx, n: int, k: int):
+        print(f'[Log] rm_task from {ctx.author}, project: {n}, task: {k}')
         proj = self.__get_project(n)
         if (not proj):
             return
         
         sprint = proj.get_sprints()[-1]
-        sprint.rm_task(m)
-        await ctx.send(f'> Removed task {m} in {proj.get_name()}.')
+        sprint.rm_task(k)
+        await ctx.send(f'> Removed task {k} in {proj.get_name()}.')
 
     # TASK COG
     @commands.command(name="addFeedback", brief="Add feedback to a specific task.")
     @commands.guild_only()
     @commands.has_role("Scrum Master")
-    async def add_feedback(self, ctx, a: int, b: int, c: int, *s):
-        raise NotImplementedError
+    async def add_feedback(self, ctx, n: int, k: int, *, s):
+        print(f'[Log] add_feedback from {ctx.author}, project: {n}, task: {k}, feedback: {s}')
+        proj = self.__get_project(n)
+        if (not proj):
+            return
+
+        sprint = proj.get_sprints()[-1]
+        task = self.__get_task(sprint, k)
+        if (not task):
+            return
+        
+        task.add_feedback(s)
+        sprint.update_task(k, task)
+        await ctx.send(f'> Added feedback to {task.get_name()}.')
 
     @commands.command(name="getDetails", brief="Get details of a specific task.")
     @commands.guild_only()
-    async def get_details(self, ctx, a: int, b: int, k: int):
-        raise NotImplementedError
+    async def get_details(self, ctx, n: int, m: int, k: int):
+        print(f'[Log] get_details from {ctx.author}, project: {n}, sprint: {m}, task: {k}')
+        proj = self.__get_project(n)
+        if (not proj):
+            return
+        sprint = proj.get_sprints()[m]
+        task = self.__get_task(sprint, k)
+        if (not task):
+            return
+        
+        details = f'Task Name: {task.get_name()}\nDetails: {task.get_details()}'
+
+        embed = discord.Embed(title='Task Details', description=f'{proj.get_name()}, sprint {m}')
+        embed.add_field(name='\uFEFF', value=details)
+        await ctx.send(content=None, embed=embed)
 
     @commands.command(name="listFeedback", brief="List all feedback from a specific task.")
     @commands.guild_only()
-    async def list_feedback(self, ctx, a: int, b: int, k: int):
-        raise NotImplementedError
+    async def list_feedback(self, ctx, n: int, m: int, k: int):
+        print(f'[Log] list_feedback from {ctx.author}, project: {n}, sprint: {m}, task: {k}')
+        proj = self.__get_project(n)
+        if (not proj):
+            return
+        
+        sprint = proj.get_sprints()[m]
+        task = self.__get_task(sprint, k)
+        if (not task):
+            return
+        
+        seq = [f'{i}. {task.get_feedback()[i]}' for i in range(len(task.get_feedback()))]
+        lst = '\n'.join(seq)
+
+        if (not seq):
+            await ctx.send(f'> No current feedback in {task.get_name()}.')
+            return
+        
+        embed = discord.Embed(title='List of Feedback', description=f'{proj.get_name()}, sprint {m}, {task.get_name()}')
+        embed.add_field(name='\uFEFF', value=lst)
+        await ctx.send(content=None, embed=embed)
 
     @commands.command(name="rmFeedback", aliases=["removeFeedback"], brief="Remove a specific feedback from a specific task.")
     @commands.guild_only()
     @commands.has_role("Scrum Master")
-    async def rm_feedback(self, ctx, a: int, b: int, c: int, d: int):
-        raise NotImplementedError
+    async def rm_feedback(self, ctx, n: int, k: int, x: int):
+        print(f'[Log] rm_feedback from {ctx.author}, project: {n}, task: {k}, feedback: {x}')
+        proj = self.__get_project(n)
+        if (not proj):
+            return
+
+        sprint = proj.get_sprints()[-1]
+        task = self.__get_task(sprint, k)
+        if (not task):
+            return
+        
+        task.rm_feedback(x)
+        await ctx.send(f'> Removed feedback from {task.get_name()}.')
 
     @commands.command(name="setDetails", brief="Set the details of a specific task.")
     @commands.guild_only()
     @commands.has_role(["Scrum Master", "Business Analyst"])
-    async def set_details(self, ctx, a: int, b: int, *s):
-        raise NotImplementedError
+    async def set_details(self, ctx, n: int, k: int, *, s):
+        print(f'[Log] set_details from {ctx.author}, project: {n}, task: {k}, details: {s}')
+        proj = self.__get_project(n)
+        if (not proj):
+            return
+        sprint = proj.get_sprints()[-1]
+        task = self.__get_task(sprint, k)
+        if (not task):
+            return
+        
+        task.set_details(s)
+        await ctx.send(f'> Added details to {task.get_name()}.')
 
     # ADMIN COG
     ## @brief Loads a new cog into the bot.
@@ -449,6 +514,13 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
         for i in range(len(meet_key)):
             if (meet_key[i][0] == m):
                 return meet_key[i][1]
+        return None
+
+    def __get_task(self, sprint, k):
+        task_key = sprint.get_tasks()
+        for i in range(len(task_key)):
+            if (task_key[i][0] == k):
+                return task_key[i][1]
         return None
 
 def setup(bot):

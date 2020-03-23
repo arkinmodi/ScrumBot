@@ -40,7 +40,7 @@ class Task():
      ## @brief Mutator for removing feedback from task
     def rm_feedback(self, i):
         # return self.feedback.remove(s)
-        return self.feedback.pop(i) #if remove by index instead?
+        self.feedback.pop(i) #if remove by index instead?
 
      ## @brief Mutator for setting details of a task
     def set_details(self, s):
