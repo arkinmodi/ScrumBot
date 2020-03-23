@@ -82,7 +82,7 @@ class Project():
     ## @brief Mutator for removing a requirement from project
     #  @param n Index of requirement to be removed
     def rm_rqe(self, n):
-        self.rqes.delete(n)
+        self.rqes.pop(n)
 
     ## @brief Mutator for removing a sprint from project
     def rm_sprint(self):
