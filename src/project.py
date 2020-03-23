@@ -29,6 +29,10 @@ class Project():
         else:
             return self.desc
 
+    ## @brief Accessor for name of project
+    def get_name(self):
+        return self.name
+
     ## @brief Accessor for meetings of project
     def get_meetings(self):
         return self.meetings.to_seq()
