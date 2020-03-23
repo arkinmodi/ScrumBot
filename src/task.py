@@ -38,9 +38,9 @@ class Task():
         return self.feedback.append(s)
 
      ## @brief Mutator for removing feedback from task
-    def rm_feedback(self, s):
-        return self.feedback.remove(s)
-        # return self.feedback.del(i) -- if remove by index instead?
+    def rm_feedback(self, i):
+        # return self.feedback.remove(s)
+        return self.feedback.pop(i) #if remove by index instead?
 
      ## @brief Mutator for setting details of a task
     def set_details(self, s):
