@@ -19,6 +19,9 @@ class Dict():
         self.d[self.c] = e
         self.c += 1
 
+    ## @brief Adds an entry
+    #  @param id Key of entry to update
+    #  @param e New value of entry
     def update(self, id, e):
         self.d[id] = e
 
