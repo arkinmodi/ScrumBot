@@ -22,6 +22,12 @@ class Sprint():
     def add_task(self, task):
         self.tasks.add(task)
 
+    ## @brief Mutator for updating task
+    #  @param id ID of task to be updated
+    #  @param e Value of task to be updated
+    def update_task(self, id, e):
+        self.tasks.update(id, e)
+
     ## @brief Mutator for removing task from list
     #  @param n Key-value of task to be removed
     def rm_task(self, n):
