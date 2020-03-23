@@ -117,7 +117,9 @@ class projectCog(commands.Cog, name="Project Commands"):
     @commands.has_role("Business Analyst")
     async def set_project_desc(self, ctx, n: int, *, s):
         print(f'[Log] set_project_desc from {ctx.author}, project: {n}, desc: {s}')
-        self.project_list[n].set_desc(s)
+        val = self.project_list.to_seq()[n][1]
+
+        self.project_list.update(n, Project(val.get_name(), s))
         await ctx.send(f'> Successfully updated description for project {n}.')
 
 def setup(bot):
