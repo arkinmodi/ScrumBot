@@ -5,8 +5,10 @@
 
 import discord
 from discord.ext import commands
-import sys
-sys.path.append("/mnt/c/Users/timch/Desktop/ScrumBot/src")
+import os, sys, inspect
+currentDir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+parentDir = os.path.dirname(currentDir)
+sys.path.insert(0, parentDir)
 
 from project import *
 from projectList import ProjectList
