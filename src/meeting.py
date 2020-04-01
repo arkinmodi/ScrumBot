@@ -19,9 +19,8 @@ class Meeting():
 
         dt = dt.replace(':', '/')
         d = [int(i) for i in dt.split('/')]
-        self.deadline = datetime(d[0], d[1], d[2], d[3], d[4])
-        self.datetime = datetime()
-        self.m_type = m_type
+        self.datetime = datetime(d[0], d[1], d[2], d[3], d[4])
+        self.m_type = MeetingTypes.from_str(m_type)
         self.desc = desc
 
     ## @brief Accessor for name of meeting
@@ -30,11 +29,11 @@ class Meeting():
 
     ## @brief Accessor for date of meeting
     def get_datetime(self):
-        return self.date
+        return self.datetime.strftime("%b %d, %Y at %I:%M %p")
 
     ## @brief Accessor for type of meeting
     def get_type(self):
-        return self.m_type
+        return MeetingTypes.to_str(self.m_type)
 
     ## @brief Accessor for description of meeting
     def get_desc(self):
