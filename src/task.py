@@ -10,6 +10,9 @@ from datetime import *
 class Task():
 
     ## @brief Constructor for Task object
+    #  @param s Name of task
+    #  @param dt Date and time representing the deadline of task
+    #  @param d Details of task
     def __init__(self, s, dt, d=None):
         self.name = s
 
@@ -40,15 +43,18 @@ class Task():
         return self.feedback
 
      ## @brief Mutator for adding new feedback to task
+     #  @param s The new feedback to be added to task
     def add_feedback(self, s):
         return self.feedback.append(s)
 
      ## @brief Mutator for removing feedback from task
+     #  @param i Index for feedback
     def rm_feedback(self, i):
         # return self.feedback.remove(s)
         self.feedback.pop(i) #if remove by index instead?
 
      ## @brief Mutator for setting details of a task
+     #  @param s Details of task
     def set_details(self, s):
         self.details = s
 
