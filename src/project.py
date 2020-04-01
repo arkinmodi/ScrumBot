@@ -44,12 +44,15 @@ class Project():
         return map(self.__get_sprint, self.sprints)
 
     ## @brief Mutator for descripton of project
-    #  @param s New description for project
+    #  @param desc New description for project
     def set_desc(self, desc=None):
         self.desc = desc
 
     ## @brief Mutator for adding meeting to project
-    #  @param meeting Meeting to be added
+    #  @param name Name of meeting
+    #  @param datetime Time and date of meeting
+    #  @param m_type Type of meeting
+    #  @param desc Description of meeting
     def add_meeting(self, name, datetime, m_type, desc=None):
         meeting = Meeting(name, datetime, m_type, desc)
         self.meetings.add(meeting)
@@ -86,6 +89,8 @@ class Project():
     # Meeting inherited commands
 
     ## @brief Mutator for updating meeting description
+    #  @param index Index of meeting
+    #  @param desc Description of meeting
     def set_meeting_desc(self, index, desc=None):
         meeting = self.meetings[index]
         meeting.set_desc(desc)
