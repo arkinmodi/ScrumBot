@@ -24,7 +24,9 @@ class Sprint():
         return map(self.__get_task, self.tasks.to_seq())
 
     ## @brief Mutator for adding task to list
-    #  @param task Task to be added
+    #  @param name Name of task to be added
+    #  @param deadline Deadline of task to be added
+    #  @param details Details of task to be added
     def add_task(self, name, deadline, details=None):
         task = Task(name, deadline, details)
         self.tasks.add(task)
@@ -35,10 +37,15 @@ class Sprint():
         self.tasks.remove(n)
 
     ## @brief Mutator for adding feedback to a task
+    #  @param index Index of task
+    #  @param feedback Feedback to be added
     def add_feedback(self, index, feedback):
         task = self.tasks[index]
         task.add_feedback(feedback)
 
+    ## @brief Mutator for removing feedback from a task
+    #  @param task_index Index of task
+    #  @param feedback_index Index of feedback to be removed
     def rm_feedback(self, task_index, feedback_index):
         task = self.tasks[task_index]
         task.rm_feedback(feedback_index)
