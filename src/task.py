@@ -3,6 +3,8 @@
 #  @brief A class representing tasks during the software development cycle
 #  @date Mar 17, 2020
 
+from datetime import *
+
 ## @brief Class representing task object
 #  @details Class representing tasks with fields name, deadline, details and feedback
 class Task():
@@ -10,7 +12,10 @@ class Task():
     ## @brief Constructor for Task object
     def __init__(self, s, dt, d=None):
         self.name = s
-        self.deadline = dt
+
+        dt = dt.replace(':', '/')
+        dl = [int(i) for i in dt.split('/')]
+        self.deadline = datetime(dl[0], dl[1], dl[2], dl[3], dl[4])
         self.details = d
         self.feedback = []
 
@@ -20,7 +25,7 @@ class Task():
 
     ## @brief Accessor for deadline of task
     def get_deadline(self):
-        return self.deadline
+        return self.deadline.strftime("%b %d, %Y at %I:%M %p")
 
     ## @brief Accessor for details of task
     def get_details(self):
@@ -40,7 +45,7 @@ class Task():
      ## @brief Mutator for removing feedback from task
     def rm_feedback(self, i):
         # return self.feedback.remove(s)
-        return self.feedback.pop(i) #if remove by index instead?
+        self.feedback.pop(i) #if remove by index instead?
 
      ## @brief Mutator for setting details of a task
     def set_details(self, s):

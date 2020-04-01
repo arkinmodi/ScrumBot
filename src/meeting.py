@@ -4,20 +4,23 @@
 #  @date Mar 21, 2020
 
 from meetingTypes import *
+from datetime import *
 
 ## @brief Meeting class
 class Meeting():
 
     ## @brief Meeting constructor
     #  @param n Name of meeting
-    #  @param d Date of meeting
-    #  @param t Time of meeting
+    #  @param dt Date and time of meeting
     #  @param mType Type of meeting
     #  @param desc Descripton of meeting
-    def __init__(self, n, d, t, m_type, desc=None):
+    def __init__(self, n, dt, m_type, desc=None):
         self.name = n
-        self.date = d
-        self.time = t
+
+        dt = dt.replace(':', '/')
+        d = [int(i) for i in dt.split('/')]
+        self.deadline = datetime(d[0], d[1], d[2], d[3], d[4])
+        self.datetime = datetime()
         self.m_type = m_type
         self.desc = desc
 
@@ -26,12 +29,8 @@ class Meeting():
         return self.name
 
     ## @brief Accessor for date of meeting
-    def get_date(self):
+    def get_datetime(self):
         return self.date
-
-    ## @brief Accessor for time of meeting
-    def get_time(self):
-        return self.time
 
     ## @brief Accessor for type of meeting
     def get_type(self):
