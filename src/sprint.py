@@ -27,6 +27,8 @@ class Sprint():
 
         return seq
 
+    ## @brief Accessor for a single task
+    #  @param index Index of a single task
     def get_task(self, index):
         seq = self.get_tasks()
         for i, j in seq:
@@ -57,6 +59,8 @@ class Sprint():
         
         task.add_feedback(feedback)
 
+    ## @brief Accessor for feedback
+    #  @param index Index of task
     def get_feedback(self, index):
         task = self.__get_task_by_id(index)
         if (not task):
