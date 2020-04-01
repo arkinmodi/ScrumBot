@@ -79,6 +79,9 @@ class Project():
     ## @brief Mutator for removing a requirement from project
     #  @param n Index of requirement to be removed
     def rm_rqe(self, n):
+        if (n < 0 or n > len(self.rqes)):
+            raise IndexError
+
         self.rqes.pop(n)
 
     ## @brief Mutator for removing a sprint from project
@@ -128,31 +131,62 @@ class Project():
     #  @param deadline Deadline of Task
     #  @param details Details of Task
     def add_task(self, name, deadline, details=None):
+        if (len(self.sprints) == 0):
+            raise IndexError
+
         sprint = self.sprints[-1]
         sprint.add_task(name, deadline, details)
     
     ## @brief Accessor for getting tasks from sprint
     #  @param index Index of sprint
     def get_tasks(self, index):
-        sprint = self.sprints[index]
+        try:
+            sprint = self.sprints[index]
+        except:
+            raise IndexError
+
         return sprint.get_tasks()
+
+    def get_task(self, sprint_index, task_index):
+        try:
+            sprint = self.sprints[sprint_index]
+        except:
+            raise IndexError
+        
+        return sprint.get_task(task_index)
 
     ## @brief Mutator for removing a task from sprint
     #  @param Index of task
     def rm_task(self, index):
+        if (len(self.sprints) == 0):
+            raise IndexError
+
         sprint = self.sprints[-1]
         sprint.rm_task(index)
     
     ## @brief Mutator for adding feedback to a task
     #  @param index Index of task
     def add_feedback(self, index, feedback):
+        if (len(self.sprints) == 0):
+            raise IndexError
         sprint = self.sprints[-1]
         sprint.add_feedback(index, feedback)
+
+    def get_feedback(self, sprint_index, task_index):
+        try:
+            sprint = self.sprints[sprint_index]
+        except:
+            raise IndexError
+
+        return sprint.get_feedback(task_index)
     
     ## @brief Mutator for removing feedback from a task
     #  @param task_index Index of task
     #  @param feedback_index Feedback of task
     def rm_feedback(self, task_index, feedback_index):
+        if (len(self.sprints) == 0):
+            raise IndexError
+
         sprint = self.sprints[-1]
         sprint.rm_feedback(task_index, feedback_index)
     
@@ -160,6 +194,9 @@ class Project():
     #  @param index Index of task
     #  @param details Details of task
     def set_details(self, index, details):
+        if (len(self.sprints) == 0):
+            raise IndexError
+        
         sprint = self.sprints[-1]
         sprint.set_details(index, details)
 
@@ -171,7 +208,6 @@ class Project():
             if (id == i):
                 return j
         return None
-
 
     def __get_sprint(self, sprint):
         return sprint.get_date()

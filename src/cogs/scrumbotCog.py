@@ -183,9 +183,9 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
 
         try:
             proj.rm_sprint()
-        except IndexError as e:
+        except IndexError:
             print(f'[Error] rm_last_sprint raised IndexError')
-            await ctx.send(f'> Sprint list is empty! Cannot remove last sprint.')
+            await ctx.send(f'> Failed to remove last sprint: no sprints found in project.')
             return
         
         await ctx.send(f'> Removed last sprint from {proj.get_name()}.')
@@ -204,7 +204,7 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
             
         try:    
             proj.rm_meeting(meeting_id)
-        except KeyError as e:
+        except KeyError:
             await ctx.send(f'> Failed to remove meeting: meeting not found.')
             return
         
@@ -218,7 +218,7 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
 
         try:
             self.project_list.remove(project_id)
-        except KeyError as e:
+        except KeyError:
             await ctx.send(f'> Failed to remove project: project not found.')
             return
 
@@ -234,12 +234,12 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
         if (not proj):
             await ctx.send(f'> Failed to remove requirement: project not found.')
             return
-        
-        if (rqe_id < 0 or rqe_id > len(proj.get_rqes())):
+
+        try:
+            proj.rm_rqe(rqe_id)
+        except IndexError:
             await ctx.send(f'> Failed to remove requirement: requirement not found.')
-            return
-            
-        proj.rm_rqe(rqe_id)
+            return            
 
         await ctx.send(f'> Removed requirement from {proj.get_name()}.')
 
@@ -271,7 +271,7 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
         
         try:
             lst = f'Project Name: {proj.get_name()}\nMeeting Name: {proj.get_meeting_name(meeting_id)}\nDescription: {proj.get_meeting_desc(meeting_id)}'
-        except KeyError as e:
+        except KeyError:
             await ctx.send(f'> Failed to get meeting description: meeting not found.')
             return
 
@@ -291,7 +291,7 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
 
         try:
             proj.set_meeting_desc(meeting_id, description)
-        except KeyError as e:
+        except KeyError:
             await ctx.send(f'> Failed to set meeting description: meeting not found.')
             return
 
@@ -301,148 +301,190 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
     @commands.command(name="addTask", brief="Add a task to a sprint.")
     @commands.guild_only()
     @commands.has_role("Scrum Master")
-    async def add_task(self, ctx, n: int, name, date, time, *, s=None):
-        print(f'[Log] add_task from {ctx.author}, project: {n}, name: {name}, date: {date}, time: {time}, detail: {s}')
-        date_val = [int(i) for i in date.split('/')]
-        time_val = [int(i) for i in time.split(':')]
-
-        datetime = dt.datetime(date_val[0], date_val[1], date_val[2], time_val[0], time_val[1])
-        proj = self.__get_project(n)
-        if (not proj or len(proj.get_sprints()) <= 0):
+    async def add_task(self, ctx, project_id: int, name, date, time, *, details=None):
+        print(f'[Log] add_task from {ctx.author}, project: {project_id}, name: {name}, date: {date}, time: {time}, detail: {details}')
+        proj = self.__get_project(project_id)
+        if (not proj):
+            await ctx.send(f'> Failed to add task: project not found.')
             return
 
-        task = Task(name, datetime, s)
-        sprint = proj.get_sprints()[-1]
-        sprint.add_task(task)
+        deadline = date + " " + time
+        try:
+            proj.add_task(name, deadline, details)
+        except IndexError:
+            await ctx.send(f'> Failed to add task: project contains no sprints.')
 
         await ctx.send(f'> Added {name} to {proj.get_name()}.')
         
     @commands.command(name="listTasks", brief="List all tasks of a sprint.")
     @commands.guild_only()
-    async def list_tasks(self, ctx, n: int, m: int):
-        print(f'[Log] list_tasks from {ctx.author}, project: {n}, sprint: {m}')
-        proj = self.__get_project(n)
-        if (not proj or len(proj.get_sprints()) <= 0):
+    async def list_tasks(self, ctx, project_id: int, sprint_id: int):
+        print(f'[Log] list_tasks from {ctx.author}, project: {project_id}, sprint: {sprint_id}')
+        proj = self.__get_project(project_id)
+        if (not proj):
+            await ctx.send(f'> Failed to list tasks: project not found.')
             return
-        sprint = proj.get_sprints()[m]
 
-        seq = [f'id: {i} - name: {j.get_name()}, due: {j.get_deadline()}' for i, j in sprint.get_tasks()]
+        if (len(proj.get_sprints()) == 0):
+            await ctx.send(f'> Failed to list tasks: project contains no sprints.')
+            return
+
+        try:
+            tasks = proj.get_tasks(sprint_id)
+        except IndexError:
+            await ctx.send(f'> Failed to list tasks: no such sprint id exists.')
+            return
+
+        seq = [f'id: {i} - name: {j[0]}, due: {j[1]}' for i, j in tasks]
         lst = '\n'.join(seq)
 
         if (not seq):
             await ctx.send(f'> No current tasks in given sprint.')
             return
         
-        embed = discord.Embed(title='List of Tasks', description=f'{proj.get_name()}, sprint {m}')
+        embed = discord.Embed(title='List of Tasks', description=f'{proj.get_name()}, sprint {sprint_id}')
         embed.add_field(name='\uFEFF', value=lst)
         await ctx.send(content=None, embed=embed)
 
     @commands.command(name="rmTask", aliases=["removeTask"], brief="Removes a task in a sprint.")
     @commands.guild_only()
     @commands.has_role("Scrum Master")
-    async def rm_task(self, ctx, n: int, k: int):
-        print(f'[Log] rm_task from {ctx.author}, project: {n}, task: {k}')
-        proj = self.__get_project(n)
+    async def rm_task(self, ctx, project_id: int, task_id: int):
+        print(f'[Log] rm_task from {ctx.author}, project: {project_id}, task: {task_id}')
+        proj = self.__get_project(project_id)
         if (not proj):
+            await ctx.send(f'> Failed to remove task: project not found.')
             return
-        
-        sprint = proj.get_sprints()[-1]
-        sprint.rm_task(k)
-        await ctx.send(f'> Removed task {k} in {proj.get_name()}.')
+
+        try:
+            proj.rm_task(task_id)
+        except IndexError:
+            await ctx.send(f'> Failed to remove task: project contains no sprints.')
+            return
+        except KeyError:
+            await ctx.send(f'> Failed to remove task: task not found.')
+            return
+            
+        await ctx.send(f'> Removed task {task_id} in {proj.get_name()}.')
 
     # TASK COG
     @commands.command(name="addFeedback", brief="Add feedback to a specific task.")
     @commands.guild_only()
     @commands.has_role("Scrum Master")
-    async def add_feedback(self, ctx, n: int, k: int, *, s):
-        print(f'[Log] add_feedback from {ctx.author}, project: {n}, task: {k}, feedback: {s}')
-        proj = self.__get_project(n)
+    async def add_feedback(self, ctx, project_id: int, task_id: int, *, feedback):
+        print(f'[Log] add_feedback from {ctx.author}, project: {project_id}, task: {task_id}, feedback: {feedback}')
+        proj = self.__get_project(project_id)
         if (not proj):
+            await ctx.send(f'> Failed to add feedback: project not found.')
             return
 
-        sprint = proj.get_sprints()[-1]
-        task = self.__get_task(sprint, k)
-        if (not task):
+        try:
+            proj.add_feedback(task_id, feedback)
+        except IndexError:
+            await ctx.send(f'> Failed to add feedback: project contains no sprints.')
             return
-        
-        task.add_feedback(s)
-        sprint.update_task(k, task)
-        await ctx.send(f'> Added feedback to {task.get_name()}.')
+        except KeyError:
+            await ctx.send(f'> Failed to add feedback: task not found.')
+            return
+
+        await ctx.send(f'> Added feedback to task {task_id}.')
 
     @commands.command(name="getDetails", brief="Get details of a specific task.")
     @commands.guild_only()
-    async def get_details(self, ctx, n: int, m: int, k: int):
-        print(f'[Log] get_details from {ctx.author}, project: {n}, sprint: {m}, task: {k}')
-        proj = self.__get_project(n)
+    async def get_details(self, ctx, project_id: int, sprint_id: int, task_id: int):
+        print(f'[Log] get_details from {ctx.author}, project: {project_id}, sprint: {sprint_id}, task: {task_id}')
+        proj = self.__get_project(project_id)
         if (not proj):
+            await ctx.send(f'> Failed to get details: project not found.')
             return
-        sprint = proj.get_sprints()[m]
-        task = self.__get_task(sprint, k)
-        if (not task):
+
+        try:
+            task = proj.get_task(sprint_id, task_id)
+        except IndexError:
+            await ctx.send(f'> Failed to get details: sprint not found.')
             return
         
-        details = f'Task Name: {task.get_name()}\nDetails: {task.get_details()}'
+        if (not task):
+            await ctx.send(f'> Failed to get details: task not found.')
+            return
 
-        embed = discord.Embed(title='Task Details', description=f'{proj.get_name()}, sprint {m}')
+        
+        details = f'Task Name: {task[0]}\nDetails: {task[2]}'
+
+        embed = discord.Embed(title='Task Details', description=f'{proj.get_name()}, sprint {sprint_id}')
         embed.add_field(name='\uFEFF', value=details)
         await ctx.send(content=None, embed=embed)
 
     @commands.command(name="listFeedback", brief="List all feedback from a specific task.")
     @commands.guild_only()
-    async def list_feedback(self, ctx, n: int, m: int, k: int):
-        print(f'[Log] list_feedback from {ctx.author}, project: {n}, sprint: {m}, task: {k}')
-        proj = self.__get_project(n)
+    async def list_feedback(self, ctx, project_id: int, sprint_id: int, task_id: int):
+        print(f'[Log] list_feedback from {ctx.author}, project: {project_id}, sprint: {sprint_id}, task: {task_id}')
+        proj = self.__get_project(project_id)
         if (not proj):
+            await ctx.send(f'> Failed to list feedback: project not found.')
+            return
+
+        try:
+            feedback = proj.get_feedback(sprint_id, task_id)
+        except IndexError:
+            await ctx.send(f'> Failed to list feedback: sprint not found.')
+            return
+        except KeyError:
+            await ctx.send(f'> Failed to list feedback: task not found.')
             return
         
-        sprint = proj.get_sprints()[m]
-        task = self.__get_task(sprint, k)
-        if (not task):
-            return
-        
-        seq = [f'{i}. {task.get_feedback()[i]}' for i in range(len(task.get_feedback()))]
+        seq = [f'{i}. {j}' for i, j in enumerate(feedback)]
         lst = '\n'.join(seq)
 
         if (not seq):
-            await ctx.send(f'> No current feedback in {task.get_name()}.')
+            await ctx.send(f'> No current feedback in task {task_id}.')
             return
         
-        embed = discord.Embed(title='List of Feedback', description=f'{proj.get_name()}, sprint {m}, {task.get_name()}')
+        embed = discord.Embed(title='List of Feedback', description=f'{proj.get_name()}, sprint {sprint_id}, task {task_id}')
         embed.add_field(name='\uFEFF', value=lst)
         await ctx.send(content=None, embed=embed)
 
     @commands.command(name="rmFeedback", aliases=["removeFeedback"], brief="Remove a specific feedback from a specific task.")
     @commands.guild_only()
     @commands.has_role("Scrum Master")
-    async def rm_feedback(self, ctx, n: int, k: int, x: int):
-        print(f'[Log] rm_feedback from {ctx.author}, project: {n}, task: {k}, feedback: {x}')
-        proj = self.__get_project(n)
+    async def rm_feedback(self, ctx, project_id: int, task_id: int, feedback_id: int):
+        print(f'[Log] rm_feedback from {ctx.author}, project: {project_id}, task: {task_id}, feedback: {feedback_id}')
+        proj = self.__get_project(project_id)
         if (not proj):
+            await ctx.send(f'> Failed to remove feedback: project not found.')
             return
 
-        sprint = proj.get_sprints()[-1]
-        task = self.__get_task(sprint, k)
-        if (not task):
+        try:
+            proj.rm_feedback(task_id, feedback_id)
+        except IndexError:
+            await ctx.send(f'> Failed to remove feedback: project contains no sprints.')
             return
-        
-        task.rm_feedback(x)
-        await ctx.send(f'> Removed feedback from {task.get_name()}.')
+        except KeyError:
+            await ctx.send(f'> Failed to remove feedback: task not found.')
+            return
+
+        await ctx.send(f'> Removed feedback from task {task_id}.')
 
     @commands.command(name="setDetails", brief="Set the details of a specific task.")
     @commands.guild_only()
     @commands.has_role(["Scrum Master", "Business Analyst"])
-    async def set_details(self, ctx, n: int, k: int, *, s):
-        print(f'[Log] set_details from {ctx.author}, project: {n}, task: {k}, details: {s}')
-        proj = self.__get_project(n)
+    async def set_details(self, ctx, project_id: int, task_id: int, *, details):
+        print(f'[Log] set_details from {ctx.author}, project: {project_id}, task: {task_id}, details: {details}')
+        proj = self.__get_project(project_id)
         if (not proj):
-            return
-        sprint = proj.get_sprints()[-1]
-        task = self.__get_task(sprint, k)
-        if (not task):
+            await ctx.send(f'> Failed to set details: project not found.')
             return
         
-        task.set_details(s)
-        await ctx.send(f'> Added details to {task.get_name()}.')
+        try:
+            proj.set_details(task_id, details)
+        except IndexError:
+            await ctx.send(f'> Failed to set details: project contains no sprints.')
+            return
+        except KeyError:
+            await ctx.send(f'> Failed to set details: task not found.')
+            return
+
+        await ctx.send(f'> Set details for task {task_id}.')
 
     # ADMIN COG
     ## @brief Loads a new cog into the bot.
@@ -514,24 +556,6 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
         for i in range(len(proj_key)):
             if (proj_key[i][0] == n):
                 return proj_key[i][1]
-        return None
-
-    def __get_meeting(self, n, m):
-        proj = self.__get_project(n)
-        if (not proj):
-            return None
-        
-        meet_key = proj.get_meetings()
-        for i in range(len(meet_key)):
-            if (meet_key[i][0] == m):
-                return meet_key[i][1]
-        return None
-
-    def __get_task(self, sprint, k):
-        task_key = sprint.get_tasks()
-        for i in range(len(task_key)):
-            if (task_key[i][0] == k):
-                return task_key[i][1]
         return None
 
 def setup(bot):
