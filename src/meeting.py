@@ -12,7 +12,7 @@ class Meeting():
     ## @brief Meeting constructor
     #  @param n Name of meeting
     #  @param dt Date and time of meeting
-    #  @param mType Type of meeting
+    #  @param m_type Type of meeting
     #  @param desc Descripton of meeting
     def __init__(self, n, dt, m_type, desc=None):
         self.name = n
