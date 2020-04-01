@@ -262,15 +262,19 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
     # MEETING COG
     @commands.command(name="getMeetingDesc", aliases=["getMeetingDescription"], brief="Get the description of a given meeting.")
     @commands.guild_only()
-    async def get_meeting_desc(self, ctx, n: int, m: int):
-        print(f'[Log] get_meeting_desc from {ctx.author}, project: {n}, meeting: {m}')
-        proj = self.__get_project(n)
-        meeting = self.__get_meeting(n, m)        
-        if (not meeting):
+    async def get_meeting_desc(self, ctx, project_id: int, meeting_id: int):
+        print(f'[Log] get_meeting_desc from {ctx.author}, project: {project_id}, meeting: {meeting_id}')
+        proj = self.__get_project(project_id)
+        if (not proj):
+            await ctx.send(f'> Failed to get meeting description: project not found.')
             return
         
-        lst = f'Project Name: {proj.get_name()}\nMeeting Name: {meeting.get_name()}\nDescription: {meeting.get_desc()}'
-        print(lst)
+        try:
+            lst = f'Project Name: {proj.get_name()}\nMeeting Name: {proj.get_meeting_name(meeting_id)}\nDescription: {proj.get_meeting_desc(meeting_id)}'
+        except KeyError as e:
+            await ctx.send(f'> Failed to get meeting description: meeting not found.')
+            return
+
         embed = discord.Embed(title='Meeting Description')
         embed.add_field(name='\uFEFF', value=lst)
         await ctx.send(content=None, embed=embed)
@@ -278,16 +282,20 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
     @commands.command(name="setMeetingDesc", aliases=["setMeetingDescription"], brief="Set a meeting description.")
     @commands.guild_only()
     @commands.has_role("Scrum Master")
-    async def set_meeting_desc(self, ctx, n: int, m: int, *, s):
-        print(f'[Log] set_meeting_desc from {ctx.author}, project: {n}, meeting: {m}, desc: {s}')
-        proj = self.__get_project(n)
-        meeting = self.__get_meeting(n, m)
-        if (not meeting):
+    async def set_meeting_desc(self, ctx, project_id: int, meeting_id: int, *, description):
+        print(f'[Log] set_meeting_desc from {ctx.author}, project: {project_id}, meeting: {meeting_id}, desc: {description}')
+        proj = self.__get_project(project_id)
+        if (not proj):
+            await ctx.send(f'> Failed to set meeting description: project not found.')
             return
-        
-        meeting.set_desc(s)
-        proj.update_meeting(m, meeting)
-        await ctx.send(f'> Successfully updated description for {meeting.get_name()}.')
+
+        try:
+            proj.set_meeting_desc(meeting_id, description)
+        except KeyError as e:
+            await ctx.send(f'> Failed to set meeting description: meeting not found.')
+            return
+
+        await ctx.send(f'> Successfully updated description for {proj.get_meeting_name(meeting_id)}.')
 
     # SPRINT COG
     @commands.command(name="addTask", brief="Add a task to a sprint.")

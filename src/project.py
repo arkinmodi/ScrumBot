@@ -97,9 +97,23 @@ class Project():
     def set_meeting_desc(self, id, desc=None):
         meeting = self.__get_meeting_by_id(id)
         if (not meeting):
-            return
+            raise KeyError
         
         meeting.set_desc(desc)
+
+    def get_meeting_name(self, id):
+        meeting = self.__get_meeting_by_id(id)
+        if (not meeting):
+            raise KeyError
+        
+        return meeting.get_name() 
+
+    def get_meeting_desc(self, id):
+        meeting = self.__get_meeting_by_id(id)
+        if (not meeting):
+            raise KeyError
+        
+        return meeting.get_desc()
 
     # Sprint (and Task) inherited commands
 
