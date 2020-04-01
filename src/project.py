@@ -97,27 +97,42 @@ class Project():
 
     # Sprint (and Task) inherited commands
 
-    ## @brief Mutator for adding task
+    ## @brief Mutator for adding task to sprint
+    #  @param name Name of Task
+    #  @param deadline Deadline of Task
+    #  @param details Details of Task
     def add_task(self, name, deadline, details=None):
         sprint = self.sprints[-1]
         sprint.add_task(name, deadline, details)
     
+    ## @brief Accessor for getting tasks from sprint
+    #  @param index Index of sprint
     def get_tasks(self, index):
         sprint = self.sprints[index]
         return sprint.get_tasks()
 
+    ## @brief Mutator for removing a task from sprint
+    #  @param Index of task
     def rm_task(self, index):
         sprint = self.sprints[-1]
         sprint.rm_task(index)
     
+    ## @brief Mutator for adding feedback to a task
+    #  @param index Index of task
     def add_feedback(self, index, feedback):
         sprint = self.sprints[-1]
         sprint.add_feedback(index, feedback)
     
+    ## @brief Mutator for removing feedback from a task
+    #  @param task_index Index of task
+    #  @param feedback_index Feedback of task
     def rm_feedback(self, task_index, feedback_index):
         sprint = self.sprints[-1]
         sprint.rm_feedback(task_index, feedback_index)
     
+    ## @brief Mutator for setting details for a task
+    #  @param index Index of task
+    #  @param details Details of task
     def set_details(self, index, details):
         sprint = self.sprints[-1]
         sprint.set_details(index, details)

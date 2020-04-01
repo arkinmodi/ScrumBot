@@ -57,8 +57,6 @@ class Sprint():
         task = self.tasks[index]
         task.set_details(details)
 
-    ## @brief Private method for obtaining name, deadline, details, and feedback of task
-    #  @param task Task
     def __get_task(self, task):
         return (task.get_name(), task.get_deadline(), task.get_details(), task.get_feedback())
 
