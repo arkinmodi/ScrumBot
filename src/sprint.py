@@ -50,12 +50,17 @@ class Sprint():
         task = self.tasks[task_index]
         task.rm_feedback(feedback_index)
 
+    ## @brief Mutator for setting the details of a task
+    #  @param index Index of task
+    #  @param details Details of task
     def set_details(self, index, details):
         task = self.tasks[index]
         task.set_details(details)
 
+    ## @brief Private method for obtaining name, deadline, details, and feedback of task
+    #  @param task Task
     def __get_task(self, task):
-        return (task.get_date(), task.get_deadline(), task.get_details(), task.get_feedback())
+        return (task.get_name(), task.get_deadline(), task.get_details(), task.get_feedback())
 
 
     
