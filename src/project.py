@@ -101,6 +101,9 @@ class Project():
         
         meeting.set_desc(desc)
 
+    ## @brief Accessor to get meeting name
+    #  @param id ID of meeting
+    #  @throws KeyError Meeting does not exist
     def get_meeting_name(self, id):
         meeting = self.__get_meeting_by_id(id)
         if (not meeting):
@@ -108,6 +111,9 @@ class Project():
         
         return meeting.get_name() 
 
+    ## @brief Accessor to get meeting description
+    #  @param id ID of meeting
+    #  @throws KeyError Meeting does not exist
     def get_meeting_desc(self, id):
         meeting = self.__get_meeting_by_id(id)
         if (not meeting):
