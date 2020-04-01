@@ -3,10 +3,8 @@
 #  @brief Class representing Project objects
 #  @date Mar 21, 2020
 
-from meetingTypes import *
 from meetingList import MeetingList
-from task import *
-from taskList import *
+from meeting import *
 from sprint import *
 
 ## @brief Class representing Project objects
@@ -35,7 +33,7 @@ class Project():
 
     ## @brief Accessor for meetings of project
     def get_meetings(self):
-        return self.meetings.to_seq()
+        return map(self.__get_meeting, self.meetings.to_seq())
 
     ## @brief Accessor for requirements of project
     def get_rqes(self):
@@ -43,23 +41,18 @@ class Project():
 
     ## @brief Accessor for sprints of project
     def get_sprints(self):
-        return self.sprints
+        return map(self.__get_sprint, self.sprints)
 
     ## @brief Mutator for descripton of project
     #  @param s New description for project
-    def set_desc(self, s):
-        self.desc = s
+    def set_desc(self, desc=None):
+        self.desc = desc
 
     ## @brief Mutator for adding meeting to project
     #  @param meeting Meeting to be added
-    def add_meeting(self, meeting):
+    def add_meeting(self, name, datetime, m_type, desc=None):
+        meeting = Meeting(name, datetime, m_type, desc)
         self.meetings.add(meeting)
-
-    ## @brief Mutator for updating existing meetings
-    #  @param id key value of meeting
-    #  @param meeting Meeting to be updated
-    def update_meeting(self, id, meeting):
-        self.meetings.update(id, meeting)
 
     ## @brief Mutator for adding a requirement to project
     #  @param s Requirement to be added
@@ -67,8 +60,8 @@ class Project():
         self.rqes.append(s)
 
     ## @brief Mutator for adding a sprint to project
-    #  @param sprint Sprint to be added
-    def add_sprint(self, sprint):
+    def add_sprint(self):
+        sprint = Sprint()
         self.sprints.append(sprint)
         self.c = self.c + 1
 
@@ -89,3 +82,17 @@ class Project():
         else:
             del self.sprints[-1]
             self.c = self.c - 1
+
+    # Meeting inherited commands
+
+    ## @brief Mutator for updating meeting description
+    def set_meeting_desc(self, index, desc=None):
+        meeting = self.meetings[index]
+        meeting.set_desc(desc)
+
+    def __get_meeting(self, meeting):
+        return (meeting.get_name(), meeting.get_datetime(), meeting.get_type(), meeting.get_desc())
+
+    def __get_sprint(self, sprint):
+        return sprint.get_date()
+    
