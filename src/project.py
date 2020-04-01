@@ -147,6 +147,9 @@ class Project():
 
         return sprint.get_tasks()
 
+    ## @brief Accessor for a single task
+    #  @param sprint_index Index of sprint
+    #  @param task_index Index of task
     def get_task(self, sprint_index, task_index):
         try:
             sprint = self.sprints[sprint_index]
@@ -166,12 +169,16 @@ class Project():
     
     ## @brief Mutator for adding feedback to a task
     #  @param index Index of task
+    #  @param feedback Feedback to be added
     def add_feedback(self, index, feedback):
         if (len(self.sprints) == 0):
             raise IndexError
         sprint = self.sprints[-1]
         sprint.add_feedback(index, feedback)
 
+    ## @brief Accessor for feedback of a task
+    #  @param sprint_index Index of sprint
+    #  @param task_index Index of task
     def get_feedback(self, sprint_index, task_index):
         try:
             sprint = self.sprints[sprint_index]
