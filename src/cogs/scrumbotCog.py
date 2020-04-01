@@ -12,13 +12,6 @@ sys.path.insert(0, parentDir)
 
 from project import *
 from projectList import ProjectList
-from meeting import *
-from sprint import *
-import meetingTypes
-
-from task import *
-
-import datetime as dt
 
 ## @brief Discord commands related to scrumbot
 #  @details These commands are only to be used inside a guild.
@@ -31,32 +24,23 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
     @commands.command(name="addMeeting", brief="Add a meeting to a project.")
     @commands.guild_only()
     @commands.has_role("Scrum Master")
-    async def add_meeting(self, ctx, n: int, name, date, time, m_type, *, s=None):
-        print(f'[Log] add_meeting from {ctx.author}, name: {name}, date: {date}, time: {time}, desc: {s} in project: {n}')
-        date_val = [int(i) for i in date.split('/')]
-        time_val = [int(i) for i in time.split(':')]
+    async def add_meeting(self, ctx, project_id: int, name, date, time, meeting_type, *, description=None):
+        print(f'[Log] add_meeting from {ctx.author}, name: {name}, date: {date}, time: {time}, desc: {description} in project: {project_id}')
 
-        d = dt.date(date_val[0], date_val[1], date_val[2])
-        t = dt.time(time_val[0], time_val[1])
-        m = MeetingTypes.from_str(m_type)
-        meeting = Meeting(name, d, t, m, s)
-
-        proj = self.__get_project(n)
+        proj = self.__get_project(project_id)
         if (not proj):
+            await ctx.send(f'> Failed to add meeting: project not found.')
             return
 
-        proj.add_meeting(meeting)
-
-        self.project_list.update(n, proj)
-        
+        proj.add_meeting(name, date, time, meeting_type, description)        
         await ctx.send(f'> Added meeting **{name}** to {proj.get_name()}.')
 
     @commands.command(name="addProject", brief="Add a project to the guild.")
     @commands.guild_only()
     @commands.is_owner()
-    async def add_project(self, ctx, name, *, desc=None):
-        print(f'[Log] add_project from {ctx.author}, name: {name}, desc: {desc}')
-        proj = Project(name, desc)
+    async def add_project(self, ctx, name, *, description=None):
+        print(f'[Log] add_project from {ctx.author}, name: {name}, desc: {description}')
+        proj = Project(name, description)
         self.project_list.add(proj)
 
         await ctx.send(f'> Added project **{name}**')
@@ -64,40 +48,39 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
     @commands.command(name="addRqe", aliases=["addRequirement", "addReq"], brief="Add a requirement to a project.")
     @commands.guild_only()
     @commands.has_role("Business Analyst")
-    async def add_rqe(self, ctx, n: int, *, s):
-        print(f'[Log] add_rqe from {ctx.author}, project: {n}, rqe: {s}')
+    async def add_rqe(self, ctx, project_id: int, *, requirement):
+        print(f'[Log] add_rqe from {ctx.author}, project: {n}, rqe: {requirement}')
 
-        proj = self.__get_project(n)
+        proj = self.__get_project(project_id)
         if (not proj):
+            await ctx.send(f'> Failed to add requirement: project not found.')
             return
-        proj.add_rqe(s)
 
-        self.project_list.update(n, proj)
-        await ctx.send(f'> Added requirement {s} to {proj.get_name()}.')
+        proj.add_rqe(requirement)
+        await ctx.send(f'> Added requirement to {proj.get_name()}.')
 
     @commands.command(name="addSprint", brief="Add a sprint to a project.")
     @commands.guild_only()
     @commands.has_role("Scrum Master")
-    async def add_sprint(self, ctx, n: int):
-        print(f'[Log] add_sprint from {ctx.author}, project: {n}')
-        sprint = Sprint()
+    async def add_sprint(self, ctx, project_id: int):
+        print(f'[Log] add_sprint from {ctx.author}, project: {project_id}')
 
-        proj = self.__get_project(n)                
+        proj = self.__get_project(project_id)                
         if (not proj):
+            await ctx.send(f'> Failed to add sprint: project not found.')
             return
 
-        proj.add_sprint(sprint)
-
-        self.project_list.update(n, proj)
+        proj.add_sprint()
         await ctx.send(f'> Added a new sprint to {proj.get_name()}.')
 
     @commands.command(name="getProjectDesc", aliases=["getProjectDescription", "getProjDesc"], brief="Get the description of a project.")
     @commands.guild_only()
-    async def get_project_desc(self, ctx, n: int):
-        print(f'[Log] get_project_desc from {ctx.author}, project: {n}')
+    async def get_project_desc(self, ctx, project_id: int):
+        print(f'[Log] get_project_desc from {ctx.author}, project: {project_id}')
 
-        proj = self.__get_project(n)                
+        proj = self.__get_project(project_id)                
         if (not proj):
+            await ctx.send(f'> Failed to get project description: project not found.')
             return
 
         desc = f'Project Name: {proj.get_name()}\nDescription: {proj.get_desc()}'
@@ -108,11 +91,12 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
 
     @commands.command(name="getRqes", aliases=["getRequirements", "getReqs"], brief="Get the requirements of a project.")
     @commands.guild_only()
-    async def get_rqes(self, ctx, n: int):
-        print(f'[Log] get_rqes from {ctx.author}, project: {n}')
+    async def get_rqes(self, ctx, project_id: int):
+        print(f'[Log] get_rqes from {ctx.author}, project: {project_id}')
 
-        proj = self.__get_project(n)
+        proj = self.__get_project(project_id)
         if (not proj):
+            await ctx.send(f'> Failed to get project requirements: project not found.')
             return
 
         if (not proj.get_rqes()):
@@ -128,18 +112,19 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
 
     @commands.command(name="getSprints", aliases=["listSprints"], brief="Get the sprints of a project.")
     @commands.guild_only()
-    async def get_sprints(self, ctx, n: int):
-        print(f'[Log] get_sprints from {ctx.author}, project: {n}')
+    async def get_sprints(self, ctx, project_id: int):
+        print(f'[Log] get_sprints from {ctx.author}, project: {project_id}')
 
-        proj = self.__get_project(n)
+        proj = self.__get_project(project_id)
         if (not proj):
+            await ctx.send(f'> Failed to get project sprints: project not found.')
             return
             
         if (not proj.get_sprints()):
             await ctx.send(f'> No current sprints in {proj.get_name()}.')
             return
 
-        sprint_lst = [f'Sprint {i} - Created on: {proj.get_sprints()[i].get_date()}' for i in range(len(proj.get_sprints()))]
+        sprint_lst = [f'Sprint {i} - Created on: {sprint_lst[i]}' for i in range(len(sprint_lst))]
         lst = '\n'.join(sprint_lst)
 
         embed = discord.Embed(title=f'List of Sprints', description=f'{proj.get_name()}:')
@@ -148,20 +133,22 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
 
     @commands.command(name="listMeetings", brief="List all meetings of a project.")
     @commands.guild_only()
-    async def list_meetings(self, ctx, n: int):
-        print(f'[Log] list_meetings from {ctx.author}, project: {n}')
+    async def list_meetings(self, ctx, project_id: int):
+        print(f'[Log] list_meetings from {ctx.author}, project: {project_id}')
 
-        proj = self.__get_project(n)                
+        proj = self.__get_project(project_id)                
         if (not proj):
+            await ctx.send(f'> Failed to list meetings: project not found.')
             return
-            
-        seq = [f'id: {i} - name: {j.get_name()}, on {str(j.get_time())} at {str(j.get_date())}' for i, j in proj.get_meetings()]
-        lst = '\n'.join(seq)
+
+        seq = [f'id: {index} - name: {i[0]}, on {i[1]}. Meeting type: {i[2]}' for index, i in enumerate(proj.get_meetings())]
 
         if (not seq):
             await ctx.send(f'> No current projects in {proj.get_name()}.')
             return
         
+        lst = '\n'.join(seq)
+
         embed = discord.Embed(title='List of Meetings', description=f'{proj.get_name()}')
         embed.add_field(name='\uFEFF', value=lst)
         await ctx.send(content=None, embed=embed)
@@ -172,11 +159,11 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
         print(f'[Log] list_projects from {ctx.author}')
         
         seq = [f'id: {i} - name: {j.get_name()} - desc: {j.get_desc()}' for i, j in self.project_list.to_seq()]
-        lst = '\n'.join(seq)
-
         if (not seq):
             await ctx.send(f'> No current projects.')
             return
+
+        lst = '\n'.join(seq)
 
         embed = discord.Embed(title='List of Projects')
         embed.add_field(name='\uFEFF', value=lst)
@@ -186,11 +173,12 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
     @commands.command(name="rmLastSprint", aliases=["removeLastSprint", "rmSprint", "removeSprint"], brief="Remove the last sprint of a project.")
     @commands.guild_only()
     @commands.has_role("Scrum Master")
-    async def rm_last_sprint(self, ctx, n: int):
-        print(f'[Log] rm_last_sprint from {ctx.author}, project: {n}')
+    async def rm_last_sprint(self, ctx, project_id: int):
+        print(f'[Log] rm_last_sprint from {ctx.author}, project: {project_id}')
 
-        proj = self.__get_project(n)
+        proj = self.__get_project(project_id)
         if (not proj):
+            await ctx.send(f'> Failed to remove last sprint: project not found.')
             return
 
         try:
@@ -206,56 +194,69 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
     @commands.command(name="rmMeeting", aliases=["removeMeeting"], brief="Removes a meeting from a project.")
     @commands.guild_only()
     @commands.has_role("Scrum Master")
-    async def rm_meeting(self, ctx, n: int, m: int):
-        print(f'[Log] rm_meeting from {ctx.author}, project: {n}, meeting: {m}')
+    async def rm_meeting(self, ctx, project_id: int, meeting_id: int):
+        print(f'[Log] rm_meeting from {ctx.author}, project: {project_id}, meeting: {meeting_id}')
 
-        proj = self.__get_project(n)
+        proj = self.__get_project(project_id)
         if (not proj):
+            await ctx.send(f'> Failed to remove meeting: project not found.')
             return
             
-        proj.rm_meeting(m)
-
-        self.project_list.update(n, proj)
-        await ctx.send(f'> Removed meeting {m} from {proj.get_name()}.')
-
+        try:    
+            proj.rm_meeting(meeting_id)
+        except KeyError as e:
+            await ctx.send(f'> Failed to remove meeting: meeting not found.')
+            return
+        
+        await ctx.send(f'> Removed meeting {meeting_id} from {proj.get_name()}.')
 
     @commands.command(name="rmProject", aliases=["removeProject"], brief="Removes a project from the guild.")
     @commands.guild_only()
     @commands.is_owner()
-    async def rm_project(self, ctx, n: int):
-        print(f'[Log] rm_project from {ctx.author}, project: {n}')
-        self.project_list.remove(n)
-        await ctx.send(f'> Removed project {n}.')
+    async def rm_project(self, ctx, project_id: int):
+        print(f'[Log] rm_project from {ctx.author}, project: {project_id}')
+
+        try:
+            self.project_list.remove(project_id)
+        except KeyError as e:
+            await ctx.send(f'> Failed to remove project: project not found.')
+            return
+
+        await ctx.send(f'> Removed project {project_id}.')
 
     @commands.command(name="rmRqe", aliases=["removeRqe", "rmReq", "rmRequirement"], brief="Removes a requirement from a project.")
     @commands.guild_only()
     @commands.has_role("Business Analyst")
-    async def rm_rqe(self, ctx, n: int, m: int):
-        print(f'[Log] rm_rqe from {ctx.author}, project: {n}, rqe: {m}')
+    async def rm_rqe(self, ctx, project_id: int, rqe_id: int):
+        print(f'[Log] rm_rqe from {ctx.author}, project: {project_id}, rqe: {rqe_id}')
 
-        proj = self.__get_project(n)
+        proj = self.__get_project(project_id)
         if (not proj):
+            await ctx.send(f'> Failed to remove requirement: project not found.')
+            return
+        
+        if (rqe_id < 0 or rqe_id > len(proj.get_rqes())):
+            await ctx.send(f'> Failed to remove requirement: requirement not found.')
             return
             
-        proj.rm_rqe(m)
+        proj.rm_rqe(rqe_id)
 
-        self.project_list.update(n, proj)
         await ctx.send(f'> Removed requirement from {proj.get_name()}.')
 
 
     @commands.command(name="setProjectDesc", aliases=["setProjectDescription"], brief="Set a description for a given project.")
     @commands.guild_only()
     @commands.has_role("Business Analyst")
-    async def set_project_desc(self, ctx, n: int, *, s):
-        print(f'[Log] set_project_desc from {ctx.author}, project: {n}, desc: {s}')
+    async def set_project_desc(self, ctx, project_id: int, *, description):
+        print(f'[Log] set_project_desc from {ctx.author}, project: {project_id}, desc: {description}')
 
-        proj = self.__get_project(n)
+        proj = self.__get_project(project_id)
         if (not proj):
+            await ctx.send(f'> Failed to set project description: project not found.')
             return
                        
-        proj.set_desc(s)
+        proj.set_desc(description)
 
-        self.project_list.update(n, proj)
         await ctx.send(f'> Successfully updated description for {proj.get_name()}.')
 
     # MEETING COG
