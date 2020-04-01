@@ -33,7 +33,12 @@ class Project():
 
     ## @brief Accessor for meetings of project
     def get_meetings(self):
-        return map(self.__get_meeting, self.meetings.to_seq())
+        meetings = self.meetings.to_seq()
+        meet_lst = []
+        for i, j in meetings:
+            meeting = self.__get_meeting(j)
+            meet_lst.append([i, meeting])
+        return meet_lst
 
     ## @brief Accessor for requirements of project
     def get_rqes(self):
@@ -41,7 +46,11 @@ class Project():
 
     ## @brief Accessor for sprints of project
     def get_sprints(self):
-        return map(self.__get_sprint, self.sprints)
+        sprint_lst = []
+        for i in self.sprints:
+            sprint = self.__get_sprint(i)
+            sprint_lst.append(sprint)
+        return sprint_lst
 
     ## @brief Mutator for descripton of project
     #  @param desc New description for project
@@ -184,7 +193,6 @@ class Project():
             sprint = self.sprints[sprint_index]
         except:
             raise IndexError
-
         return sprint.get_feedback(task_index)
     
     ## @brief Mutator for removing feedback from a task
@@ -218,4 +226,4 @@ class Project():
 
     def __get_sprint(self, sprint):
         return sprint.get_date()
-    
+

@@ -22,10 +22,12 @@ class Sprint():
     ## @brief Accessor for list of tasks
     def get_tasks(self):
         seq = self.tasks.to_seq()
+        seq_lst = []
         for i, j in seq:
-            j = self.__get_task(j)
+            task = self.__get_task(j)
+            seq_lst.append([i, task])
 
-        return seq
+        return seq_lst
 
     ## @brief Accessor for a single task
     #  @param index Index of a single task
@@ -66,7 +68,7 @@ class Sprint():
         if (not task):
             raise KeyError
 
-        task.get_feedback()
+        return task.get_feedback()
 
     ## @brief Mutator for removing feedback from a task
     #  @param task_index Index of task
@@ -96,5 +98,3 @@ class Sprint():
             if (id == i):
                 return j
         return None
-
-    

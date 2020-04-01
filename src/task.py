@@ -45,7 +45,7 @@ class Task():
      ## @brief Mutator for adding new feedback to task
      #  @param s The new feedback to be added to task
     def add_feedback(self, s):
-        return self.feedback.append(s)
+        self.feedback.append(s)
 
      ## @brief Mutator for removing feedback from task
      #  @param i Index for feedback

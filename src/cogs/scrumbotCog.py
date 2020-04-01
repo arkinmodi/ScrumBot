@@ -32,12 +32,13 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
             await ctx.send(f'> Failed to add meeting: project not found.')
             return
 
-        proj.add_meeting(name, date, time, meeting_type, description)        
+        datetime = date + " " + time
+        proj.add_meeting(name, datetime, meeting_type, description)        
         await ctx.send(f'> Added meeting **{name}** to {proj.get_name()}.')
 
     @commands.command(name="addProject", brief="Add a project to the guild.")
     @commands.guild_only()
-    @commands.is_owner()
+    @commands.has_role("Admin")
     async def add_project(self, ctx, name, *, description=None):
         print(f'[Log] add_project from {ctx.author}, name: {name}, desc: {description}')
         proj = Project(name, description)
@@ -49,7 +50,7 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
     @commands.guild_only()
     @commands.has_role("Business Analyst")
     async def add_rqe(self, ctx, project_id: int, *, requirement):
-        print(f'[Log] add_rqe from {ctx.author}, project: {n}, rqe: {requirement}')
+        print(f'[Log] add_rqe from {ctx.author}, project: {project_id}, rqe: {requirement}')
 
         proj = self.__get_project(project_id)
         if (not proj):
@@ -123,9 +124,10 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
         if (not proj.get_sprints()):
             await ctx.send(f'> No current sprints in {proj.get_name()}.')
             return
-
-        sprint_lst = [f'Sprint {i} - Created on: {sprint_lst[i]}' for i in range(len(sprint_lst))]
-        lst = '\n'.join(sprint_lst)
+        
+        sprint_lst = proj.get_sprints()
+        sprints = [f'Sprint {i} - Created on: {sprint_lst[i]}' for i in range(len(sprint_lst))]
+        lst = '\n'.join(sprints)
 
         embed = discord.Embed(title=f'List of Sprints', description=f'{proj.get_name()}:')
         embed.add_field(name='\uFEFF', value=lst)
@@ -141,7 +143,7 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
             await ctx.send(f'> Failed to list meetings: project not found.')
             return
 
-        seq = [f'id: {index} - name: {i[0]}, on {i[1]}. Meeting type: {i[2]}' for index, i in enumerate(proj.get_meetings())]
+        seq = [f'id: {i} - name: {j[0]}, on {j[1]}. Meeting type: {j[2]}' for i, j in proj.get_meetings()]
 
         if (not seq):
             await ctx.send(f'> No current projects in {proj.get_name()}.')
@@ -212,7 +214,7 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
 
     @commands.command(name="rmProject", aliases=["removeProject"], brief="Removes a project from the guild.")
     @commands.guild_only()
-    @commands.is_owner()
+    @commands.has_role("Admin")
     async def rm_project(self, ctx, project_id: int):
         print(f'[Log] rm_project from {ctx.author}, project: {project_id}')
 
@@ -313,6 +315,7 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
             proj.add_task(name, deadline, details)
         except IndexError:
             await ctx.send(f'> Failed to add task: project contains no sprints.')
+            return
 
         await ctx.send(f'> Added {name} to {proj.get_name()}.')
         
@@ -433,7 +436,8 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
             await ctx.send(f'> Failed to list feedback: task not found.')
             return
         
-        seq = [f'{i}. {j}' for i, j in enumerate(feedback)]
+        print(feedback)
+        seq = [f'{i}. {feedback[i]}' for i in range(len(feedback))]
         lst = '\n'.join(seq)
 
         if (not seq):
@@ -491,7 +495,7 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
     #  @param cog A string having the name of the python file, usually in the form of 'cogs.<file_name>'.
     #  @throws Exception if the extension fails to load.
     @commands.command(name='load')
-    @commands.is_owner()
+    @commands.has_role("Admin")
     async def load(self, ctx, *, cog: str):
         try:
             self.bot.load_extension(cog)
@@ -506,7 +510,7 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
     #  @param cog A string having the name of the python file, usually in the form of 'cogs.<file_name>'.g 
     #  @throws Exception if the extension fails to reload.
     @commands.command(name='reload')
-    @commands.is_owner()
+    @commands.has_role("Admin")
     async def reload(self, ctx, *, cog: str):
         try:
             self.bot.unload_extension(cog)
@@ -522,7 +526,7 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
     #  @param cog A string having the name of the python file, usually in the form of 'cogs.<file_name>'.g 
     #  @throws Exception if the extension fails to unload.
     @commands.command(name='unload')
-    @commands.is_owner()
+    @commands.has_role("Admin")
     async def unload(self, ctx, *, cog: str):
         try:
             self.bot.unload_extension(cog)
