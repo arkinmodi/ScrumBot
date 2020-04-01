@@ -71,7 +71,10 @@ class Project():
     ## @brief Mutator for removing a meeting from project
     #  @param n Key-value of project to be removed
     def rm_meeting(self, n):
-        self.meetings.remove(n)
+        try:
+            self.meetings.remove(n)
+        except KeyError as e:
+            raise KeyError
 
     ## @brief Mutator for removing a requirement from project
     #  @param n Index of requirement to be removed
@@ -91,8 +94,11 @@ class Project():
     ## @brief Mutator for updating meeting description
     #  @param index Index of meeting
     #  @param desc Description of meeting
-    def set_meeting_desc(self, index, desc=None):
-        meeting = self.meetings[index]
+    def set_meeting_desc(self, id, desc=None):
+        meeting = self.__get_meeting_by_id(id)
+        if (not meeting):
+            return
+        
         meeting.set_desc(desc)
 
     # Sprint (and Task) inherited commands
@@ -138,7 +144,14 @@ class Project():
         sprint.set_details(index, details)
 
     def __get_meeting(self, meeting):
-        return (meeting.get_name(), meeting.get_datetime(), meeting.get_type(), meeting.get_desc())
+        return (meeting.get_name(), meeting.get_datetime(), meeting.get_type())
+
+    def __get_meeting_by_id(self, id):
+        for i, j in self.meetings.to_seq():
+            if (id == i):
+                return j
+        return None
+
 
     def __get_sprint(self, sprint):
         return sprint.get_date()
