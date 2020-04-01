@@ -17,6 +17,7 @@ class Meeting():
     def __init__(self, n, dt, m_type, desc=None):
         self.name = n
 
+        dt = dt.replace(' ', ':')
         dt = dt.replace(':', '/')
         d = [int(i) for i in dt.split('/')]
         self.datetime = datetime(d[0], d[1], d[2], d[3], d[4])

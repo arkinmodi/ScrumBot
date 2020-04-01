@@ -13,6 +13,7 @@ class Task():
     def __init__(self, s, dt, d=None):
         self.name = s
 
+        dt = dt.replace(' ', ':')
         dt = dt.replace(':', '/')
         dl = [int(i) for i in dt.split('/')]
         self.deadline = datetime(dl[0], dl[1], dl[2], dl[3], dl[4])
