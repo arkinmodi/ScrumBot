@@ -21,7 +21,7 @@ class Sprint():
 
     ## @brief Accessor for list of tasks
     def get_tasks(self):
-        lst = map(self.__get_task, self.tasks.to_seq())
+        return map(self.__get_task, self.tasks.to_seq())
 
     ## @brief Mutator for adding task to list
     #  @param task Task to be added
