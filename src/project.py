@@ -90,6 +90,33 @@ class Project():
         meeting = self.meetings[index]
         meeting.set_desc(desc)
 
+    # Sprint (and Task) inherited commands
+
+    ## @brief Mutator for adding task
+    def add_task(self, name, deadline, details=None):
+        sprint = self.sprints[-1]
+        sprint.add_task(name, deadline, details)
+    
+    def get_tasks(self, index):
+        sprint = self.sprints[index]
+        return sprint.get_tasks()
+
+    def rm_task(self, index):
+        sprint = self.sprints[-1]
+        sprint.rm_task(index)
+    
+    def add_feedback(self, index, feedback):
+        sprint = self.sprints[-1]
+        sprint.add_feedback(index, feedback)
+    
+    def rm_feedback(self, task_index, feedback_index):
+        sprint = self.sprints[-1]
+        sprint.rm_feedback(task_index, feedback_index)
+    
+    def set_details(self, index, details):
+        sprint = self.sprints[-1]
+        sprint.set_details(index, details)
+
     def __get_meeting(self, meeting):
         return (meeting.get_name(), meeting.get_datetime(), meeting.get_type(), meeting.get_desc())
 
