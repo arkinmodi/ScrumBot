@@ -70,6 +70,10 @@ class Test_Sprint:
         today = datetime.date.today()
         assert(today.strftime("%b %d, %Y") == self.test_sprint.get_date())
 
+    def test_sprint_custom_date(self):
+        test = sprint.Sprint("2020/01/01")
+        assert(test.get_date() == "Jan 01, 2020")
+
     def test_add_and_get_tasks(self):
         self.test_sprint.add_task("Name", "2020/01/01 00:00", "Details")
         assert(
@@ -94,6 +98,9 @@ class Test_Sprint:
             self.test_sprint.get_task(0)[2]== "Details"
         )
 
+    def test_get_task_not_in_list(self):
+        assert(self.test_sprint.get_task(0) == None)
+
     def test_get_single_task_with_no_details(self):
         self.test_sprint.add_task("Name", "2020/01/01 00:00")
         assert(
@@ -117,7 +124,11 @@ class Test_Sprint:
         self.test_sprint.add_feedback(0, "Feedback")
         assert(self.test_sprint.get_feedback(0) == ["Feedback"])
 
-    def test_add_feedback_to_no_task(self):
+    def test_get_feedback_from_not_existing_task(self):
+        with pytest.raises(KeyError):
+            self.test_sprint.get_feedback(0)
+
+    def test_add_feedback_with_no_task(self):
         with pytest.raises(KeyError):
             self.test_sprint.add_feedback(0, "Feedback")
 
@@ -167,6 +178,22 @@ class Test_Meetings:
         self.test_meeting.set_desc("New Description")
         assert(self.test_meeting.get_desc() == "New Description")
 
+    def test_diff_meeting_types(self):
+        grooming = meeting.Meeting("Name", "2020/01/01 00:00", "grooming", "Description")
+        standup = meeting.Meeting("Name", "2020/01/01 00:00", "standup", "Description")
+        retrospective = meeting.Meeting("Name", "2020/01/01 00:00", "retrospective", "Description")
+        sprintplanning = meeting.Meeting("Name", "2020/01/01 00:00", "sprintplanning", "Description")
+        assert(
+            grooming.get_type() == "GROOMING" and
+            standup.get_type() == "STANDUP" and
+            retrospective.get_type() == "RETROSPECTIVE" and
+            sprintplanning.get_type() == "SPRINTPLANNING"
+        )
+
+    def test_invalid_meeting_type(self):
+        with pytest.raises(TypeError):
+            meeting.Meeting("Name", "2020/01/01 00:00", "dance", "Description")
+
 class Test_Project:
     @pytest.fixture(autouse=True)
     def setup(self):
@@ -200,17 +227,75 @@ class Test_Project:
             self.test_project.get_meeting_desc(0) == "Description"
         )
 
+    def test_get_meeting_name_of_meeting_not_in_list(self):
+        with pytest.raises(KeyError):
+            self.test_project.get_meeting_name(0)
+
+    def test_get_description_of_meeting_not_in_list(self):
+        with pytest.raises(KeyError):
+            self.test_project.get_meeting_desc(0)
+
+    def test_rm_meeting(self):
+        self.test_project.add_meeting("Name", "2020/01/01 00:00", "grooming", "Description")
+        assert(
+            self.test_project.get_meetings()[0][1][0] == "Name" and
+            self.test_project.get_meetings()[0][1][1] == "Jan 01, 2020 at 12:00 AM" and
+            self.test_project.get_meetings()[0][1][2] == "GROOMING"
+        )
+        self.test_project.rm_meeting(0)
+        assert(
+            self.test_project.get_meetings() == []
+        )
+
+    def test_rm_meeting_with_wrong_key(self):
+        with pytest.raises(KeyError):
+            self.test_project.rm_meeting(0)
+
+    def test_meeting_last_id(self):
+        self.test_project.add_meeting("Name", "2020/01/01 00:00", "grooming", "Description")
+        assert(self.test_project.get_last_meeting_id() == 0)
+
+    def test_set_meeting_desc(self):
+        self.test_project.add_meeting("Name", "2020/01/01 00:00", "grooming", "Description")
+        assert(self.test_project.get_meeting_desc(0) == "Description")
+        self.test_project.set_meeting_desc(0, "New Description")
+        assert(self.test_project.get_meeting_desc(0) == "New Description")
+
+    def test_set_meeting_desc_of_meeting_not_in_list(self):
+        with pytest.raises(KeyError):
+            self.test_project.set_meeting_desc(0, "New Description")
+
     def test_add_and_get_requirement(self):
         self.test_project.add_rqe("Requirement")
         assert(
             self.test_project.get_rqes() == ["Requirement"]
         )
 
+    def test_rm_requirement(self):
+        self.test_project.add_rqe("Requirement")
+        assert(self.test_project.get_rqes() == ["Requirement"])
+        self.test_project.rm_rqe(0)
+        assert(self.test_project.get_rqes() == [])
+
+    def test_rm_requirement_not_in_list(self):
+        with pytest.raises(IndexError):
+            self.test_project.rm_rqe(0)
+
     def test_add_and_get_sprints(self):
         self.test_project.add_sprint()
         assert(
             len(self.test_project.get_sprints()) == 1
         )
+
+    def test_rm_sprint(self):
+        self.test_project.add_sprint()
+        assert(len(self.test_project.get_sprints()) == 1)
+        self.test_project.rm_sprint()
+        assert(len(self.test_project.get_sprints()) == 0)
+
+    def test_rm_sprint_not_in_list(self):
+        with pytest.raises(IndexError):
+            self.test_project.rm_sprint()
 
     def test_set_description(self):
         self.test_project.set_desc("New Description")
@@ -225,6 +310,19 @@ class Test_Project:
             self.test_project.get_tasks(0)[0][1][0] == "Name" and
             self.test_project.get_tasks(0)[0][1][1] == "Jan 01, 2020 at 12:00 AM" and
             self.test_project.get_tasks(0)[0][1][2] == "Details"
+        )
+
+    def test_get_tasks_of_sprint_not_in_list(self):
+        with pytest.raises(IndexError):
+            self.test_project.get_tasks(0)
+
+    def test_get_single_task(self):
+        self.test_project.add_sprint()
+        self.test_project.add_task("Name", "2020/01/01 00:00", "Details")
+        assert(
+            self.test_project.get_task(0, 0)[0] == "Name" and
+            self.test_project.get_task(0, 0)[1] == "Jan 01, 2020 at 12:00 AM" and
+            self.test_project.get_task(0, 0)[2] == "Details"
         )
 
     def test_add_task_with_no_sprint(self):
@@ -258,6 +356,10 @@ class Test_Project:
         assert(self.test_project.get_tasks(0)[0][1][2] == "Details")
         self.test_project.set_details(0, "New Details")
         assert(self.test_project.get_tasks(0)[0][1][2] == "New Details")
+
+    def test_set_task_details_of_empty_list_of_sprints(self):
+        with pytest.raises(IndexError):
+            self.test_project.set_details(0, "New Details")
 
     def test_add_and_get_feedback(self):
         self.test_project.add_sprint()
@@ -320,3 +422,8 @@ class Test_Dictionary:
     def test_remove_dict_not_in_dict(self):
         with pytest.raises(KeyError):
             self.test_dict.remove(0)
+
+    def test_get_last_id(self):
+        self.test_dict.add(0)
+        self.test_dict.add(0)
+        assert(self.test_dict.get_last_id() == 1)
