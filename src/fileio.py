@@ -4,6 +4,7 @@
 #  @date Apr 1, 2020
 
 from project import *
+from projectList import ProjectList
 import datetime as dt
 import glob, os
 
@@ -12,10 +13,68 @@ class fileio():
 
     @staticmethod
     def read():
-        read_path = fileio.PATH + "*.txt"
+        project_list = ProjectList()
+        if (len([name for name in os.listdir(fileio.PATH)]) == 0):
+            return project_list
         
+        read_path = fileio.PATH + "*.txt"
         for filepath in glob.iglob(read_path):
-            print(filepath)
+            with open(filepath, "r") as f:
+                data = f.read().splitlines()
+
+            # Line 0 is project information
+            p_data = data[0].split(',')
+            if (p_data[2] == "None"):
+                proj = Project(p_data[1])
+            else:
+                proj = Project(p_data[1], p_data[2])
+            project_list.update(int(p_data[0]), proj)
+
+            # Project requirements
+            if (len(p_data) > 3):
+                for i in range(3, len(p_data)):
+                    proj.add_rqe(p_data[i])
+
+            # From ~meetings to the line prior to first '&' relates to meetings
+            counter = 2
+            for i, line in enumerate(data[2:]):
+                if (line[0] == '&'):
+                    counter += i
+                    break
+                m_data = line.split(',')
+                if (m_data[3] == "None"):
+                    proj.update_meeting(int(m_data[0]), m_data[1], m_data[2])
+                else:
+                    proj.update_meeting(int(m_data[0]), m_data[1], m_data[2], m_data[3])
+                
+                # Meeting description
+                if (len(m_data) == 5):
+                    proj.set_meeting_desc(i, m_data[4])
+
+            # Each & represents a sprint, with terms in between meaning tasks
+            for i, line in enumerate(data[counter:]):
+                # Sprint
+                if (line[0] == '&'):
+                    date = line[0][1:].replace('-','/')
+                    proj.add_sprint_from_file(date)
+                else:
+                # Task
+                    t_data = line.split(',')
+                    if (t_data[3] == "None"):
+                        proj.add_task_from_file(int(t_data[0]), t_data[1], t_data[2])
+                    else:
+                        proj.add_task_from_file(int(t_data[0]), t_data[1], t_data[2], t_data[3])
+
+                    # Feedback
+                    if (len(t_data) > 4):
+                        for i in range(4, len(t_data)):
+                            proj.add_feedback(int(t_data[0]), t_data[i])
+        
+        return project_list
+        
+            
+
+
             
 
     @staticmethod

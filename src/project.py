@@ -66,6 +66,10 @@ class Project():
         meeting = Meeting(name, datetime, m_type, desc)
         self.meetings.add(meeting)
 
+    def update_meeting(self, id, name, datetime, m_type, desc=None):
+        meeting = Meeting(name, datetime, m_type, desc)
+        self.meetings.update(id, meeting)
+
     def get_last_meeting_id(self):
         return self.meetings.get_last_id()
 
@@ -77,6 +81,11 @@ class Project():
     ## @brief Mutator for adding a sprint to project
     def add_sprint(self):
         sprint = Sprint()
+        self.sprints.append(sprint)
+        self.c = self.c + 1
+
+    def add_sprint_from_file(self, date):
+        sprint = Sprint(date)
         self.sprints.append(sprint)
         self.c = self.c + 1
 
@@ -104,7 +113,7 @@ class Project():
     # Meeting inherited commands
 
     ## @brief Mutator for updating meeting description
-    #  @param index Index of meeting
+    #  @param id Index of meeting
     #  @param desc Description of meeting
     def set_meeting_desc(self, id, desc=None):
         meeting = self.__get_meeting_by_id(id)
@@ -145,6 +154,13 @@ class Project():
 
         sprint = self.sprints[-1]
         sprint.add_task(name, deadline, details)
+
+    def add_task_from_file(self, task_id, name, deadline, details=None):
+        if (len(self.sprints) == 0):
+            raise IndexError
+
+        sprint = self.sprints[-1]
+        sprint.add_task_from_file(task_id, name, deadline, details)
 
     def get_last_task_id(self):
         sprint = self.sprints[-1]

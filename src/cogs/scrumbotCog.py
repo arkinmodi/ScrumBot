@@ -19,7 +19,7 @@ from fileio import *
 #  @details These commands are only to be used inside a guild.
 class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
     def __init__(self, bot):
-        self.project_list = ProjectList()
+        self.project_list = fileio.read()
         self.bot = bot
     
     # PROJECT COG 

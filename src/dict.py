@@ -24,6 +24,7 @@ class Dict():
     #  @param e New value of entry
     def update(self, id, e):
         self.d[id] = e
+        self.c = id + 1
 
     ## @brief Remove an entry with key id 
     #  @param id Key of the entry

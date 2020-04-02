@@ -50,6 +50,10 @@ class Sprint():
         task = Task(name, deadline, details)
         self.tasks.add(task)
 
+    def add_task_from_file(self, task_id, name, deadline, details=None):
+        task = Task(name, deadline, details)
+        self.tasks.update(task_id, task)
+
     def get_last_task_id(self):
         return self.tasks.get_last_id()
 
