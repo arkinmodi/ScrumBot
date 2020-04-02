@@ -67,7 +67,7 @@ class Project():
         self.meetings.add(meeting)
 
     def get_last_meeting_id(self):
-        return self.meetings.get_count()
+        return self.meetings.get_last_id()
 
     ## @brief Mutator for adding a requirement to project
     #  @param s Requirement to be added
