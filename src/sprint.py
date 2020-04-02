@@ -16,8 +16,7 @@ class Sprint():
         if (not date):
             self.date = dt.date.today()
         else:
-            d = map(int, date.split('/'))
-            self.date = dt.date(d[0], d[1], d[2])
+            self.date = dt.date(int(d[0]), int(d[1]), int(d[2]))
 
     ## @brief Accessor for date of sprint
     def get_date(self):

@@ -44,7 +44,9 @@ class fileio():
 
         # info is meeting info (id, name, datetime, meeting type, and optional description)
         elif (task == "addMeeting"):
-            
+            for i in range(len(data)):
+                if (data[i][0] == '&'):
+                    data.insert(i, info)
 
         elif (task == "rmMeeting"):
             return

@@ -66,6 +66,9 @@ class Project():
         meeting = Meeting(name, datetime, m_type, desc)
         self.meetings.add(meeting)
 
+    def get_meeting_count(self):
+        return self.meetings.get_count()
+
     ## @brief Mutator for adding a requirement to project
     #  @param s Requirement to be added
     def add_rqe(self, s):
@@ -88,7 +91,7 @@ class Project():
     ## @brief Mutator for removing a requirement from project
     #  @param n Index of requirement to be removed
     def rm_rqe(self, n):
-        if (n < 0 or n > len(self.rqes)):
+        if (n <= 0 or n > len(self.rqes)):
             raise IndexError
 
         self.rqes.pop(n)

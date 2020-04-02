@@ -13,7 +13,7 @@ sys.path.insert(0, parentDir)
 from project import *
 from projectList import ProjectList
 
-# from fileio import *
+from fileio import *
 
 ## @brief Discord commands related to scrumbot
 #  @details These commands are only to be used inside a guild.
@@ -45,6 +45,8 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
         print(f'[Log] add_project from {ctx.author}, name: {name}, desc: {description}')
         proj = Project(name, description)
         self.project_list.add(proj)
+
+        fileio.create(self.project_list.get_count(), name, description)
 
         await ctx.send(f'> Added project **{name}**')
 

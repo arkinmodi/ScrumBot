@@ -40,4 +40,7 @@ class Dict():
         for key in sorted(self.d):
             seq.append([key, self.d[key]])
         return seq
+    
+    def get_count(self):
+        return self.c - 1
 
