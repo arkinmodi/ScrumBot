@@ -164,6 +164,11 @@ class Project():
         sprint = self.sprints[-1]
         sprint.add_task(name, deadline, details)
 
+    ## @brief Mutator for adding task from file
+    #  @param task_id ID of the task
+    #  @param name Name of the task
+    #  @param deadline Deadline of the task
+    #  @param details Details of the task
     def add_task_from_file(self, task_id, name, deadline, details=None):
         if (len(self.sprints) == 0):
             raise IndexError
@@ -171,6 +176,7 @@ class Project():
         sprint = self.sprints[-1]
         sprint.add_task_from_file(task_id, name, deadline, details)
 
+    ## @brief Accessor to get id of last task added
     def get_last_task_id(self):
         sprint = self.sprints[-1]
         return sprint.get_last_task_id()
