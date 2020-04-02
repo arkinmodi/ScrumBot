@@ -4,7 +4,7 @@
 #  @date Mar 29, 2020
 
 import pytest
-import task, sprint, meeting
+import task, sprint, meeting, project
 import datetime
 
 ## @brief Testing of Task Module
@@ -166,3 +166,127 @@ class Test_Meetings:
     def test_set_description(self):
         self.test_meeting.set_desc("New Description")
         assert(self.test_meeting.get_desc() == "New Description")
+
+class Test_Project:
+    @pytest.fixture(autouse=True)
+    def setup(self):
+        self.test_project = project.Project("Name", "Description")
+
+    def test_create_meeting_and_getters(self):
+        assert(
+            self.test_project.get_name() == "Name" and
+            self.test_project.get_desc() == "Description"
+        )
+
+    def test_create_meeting_and_getters_with_no_description(self):
+        test = project.Project("Name")
+        assert(
+            test.get_name() == "Name" and
+            test.get_desc() == "No description"
+        )
+
+    def test_add_and_get_meeting(self):
+        self.test_project.add_meeting("Name", "2020/01/01 00:00", "grooming", "Description")
+        assert(
+            self.test_project.get_meetings()[0][1][0] == "Name" and
+            self.test_project.get_meetings()[0][1][1] == "Jan 01, 2020 at 12:00 AM" and
+            self.test_project.get_meetings()[0][1][2] == "GROOMING"
+        )
+
+    def test_get_meeting_name_and_description(self):
+        self.test_project.add_meeting("Name", "2020/01/01 00:00", "grooming", "Description")
+        assert(
+            self.test_project.get_meeting_name(0) == "Name" and
+            self.test_project.get_meeting_desc(0) == "Description"
+        )
+
+    def test_add_and_get_requirement(self):
+        self.test_project.add_rqe("Requirement")
+        assert(
+            self.test_project.get_rqes() == ["Requirement"]
+        )
+
+    def test_add_and_get_sprints(self):
+        self.test_project.add_sprint()
+        assert(
+            len(self.test_project.get_sprints()) == 1
+        )
+
+    def test_set_description(self):
+        self.test_project.set_desc("New Description")
+        assert(
+            self.test_project.get_desc() == "New Description"
+        )
+
+    def test_add_and_get_task(self):
+        self.test_project.add_sprint()
+        self.test_project.add_task("Name", "2020/01/01 00:00", "Details")
+        assert(
+            self.test_project.get_tasks(0)[0][1][0] == "Name" and
+            self.test_project.get_tasks(0)[0][1][1] == "Jan 01, 2020 at 12:00 AM" and
+            self.test_project.get_tasks(0)[0][1][2] == "Details"
+        )
+
+    def test_add_task_with_no_sprint(self):
+        with pytest.raises(IndexError):
+            self.test_project.add_task("Name", "2020/01/01 00:00", "Details")
+
+    def test_get_task_with_no_sprint(self):
+        with pytest.raises(IndexError):
+            self.test_project.get_task(0, 0)
+
+    def test_rm_task(self):
+        self.test_project.add_sprint()
+        self.test_project.add_task("Name", "2020/01/01 00:00", "Details")
+        assert(
+            self.test_project.get_tasks(0)[0][1][0] == "Name" and
+            self.test_project.get_tasks(0)[0][1][1] == "Jan 01, 2020 at 12:00 AM" and
+            self.test_project.get_tasks(0)[0][1][2] == "Details"
+        )
+        self.test_project.rm_task(0)
+        assert(
+            self.test_project.get_tasks(0) == []
+        )
+
+    def test_rm_task_with_no_sprint(self):
+        with pytest.raises(IndexError):
+            self.test_project.rm_task(0)
+
+    def test_set_task_details(self):
+        self.test_project.add_sprint()
+        self.test_project.add_task("Name", "2020/01/01 00:00", "Details")
+        assert(self.test_project.get_tasks(0)[0][1][2] == "Details")
+        self.test_project.set_details(0, "New Details")
+        assert(self.test_project.get_tasks(0)[0][1][2] == "New Details")
+
+    def test_add_and_get_feedback(self):
+        self.test_project.add_sprint()
+        self.test_project.add_task("Name", "2020/01/01 00:00", "Details")
+        self.test_project.add_feedback(0, "Feedback")
+        assert(
+            self.test_project.get_feedback(0, 0) == ["Feedback"]
+        )
+
+    def test_add_feedback_with_no_sprint(self):
+        with pytest.raises(IndexError):
+            self.test_project.add_feedback(0, "Feedback")
+
+    def test_get_feedback_with_no_sprint(self):
+        with pytest.raises(IndexError):
+            self.test_project.get_feedback(0, "Feedback")
+
+    def test_rm_feedback(self):
+        self.test_project.add_sprint()
+        self.test_project.add_task("Name", "2020/01/01 00:00", "Details")
+        self.test_project.add_feedback(0, "Feedback")
+        assert(
+            self.test_project.get_feedback(0, 0) == ["Feedback"]
+        )
+        self.test_project.rm_feedback(0, 0)
+        assert(
+            self.test_project.get_feedback(0, 0) == []
+        )
+
+    def test_rm_feedback_with_no_sprint(self):
+        with pytest.raises(IndexError):
+            self.test_project.rm_feedback(0, 0)
