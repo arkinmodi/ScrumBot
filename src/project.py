@@ -66,10 +66,17 @@ class Project():
         meeting = Meeting(name, datetime, m_type, desc)
         self.meetings.add(meeting)
 
+    ## @brief Mutator for updating meeting of project
+    #  @param id ID of the meeting
+    #  @param name Name of the meeting
+    #  @param datetime Date and time of the meeting
+    #  @param m_type Type of the meeting
+    #  @param desc Description of the meeting
     def update_meeting(self, id, name, datetime, m_type, desc=None):
         meeting = Meeting(name, datetime, m_type, desc)
         self.meetings.update(id, meeting)
 
+    ## @brief Accessor to get id of last meeting added
     def get_last_meeting_id(self):
         return self.meetings.get_last_id()
 
@@ -84,6 +91,8 @@ class Project():
         self.sprints.append(sprint)
         self.c = self.c + 1
 
+    ## @brief Mutator to add sprint from file
+    #  @param date Date of the sprint
     def add_sprint_from_file(self, date):
         sprint = Sprint(date)
         self.sprints.append(sprint)
