@@ -519,7 +519,7 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
     ## @brief Loads a new cog into the bot.
     #  @param cog A string having the name of the python file, usually in the form of 'cogs.<file_name>'.
     #  @throws Exception if the extension fails to load.
-    @commands.command(name='load')
+    @commands.command(name='load', hidden=True)
     @commands.has_role("Admin")
     async def load(self, ctx, *, cog: str):
         try:
@@ -534,7 +534,7 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
     ## @brief Reloads a cog in the bot.
     #  @param cog A string having the name of the python file, usually in the form of 'cogs.<file_name>'.g 
     #  @throws Exception if the extension fails to reload.
-    @commands.command(name='reload')
+    @commands.command(name='reload', hidden=True)
     @commands.has_role("Admin")
     async def reload(self, ctx, *, cog: str):
         try:
@@ -550,7 +550,7 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
     ## @brief Unloads a cog from the bot.
     #  @param cog A string having the name of the python file, usually in the form of 'cogs.<file_name>'.g 
     #  @throws Exception if the extension fails to unload.
-    @commands.command(name='unload')
+    @commands.command(name='unload', hidden=True)
     @commands.has_role("Admin")
     async def unload(self, ctx, *, cog: str):
         try:
@@ -579,6 +579,16 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
         embed.add_field(name='\uFEFF', value=roles)
 
         await ctx.send(content=None, embed=embed)
+
+    @commands.Cog.listener()
+    async def on_command_error(self, ctx, error):
+        print(f'[Log] Error {error} of type {type(error)}.')
+        if isinstance(error, (commands.MissingRole, commands.MissingAnyRole)):
+            await ctx.send(f'> Insufficient permissions to run this command.')
+        if isinstance(error, commands.errors.MissingRequiredArgument):
+            await ctx.send(f'> {error}')
+        if isinstance(error, commands.errors.CommandNotFound):
+            await ctx.send(f'> Error: Command not found.')
 
     def __get_project(self, n):
         proj_key = self.project_list.to_seq()

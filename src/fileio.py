@@ -10,7 +10,8 @@ import glob, os
 
 ## @brief Class that handles file read/write between bot savestates
 class fileio():
-    PATH = os.path.dirname(sys.argv[0]) + "/data/"
+    #PATH = os.path.dirname(sys.argv[0]) + "/data/"
+    PATH = os.getcwd() + "/data/"
 
     @staticmethod
     def read():
