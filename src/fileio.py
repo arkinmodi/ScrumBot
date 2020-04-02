@@ -8,6 +8,7 @@ from projectList import ProjectList
 import datetime as dt
 import glob, os
 
+## @brief Class that handles file read/write between bot savestates
 class fileio():
     PATH = os.path.dirname(sys.argv[0]) + "/data/"
 
