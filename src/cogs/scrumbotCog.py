@@ -35,6 +35,7 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
             return
 
         datetime = date + " " + time
+        meeting_type = meeting_type.upper()
         try:
             proj.add_meeting(name, datetime, meeting_type, description) 
         except TypeError:
@@ -42,7 +43,7 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
             return
 
         info = f'{proj.get_last_meeting_id()},{name},{datetime},{meeting_type},{description}'
-        fileio.write(self.project_list.get_last_id(), info)
+        fileio.write(self.project_list.get_last_id(), "addMeeting", info)
 
         await ctx.send(f'> Added meeting **{name}** to {proj.get_name()}.')
 
@@ -70,6 +71,7 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
             return
 
         proj.add_rqe(requirement)
+        fileio.write(self.project_list.get_last_id(), "addRqe", requirement)
         await ctx.send(f'> Added requirement to {proj.get_name()}.')
 
     @commands.command(name="addSprint", brief="Add a sprint to a project.")
@@ -222,6 +224,7 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
             await ctx.send(f'> Failed to remove meeting: meeting not found.')
             return
         
+        fileio.write(self.project_list.get_last_id(), "rmMeeting", meeting_id)
         await ctx.send(f'> Removed meeting {meeting_id} from {proj.get_name()}.')
 
     @commands.command(name="rmProject", aliases=["removeProject"], brief="Removes a project from the guild.")
@@ -236,6 +239,7 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
             await ctx.send(f'> Failed to remove project: project not found.')
             return
 
+        fileio.delete(self.project_list.get_last_id())
         await ctx.send(f'> Removed project {project_id}.')
 
     @commands.command(name="rmRqe", aliases=["removeRqe", "rmReq", "rmRequirement"], brief="Removes a requirement from a project.")
@@ -255,6 +259,7 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
             await ctx.send(f'> Failed to remove requirement: requirement not found.')
             return            
 
+        fileio.write(self.project_list.get_last_id(), "rmRqe", rqe_id)
         await ctx.send(f'> Removed requirement from {proj.get_name()}.')
 
 
@@ -270,7 +275,7 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
             return
                        
         proj.set_desc(description)
-
+        fileio.write(self.project_list.get_last_id(), "setProjectDesc", description)
         await ctx.send(f'> Successfully updated description for {proj.get_name()}.')
 
     # MEETING COG
