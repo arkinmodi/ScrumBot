@@ -41,6 +41,6 @@ class Dict():
             seq.append([key, self.d[key]])
         return seq
     
-    def get_count(self):
+    def get_last_id(self):
         return self.c - 1
 

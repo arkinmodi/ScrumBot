@@ -35,7 +35,11 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
             return
 
         datetime = date + " " + time
-        proj.add_meeting(name, datetime, meeting_type, description)        
+        proj.add_meeting(name, datetime, meeting_type, description) 
+
+        info = f'{proj.get_last_meeting_id()},{name},{datetime},{meeting_type},{description}'
+        fileio.write(self.project_list.get_last_id(), info)
+
         await ctx.send(f'> Added meeting **{name}** to {proj.get_name()}.')
 
     @commands.command(name="addProject", brief="Add a project to the guild.")
@@ -46,7 +50,7 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
         proj = Project(name, description)
         self.project_list.add(proj)
 
-        fileio.create(self.project_list.get_count(), name, description)
+        fileio.create(self.project_list.get_last_id(), name, description)
 
         await ctx.send(f'> Added project **{name}**')
 
