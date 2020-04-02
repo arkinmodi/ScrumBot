@@ -1,7 +1,7 @@
 ## @file test.py
 #  @author Arkin Modi, Leon So, Timothy Choy
 #  @brief Testing for ScrumBot
-#  @date Mar 29, 2020
+#  @date Apr 2, 2020
 
 import pytest
 import task, sprint, meeting, project, dict
@@ -151,6 +151,29 @@ class Test_Sprint:
     def test_set_details_with_no_task(self):
         with pytest.raises(KeyError):
             self.test_sprint.set_details(0, "New Details")
+
+    def test_add_task_from_file(self):
+        self.test_sprint.add_task_from_file(0, "Name", "2020/01/01 00:00", "Details")
+        assert(
+            self.test_sprint.get_tasks()[0][1][0] == "Name" and
+            self.test_sprint.get_tasks()[0][1][1] == "Jan 01, 2020 at 12:00 AM" and
+            self.test_sprint.get_tasks()[0][1][2]== "Details"
+        )
+
+    def test_add_task_from_file_with_no_details(self):
+        self.test_sprint.add_task_from_file(0, "Name", "2020/01/01 00:00")
+        assert(
+            self.test_sprint.get_tasks()[0][1][0] == "Name" and
+            self.test_sprint.get_tasks()[0][1][1] == "Jan 01, 2020 at 12:00 AM"
+        )
+
+    def test_get_last_task_id(self):
+        self.test_sprint.add_task_from_file(0, "Name", "2020/01/01 00:00")
+        self.test_sprint.add_task_from_file(1, "Name", "2020/01/01 00:00")
+        assert(self.test_sprint.get_last_task_id() == 1)
+
+    def test_get_last_task_id_with_no_tasks(self):
+        assert(self.test_sprint.get_last_task_id() == -1)
 
 class Test_Meetings:
     @pytest.fixture(autouse=True)
@@ -392,6 +415,75 @@ class Test_Project:
     def test_rm_feedback_with_no_sprint(self):
         with pytest.raises(IndexError):
             self.test_project.rm_feedback(0, 0)
+
+    def test_update_meeting(self):
+        self.test_project.add_meeting("Name", "2020/01/01 00:00", "grooming", "Description")
+        assert(
+            self.test_project.get_meetings()[0][1][0] == "Name" and
+            self.test_project.get_meetings()[0][1][1] == "Jan 01, 2020 at 12:00 AM" and
+            self.test_project.get_meetings()[0][1][2] == "GROOMING" and
+            self.test_project.get_meeting_desc(0) == "Description"
+        )
+        self.test_project.update_meeting(0, "New Name", "2020/01/01 00:01", "standup", "New Description")
+        assert(
+            self.test_project.get_meetings()[0][1][0] == "New Name" and
+            self.test_project.get_meetings()[0][1][1] == "Jan 01, 2020 at 12:01 AM" and
+            self.test_project.get_meetings()[0][1][2] == "STANDUP" and
+            self.test_project.get_meeting_desc(0) == "New Description"
+        )
+
+    def test_update_meeting_with_no_description(self):
+        self.test_project.add_meeting("Name", "2020/01/01 00:00", "grooming", "Description")
+        assert(
+            self.test_project.get_meetings()[0][1][0] == "Name" and
+            self.test_project.get_meetings()[0][1][1] == "Jan 01, 2020 at 12:00 AM" and
+            self.test_project.get_meetings()[0][1][2] == "GROOMING" and
+            self.test_project.get_meeting_desc(0) == "Description"
+        )
+        self.test_project.update_meeting(0, "New Name", "2020/01/01 00:01", "standup")
+        assert(
+            self.test_project.get_meetings()[0][1][0] == "New Name" and
+            self.test_project.get_meetings()[0][1][1] == "Jan 01, 2020 at 12:01 AM" and
+            self.test_project.get_meetings()[0][1][2] == "STANDUP" and
+            self.test_project.get_meeting_desc(0) == "No description"
+        )
+
+    def test_add_sprint_from_file(self):
+        self.test_project.add_sprint_from_file("2020/01/01")
+        assert(len(self.test_project.get_sprints()) == 1)
+
+    def test_add_task_from_file(self):
+        self.test_project.add_sprint()
+        self.test_project.add_task_from_file(0, "Name", "2020/01/01 00:00", "Details")
+        assert(
+            self.test_project.get_tasks(0)[0][1][0] == "Name" and
+            self.test_project.get_tasks(0)[0][1][1] == "Jan 01, 2020 at 12:00 AM" and
+            self.test_project.get_tasks(0)[0][1][2] == "Details"
+        )
+
+    def test_add_task_from_file_no_details(self):
+        self.test_project.add_sprint()
+        self.test_project.add_task_from_file(0, "Name", "2020/01/01 00:00")
+        assert(
+            self.test_project.get_tasks(0)[0][1][0] == "Name" and
+            self.test_project.get_tasks(0)[0][1][1] == "Jan 01, 2020 at 12:00 AM"
+        )
+
+    def test_add_task_from_file_with_no_sprints(self):
+        with pytest.raises(IndexError):
+            self.test_project.add_task_from_file(0, "Name", "2020/01/01 00:00")
+
+    def test_get_last_task_id(self):
+        self.test_project.add_sprint()
+        self.test_project.add_task_from_file(0, "Name", "2020/01/01 00:00", "Details")
+        self.test_project.add_task_from_file(1, "Name", "2020/01/01 00:00", "Details")
+        assert(
+            self.test_project.get_last_task_id() == 1
+        )
+
+    def test_get_last_task_id_with_no_tasks(self):
+        self.test_project.add_sprint()
+        assert(self.test_project.get_last_task_id() == -1)
 
 class Test_Dictionary:
     @pytest.fixture(autouse=True)
