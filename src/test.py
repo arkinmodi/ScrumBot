@@ -4,27 +4,55 @@
 #  @date Mar 29, 2020
 
 import pytest
-import project
+import task
 
-## @brief Test Plan Section 3.1.1 Installation
-class Test_FR_Installation:
-    # All Manual Testing
-    pass
+## @brief Testing of Task Module
+class Test_Task:
+    ## @brief Testing init and respective getters
+    def test_create_task_and_getters(self):
+        test_task = task.Task("Name", "2020/01/01 00:00", "Details")
+        assert(
+            test_task.get_name() == "Name" and
+            test_task.get_deadline() == "Jan 01, 2020 at 12:00 AM" and
+            test_task.get_details() == "Details"
+        )
+    
+    ## @brief Testing init and respective getters with no details
+    def test_create_task_with_no_details(self):
+        test_task = task.Task("Name", "2020/01/01 00:00")
+        assert(
+            test_task.get_name() == "Name" and
+            test_task.get_deadline() == "Jan 01, 2020 at 12:00 AM" and
+            test_task.get_details() == "No details"
+        )
 
-## @brief Test Plan Section 3.1.2 Project Creation
-class Test_FR_ProjectCreation:
-    ## @brief Test case for project creation
-    def test_create_project(self):
-        test_project = project.Project("Test Name", "Test Description")
-        assert( test_project.get_name() == "Test Name" and 
-                test_project.get_desc() == "Test Description")
+    ## @brief Testing adding and getting feedback
+    def test_add_and_get_feedback(self):
+        test_task = task.Task("Name", "2020/01/01 00:00", "Details")
+        test_task.add_feedback("Feedback")
+        assert(test_task.get_feedback() == ["Feedback"])
 
-    ## @brief Test case for project creation without description
-    def test_no_description(self):
-        test_project = project.Project("Test Name")
-        assert( test_project.get_name() == "Test Name" and 
-                test_project.get_desc() == "No description")
+    ## @brief Testing getting feedback with no feedback
+    def test_get_feedback_with_no_feedback(self):
+        test_task = task.Task("Name", "2020/01/01 00:00", "Details")
+        assert(test_task.get_feedback() == [])
 
-## @brief Test Plan Section 3.1.3 Project Removal
-class Test_FR_ProjectRemoval:
-    pass
+    ## @brief Testing removing feedback
+    def test_rm_feedback(self):
+        test_task = task.Task("Name", "2020/01/01 00:00", "Details")
+        test_task.add_feedback("Feedback")
+        assert(test_task.get_feedback() == ["Feedback"])
+        test_task.rm_feedback(0)
+        assert(test_task.get_feedback() == [])
+
+    ## @brief Testing removing feedback with no feedback
+    def test_rm_feedback_with_no_feedback(self):
+        with pytest.raises(IndexError):
+            test_task = task.Task("Name", "2020/01/01 00:00", "Details")
+            test_task.rm_feedback(0)
+
+    ## @brief Testing getting feedback with no feedback
+    def test_set_details(self):
+        test_task = task.Task("Name", "2020/01/01 00:00", "Details")
+        test_task.set_details("New Details")
+        assert(test_task.get_details() == "New Details")
