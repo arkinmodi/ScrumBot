@@ -11,9 +11,13 @@ import datetime as dt
 class Sprint():
 
     ## @brief Constructor for Sprint object
-    def __init__(self):
+    def __init__(self, date=None):
         self.tasks = TaskList()
-        self.date = dt.date.today()
+        if (not date):
+            self.date = dt.date.today()
+        else:
+            d = map(int, date.split('/'))
+            self.date = dt.date(d[0], d[1], d[2])
 
     ## @brief Accessor for date of sprint
     def get_date(self):

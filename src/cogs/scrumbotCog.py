@@ -13,6 +13,8 @@ sys.path.insert(0, parentDir)
 from project import *
 from projectList import ProjectList
 
+# from fileio import *
+
 ## @brief Discord commands related to scrumbot
 #  @details These commands are only to be used inside a guild.
 class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
@@ -471,7 +473,7 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
 
     @commands.command(name="setDetails", brief="Set the details of a specific task.")
     @commands.guild_only()
-    @commands.has_role(["Scrum Master", "Business Analyst"])
+    @commands.has_any_role("Scrum Master", "Business Analyst")
     async def set_details(self, ctx, project_id: int, task_id: int, *, details):
         print(f'[Log] set_details from {ctx.author}, project: {project_id}, task: {task_id}, details: {details}')
         proj = self.__get_project(project_id)
