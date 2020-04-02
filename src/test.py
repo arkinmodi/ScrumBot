@@ -4,7 +4,7 @@
 #  @date Mar 29, 2020
 
 import pytest
-import task, sprint, meeting, project
+import task, sprint, meeting, project, dict
 import datetime
 
 ## @brief Testing of Task Module
@@ -290,3 +290,33 @@ class Test_Project:
     def test_rm_feedback_with_no_sprint(self):
         with pytest.raises(IndexError):
             self.test_project.rm_feedback(0, 0)
+
+class Test_Dictionary:
+    @pytest.fixture(autouse=True)
+    def setup(self):
+        self.test_dict = dict.Dict()
+
+    def test_create_dict_and_to_sequence(self):
+        assert(self.test_dict.to_seq() == [])
+
+    def test_add_to_dict(self):
+        self.test_dict.add(0)
+        assert(self.test_dict.to_seq() == [[0, 0]])
+        self.test_dict.add(0)
+        assert(self.test_dict.to_seq() == [[0, 0], [1, 0]])
+
+    def test_update_dict(self):
+        self.test_dict.add(0)
+        assert(self.test_dict.to_seq() == [[0, 0]])
+        self.test_dict.update(0, 1)
+        assert(self.test_dict.to_seq() == [[0, 1]])
+
+    def test_remove_dict(self):
+        self.test_dict.add(0)
+        assert(self.test_dict.to_seq() == [[0, 0]])
+        self.test_dict.remove(0)
+        assert(self.test_dict.to_seq() == [])
+
+    def test_remove_dict_not_in_dict(self):
+        with pytest.raises(KeyError):
+            self.test_dict.remove(0)
