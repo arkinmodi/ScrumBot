@@ -16,6 +16,7 @@ class Sprint():
         if (not date):
             self.date = dt.date.today()
         else:
+            d = date.split("/")
             self.date = dt.date(int(d[0]), int(d[1]), int(d[2]))
 
     ## @brief Accessor for date of sprint
