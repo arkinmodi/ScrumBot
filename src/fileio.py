@@ -47,6 +47,8 @@ class fileio():
             for i in range(len(data)):
                 if (data[i][0] == '&'):
                     data.insert(i, info)
+                    return
+            data.append(info)
 
         elif (task == "rmMeeting"):
             return

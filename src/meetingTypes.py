@@ -23,7 +23,7 @@ class MeetingTypes(Enum):
         elif label in ('SPRINTPLANNING', 'sprintplanning'):
             return MeetingTypes.SPRINTPLANNING
         else:
-            raise NotImplementedError
+            raise TypeError
 
     @staticmethod
     def to_str(label):

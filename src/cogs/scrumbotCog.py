@@ -35,7 +35,11 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
             return
 
         datetime = date + " " + time
-        proj.add_meeting(name, datetime, meeting_type, description) 
+        try:
+            proj.add_meeting(name, datetime, meeting_type, description) 
+        except TypeError:
+            await ctx.send(f'> Failed to add meeting: meeting type must be GROOMING, STANDUP, RETROSPECTIVE, or SPRINTPLANNING.')
+            return
 
         info = f'{proj.get_last_meeting_id()},{name},{datetime},{meeting_type},{description}'
         fileio.write(self.project_list.get_last_id(), info)
