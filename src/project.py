@@ -145,6 +145,10 @@ class Project():
 
         sprint = self.sprints[-1]
         sprint.add_task(name, deadline, details)
+
+    def get_last_task_id(self):
+        sprint = self.sprints[-1]
+        return sprint.get_last_task_id()
     
     ## @brief Accessor for getting tasks from sprint
     #  @param index Index of sprint

@@ -86,6 +86,7 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
             return
 
         proj.add_sprint()
+        fileio.write(self.project_list.get_last_id(), "addSprint")
         await ctx.send(f'> Added a new sprint to {proj.get_name()}.')
 
     @commands.command(name="getProjectDesc", aliases=["getProjectDescription", "getProjDesc"], brief="Get the description of a project.")
@@ -203,7 +204,8 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
             print(f'[Error] rm_last_sprint raised IndexError')
             await ctx.send(f'> Failed to remove last sprint: no sprints found in project.')
             return
-        
+
+        fileio.write(self.project_list.get_last_id(), "rmLastSprint")
         await ctx.send(f'> Removed last sprint from {proj.get_name()}.')
 
 
@@ -313,7 +315,8 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
         except KeyError:
             await ctx.send(f'> Failed to set meeting description: meeting not found.')
             return
-
+        
+        fileio.write(self.project_list.get_last_id(), "setMeetingDesc", meeting_id, description)
         await ctx.send(f'> Successfully updated description for {proj.get_meeting_name(meeting_id)}.')
 
     # SPRINT COG
@@ -334,6 +337,7 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
             await ctx.send(f'> Failed to add task: project contains no sprints.')
             return
 
+        fileio.write(self.project_list.get_last_id(), "addTask", proj.get_last_task_id(), name, deadline, details)
         await ctx.send(f'> Added {name} to {proj.get_name()}.')
         
     @commands.command(name="listTasks", brief="List all tasks of a sprint.")
@@ -385,6 +389,7 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
             await ctx.send(f'> Failed to remove task: task not found.')
             return
             
+        fileio.write(self.project_list.get_last_id(), "rmTask", task_id)
         await ctx.send(f'> Removed task {task_id} in {proj.get_name()}.')
 
     # TASK COG
@@ -407,6 +412,7 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
             await ctx.send(f'> Failed to add feedback: task not found.')
             return
 
+        fileio.write(self.project_list.get_last_id(), "addFeedback", task_id, feedback)
         await ctx.send(f'> Added feedback to task {task_id}.')
 
     @commands.command(name="getDetails", brief="Get details of a specific task.")
@@ -484,6 +490,7 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
             await ctx.send(f'> Failed to remove feedback: task not found.')
             return
 
+        fileio.write(self.project_list.get_last_id(), "rmFeedback", task_id, feedback_id)
         await ctx.send(f'> Removed feedback from task {task_id}.')
 
     @commands.command(name="setDetails", brief="Set the details of a specific task.")
@@ -505,6 +512,7 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
             await ctx.send(f'> Failed to set details: task not found.')
             return
 
+        fileio.write(self.project_list.get_last_id(), "setDetails", task_id, details)
         await ctx.send(f'> Set details for task {task_id}.')
 
     # ADMIN COG

@@ -50,6 +50,9 @@ class Sprint():
         task = Task(name, deadline, details)
         self.tasks.add(task)
 
+    def get_last_task_id(self):
+        return self.tasks.get_last_id()
+
     ## @brief Mutator for removing task from list
     #  @param n Key-value of task to be removed
     def rm_task(self, n):
