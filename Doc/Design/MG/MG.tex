@@ -17,6 +17,10 @@
 }
 \usepackage[round]{natbib}
 
+% Different Coloured Text and Strikethrough
+\usepackage{xcolor}
+\usepackage{ulem}
+
 \newcounter{acnum}
 \newcommand{\actheacnum}{AC\theacnum}
 \newcommand{\acref}[1]{AC\ref{#1}}
@@ -83,33 +87,25 @@ Prior to this document, the Software Requirements Specification (SRS) was create
 
 \noindent The Module Interface Specification was created in parallel to this document. It describes the operations that each module shall perform.\\
 
-\noindent The Module Guide (MG) is developed~\citep{ParnasEtAl1984}. The MG specifies the modular structure of the system and is intended to allow both designers and maintainers to easily identify the parts of the software. The potential readers of this document are as follows:
+\sout{\noindent The Module Guide (MG) is developed \mbox{~\citep{ParnasEtAl1984}}. The MG specifies the modular structure of the system and is intended to allow both designers and maintainers to easily identify the parts of the software. The potential readers of this document are as follows:}
 
 \begin{itemize}
-\item New project members: This document can be a guide for a new project member
-  to easily understand the overall structure and quickly find the
-  relevant modules they are searching for.
-\item Maintainers: The hierarchical structure of the module guide improves the
-  maintainers' understanding when they need to make changes to the system. It is
-  important for a maintainer to update the relevant sections of the document
-  after changes have been made.
-\item Designers: Once the module guide has been written, it can be used to
-  check for consistency, feasibility and flexibility. Designers can verify the
-  system in various ways, such as consistency among modules, feasibility of the
-  decomposition, and flexibility of the design.
+\item \sout{New project members: This document can be a guide for a new project member to easily understand the overall structure and quickly find the relevant modules they are searching for.}
+\item \sout{Maintainers: The hierarchical structure of the module guide improves the maintainers' understanding when they need to make changes to the system. It is important for a maintainer to update the relevant sections of the document after changes have been made.}
+\item \sout{Designers: Once the module guide has been written, it can be used to check for consistency, feasibility and flexibility. Designers can verify the system in various ways, such as consistency among modules, feasibility of the decomposition, and flexibility of the design.}
 \end{itemize}
 
-\noindent The rest of the document is organized as follows. Section \ref{SecChange} lists the anticipated and unlikely changes of the software requirements. Section \ref{SecMH} summarizes the module decomposition that was constructed according to the likely changes. Section \ref{SecConnection} specifies the connections between the software requirements and the modules. Section \ref{SecMD} gives a detailed description of the modules. Section \ref{SecTM} includes two traceability matrices. One checks the completeness of the design against the requirements provided in the SRS. The other shows the relation between anticipated changes and the modules. Section \ref{SecUse} describes the use relation between modules.
+\sout{\noindent The rest of the document is organized as follows. Section \ref{SecChange} lists the anticipated and unlikely changes of the software requirements. Section \ref{SecMH} summarizes the module decomposition that was constructed according to the likely changes. Section \ref{SecConnection} specifies the connections between the software requirements and the modules. Section \ref{SecMD} gives a detailed description of the modules. Section \ref{SecTM} includes two traceability matrices. One checks the completeness of the design against the requirements provided in the SRS. The other shows the relation between anticipated changes and the modules. Section \ref{SecUse} describes the use relation between modules.}
 
 \subsection{Design Principles}
 % Copied from template
-Decomposing a system into modules is a commonly accepted approach to developing
-software.  The Module Guide (MG) developed by \citep{ParnasEtAl1984} specified the modular structure of the system. A module is a work assignment for a programmer or programming team~\citep{ParnasEtAl1984}.  Decomposition of the system into modules is
-based on the principle of information hiding~\citep{Parnas1972a}.  This
+\sout{Decomposing a system into modules is a commonly accepted approach to developing
+software.  The Module Guide (MG) developed by \mbox{\citep{ParnasEtAl1984}} specified the modular structure of the system. A module is a work assignment for a programmer or programming team \mbox{~\citep{ParnasEtAl1984}}.  Decomposition of the system into modules is
+based on the principle of information hiding \mbox{~\citep{Parnas1972a}}.  This
 principle supports design for change, because the ``secrets'' that each module
 hides represent likely future changes.  Design for change is valuable in SC,
 where modifications are frequent, especially during initial development as the
-solution space is explored.\\
+solution space is explored.\\}
 
 The design follows the rules layed out by \citet{ParnasEtAl1984}, as follows:
 \begin{itemize}
@@ -122,18 +118,10 @@ The design follows the rules layed out by \citet{ParnasEtAl1984}, as follows:
 
 \section{Anticipated and Unlikely Changes} \label{SecChange}
 
-This section lists possible changes to the system. According to the likeliness
-of the change, the possible changes are classified into two
-categories. Anticipated changes are listed in Section \ref{SecAchange}, and
-unlikely changes are listed in Section \ref{SecUchange}.
+\sout{This section lists possible changes to the system. According to the likeliness of the change, the possible changes are classified into two categories. Anticipated changes are listed in Section \ref{SecAchange}, and unlikely changes are listed in Section \ref{SecUchange}.}
 
 \subsection{Anticipated Changes} \label{SecAchange}
-
-Anticipated changes are the source of the information that is to be hidden
-inside the modules. Ideally, changing one of the anticipated changes will only
-require changing the one module that hides the associated decision. The approach
-adapted here is called design for
-change.
+\sout{Anticipated changes are the source of the information that is to be hidden inside the modules. Ideally, changing one of the anticipated changes will only require changing the one module that hides the associated decision. The approach adapted here is called design for change.}
 
 \begin{description}
 \item[\refstepcounter{acnum} \actheacnum \label{acInput1}:] The format of the input data
@@ -145,12 +133,7 @@ change.
 
 \subsection{Unlikely Changes} \label{SecUchange}
 
-The module design should be as general as possible. However, a general system is
-more complex. Sometimes this complexity is not necessary. Fixing some design
-decisions at the system architecture stage can simplify the software design. If
-these decision should later need to be changed, then many parts of the design
-will potentially need to be modified. Hence, it is not intended that these
-decisions will be changed.
+\sout{The module design should be as general as possible. However, a general system is more complex. Sometimes this complexity is not necessary. Fixing some design decisions at the system architecture stage can simplify the software design. If these decision should later need to be changed, then many parts of the design will potentially need to be modified. Hence, it is not intended that these decisions will be changed.}
 
 \begin{description}
 \item[\refstepcounter{ucnum} \uctheucnum \label{ucIO}:] 
@@ -163,10 +146,7 @@ decisions will be changed.
 \end{description}
 
 \section{Module Hierarchy} \label{SecMH}
-This section provides an overview of the module design. Modules are summarized
-in a hierarchy decomposed by secrets in Table \ref{TblMH}. The modules listed
-below, which are leaves in the hierarchy tree, are the modules that will
-actually be implemented.
+\sout{This section provides an overview of the module design. Modules are summarized in a hierarchy decomposed by secrets in Table \ref{TblMH}. The modules listed below, which are leaves in the hierarchy tree, are the modules that will actually be implemented.}
 
 \begin{description}
     \item [\refstepcounter{mnum} \mthemnum \label{m1}:] Hardware-Hiding Module
@@ -217,15 +197,12 @@ actually be implemented.
 
 \section{Connection Between Requirements and Design} \label{SecConnection}
 
-The design of the system is intended to satisfy the requirements developed in
-the SRS. In this stage, the system is decomposed into modules. The connection
-between requirements and modules is listed in Table \ref{TblRT}.
+\sout{The design of the system is intended to satisfy the requirements developed in the SRS. In this stage, the system is decomposed into modules. The connection between requirements and modules is listed in Table \ref{TblRT}.}
 
 \section{Module Decomposition} \label{SecMD}
+\sout{Modules are decomposed according to the principle of ``information hiding'' proposed by \mbox{\citet{ParnasEtAl1984}}. The \emph{Secrets} field in a module decomposition is a brief statement of the design decision hidden by the module. The \emph{Services} field specifies \emph{what} the module will do without documenting \emph{how} to do it. For each module, a suggestion for the implementing software is given under the \emph{Implemented By} title. If the entry is \emph{OS}, this means that the module is provided by the operating system or by standard programming language libraries.  Also indicate if the module will be implemented specifically for the software.}
 
-Modules are decomposed according to the principle of ``information hiding'' proposed by \citet{ParnasEtAl1984}. The \emph{Secrets} field in a module decomposition is a brief statement of the design decision hidden by the module. The \emph{Services} field specifies \emph{what} the module will do without documenting \emph{how} to do it. For each module, a suggestion for the implementing software is given under the \emph{Implemented By} title. If the entry is \emph{OS}, this means that the module is provided by the operating system or by standard programming language libraries.  Also indicate if the module will be implemented specifically for the software.
-
-Only the leaf modules in the hierarchy have to be implemented. If a dash (\emph{--}) is shown, this means that the module is not a leaf and will not have to be implemented. Whether or not this module is implemented depends on the programming language selected.
+\sout{Only the leaf modules in the hierarchy have to be implemented. If a dash (\emph{--}) is shown, this means that the module is not a leaf and will not have to be implemented. Whether or not this module is implemented depends on the programming language selected.}
 
 \subsection{Hardware Hiding Modules (\mref{m1})}
 \begin{description}
