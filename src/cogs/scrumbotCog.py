@@ -586,9 +586,11 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
         if isinstance(error, (commands.MissingRole, commands.MissingAnyRole)):
             await ctx.send(f'> Insufficient permissions to run this command.')
         if isinstance(error, commands.errors.MissingRequiredArgument):
-            await ctx.send(f'> {error}')
+            await ctx.send(f'> Error: {error}')
         if isinstance(error, commands.errors.CommandNotFound):
             await ctx.send(f'> Error: Command not found.')
+        if isinstance(error, commands.errors.BadArgument):
+            await ctx.send(f'> Error: Invalid input.')
 
     def __get_project(self, n):
         proj_key = self.project_list.to_seq()
