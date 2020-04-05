@@ -66,6 +66,7 @@
             March 12, 2020 & Timothy Choy & Completed ScrumBot module\\
             March 13, 2020 & Arkin Modi & Updated ScrumBot Module\\
             April 4, 2020 & Leon So & Revision 1 changes\\
+            April 5, 2020 & Leon So & Revision 1 changes\\
         \bottomrule
     \end{tabularx}
 \end{table}
@@ -613,7 +614,7 @@ It is assumed that the first term in Dict is referred to as the "key" and the se
 
 \noindent\textcolor{red}{get\_last\_id()}
 \begin{itemize}
-    \item \textcolor{red}{output: $c - 1$}
+    \item \textcolor{red}{output: $out := c - 1$}
 \end{itemize}
 
 \noindent to\_seq()
@@ -816,7 +817,7 @@ None
 
 \noindent \textcolor{red}{get\_name()}
 \begin{itemize}
-    \item \textcolor{red}{$out := name$}
+    \item \textcolor{red}{output: $out := name$}
 \end{itemize}
 
 \noindent get\_deadline()
@@ -879,18 +880,36 @@ Sprint = ?
     \hline
     \textcolor{red}{get\_date} &  & \textcolor{red}{String} & \\
     \hline
+    \textcolor{red}{get\_feedback} & \textcolor{red}{$\mathbb{N}$}& \textcolor{red}{String} & \textcolor{red}{KeyError}\\
+    \hline
+    \textcolor{red}{get\_last\_task\_id} & & \textcolor{red}{$\mathbb{N}$}& \\
+    \hline
     get\_tasks & & seq of Task &\\
     \hline
-    add\_task & Task & & \\
+    \textcolor{red}{get\_task} & \textcolor{red}{$\mathbb{N}$}& &\\
+    \hline
+    \textcolor{red}{add\_feedback} & \textcolor{red}{$\mathbb{N}$, String} & &\\
+    \hline
+    add\_task & \sout{Task} \textcolor{red}{String, String} & & \\
+    \hline
+    \textcolor{red}{add\_task} & \textcolor{red}{String, String, String} & & \\
+    \hline
+    \textcolor{red}{add\_task\_from\_file} & \textcolor{red}{$\mathbb{N}$, String, String} & & \\
+    \hline
+    \textcolor{red}{add\_task\_from\_file} & \textcolor{red}{$\mathbb{N}$, String, String, String} & &\\
+    \hline
+    \textcolor{red}{rm\_feedback} & \textcolor{red}{$\mathbb{N,N}$}& & \textcolor{red}{KeyError}\\
     \hline
     rm\_task & $\mathbb{N}$ & &\\
+    \hline
+    \textcolor{red}{set\_details} & \textcolor{red}{$\mathbb{N}$, String} & & \textcolor{red}{KeyError}\\
     \hline
 \end{tabular}
 
 \subsection*{Semantics}
 \subsubsection*{State Variables}
-$tasks$: TaskList
-
+$tasks$: TaskList\\
+\textcolor{red}{$date$: Date}
 \subsubsection*{State Invariant}
 None
 
@@ -902,18 +921,72 @@ None
 \subsubsection*{Access Routine Semantics}
 \noindent new Sprint($n$)
 \begin{itemize}
-    \item transition: $tasks := TaskList()$
+    \item transition: $tasks$\textcolor{red}{$, date$} $:= TaskList()$\textcolor{red}{$, Datetime.today()$}
     \item output: $out :=$ self
 \end{itemize}
 
-\noindent get\_task($n$)
+\noindent \textcolor{red}{new Sprint($n, d$)}
+\begin{itemize}
+    \item \textcolor{red}{transition: $tasks$\textcolor{red}{$, date$} $:= TaskList()$\textcolor{red}{$, Datetime(d)$}}
+    \item \textcolor{red}{output: $out :=$ self}
+\end{itemize}
+
+\noindent \textcolor{red}{get\_date()}
+\begin{itemize}
+    \item \textcolor{red}{output: $out := String(date)$}
+\end{itemize}
+
+\noindent get\_task\textcolor{red}{s}(\sout{$n$})
 \begin{itemize}
     \item output: $out := tasks.to\_seq()$
 \end{itemize}
 
-\noindent add\_task($task$)
+\noindent \textcolor{red}{get\_task($n$)}
 \begin{itemize}
-    \item transition: $tasks := tasks.add(task)$
+    \item \textcolor{red}{output: $out := get\_tasks()[n]$}
+\end{itemize}
+
+\noindent \textcolor{red}{get\_feedback($n$)}
+\begin{itemize}
+    \item \textcolor{red}{output: $out := get\_task(n).get\_feedback()$}
+    \item \textcolor{red}{exception: $exc := get\_task(n) ==$ None $\Rightarrow$ KeyError}
+\end{itemize}
+
+\noindent \textcolor{red}{get\_last\_task\_id()}
+\begin{itemize}
+    \item \textcolor{red}{output: $out := tasks.get\_last\_id()$}
+\end{itemize}
+
+\noindent \textcolor{red}{add\_feedback($n, s$)}
+\begin{itemize}
+    \item \textcolor{red}{transition: $:= get\_tasks(n).add\_feedback(s)$}
+    \item \textcolor{red}{exception: $exc := get\_task(n) ==$ None $\Rightarrow$ KeyError}
+\end{itemize}
+
+\noindent add\_task(\sout{$task$}\textcolor{red}{$name,deadline$})
+\begin{itemize}
+    \item transition: $tasks := tasks.add($\sout{$task$}\textcolor{red}{$new\ Task(name, deadline)$}$)$
+\end{itemize}
+
+\noindent \textcolor{red}{add\_task($name,deadline,details$)}
+\begin{itemize}
+    \item \textcolor{red}{transition: $tasks := tasks.add(new\ Task(name, deadline, details))$}
+\end{itemize}
+
+\noindent \textcolor{red}{add\_task\_from\_file($n, name, deadline$)}
+\begin{itemize}
+    \item \textcolor{red}{transition: $tasks := tasks.update(n, new\ Task(name, deadline))$}
+\end{itemize}
+
+\noindent \textcolor{red}{add\_task\_from\_file($n, name, deadline, details$)}
+\begin{itemize}
+    \item \textcolor{red}{transition: $tasks := tasks.update(n, new\ Task(name, deadline, details))$}
+\end{itemize}
+
+\noindent \textcolor{red}{rm\_feedback($task\_id, feedback\_id$)}
+\begin{itemize}
+    \item \textcolor{red}{transition: $tasks := get\_task(task\_id).rm\_feedback(feedback\_id)$}
+    \item \textcolor{red}{exception: $exc := get\_task(task\_id) ==$ None $\Rightarrow$ KeyError}
 \end{itemize}
 
 \noindent rm\_task($n$)
@@ -921,6 +994,11 @@ None
     \item transition: $tasks := tasks.remove(n)$
 \end{itemize}
 
+\noindent \textcolor{red}{set\_details($n, s$)}
+\begin{itemize}
+    \item \textcolor{red}{transition: $tasks := get\_task(n).set\_details(s)$}
+    \item \textcolor{red}{exception: $exc := get\_task(n) ==$ None $\Rightarrow$ KeyError}
+\end{itemize}
 \newpage
 
 %% Project List Module
