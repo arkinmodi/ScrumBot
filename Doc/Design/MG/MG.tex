@@ -67,6 +67,8 @@
             March 12, 2020 & Arkin Modi & Worked on Introduction, Anticipated and Unlikely Changes, Module Hierarchy, Module Decomposition, Traceability Matrix and Use Hierarchy Between Modules\\
             March 12, 2020 & Leon So & Anticipated Changes and Unlikely Changes\\
             March 13, 2020 & Arkin Modi & Worked on Use Hierarchy Between Modules, Traceability Matrix, Module Decomposition, and Module Hierarchy\\
+            April 4, 2020 & Arkin Modi & Strikethrough all copied parts from template\\
+            April 4, 2020 & Arkin Modi & Re-wrote the Introduction and Connection Between Requirements and Design\\
         \bottomrule
     \end{tabularx}
 \end{table}
@@ -76,11 +78,8 @@
 \pagenumbering{arabic}
 
 \section{Introduction}
-\subsection{Overview} 
-% Copied from Test Plan
+\subsection{Overview}
 Scrum is an Agile process framework widely used in industry for managing and coordinating collaborative projects. Scrum follows a highly iterative process and often has heavy customer involvement, therefore it can be often be complex. With Discord being a popular communication tool used by many teams of software developers today, ScrumBot provides a solution that directly integrates the management of a scrum development cycle into the communication channels. ScrumBot will allow for better management and organization of retrospectives, stand-ups, and other scrum/agile stages used by software teams within their routine communication channel. ScrumBot will provide features to add and manage Scrum meetings, as well as to store information relevant to those meetings. ScrumBot will also allow Scrum roles to be assigned to members of the Discord channel.
-
-% ScrumBot is a Discord chat bot which allows software development teams to manage their Scrum agile software development process directly within the Discord application.\\
 
 \subsection{Context}
 Prior to this document, the Software Requirements Specification (SRS) was created to outline all the functional and non-functional requirements this project must satisfy. The purpose of this document is to provide a high-level structure to the implementation of this project by decomposing the idea into modules. The decomposition into modules enables a clearer form to satisfy the requirements of the project.\\
@@ -97,15 +96,15 @@ Prior to this document, the Software Requirements Specification (SRS) was create
 
 \sout{\noindent The rest of the document is organized as follows. Section \ref{SecChange} lists the anticipated and unlikely changes of the software requirements. Section \ref{SecMH} summarizes the module decomposition that was constructed according to the likely changes. Section \ref{SecConnection} specifies the connections between the software requirements and the modules. Section \ref{SecMD} gives a detailed description of the modules. Section \ref{SecTM} includes two traceability matrices. One checks the completeness of the design against the requirements provided in the SRS. The other shows the relation between anticipated changes and the modules. Section \ref{SecUse} describes the use relation between modules.}
 
+\textcolor{red}{The Module Guide describes the structure of the system and identifies the system components as modules. The Module Guide's focus is on the hierarchy of the system modules, and not the functionality of each component. The potential readers of this document include: new project members, project maintainers, and designers.}\\
+
+\textcolor{red}{This project is organized as follows. Section \ref{SecChange} contains a list of anticipated and unlikely changes that may occur to the system design. Section \ref{SecMH} contains a overview of the module hierarchy. Section \ref{SecConnection} contains a list of connections between the SRS and the modules. Section \ref{SecMD} contains a description of each module. Section \ref{SecTM} contains two traceability matrices; one for the connections between the SRS and the modules, and another for the connections between the anticipated changes and the modules. Section \ref{SecUse} depicts the uses relation among all the modules.}
+
 \subsection{Design Principles}
 % Copied from template
-\sout{Decomposing a system into modules is a commonly accepted approach to developing
-software.  The Module Guide (MG) developed by \mbox{\citep{ParnasEtAl1984}} specified the modular structure of the system. A module is a work assignment for a programmer or programming team \mbox{~\citep{ParnasEtAl1984}}.  Decomposition of the system into modules is
-based on the principle of information hiding \mbox{~\citep{Parnas1972a}}.  This
-principle supports design for change, because the ``secrets'' that each module
-hides represent likely future changes.  Design for change is valuable in SC,
-where modifications are frequent, especially during initial development as the
-solution space is explored.\\}
+\sout{Decomposing a system into modules is a commonly accepted approach to developing software. The Module Guide (MG) developed by \mbox{\citep{ParnasEtAl1984}} specified the modular structure of the system. A module is a work assignment for a programmer or programming team \mbox{~\citep{ParnasEtAl1984}}. Decomposition of the system into modules is based on the principle of information hiding \mbox{~\citep{Parnas1972a}}. This principle supports design for change, because the ``secrets'' that each module hides represent likely future changes. Design for change is valuable in SC, where modifications are frequent, especially during initial development as the solution space is explored.}\\
+
+\textcolor{red}{Decomposition of the system into modules is based on the principle of information hiding \mbox{~\citep{Parnas1972a}}. Each module shall contain/hide a secret that can be easily changed. This supports the idea of design for change.}\\
 
 The design follows the rules layed out by \citet{ParnasEtAl1984}, as follows:
 \begin{itemize}
@@ -136,7 +135,6 @@ The design follows the rules layed out by \citet{ParnasEtAl1984}, as follows:
 \sout{The module design should be as general as possible. However, a general system is more complex. Sometimes this complexity is not necessary. Fixing some design decisions at the system architecture stage can simplify the software design. If these decision should later need to be changed, then many parts of the design will potentially need to be modified. Hence, it is not intended that these decisions will be changed.}
 
 \begin{description}
-\item[\refstepcounter{ucnum} \uctheucnum \label{ucIO}:] 
 \item[\refstepcounter{ucnum} \uctheucnum \label{ucInput}:] There will always be a source of input data external to the software
 \item[\refstepcounter{ucnum} \uctheucnum \label{ucInput}:] The system will be interfacing with the Discord application
 \item[\refstepcounter{ucnum} \uctheucnum \label{ucInput}:] The data structure of a meeting
@@ -152,7 +150,6 @@ The design follows the rules layed out by \citet{ParnasEtAl1984}, as follows:
     \item [\refstepcounter{mnum} \mthemnum \label{m1}:] Hardware-Hiding Module
     \item [\refstepcounter{mnum} \mthemnum \label{m2}:] ScrumBot Module
     \item [\refstepcounter{mnum} \mthemnum \label{m3}:] Meeting Types Module
-    % \item [\refstepcounter{mnum} \mthemnum \label{m?}:] Generic Dictionary Module
     \item [\refstepcounter{mnum} \mthemnum \label{m4}:] Meeting List Module
     \item [\refstepcounter{mnum} \mthemnum \label{m5}:] Meeting Module
     \item [\refstepcounter{mnum} \mthemnum \label{m6}:] Task List Module
@@ -198,6 +195,7 @@ The design follows the rules layed out by \citet{ParnasEtAl1984}, as follows:
 \section{Connection Between Requirements and Design} \label{SecConnection}
 
 \sout{The design of the system is intended to satisfy the requirements developed in the SRS. In this stage, the system is decomposed into modules. The connection between requirements and modules is listed in Table \ref{TblRT}.}
+\textcolor{red}{The SRS defines the requirements that the system design must fulfill. In Table \ref{TblRT}, the connections between the requirements and modules are listed.}
 
 \section{Module Decomposition} \label{SecMD}
 \sout{Modules are decomposed according to the principle of ``information hiding'' proposed by \mbox{\citet{ParnasEtAl1984}}. The \emph{Secrets} field in a module decomposition is a brief statement of the design decision hidden by the module. The \emph{Services} field specifies \emph{what} the module will do without documenting \emph{how} to do it. For each module, a suggestion for the implementing software is given under the \emph{Implemented By} title. If the entry is \emph{OS}, this means that the module is provided by the operating system or by standard programming language libraries.  Also indicate if the module will be implemented specifically for the software.}
@@ -379,7 +377,8 @@ requirements and between the modules and the anticipated changes.
 
 \section{Use Hierarchy Between Modules} \label{SecUse}
 
-In this section, the uses hierarchy between modules is provided. \citet{Parnas1978} said of two programs A and B that A {\em uses} B if correct execution of B may be necessary for A to complete the task described in its specification. That is, A {\em uses} B if there exist situations in which the correct functioning of A depends upon the availability of a correct implementation of B.  Figure \ref{FigUH} illustrates the use relation between the modules. It can be seen that the graph is a directed acyclic graph (DAG). Each level of the hierarchy offers a testable and usable subset of the system, and modules in the higher level of the hierarchy are essentially simpler because they use modules from the lower levels.
+\sout{In this section, the uses hierarchy between modules is provided. \mbox{\citet{Parnas1978}} said of two programs A and B that A {\em uses} B if correct execution of B may be necessary for A to complete the task described in its specification. That is, A {\em uses} B if there exist situations in which the correct functioning of A depends upon the availability of a correct implementation of B.}
+Figure \ref{FigUH} illustrates the use relation between the modules. It can be seen that the graph is a directed acyclic graph (DAG). Each level of the hierarchy offers a testable and usable subset of the system, and modules in the higher level of the hierarchy are essentially simpler because they use modules from the lower levels.
 
 \begin{figure}[H]
     \centering
