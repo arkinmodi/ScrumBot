@@ -651,17 +651,17 @@ Meeting = ?
     \hline
     \textbf{Routine Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
     \hline
-    new Meeting & String, \textcolor{red}{\sout{Date, Time} String}, MeetingT & Meeting & \\
+    new Meeting & String, \sout{Date, Time} \textcolor{red}{String}, MeetingT & Meeting & \\
     \hline
-    new Meeting & String, \textcolor{red}{\sout{Date, Time} String}, MeetingT, String & Meeting & \\
+    new Meeting & String, \sout{Date, Time} \textcolor{red}{String}, MeetingT, String & Meeting & \\
     \hline
     get\_name & & String &\\
     \hline
     \textcolor{red}{get\_datetime} & & \textcolor{red}{String} &\\
     \hline
-    \textcolor{red}{\sout{get\_date}} & & \textcolor{red}{\sout{Date}}&\\
+    {\sout{get\_date}} & & {\sout{Date}}&\\
     \hline
-    \textcolor{red}{\sout{get\_time}} & & \textcolor{red}{\sout{Time}}&\\
+    {\sout{get\_time}} & & {\sout{Time}}&\\
     \hline
     get\_type & & MeetingT &\\
     \hline
@@ -674,8 +674,8 @@ Meeting = ?
 \subsection* {Semantics}
 \subsubsection* {State Variables}
 $name$: String\\
-\textcolor{red}{\sout{$date$: Date}}\\
-\textcolor{red}{\sout{$time$: Time}}\\
+{\sout{$date$: Date}}\\
+{\sout{$time$: Time}}\\
 \textcolor{red}{$d$: Datetime}\\
 $type$: MeetingT\\
 $desc$: String
@@ -690,31 +690,31 @@ None
 
 
 \subsubsection* {Access Routine Semantics}
-\noindent new Meeting($n$, \textcolor{red}{\sout{$d$, $t$} $dt$}, $type$)
+\noindent new Meeting($n$, \sout{$d$, $t$} \textcolor{red}{$dt$}, $type$)
 \begin{itemize}
-    \item transition: $name,$ \textcolor{red}{\sout{$time,\ date$}$,\ d$},\ $type,\ desc := n,$ \textcolor{red}{\sout{$d,\ t$} $Datetime(dt),$}\ $type,\ \text{None}$
+    \item transition: $name,$ \sout{$time,\ date$}\textcolor{red}{$,\ d$},\ $type,\ desc := n,$ \sout{$d,\ t$} \textcolor{red}{$Datetime(dt),$}\ $type,\ \text{None}$
     \item output: $out :=$ self
 \end{itemize}
 
-\noindent new Meeting($n$, \textcolor{red}{\sout{$d$, $t$} $dt$}, $type$, $desc$)
+\noindent new Meeting($n$, \sout{$d$, $t$} \textcolor{red}{$dt$}, $type$, $desc$)
 \begin{itemize}
-    \item transition: $name,$ \textcolor{red}{\sout{$time,\ date$}$,\ d$},\ $type,\ desc := n,$ \textcolor{red}{\sout{$d,\ t$} $Datetime(dt),$}\ $type,\ desc$
+    \item transition: $name,$ \sout{$time,\ date$}\textcolor{red}{$,\ d$},\ $type,\ desc := n,$ \sout{$d,\ t$} \textcolor{red}{$Datetime(dt),$}\ $type,\ desc$
     \item output: $out :=$ self
 \end{itemize}
 
-\noindent \textcolor{red}{\sout{get\_name()}}
+\noindent {\sout{get\_name()}}
 \begin{itemize}
-    \item \textcolor{red}{\sout{$output: out := name$}}
+    \item {\sout{$output: out := name$}}
 \end{itemize}
 
-\noindent \textcolor{red}{\sout{get\_date()}}
+\noindent {\sout{get\_date()}}
 \begin{itemize}
-    \item \textcolor{red}{\sout{$output: out := date$}}
+    \item {\sout{$output: out := date$}}
 \end{itemize}
 
-\noindent \textcolor{red}{\sout{get\_time()}}
+\noindent {\sout{get\_time()}}
 \begin{itemize}
-    \item \textcolor{red}{\sout{$output: out := time$}}
+    \item {\sout{$output: out := time$}}
 \end{itemize}
 
 \noindent \textcolor{red}{get\_datetime()}
@@ -729,7 +729,7 @@ None
 
 \noindent get\_desc()
 \begin{itemize}
-    \item output: $out :=$ \textcolor{red}{\sout{desc}$ (desc = \text{None} \Rightarrow ``\text{No description}"\ |\ desc)$}
+    \item output: $out :=$ \sout{$desc$}\textcolor{red}{$ (desc = \text{None} \Rightarrow ``\text{No description}"\ |\ desc)$}
 \end{itemize}
 
 \noindent set\_desc($s$)
@@ -766,13 +766,13 @@ Task = ?
     \hline
     \textbf{Routine Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
     \hline
-    new Task & String, \textcolor{red}{\sout{Date, Time} String} & Task & \\
+    new Task & String, \sout{Date, Time} \textcolor{red}{String} & Task & \\
     \hline
-    new Task & String, \textcolor{red}{\sout{Date, Time} String}, Details & Task & \\
+    new Task & String, \sout{Date, Time} \textcolor{red}{String}, Details & Task & \\
     \hline
     \textcolor{red}{get\_name} & & \textcolor{red}{String} & \\
     \hline
-    get\_deadline & & \textcolor{red}{\sout{(Date, Time)} String} & \\
+    get\_deadline & & \sout{(Date, Time)} \textcolor{red}{String} & \\
     \hline
     get\_details & & String & \\
     \hline
@@ -789,7 +789,7 @@ Task = ?
 \subsection*{Semantics}
 \subsubsection*{State Variables}
 $name$: String\\
-$deadline$: \textcolor{red}{\sout{(Date, Time)} Datetime}\\
+$deadline$: \sout{(Date, Time)} \textcolor{red}{Datetime}\\
 $details$: String\\
 $feedback$: seq of String
 
@@ -802,15 +802,15 @@ None
 \end{itemize}
 
 \subsubsection*{Access Routine Semantics}
-\noindent new Task($s,$ \textcolor{red}{\sout{$d, t$} $dt$})
+\noindent new Task($s,$ \sout{$d, t$} \textcolor{red}{$dt$})
 \begin{itemize}
     \item transition: $name, deadline, details := s,$ \textcolor{red}{\sout{$(d, t)$} $Datetime(dt)$}$, \text{None}$
     \item output: $out :=$ self
 \end{itemize}
 
-\noindent new Task($s,$ \textcolor{red}{\sout{$d, t$} $dt$}$, details$)
+\noindent new Task($s,$ \sout{$d, t$} \textcolor{red}{$dt$}$, details$)
 \begin{itemize}
-    \item transition: $name, deadline, details := s,$ \textcolor{red}{\sout{$(d, t)$} $Datetime(dt)$}$, details$
+    \item transition: $name, deadline, details := s,$ \sout{$(d, t)$} \textcolor{red}{$Datetime(dt)$}$, details$
     \item output: $out :=$ self
 \end{itemize}
 
@@ -821,7 +821,7 @@ None
 
 \noindent get\_deadline()
 \begin{itemize}
-    \item output: $out :=$ \textcolor{red}{\sout{$deadline$}$Datetime(deadline)$}
+    \item output: $out :=$ \sout{$deadline$}\textcolor{red}{$String(deadline)$}
 \end{itemize}
 
 \noindent get\_details()
@@ -874,6 +874,10 @@ Sprint = ?
     \textbf{Routine Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
     \hline
     new Sprint & & Sprint & \\
+    \hline
+    \textcolor{red}{new Sprint} & \textcolor{red}{Date} & \textcolor{red}{Sprint} & \\
+    \hline
+    \textcolor{red}{get\_date} &  & \textcolor{red}{String} & \\
     \hline
     get\_tasks & & seq of Task &\\
     \hline
