@@ -221,14 +221,6 @@ The design follows the rules layed out by \citet{ParnasEtAl1984}, as follows:
 \item[Implemented By:] --
 \end{description}
 
-% \begin{description}
-%     \item[Secrets:] The design decision based on mathematical theorems, physical facts, or programming considerations. The secrets of this module are \emph{not} described in the SRS.
-%     \item[Services:] Includes data structure and algorithms used in the system that do not provide direct interaction with the user. 
-%     % Changes in these modules are more likely to be motivated by a desire to
-%     % improve performance than by externally imposed changes.
-%     \item[Implemented By:] --
-% \end{description}
-
 \subsubsection{ScrumBot Module (\mref{m2})}
 \begin{description}
     \item[Secrets:] The format and structure of the input data.
@@ -239,37 +231,40 @@ The design follows the rules layed out by \citet{ParnasEtAl1984}, as follows:
 \subsection{Software Decision Module}
 \subsubsection{Meeting Types Module (\mref{m3})}
 \begin{description}
-    \item[Secrets:] Exported type (data structure)
-    \item[Services:] None
-    \item[Implemented By:] meetingTypes.py
+    \item[Secrets:] \sout{Exported type (data structure)}
+    \item[Services:] \sout{None}
+    \item[Implemented By:] \sout{meetingTypes.py}
 \end{description}
+\textcolor{red}{This Module has been removed.}
 
 \subsubsection{Meeting List Module (\mref{m4})}
 \begin{description}
-    \item[Secrets:] Data structure for a list of meetings
-    \item[Services:] Provides the ability to add, remove, and output all data
-    \item[Implemented By:] meetingList.py
+    \item[Secrets:] \sout{Data structure for a list of meetings}
+    \item[Services:] \sout{Provides the ability to add, remove, and output all data}
+    \item[Implemented By:] \sout{meetingList.py}
 \end{description}
+\textcolor{red}{This Module has been removed.}
 
 \subsubsection{Meeting Module (\mref{m5})}
 \begin{description}
     \item[Secrets:] Data structure of a meeting
     \item[Services:] Provides the ability to initialize, access (name, date, time, type, and description) and mutate (description only) a meeting
-    \item[Implemented By:] meeting.py
+    \item[Implemented By:] meeting.py\textcolor{red}{, meetingTypes.py, meetingList.py}
 \end{description}
 
 \subsubsection{Task List Module (\mref{m6})}
 \begin{description}
-    \item[Secrets:] Data structure for a list of tasks
-    \item[Services:] Provides the ability to add, remove, and output all data
-    \item[Implemented By:] taskList.py
+    \item[Secrets:] \sout{Data structure for a list of tasks}
+    \item[Services:] \sout{Provides the ability to add, remove, and output all data}
+    \item[Implemented By:] \sout{taskList.py}
 \end{description}
+\textcolor{red}{This Module has been removed.}
 
 \subsubsection{Task Module (\mref{m7})}
 \begin{description}
     \item[Secrets:] Data structure of a task
     \item[Services:] Provides the ability to initialize, access (deadline, details and feedback) and mutate (feedback and details) a task
-    \item[Implemented By:] task.py
+    \item[Implemented By:] task.py\textcolor{red}{, taskList.py}
 \end{description}
 
 \subsubsection{Sprint Module (\mref{m8})}
@@ -281,16 +276,17 @@ The design follows the rules layed out by \citet{ParnasEtAl1984}, as follows:
 
 \subsubsection{Project List Module (\mref{m9})}
 \begin{description}
-    \item[Secrets:] Data structure for a list of projects
-    \item[Services:] Provides the ability to add, remove, and output all data
-    \item[Implemented By:] projectList.py
+    \item[Secrets:] \sout{Data structure for a list of projects}
+    \item[Services:] \sout{Provides the ability to add, remove, and output all data}
+    \item[Implemented By:] \sout{projectList.py}
 \end{description}
+\textcolor{red}{This Module has been removed.}
 
 \subsubsection{Project Module (\mref{m10})}
 \begin{description}
     \item[Secrets:] Data structure for a project
     \item[Services:] Provides the ability to initialize, access (description, meetings, requirements and sprints) and mutate (description, meetings, requirements and sprints) a project
-    \item[Implemented By:] project.py
+    \item[Implemented By:] project.py\textcolor{red}{, projectList.py}
 \end{description}
 
 \subsubsection{Generic Dictionary Module (\mref{m11})}
