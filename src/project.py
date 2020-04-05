@@ -173,6 +173,7 @@ class Project():
     #  @param name Name of the task
     #  @param deadline Deadline of the task
     #  @param details Details of the task
+    #  @throws IndexError Index out of range
     def add_task_from_file(self, task_id, name, deadline, details=None):
         if (len(self.sprints) == 0):
             raise IndexError
@@ -187,6 +188,7 @@ class Project():
     
     ## @brief Accessor for getting tasks from sprint
     #  @param index Index of sprint
+    #  @throws IndexError Index out of range
     def get_tasks(self, index):
         try:
             sprint = self.sprints[index]
@@ -198,6 +200,7 @@ class Project():
     ## @brief Accessor for a single task
     #  @param sprint_index Index of sprint
     #  @param task_index Index of task
+    #  @throws IndexError Index out of range
     def get_task(self, sprint_index, task_index):
         try:
             sprint = self.sprints[sprint_index]
@@ -208,6 +211,7 @@ class Project():
 
     ## @brief Mutator for removing a task from sprint
     #  @param Index of task
+    #  @throws IndexError Index out of range
     def rm_task(self, index):
         if (len(self.sprints) == 0):
             raise IndexError
@@ -218,6 +222,7 @@ class Project():
     ## @brief Mutator for adding feedback to a task
     #  @param index Index of task
     #  @param feedback Feedback to be added
+    #  @throws IndexError Index out of range
     def add_feedback(self, index, feedback):
         if (len(self.sprints) == 0):
             raise IndexError
@@ -227,6 +232,7 @@ class Project():
     ## @brief Accessor for feedback of a task
     #  @param sprint_index Index of sprint
     #  @param task_index Index of task
+    #  @throws IndexError Index out of range
     def get_feedback(self, sprint_index, task_index):
         try:
             sprint = self.sprints[sprint_index]
@@ -237,6 +243,7 @@ class Project():
     ## @brief Mutator for removing feedback from a task
     #  @param task_index Index of task
     #  @param feedback_index Feedback of task
+    #  @throws IndexError Index out of range
     def rm_feedback(self, task_index, feedback_index):
         if (len(self.sprints) == 0):
             raise IndexError
@@ -247,6 +254,7 @@ class Project():
     ## @brief Mutator for setting details for a task
     #  @param index Index of task
     #  @param details Details of task
+    #  @throws IndexError Index out of range
     def set_details(self, index, details):
         if (len(self.sprints) == 0):
             raise IndexError
