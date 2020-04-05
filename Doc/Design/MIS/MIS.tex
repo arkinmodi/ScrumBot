@@ -657,7 +657,7 @@ Meeting = ?
     \hline
     get\_name & & String &\\
     \hline
-    \textcolor{red}{get\_datetime} & & \textcolor{red}{Datetime} &\\
+    \textcolor{red}{get\_datetime} & & \textcolor{red}{String} &\\
     \hline
     \textcolor{red}{\sout{get\_date}} & & \textcolor{red}{\sout{Date}}&\\
     \hline
@@ -766,11 +766,13 @@ Task = ?
     \hline
     \textbf{Routine Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
     \hline
-    new Task & String, Date, Time & Task & \\
+    new Task & String, \textcolor{red}{\sout{Date, Time} String} & Task & \\
     \hline
-    new Task & String, Date, Time, Details & Task & \\
+    new Task & String, \textcolor{red}{\sout{Date, Time} String}, Details & Task & \\
     \hline
-    get\_deadline & & (Date, Time) & \\
+    \textcolor{red}{get\_name} & & \textcolor{red}{String} & \\
+    \hline
+    get\_deadline & & \textcolor{red}{\sout{(Date, Time)} String} & \\
     \hline
     get\_details & & String & \\
     \hline
@@ -787,7 +789,7 @@ Task = ?
 \subsection*{Semantics}
 \subsubsection*{State Variables}
 $name$: String\\
-$deadline$: (Date, Time) \\
+$deadline$: \textcolor{red}{\sout{(Date, Time)} Datetime}\\
 $details$: String\\
 $feedback$: seq of String
 
@@ -800,21 +802,26 @@ None
 \end{itemize}
 
 \subsubsection*{Access Routine Semantics}
-\noindent new Task($s, d, t$)
+\noindent new Task($s,$ \textcolor{red}{\sout{$d, t$} $dt$})
 \begin{itemize}
-    \item transition: $name, deadline, details := s, (d, t), \text{None}$
+    \item transition: $name, deadline, details := s,$ \textcolor{red}{\sout{$(d, t)$} $Datetime(dt)$}$, \text{None}$
     \item output: $out :=$ self
 \end{itemize}
 
-\noindent new Task($s, d, t, details$)
+\noindent new Task($s,$ \textcolor{red}{\sout{$d, t$} $dt$}$, details$)
 \begin{itemize}
-    \item transition: $name, deadline, details := s, (d, t), details$
+    \item transition: $name, deadline, details := s,$ \textcolor{red}{\sout{$(d, t)$} $Datetime(dt)$}$, details$
     \item output: $out :=$ self
+\end{itemize}
+
+\noindent \textcolor{red}{get\_name()}
+\begin{itemize}
+    \item \textcolor{red}{$out := name$}
 \end{itemize}
 
 \noindent get\_deadline()
 \begin{itemize}
-    \item output: $out := deadline$
+    \item output: $out :=$ \textcolor{red}{\sout{$deadline$}$Datetime(deadline)$}
 \end{itemize}
 
 \noindent get\_details()
