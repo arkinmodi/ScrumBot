@@ -588,35 +588,35 @@ It is assumed that the first term in Dict is referred to as the "key" and the se
 
 
 \subsection*{Access Routine Semantics}
-\noindent new Dict():
+\noindent new Dict()
 \begin{itemize}
     \item transition: $d, c := \langle \rangle, 0$
     
     \item output: $out :=$ self
 \end{itemize}
 
-\noindent add($e$):
+\noindent add($e$)
 \begin{itemize}
     \item transition: $d :=  d\ ||\ \langle c,\ e \rangle, c := c + 1$
 \end{itemize}
 
-\noindent\textcolor{red}{update($id$,$e$):}
+\noindent\textcolor{red}{update($id$,$e$)}
 \begin{itemize}
     \item \textcolor{red}{transition: $d[id],c := e,id+1$}
 \end{itemize}
 
-\noindent remove($id$):
+\noindent remove($id$)
 \begin{itemize}
     \item transition: $d :=  d - \langle id, e \rangle$
     \item exception: $exc := \langle id, e \rangle \notin d \Rightarrow \text{KeyError}$
 \end{itemize}
 
-\noindent\textcolor{red}{get\_last\_id():}
+\noindent\textcolor{red}{get\_last\_id()}
 \begin{itemize}
     \item \textcolor{red}{output: $c - 1$}
 \end{itemize}
 
-\noindent to\_seq():
+\noindent to\_seq()
 \begin{itemize}
     \item output: $out := d$ such that $(\forall i \in \mathbb{N} \mid 0 \leq i < |d| \cdot d[i].key() \leq d[i + 1].key())$
 \end{itemize}
@@ -651,15 +651,17 @@ Meeting = ?
     \hline
     \textbf{Routine Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
     \hline
-    new Meeting & String, Date, Time, MeetingT & Meeting & \\
+    new Meeting & String, \textcolor{red}{\sout{Date, Time} String}, MeetingT & Meeting & \\
     \hline
-    new Meeting & String, Date, Time, MeetingT, String & Meeting & \\
+    new Meeting & String, \textcolor{red}{\sout{Date, Time} String}, MeetingT, String & Meeting & \\
     \hline
     get\_name & & String &\\
     \hline
-    get\_date & & Date &\\
+    \textcolor{red}{get\_datetime} & & \textcolor{red}{Datetime} &\\
     \hline
-    get\_time & & Time &\\
+    \textcolor{red}{\sout{get\_date}} & & \textcolor{red}{\sout{Date}}&\\
+    \hline
+    \textcolor{red}{\sout{get\_time}} & & \textcolor{red}{\sout{Time}}&\\
     \hline
     get\_type & & MeetingT &\\
     \hline
@@ -672,8 +674,9 @@ Meeting = ?
 \subsection* {Semantics}
 \subsubsection* {State Variables}
 $name$: String\\
-$date$: Date\\
-$time$: Time\\
+\textcolor{red}{\sout{$date$: Date}}\\
+\textcolor{red}{\sout{$time$: Time}}\\
+\textcolor{red}{$d$: Datetime}\\
 $type$: MeetingT\\
 $desc$: String
 
@@ -687,31 +690,36 @@ None
 
 
 \subsubsection* {Access Routine Semantics}
-\noindent new Meeting($n$, $d$, $t$, $type$)
+\noindent new Meeting($n$, \textcolor{red}{\sout{$d$, $t$} $dt$}, $type$)
 \begin{itemize}
-    \item transition: $name,\ time,\ date,\ type,\ desc := n,\ d,\ t,\ type,\ \text{None}$
+    \item transition: $name,$ \textcolor{red}{\sout{$time,\ date$}$,\ d$},\ $type,\ desc := n,$ \textcolor{red}{\sout{$d,\ t$} $Datetime(dt),$}\ $type,\ \text{None}$
     \item output: $out :=$ self
 \end{itemize}
 
-\noindent new Meeting($n$, $d$, $t$, $type$, $desc$)
+\noindent new Meeting($n$, \textcolor{red}{\sout{$d$, $t$} $dt$}, $type$, $desc$)
 \begin{itemize}
-    \item transition: $name,\ time,\ date,\ type,\ desc := n,\ d,\ t,\ type,\ desc$
+    \item transition: $name,$ \textcolor{red}{\sout{$time,\ date$}$,\ d$},\ $type,\ desc := n,$ \textcolor{red}{\sout{$d,\ t$} $Datetime(dt),$}\ $type,\ desc$
     \item output: $out :=$ self
 \end{itemize}
 
-\noindent get\_name()
+\noindent \textcolor{red}{\sout{get\_name()}}
 \begin{itemize}
-    \item output: $out := name$
+    \item \textcolor{red}{\sout{$output: out := name$}}
 \end{itemize}
 
-\noindent get\_date()
+\noindent \textcolor{red}{\sout{get\_date()}}
 \begin{itemize}
-    \item output: $out := date$
+    \item \textcolor{red}{\sout{$output: out := date$}}
 \end{itemize}
 
-\noindent get\_time()
+\noindent \textcolor{red}{\sout{get\_time()}}
 \begin{itemize}
-    \item output: $out := time$
+    \item \textcolor{red}{\sout{$output: out := time$}}
+\end{itemize}
+
+\noindent \textcolor{red}{get\_datetime()}
+\begin{itemize}
+    \item \textcolor{red}{output: $out := String(d)$}
 \end{itemize}
 
 \noindent get\_type()
@@ -721,7 +729,7 @@ None
 
 \noindent get\_desc()
 \begin{itemize}
-    \item output: $out := desc$
+    \item output: $out :=$ \textcolor{red}{\sout{desc}$ (desc = \text{None} \Rightarrow ``\text{No description}"\ |\ desc)$}
 \end{itemize}
 
 \noindent set\_desc($s$)
