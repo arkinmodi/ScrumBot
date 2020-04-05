@@ -886,7 +886,7 @@ Sprint = ?
     \hline
     get\_tasks & & seq of Task &\\
     \hline
-    \textcolor{red}{get\_task} & \textcolor{red}{$\mathbb{N}$}& &\\
+    \textcolor{red}{get\_task} & \textcolor{red}{$\mathbb{N}$}& \textcolor{red}{Task} &\\
     \hline
     \textcolor{red}{add\_feedback} & \textcolor{red}{$\mathbb{N}$, String} & &\\
     \hline
@@ -1036,6 +1036,8 @@ Project = ?
     \hline
     get\_desc & & String &\\
     \hline
+    \textcolor{red}{get\_feedback} & \textcolor{red}{$\mathbb{N,N}$} & \textcolor{red}{String} & \textcolor{red}{IndexError}\\
+    \hline
     \textcolor{red}{get\_last\_meeting\_id} & & \textcolor{red}{$\mathbb{N}$}&\\
     \hline
     get\_meetings & & seq of Meeting &\\
@@ -1050,7 +1052,13 @@ Project = ?
     \hline
     get\_sprints & & seq of Sprint & \\
     \hline
+    \textcolor{red}{get\_task} & \textcolor{red}{$\mathbb{N,N}$} & \textcolor{red}{Task} & \textcolor{red}{IndexError}\\
+    \hline
+    \textcolor{red}{get\_tasks} & \textcolor{red}{$\mathbb{N}$}& \textcolor{red}{seq of Task} & \textcolor{red}{IndexError}\\
+    \hline
     set\_desc & String & &\\
+    \hline
+    \textcolor{red}{add\_feedback} & \textcolor{red}{$\mathbb{N}$, String} & & \textcolor{red}{IndexError}\\
     \hline
     add\_meeting & \sout{Meeting} \textcolor{red}{String, String, MeetingT}& & \\
     \hline
@@ -1070,11 +1078,21 @@ Project = ?
     \hline
     \textcolor{red}{add\_task} & \textcolor{red}{$\mathbb{N}$, String, String}& & \textcolor{red}{IndexError}\\
     \hline
+    \textcolor{red}{add\_task\_from\_file} & \textcolor{red}{$\mathbb{N}$, String, String} & & \textcolor{red}{IndexError}\\
+    \hline
+    \textcolor{red}{add\_task\_from\_file} & \textcolor{red}{$\mathbb{N}$, String, String, String} & & \textcolor{red}{IndexError}\\
+    \hline
+    \textcolor{red}{rm\_feedback} & \textcolor{red}{$\mathbb{N,N}$} & & \textcolor{red}{IndexError}\\
+    \hline
     rm\_meeting & $\mathbb{N}$ &  & \textcolor{red}{KeyError}\\
     \hline
     rm\_rqe & $\mathbb{N}$ &  & IndexError\\
     \hline
     rm\_sprint & & & IndexError\\
+    \hline
+    \textcolor{red}{rm\_task} & \textcolor{red}{$\mathbb{N}$} & & \textcolor{red}{IndexError}\\
+    \hline
+    \textcolor{red}{set\_details} & \textcolor{red}{$\mathbb{N}$, String} & & \textcolor{red}{IndexError}\\
     \hline
     \textcolor{red}{set\_meeting\_desc} & \textcolor{red}{$\mathbb{N}$} & & \textcolor{red}{KeyError}\\
     \hline
