@@ -1135,9 +1135,37 @@ $c = |sprints|\ \land\ c \geq 0$
     \item output: $out := (desc = \text{None} \Rightarrow ``\text{No description}"\ |\ desc)$
 \end{itemize}
 
+\noindent \textcolor{red}{get\_feedback($sprint\_index, task\_index$)}
+\begin{itemize}
+    \item \textcolor{red}{output: $out := sprints[sprint\_index].get_feedback(task\_index)$}
+    \item \textcolor{red}{exception: $exc := sprint\_index > |sprints| - 1 \Rightarrow$ IndexError}
+\end{itemize}
+
+\noindent \textcolor{red}{get\_last\_task\_id()}
+\begin{itemize}
+    \item \textcolor{red}{output: $out := sprints[-1].get\_last\_task\_id()$}
+\end{itemize}
+
 \noindent get\_meetings()
 \begin{itemize}
     \item output: $out := meetings.to_seq()$
+\end{itemize}
+
+\noindent \textcolor{red}{get\_meeting\_desc($n$)}
+\begin{itemize}
+    \item \textcolor{red}{output: $out := meetings[n].get\_desc()$}
+    \item \textcolor{red}{exception: $exc := meetings[n] == None \Rightarrow$ KeyError}
+\end{itemize}
+
+\noindent \textcolor{red}{get\_meeting\_name($n$)}
+\begin{itemize}
+    \item \textcolor{red}{output: $out := meetings[n].get\_name()$}
+    \item \textcolor{red}{exception: $exc := meetings[n] == None \Rightarrow$ KeyError}
+\end{itemize}
+
+\noindent \textcolor{red}{get\_name()}
+\begin{itemize}
+    \item \textcolor{red}{output: $out := name$}
 \end{itemize}
 
 \noindent get\_rqes()
@@ -1150,14 +1178,37 @@ $c = |sprints|\ \land\ c \geq 0$
     \item output: $out := sprints$
 \end{itemize}
 
+\noindent \textcolor{red}{get\_task($sprint\_index, task\_index$)}
+\begin{itemize}
+    \item \textcolor{red}{output: $out := sprints[sprint\_index].get\_task(task\_index)$}
+    \item \textcolor{red}{exception: $exc := sprint\_index > |sprints| - 1 \Rightarrow$ IndexError}
+\end{itemize}
+
+\noindent \textcolor{red}{get\_tasks($n$)}
+\begin{itemize}
+    \item \textcolor{red}{output: $out := sprints[n].get\_tasks()$}
+    \item \textcolor{red}{exception: $exc := n > |sprints| - 1 \Rightarrow$ IndexError}
+\end{itemize}
+
 \noindent set\_desc($s$)
 \begin{itemize}
     \item transition: $desc := s$
 \end{itemize}
 
-\noindent add\_meeting($meeting$)
+\noindent \textcolor{red}{add\_feedback($n,s$)}
 \begin{itemize}
-    \item transition: $meetings := meetings.add(meeting)$
+    \item \textcolor{red}{transition: $sprints := sprints[-1].add\_feedback(n,s)$}
+    \item \textcolor{red}{exception: $exc := |sprints| == 0 \Rightarrow$ IndexError}
+\end{itemize}
+
+\noindent add\_meeting(\sout{$meeting$}\textcolor{red}{$name, dt, m\_type$})
+\begin{itemize}
+    \item transition: $meetings := meetings.add($\sout{$meeting$}\textcolor{red}{$new Meeting(name, dt, m\_type)$}$)$
+\end{itemize}
+
+\noindent \textcolor{red}{add\_meeting($name, dt, m\_type, desc$)}
+\begin{itemize}
+    \item \textcolor{red}{transition: $meetings := meetings.add(new Meeting(name, dt, m\_type, desc))$}
 \end{itemize}
 
 \noindent add\_rqe($s$)
