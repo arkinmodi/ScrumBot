@@ -1036,7 +1036,15 @@ Project = ?
     \hline
     get\_desc & & String &\\
     \hline
+    \textcolor{red}{get\_last\_meeting\_id} & & \textcolor{red}{$\mathbb{N}$}&\\
+    \hline
     get\_meetings & & seq of Meeting &\\
+    \hline
+    \textcolor{red}{get\_meeting\_desc} & \textcolor{red}{$\mathbb{N}$}& \textcolor{red}{String} & \textcolor{red}{KeyError}\\
+    \hline
+    \textcolor{red}{get\_meeting\_name} & \textcolor{red}{$\mathbb{N}$}& \textcolor{red}{String} & \textcolor{red}{KeyError}\\
+    \hline
+    \textcolor{red}{get\_name} & & \textcolor{red}{String}&\\
     \hline
     get\_rqes & & seq of String & \\
     \hline
@@ -1044,17 +1052,33 @@ Project = ?
     \hline
     set\_desc & String & &\\
     \hline
-    add\_meeting & Meeting & & \\
+    add\_meeting & \sout{Meeting} \textcolor{red}{String, String, MeetingT}& & \\
+    \hline
+    \textcolor{red}{add\_meeting} & \textcolor{red}{String, String, MeetingT, String}& & \\
+    \hline
+    \textcolor{red}{update\_meeting} & \textcolor{red}{$\mathbb{N}$, String, String, MeetingT}& & \\
+    \hline
+    \textcolor{red}{update\_meeting} & \textcolor{red}{$\mathbb{N}$, String, String, MeetingT, String}& & \\
     \hline
     add\_rqe & String & & \\
     \hline
     add\_sprint & Sprint & & \\
     \hline
-    rm\_meeting & $\mathbb{N}$ &  &\\
+    \textcolor{red}{add\_sprint\_from\_file} & \textcolor{red}{Date} & & \\
+    \hline
+    \textcolor{red}{add\_task} & \textcolor{red}{$\mathbb{N}$, String}& & \textcolor{red}{IndexError}\\
+    \hline
+    \textcolor{red}{add\_task} & \textcolor{red}{$\mathbb{N}$, String, String}& & \textcolor{red}{IndexError}\\
+    \hline
+    rm\_meeting & $\mathbb{N}$ &  & \textcolor{red}{KeyError}\\
     \hline
     rm\_rqe & $\mathbb{N}$ &  & IndexError\\
     \hline
     rm\_sprint & & & IndexError\\
+    \hline
+    \textcolor{red}{set\_meeting\_desc} & \textcolor{red}{$\mathbb{N}$} & & \textcolor{red}{KeyError}\\
+    \hline
+    \textcolor{red}{set\_meeting\_desc} & \textcolor{red}{$\mathbb{N}$, String} & &\textcolor{red}{KeyError}\\
     \hline
 \end{tabular}
 
