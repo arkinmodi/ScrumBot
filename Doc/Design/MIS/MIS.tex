@@ -11,6 +11,7 @@
 \usepackage{amssymb}
 \usepackage{amsmath}
 \usepackage{hhline}
+\usepackage{ulem}
 \hypersetup{
     colorlinks,
     citecolor=black,
@@ -35,8 +36,8 @@
 \title{SE 3XA3: Module Interface Specification\\ScrumBot}
 
 \author{
-	Team 304, ScrumBot
-		\\ Arkin Modi, modia1
+    Team 304, ScrumBot
+        \\ Arkin Modi, modia1
         \\ Leon So, sol4
         \\ Timothy Choy, choyt2
 }
@@ -64,6 +65,7 @@
             March 12, 2020 & Timothy Choy & Project, Meeting Modules\\
             March 12, 2020 & Timothy Choy & Completed ScrumBot module\\
             March 13, 2020 & Arkin Modi & Updated ScrumBot Module\\
+            April 4, 2020 & Leon So & Revision 1 changes\\
         \bottomrule
     \end{tabularx}
 \end{table}
@@ -561,7 +563,11 @@ None
     \hline
     add & T & &\\
     \hline
+    \textcolor{red}{update} & \textcolor{red}{$\mathbb{N}$, String} & &\\
+    \hline
     remove & $\mathbb{N}$ & & KeyError\\
+    \hline
+    \textcolor{red}{get\_last\_id} & & \textcolor{red}{$\mathbb{N}$} &\\
     \hline
     to\_seq & & seq of ($\mathbb{N}$,T) & \\
     \hline
@@ -594,10 +600,20 @@ It is assumed that the first term in Dict is referred to as the "key" and the se
     \item transition: $d :=  d\ ||\ \langle c,\ e \rangle, c := c + 1$
 \end{itemize}
 
+\noindent\textcolor{red}{update($id$,$e$):}
+\begin{itemize}
+    \item \textcolor{red}{transition: $d[id],c := e,id+1$}
+\end{itemize}
+
 \noindent remove($id$):
 \begin{itemize}
     \item transition: $d :=  d - \langle id, e \rangle$
     \item exception: $exc := \langle id, e \rangle \notin d \Rightarrow \text{KeyError}$
+\end{itemize}
+
+\noindent\textcolor{red}{get\_last\_id():}
+\begin{itemize}
+    \item \textcolor{red}{output: $c - 1$}
 \end{itemize}
 
 \noindent to\_seq():
