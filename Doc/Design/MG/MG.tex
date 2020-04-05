@@ -41,7 +41,7 @@
         \\ Leon So, sol4
         \\ Timothy Choy, choyt2
 }
-\date{Last Updated: \today}
+\date{Last Updated: April 5, 2020}
 
 %\input{../../Comments}
 
@@ -69,6 +69,7 @@
             March 13, 2020 & Arkin Modi & Worked on Use Hierarchy Between Modules, Traceability Matrix, Module Decomposition, and Module Hierarchy\\
             April 4, 2020 & Arkin Modi & Strikethrough all copied parts from template\\
             April 4, 2020 & Arkin Modi & Re-wrote the Introduction and Connection Between Requirements and Design\\
+            April 5, 2020 & Arkin Modi & Changed the Modules \& Updated their hierarchy, Removed an Anticipated Change, Updated the Uses Hierarchy Between Modules, Updated the Traceability Matrix between SRS and Modules\\
         \bottomrule
     \end{tabularx}
 \end{table}
@@ -123,7 +124,7 @@ The design follows the rules layed out by \citet{ParnasEtAl1984}, as follows:
 \sout{Anticipated changes are the source of the information that is to be hidden inside the modules. Ideally, changing one of the anticipated changes will only require changing the one module that hides the associated decision. The approach adapted here is called design for change.}
 
 \begin{description}
-\item[\refstepcounter{acnum} \actheacnum \label{acInput1}:] The format of the input data
+\item[\refstepcounter{acnum} \actheacnum \label{acInput1}:] \sout{The format of input data}
 \item[\refstepcounter{acnum} \actheacnum \label{acInput2}:] The format of discord commands
 \item[\refstepcounter{acnum} \actheacnum \label{acServer1}:] The URL used to connect to the hosting server
 \item[\refstepcounter{acnum} \actheacnum \label{acServer2}:] The format of the response from the server
@@ -149,17 +150,16 @@ The design follows the rules layed out by \citet{ParnasEtAl1984}, as follows:
 \begin{description}
     \item [\refstepcounter{mnum} \mthemnum \label{m1}:] Hardware-Hiding Module
     \item [\refstepcounter{mnum} \mthemnum \label{m2}:] ScrumBot Module
-    \item [\refstepcounter{mnum} \mthemnum \label{m3}:] Meeting Types Module
-    \item [\refstepcounter{mnum} \mthemnum \label{m4}:] Meeting List Module
+    \item [\refstepcounter{mnum} \mthemnum \label{m3}:] \sout{Meeting Types Module}
+    \item [\refstepcounter{mnum} \mthemnum \label{m4}:] \sout{Meeting List Module}
     \item [\refstepcounter{mnum} \mthemnum \label{m5}:] Meeting Module
-    \item [\refstepcounter{mnum} \mthemnum \label{m6}:] Task List Module
+    \item [\refstepcounter{mnum} \mthemnum \label{m6}:] \sout{Task List Module}
     \item [\refstepcounter{mnum} \mthemnum \label{m7}:] Task Module
     \item [\refstepcounter{mnum} \mthemnum \label{m8}:] Sprint Module
-    \item [\refstepcounter{mnum} \mthemnum \label{m9}:] Project List Module
+    \item [\refstepcounter{mnum} \mthemnum \label{m9}:] \sout{Project List Module}
     \item [\refstepcounter{mnum} \mthemnum \label{m10}:] Project Module
     \item [\refstepcounter{mnum} \mthemnum \label{m11}:] Generic Dictionary Module
 \end{description}
-
 
 \begin{table}[h!]
 \centering
@@ -176,14 +176,14 @@ The design follows the rules layed out by \citet{ParnasEtAl1984}, as follows:
 \midrule
 
 \multirow{8}{0.3\textwidth}{Software Decision Module} 
-& Meeting Types Module\\    % Data Structure
-& Meeting List Module\\     % Data Structure
-& Meeting Module\\          % Data Structure
-& Task List Module\\        % Data Structure
-& Task Module\\             % Data Structure
-& Sprint Module\\           % Data Structure
-& Project List Module\\     % Data Structure
-& Project Module\\          % Data Structure
+& \sout{Meeting Types Module}\\ % Data Structure
+& \sout{Meeting List Module}\\  % Data Structure
+& Meeting Module\\              % Data Structure
+& \sout{Task List Module}\\     % Data Structure
+& Task Module\\                 % Data Structure
+& Sprint Module\\               % Data Structure
+& \sout{Project List Module}\\  % Data Structure
+& Project Module\\              % Data Structure
 & Generic Dictionary Module\\   % Data Structure
 \bottomrule
 
@@ -314,16 +314,16 @@ requirements and between the modules and the anticipated changes.
         \textbf{Requirements} & \textbf{Modules}\\
         \midrule
         BE1 & \mref{m2}\\
-        BE2 & \mref{m2}, \mref{m9}, \mref{m10}, \mref{m11}\\
-        BE3 & \mref{m2}, \mref{m9}, \mref{m11}\\
-        BE4 & \mref{m2}, \mref{m8}, \mref{m9}, \mref{m10}, \mref{m11}\\
-        BE5 & \mref{m2}, \mref{m8}, \mref{m9}, \mref{m10}, \mref{m11}\\
-        BE6 & \mref{m2}, \mref{m8}, \mref{m9}, \mref{m10}, \mref{m11}\\
-        BE7 & \mref{m2}, \mref{m8}, \mref{m9}, \mref{m10}, \mref{m11}\\
-        BE8 & \mref{m2}, \mref{m9}, \mref{m10}, \mref{m11}\\
-        BE9 & \mref{m2}, \mref{m9}, \mref{m10}, \mref{m11}\\
-        BE10 & \mref{m2}, \mref{m9}, \mref{m10}, \mref{m11}\\
-        BE11 & \mref{m2}, \mref{m8}, \mref{m9}, \mref{m10}, \mref{m11}\\
+        BE2 & \mref{m2}, \sout{\mref{m9},}\mref{m10}, \mref{m11}\\
+        BE3 & \mref{m2}, \sout{\mref{m9},} \mref{m11}\\
+        BE4 & \mref{m2}, \mref{m8}, \sout{\mref{m9},} \mref{m10}, \mref{m11}\\
+        BE5 & \mref{m2}, \mref{m8}, \sout{\mref{m9},} \mref{m10}, \mref{m11}\\
+        BE6 & \mref{m2}, \mref{m8}, \sout{\mref{m9},} \mref{m10}, \mref{m11}\\
+        BE7 & \mref{m2}, \mref{m8}, \sout{\mref{m9},} \mref{m10}, \mref{m11}\\
+        BE8 & \mref{m2}, \sout{\mref{m9},} \mref{m10}, \mref{m11}\\
+        BE9 & \mref{m2}, \sout{\mref{m9},} \mref{m10}, \mref{m11}\\
+        BE10 & \mref{m2}, \sout{\mref{m9},} \mref{m10}, \mref{m11}\\
+        BE11 & \mref{m2}, \mref{m8}, \sout{\mref{m9},} \mref{m10}, \mref{m11}\\
         LF1 & \mref{m2}\\
         LF2 & \mref{m2}\\
         LF3 & \mref{m2}\\
@@ -364,7 +364,7 @@ requirements and between the modules and the anticipated changes.
         \toprule
         \textbf{AC} & \textbf{Modules}\\
         \midrule
-        \acref{acInput1} & \mref{m2}\\
+        \sout{\acref{acInput1}} & \sout{\mref{m2}}\\
         \acref{acInput2} & \mref{m2}\\
         \acref{acServer1} & \mref{m2}\\
         \acref{acServer2} & \mref{m2}\\
@@ -382,8 +382,15 @@ Figure \ref{FigUH} illustrates the use relation between the modules. It can be s
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.7\textwidth]{"UsesHierarchy".png}
-    \caption{Use hierarchy among modules}
+    \includegraphics[width=0.7\textwidth]{"UsesHierarchy_rev0".png}
+    \caption{\sout{Use hierarchy among modules}}
+    \label{FigUH}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{"UsesHierarchy_rev1".png}
+    \caption{\textcolor{red}{Use hierarchy among modules}}
     \label{FigUH}
 \end{figure}
 
