@@ -100,6 +100,7 @@ class Project():
 
     ## @brief Mutator for removing a meeting from project
     #  @param n Key-value of project to be removed
+    #  @throws KeyError Meeting does not exist
     def rm_meeting(self, n):
         try:
             self.meetings.remove(n)
@@ -112,6 +113,7 @@ class Project():
         self.rqes.pop(n)
 
     ## @brief Mutator for removing a sprint from project
+    #  @throws IndexError Index out of range
     def rm_sprint(self):
         if (self.c==0):
             raise IndexError
@@ -124,6 +126,7 @@ class Project():
     ## @brief Mutator for updating meeting description
     #  @param id Index of meeting
     #  @param desc Description of meeting
+    #  @throws KeyError Meeting does not exist
     def set_meeting_desc(self, id, desc=None):
         meeting = self.__get_meeting_by_id(id)
         if (not meeting):
@@ -157,6 +160,7 @@ class Project():
     #  @param name Name of Task
     #  @param deadline Deadline of Task
     #  @param details Details of Task
+    #  @throws IndexError Index out of range
     def add_task(self, name, deadline, details=None):
         if (len(self.sprints) == 0):
             raise IndexError
