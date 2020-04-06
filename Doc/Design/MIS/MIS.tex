@@ -564,7 +564,7 @@ None
     \hline
     add & T & &\\
     \hline
-    \textcolor{red}{update} & \textcolor{red}{$\mathbb{N}$, String} & &\\
+    \textcolor{red}{update} & \textcolor{red}{$\mathbb{N}$, T} & &\\
     \hline
     remove & $\mathbb{N}$ & & KeyError\\
     \hline
@@ -1064,19 +1064,15 @@ Project = ?
     \hline
     \textcolor{red}{add\_meeting} & \textcolor{red}{String, String, MeetingT, String}& & \\
     \hline
-    \textcolor{red}{update\_meeting} & \textcolor{red}{$\mathbb{N}$, String, String, MeetingT}& & \\
-    \hline
-    \textcolor{red}{update\_meeting} & \textcolor{red}{$\mathbb{N}$, String, String, MeetingT, String}& & \\
-    \hline
     add\_rqe & String & & \\
     \hline
-    add\_sprint & Sprint & & \\
+    add\_sprint & \sout{Sprint} & & \\
     \hline
     \textcolor{red}{add\_sprint\_from\_file} & \textcolor{red}{Date} & & \\
     \hline
-    \textcolor{red}{add\_task} & \textcolor{red}{$\mathbb{N}$, String}& & \textcolor{red}{IndexError}\\
+    \textcolor{red}{add\_task} & \textcolor{red}{String, String}& & \textcolor{red}{IndexError}\\
     \hline
-    \textcolor{red}{add\_task} & \textcolor{red}{$\mathbb{N}$, String, String}& & \textcolor{red}{IndexError}\\
+    \textcolor{red}{add\_task} & \textcolor{red}{String, String, String}& & \textcolor{red}{IndexError}\\
     \hline
     \textcolor{red}{add\_task\_from\_file} & \textcolor{red}{$\mathbb{N}$, String, String} & & \textcolor{red}{IndexError}\\
     \hline
@@ -1097,6 +1093,10 @@ Project = ?
     \textcolor{red}{set\_meeting\_desc} & \textcolor{red}{$\mathbb{N}$} & & \textcolor{red}{KeyError}\\
     \hline
     \textcolor{red}{set\_meeting\_desc} & \textcolor{red}{$\mathbb{N}$, String} & &\textcolor{red}{KeyError}\\
+    \hline
+    \textcolor{red}{update\_meeting} & \textcolor{red}{$\mathbb{N}$, String, String, MeetingT}& & \\
+    \hline
+    \textcolor{red}{update\_meeting} & \textcolor{red}{$\mathbb{N}$, String, String, MeetingT, String}& & \\
     \hline
 \end{tabular}
 
@@ -1203,12 +1203,12 @@ $c = |sprints|\ \land\ c \geq 0$
 
 \noindent add\_meeting(\sout{$meeting$}\textcolor{red}{$name, dt, m\_type$})
 \begin{itemize}
-    \item transition: $meetings := meetings.add($\sout{$meeting$}\textcolor{red}{$new Meeting(name, dt, m\_type)$}$)$
+    \item transition: $meetings := meetings.add($\sout{$meeting$}\textcolor{red}{$new \ Meeting(name, dt, m\_type)$}$)$
 \end{itemize}
 
 \noindent \textcolor{red}{add\_meeting($name, dt, m\_type, desc$)}
 \begin{itemize}
-    \item \textcolor{red}{transition: $meetings := meetings.add(new Meeting(name, dt, m\_type, desc))$}
+    \item \textcolor{red}{transition: $meetings := meetings.add(new \ Meeting(name, dt, m\_type, desc))$}
 \end{itemize}
 
 \noindent add\_rqe($s$)
@@ -1216,14 +1216,50 @@ $c = |sprints|\ \land\ c \geq 0$
     \item transition: $rqes := rqes\ ||\ s$
 \end{itemize}
 
-\noindent add\_sprint($sprint$)
+\noindent add\_sprint(\sout{$sprint$})
 \begin{itemize}
-    \item transition: $sprints, c := sprints\ ||\ sprint, c + 1$
+    \item transition: $sprints, c := sprints\ ||\ $\sout{$sprint$}\textcolor{red}{$new \ Sprint() \ $}$, c + 1$
+\end{itemize}
+
+\noindent \textcolor{red}{add\_sprint\_from\_file($d$)}
+\begin{itemize}
+    \item \textcolor{red}{transition: $sprints := sprints \ || \ new \ Sprint(date)$}
+\end{itemize}
+
+\noindent \textcolor{red}{add\_task($name, deadline$)}
+\begin{itemize}
+    \item \textcolor{red}{transition: $sprints := sprints[-1].add\_task(name,deadline)$}
+    \item \textcolor{red}{exception: $exc := |sprints| == 0 \Rightarrow$ IndexError}
+\end{itemize}
+
+\noindent \textcolor{red}{add\_task($name, deadline, details$)}
+\begin{itemize}
+    \item \textcolor{red}{transition: $sprints := sprints[-1].add\_task(name,deadline,details)$}
+    \item \textcolor{red}{exception: $exc := |sprints| == 0 \Rightarrow$ IndexError}
+\end{itemize}
+
+\noindent \textcolor{red}{add\_task\_from\_file($n, name, deadline$)}
+\begin{itemize}
+    \item \textcolor{red}{transition: $sprints := sprints[-1].add\_task\_from\_file(n,name,deadline)$}
+    \item \textcolor{red}{exception: $exc := |sprints| == 0 \Rightarrow$ IndexError}
+\end{itemize}
+
+\noindent \textcolor{red}{add\_task\_from\_file($n, name, deadline, details$)}
+\begin{itemize}
+    \item \textcolor{red}{transition: $sprints := sprints[-1].add\_task\_from\_file(n,name,deadline,details)$}
+    \item \textcolor{red}{exception: $exc := |sprints| == 0 \Rightarrow$ IndexError}
+\end{itemize}
+
+\noindent \textcolor{red}{rm\_feedback($task\_index, feedback\_index$)}
+\begin{itemize}
+    \item \textcolor{red}{transition: $sprints := sprints[-1].rm\_feedback(task\_index,feedback\_index)$}
+    \item \textcolor{red}{exception: $exc := |sprints| == 0 \Rightarrow$ IndexError}
 \end{itemize}
 
 \noindent rm\_meeting($n$)
 \begin{itemize}
     \item transition: $meetings := meetings.remove(n)$
+    \item \textcolor{red}{exception: $exc := meetings[n] == None \Rightarrow$ KeyError}
 \end{itemize}
 
 \noindent rm\_rqe($n$)
@@ -1235,6 +1271,40 @@ $c = |sprints|\ \land\ c \geq 0$
 \begin{itemize}
     \item transition: $sprints, c := sprints[0: |sprints| - 2], c - 1$
     \item exception: $exc := c = 0 \Rightarrow \text{IndexError}$
+\end{itemize}
+
+\noindent \textcolor{red}{rm\_task($n$)}
+\begin{itemize}
+    \item \textcolor{red}{transition: $sprints := sprints[-1].rm\_task(n)$}
+    \item \textcolor{red}{exception: $exc := |sprints| == 0 \Rightarrow$ IndexError}
+\end{itemize}
+
+\noindent \textcolor{red}{set\_details($n,s$)}
+\begin{itemize}
+    \item \textcolor{red}{transition: $sprints := sprints[-1].set\_details(n,s)$}
+    \item \textcolor{red}{exception: $exc := |sprints| == 0 \Rightarrow$ IndexError}
+\end{itemize}
+
+\noindent \textcolor{red}{set\_meeting\_desc($n$)}
+\begin{itemize}
+    \item \textcolor{red}{transition: $meetings := meetings[n].set\_desc(None)$}
+    \item \textcolor{red}{exception: $exc := meetings[n] == None \Rightarrow$ KeyError}
+\end{itemize}
+
+\noindent \textcolor{red}{set\_meeting\_desc($n,s$)}
+\begin{itemize}
+    \item \textcolor{red}{transition: $meetings := meetings[n].set\_desc(s)$}
+    \item \textcolor{red}{exception: $exc := meetings[n] == None \Rightarrow$ KeyError}
+\end{itemize}
+
+\noindent \textcolor{red}{update\_meeting($id, name, dt, m\_type$)}
+\begin{itemize}
+    \item \textcolor{red}{transition: $meetings := meetings.update(id, New \ Meeting(id, name, dt, m\_type)$}
+\end{itemize}
+
+\noindent \textcolor{red}{update\_meeting($id, name, dt, m\_type, desc$)}
+\begin{itemize}
+    \item \textcolor{red}{transition: $meetings := meetings.update(id, New \ Meeting(id, name, dt, m\_type, desc)$}
 \end{itemize}
 
 \end{document}
