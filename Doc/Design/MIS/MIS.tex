@@ -36,8 +36,8 @@
 \title{SE 3XA3: Module Interface Specification\\ScrumBot}
 
 \author{
-    Team 304, ScrumBot
-        \\ Arkin Modi, modia1
+	Team 304, ScrumBot
+		\\ Arkin Modi, modia1
         \\ Leon So, sol4
         \\ Timothy Choy, choyt2
 }
@@ -67,6 +67,7 @@
             March 13, 2020 & Arkin Modi & Updated ScrumBot Module\\
             April 4, 2020 & Leon So & Revision 1 changes\\
             April 5, 2020 & Leon So & Revision 1 changes\\
+            April 6, 2020 & Timothy Choy & Rev1 changes to Scrumbot and FileIO\\
         \bottomrule
     \end{tabularx}
 \end{table}
@@ -76,20 +77,22 @@
 \section* {ScrumBot Module}
 
 \subsection*{Module}
-AdminCog, ProjectCog, MeetingCog, MemberCog, Scrumbot, SprintCog, TaskCog
+\sout{AdminCog, ProjectCog, MeetingCog, MemberCog, Scrumbot, SprintCog, TaskCog}\\
+\textcolor{red}{Scrumbot, ScrumbotCog}
 
 \subsection* {Uses}
 discord\\
 discord.ext.commands\\
-MeetingTypes\\
+\sout{MeetingTypes\\
 Generic Dictionary\\
 MeetingList\\
 Meeting\\
 TaskList\\
 Task\\
-Sprint\\
+Sprint\\}
 ProjectList\\
-Project
+Project\\
+\textcolor{red}{FileIO}
 
 \subsection* {Syntax}
 \subsubsection* {Exported Constants}
@@ -256,7 +259,9 @@ None
 This module is the interface between the users and the code. The input taken for the export access programs are text-based commands in Discord, and the output is also in text channels as text output. The methods also keep an output in the terminal as a log of commands used.\\ \\
 The exception to this assumption is the access routine on\_ready as the output for the method is found in the terminal only. Due to this, there is no output value in the exported access programs table.\\ \\
 Though it is comprised of multiple files with many different purposes, the main purpose for these files are the same. For this reason, they have been grouped together into one module, with the secret being communication between the client from Discord and the system.\\ \\
-It is assumed that author refers to the user that initiated the command.\\ \\
+It is assumed that author refers to the user that initiated the command.\\
+
+\newpage
 
 \subsubsection* {Access Routine Semantics}
 
@@ -335,45 +340,73 @@ It is assumed that author refers to the user that initiated the command.\\ \\
 \end{itemize}
 
 \noindent \textbf{Project Programs\\}
-\noindent add\_meeting($n, name, date, time, meeting$)
+\noindent add\_meeting($n, name, date, time, meeting, desc)$
 \begin{itemize}
-    \item transition: new Meeting($name, date, time, meeting$), add it to project $n$ using add\_meeting
-    \item output: $out :=$ $(exc \Rightarrow ``\text{MissingRole: You have insufficient permissions}"\ |\ \lnot\ exc \Rightarrow ``\text{Successfully added meeting}")$
-    \item exception: $exc :=$ author\_role $\neq$ Scrum Master $\Rightarrow$ MissingRole
+    \item transition: \sout{new Meeting($name, date, time, meeting$), add it to project $n$ using\\ add\_meeting}\\
+    \textcolor{red}{(proj = get\_project($n$)) $\Rightarrow$ proj.add\_meeting($name, date, time, meeting$) and update file using fileio.write())}
+    
+    \item output: $out :=$ $(exc$ \textcolor{red}{= MissingRole} $\Rightarrow ``\text{MissingRole: You have insufficient permissions}"\\ |$ \textcolor{red}{$exc =$ TypeError $\Rightarrow ``$Failed to add meeting: meeting type must be GROOMING, STANDUP, RETROSPECTIVE, or SPRINTPLANNING.$"$}$\ |\ \\ \lnot\ exc \Rightarrow ``\text{Successfully added meeting}")$
+    
+    \item exception: \sout{$exc :=$ author\_role $\neq$ Scrum Master $\Rightarrow$ MissingRole}\\
+    \textcolor{red}{
+    \begin{tabular}{|p{12cm}|l|}
+        \hhline{~|-|}
+        \multicolumn{1}{r|}{} & \multicolumn{1}{l|}{$exc :=$}\\
+        \hhline{|-|-|}
+        author\_role $\neq$ Scrum Master & MissingRole\\
+        \hhline{|-|-|}
+        $meeting\_type \notin$ \{GROOMING, STANDUP, RETROSPECTIVE, SPRINTPLANNING\} & TypeError\\
+        \hhline{|-|-|}
+    \end{tabular}}
 \end{itemize}
 
-\noindent add\_meeting($n, name, date, time, meeting, desc$)
+\noindent add\_meeting($n, name, date, time, meeting, desc)$
 \begin{itemize}
-    \item transition: new Meeting($name, date, time, meeting, desc$), add it to project $n$ using add\_meeting
-    \item output: $out :=$ $(exc \Rightarrow ``\text{MissingRole: You have insufficient permissions}"\ |\ \lnot\ exc \Rightarrow ``\text{Successfully added meeting}")$
-    \item exception: $exc :=$ author\_role $\neq$ Scrum Master $\Rightarrow$ MissingRole
+    \item transition: \sout{new Meeting($name, date, time, meeting, desc$), add it to project $n$ using\\ add\_meeting}\\
+    \textcolor{red}{(proj = get\_project($n$)) $\Rightarrow$ proj.add\_meeting($name, date, time, meeting, desc$) and update file using fileio.write()}
+    
+    \item output: $out :=$ $(exc$ \textcolor{red}{= MissingRole} $\Rightarrow ``\text{MissingRole: You have insufficient permissions}"\\ |$ \textcolor{red}{$exc =$ TypeError $\Rightarrow ``$Failed to add meeting: meeting type must be GROOMING, STANDUP, RETROSPECTIVE, or SPRINTPLANNING.$"$}$\ |\ \\ \lnot\ exc \Rightarrow ``\text{Successfully added meeting}")$
+    
+    \item exception: \sout{$exc :=$ author\_role $\neq$ Scrum Master $\Rightarrow$ MissingRole}\\
+    \textcolor{red}{
+    \begin{tabular}{|p{12cm}|l|}
+        \hhline{~|-|}
+        \multicolumn{1}{r|}{} & \multicolumn{1}{l|}{$exc :=$}\\
+        \hhline{|-|-|}
+        author\_role $\neq$ Scrum Master & MissingRole\\
+        \hhline{|-|-|}
+        $meeting\_type \notin$ \{GROOMING, STANDUP, RETROSPECTIVE, SPRINTPLANNING\} & TypeError\\
+        \hhline{|-|-|}
+    \end{tabular}}
 \end{itemize}
 
 \noindent add\_project($name$)
 \begin{itemize}
-    \item transition: new Project($name$)
-    \item output: $out :=$ $(exc \Rightarrow ``\text{MissingRole: You have insufficient permissions}"\ |\ \lnot\ exc \Rightarrow ``\text{Successfully added project}")$
+    \item transition: new Project($name$), \textcolor{red}{add project to project\_list, and create file using\\ fileio.create()}
+    \item output: $out :=$ $(exc$ \textcolor{red}{= MissingRole} $\Rightarrow ``\text{MissingRole: You have insufficient permissions}"\\ |\ \lnot\ exc \Rightarrow ``\text{Successfully added project}")$
     \item exception: $exc :=$ author\_role $\neq$ admin $\Rightarrow$ MissingRole
 \end{itemize}
 
 \noindent add\_project($name, desc$)
 \begin{itemize}
-    \item transition: new Project($name, desc$)
-    \item output: $out :=$ $(exc \Rightarrow ``\text{MissingRole: You have insufficient permissions}"\ |\ \lnot\ exc \Rightarrow ``\text{Successfully added project}")$
+    \item transition: new Project($name, desc$), \textcolor{red}{add project to project\_list, and create file using fileio.create()}
+    \item output: $out :=$ $(exc$ \textcolor{red}{= MissingRole} $\Rightarrow ``\text{MissingRole: You have insufficient permissions}"\\ |\ \lnot\ exc \Rightarrow ``\text{Successfully added project}")$
     \item exception: $exc :=$ author\_role $\neq$ admin $\Rightarrow$ MissingRole
 \end{itemize}
 
 \noindent add\_rqe($n, s$)
 \begin{itemize}
-    \item transition: add\_rqe($s$) in project $n$
-    \item output: $out :=$ $(exc \Rightarrow ``\text{MissingRole: You have insufficient permissions}"\ |\ \lnot\ exc \Rightarrow ``\text{Successfully added requirements}")$
+    \item transition: add\_rqe($s$) in project $n$ \textcolor{red}{and update file using fileio.write()}
+    \item output: $out :=$ $(exc$ \textcolor{red}{= MissingRole} $\Rightarrow ``\text{MissingRole: You have insufficient permissions}"\\ |\ \lnot\ exc \Rightarrow ``\text{Successfully added requirements}")$
     \item exception: $exc :=$ author\_role $\neq$ Business Analyst $\Rightarrow$ MissingRole
 \end{itemize}
 
 \noindent add\_sprint($n$)
 \begin{itemize}
-    \item transition: new Sprint(), then add the sprint to project $n$ using add\_sprint(sprint)
-    \item output: $out :=$ $(exc \Rightarrow ``\text{MissingRole: You have insufficient permissions}"\ |\ \lnot\ exc \Rightarrow ``\text{Successfully added a sprint}")$
+    \item transition: \sout{new Sprint(), then add the sprint to project $n$ using add\_sprint(sprint)}\\ \textcolor{red}{(proj = get\_project($n$)) $\Rightarrow$ proj.add\_sprint(), and update file using fileio.write()} 
+    
+    \item output: $out :=$ $(exc$ \textcolor{red}{= MissingRole} $\Rightarrow ``\text{MissingRole: You have insufficient permissions}"\\ |\ \lnot\ exc \Rightarrow ``\text{Successfully added a sprint}")$
+    
     \item exception: $exc :=$ author\_role $\neq$ Scrum Master $\Rightarrow$ MissingRole
 \end{itemize}
 
@@ -404,110 +437,122 @@ It is assumed that author refers to the user that initiated the command.\\ \\
 
 \noindent rm\_last\_sprint($n$)
 \begin{itemize}
-    \item transition: removes the last sprint of project $n$ using rm\_sprint()
-    \item output: $out :=$ $(exc \Rightarrow ``\text{MissingRole: You have insufficient permissions}"\ |\ \lnot\ exc \Rightarrow ``\text{Successfully removed a sprint}")$
+    \item transition: removes the last sprint of project $n$ using \sout{rm\_sprint()} \textcolor{red}{proj.rm\_sprint(), and update file using fileio.write()}
+    
+    \item output: $out :=$ $(exc$ \textcolor{red}{= MissingRole} $\Rightarrow ``\text{MissingRole: You have insufficient permissions}"\\ |\ $\textcolor{red}{$exc =$ IndexError $\Rightarrow ``\text{No sprints found in project.}"$}\\ $|\ \lnot\ exc \Rightarrow ``\text{Successfully removed a sprint}")$
+    
     \item exception: $exc :=$ author\_role $\neq$ Scrum Master $\Rightarrow$ MissingRole
 \end{itemize}
 
 \noindent rm\_meeting($n, m$)
 \begin{itemize}
-    \item transition: removes a meeting from project $n$ using rm\_meeting($m$)
-    \item output: $out :=$ $(exc \Rightarrow ``\text{MissingRole: You have insufficient permissions}"\ |\ \lnot\ exc \Rightarrow ``\text{Successfully removed a meeting}")$
+    \item transition: removes a meeting from project $n$ using rm\_meeting($m$)\textcolor{red}{, and update file using fileio.write()}
+    \item output: $out :=$ $(exc$ \textcolor{red}{= MissingRole} $\Rightarrow ``\text{MissingRole: You have insufficient permissions}"\\ |\ $\textcolor{red}{$exc =$ KeyError $\Rightarrow ``\text{Meeting not found.}"$}\\ $|\ \lnot\ exc \Rightarrow ``\text{Successfully removed a meeting}")$
     \item exception: $exc :=$ author\_role $\neq$ Scrum Master $\Rightarrow$ MissingRole
 \end{itemize}
 
 \noindent rm\_project($n$)
 \begin{itemize}
-    \item transition: removes a project by their project id using remove($n$)
-    \item output: $out :=$ $(exc \Rightarrow ``\text{MissingRole: You have insufficient permissions}"\ |\ \lnot\ exc \Rightarrow ``\text{Successfully removed a project}")$
+    \item transition: removes a project by their project id using remove($n$)\textcolor{red}{, and remove file using fileio.delete()}
+    \item output: $out :=$ $(exc$ \textcolor{red}{= MissingRole} $\Rightarrow ``\text{MissingRole: You have insufficient permissions}"\\ |\ $\textcolor{red}{$exc =$ KeyError $\Rightarrow ``\text{Project not found.}"$}\\$|\ \lnot\ exc \Rightarrow ``\text{Successfully removed a project}")$
     \item exception: $exc :=$ author\_role $\neq$ admin $\Rightarrow$ MissingRole
 \end{itemize}
 
 \noindent rm\_rqe($n, m$)
 \begin{itemize}
-    \item transition: remove requirement $m$ from project $n$ using rm\_rqe($m$)
-    \item output: $out :=$ $(exc \Rightarrow ``\text{MissingRole: You have insufficient permissions}"\ |\ \lnot\ exc \Rightarrow ``\text{Successfully removed a requirement}")$
+    \item transition: remove requirement $m$ from project $n$ using rm\_rqe($m$)\textcolor{red}{, and update file using fileio.write()}
+    \item output: $out :=$ $(exc$ \textcolor{red}{= MissingRole} $\Rightarrow ``\text{MissingRole: You have insufficient permissions}"\\ |\ $\textcolor{red}{$exc =$ IndexError $\Rightarrow ``\text{Requirement not found.}"$}\\$|\ \lnot\ exc \Rightarrow ``\text{Successfully removed a requirement}")$
     \item exception: $exc :=$ author\_role $\neq$ Business Analyst $\Rightarrow$ MissingRole
 \end{itemize}
 
 \noindent set\_project\_desc($n, s$)
 \begin{itemize}
-    \item transition: set\_desc($s$) in project $n$
-    \item output: $out :=$ $(exc \Rightarrow ``\text{MissingRole: You have insufficient permissions}"\ |\ \lnot\ exc \Rightarrow ``\text{Successfully set description}")$
+    \item transition: set\_desc($s$) in project $n$\textcolor{red}{, and update file using fileio.write()}
+    \item output: $out :=$ $(exc$ \textcolor{red}{= MissingRole} $\Rightarrow ``\text{MissingRole: You have insufficient permissions}"\\ |\ \lnot\ exc \Rightarrow ``\text{Successfully set description}")$
     \item exception: $exc :=$ author\_role $\neq$ Business Analyst $\land$ author\_role $\neq$ admin $\Rightarrow$ MissingRole
 \end{itemize}
 
 \noindent \textbf{Meeting Programs\\}
 \noindent get\_meeting\_desc($n, m$)
 \begin{itemize}
-    \item output: $out :=$ A discord.embed such that it contains the meeting description of meeting $m$ in project $n$, showing the meeting name and project name as well
+    \item output: $out :=$ $\textcolor{red}{(exc = \text{KeyError} \Rightarrow ``\text{Meeting not found.}"\ |\ \lnot\ exc \Rightarrow}$ A discord.embed such that it contains the meeting description of meeting $m$ in project $n$, showing the meeting name and project name as well.\textcolor{red}{)}
 \end{itemize}
 
 \noindent set\_meeting\_desc($n, m, s$)
 \begin{itemize}
-    \item transition: set\_desc($s$) for meeting $m$ in project $n$
-    \item output: $out :=$ $(exc \Rightarrow ``\text{MissingRole: You have insufficient permissions}"\ |\ \lnot\ exc \Rightarrow ``\text{Successfully set description}")$
+    \item transition: set\_desc($s$) for meeting $m$ in project $n$\textcolor{red}{, and update file using fileio.write()}
+    \item output: $out :=$ $(exc$ \textcolor{red}{= MissingRole} $\Rightarrow ``\text{MissingRole: You have insufficient permissions}"\\ |\ $\textcolor{red}{$exc =$ KeyError $\Rightarrow ``\text{Meeting not found.}"$}\\$|\ \lnot\ exc \Rightarrow ``\text{Successfully set description}")$
     \item exception: $exc :=$ author\_role $\neq$ Scrum Master $\Rightarrow$ MissingRole
 \end{itemize}
 
 \noindent \textbf{Sprint Programs\\}
-\noindent add\_task($n, m, name, date, time$)
+\noindent add\_task($n,$ \sout{$m,$} $name, date, time$)
 \begin{itemize}
-    \item transition: new Task($name, date, time$) then add\_task(task) in sprint $m$, project $n$
-    \item output: $out :=$ $(exc \Rightarrow ``\text{MissingRole: You have insufficient permissions}"\ |\ \lnot\ exc \Rightarrow ``\text{Successfully added task}")$
+    \item transition: \sout{new Task($name, date, time$) then add\_task(task) in sprint $m$, project $n$}\\\textcolor{red}{(proj = get\_project($n$) $\Rightarrow$ proj.add\_task($name, date + time,$ None)}\textcolor{red}{, and update file using fileio.write()}
+    \item output: $out :=$ $(exc$ \textcolor{red}{= MissingRole} $\Rightarrow ``\text{MissingRole: You have insufficient permissions}"\\ |\ $\textcolor{red}{$exc =$ IndexError $\Rightarrow ``\text{Sprint not found.}"$}\\$|\ \lnot\ exc \Rightarrow ``\text{Successfully added task}")$
     \item exception: $exc :=$ author\_role $\neq$ Scrum Master $\Rightarrow$ MissingRole
 \end{itemize}
 
-\noindent add\_task($n, m, name, date, time, detail$)
+\noindent add\_task($n,$ \sout{$m,$} $name, date, time, detail$)
 \begin{itemize}
-    \item transition: new Task($name, date, time, detail$) then add\_task(task) in sprint $m$, project $n$
-    \item output: $out :=$ $(exc \Rightarrow ``\text{MissingRole: You have insufficient permissions}"\ |\ \lnot\ exc \Rightarrow ``\text{Successfully added task}")$
+    \item transition: \sout{new Task($name, date, time, detail$) then add\_task(task) in sprint $m$, project $n$}\\\textcolor{red}{(proj = get\_project($n$) $\Rightarrow$ proj.add\_task($name, date + time, detail$)}\textcolor{red}{, and update file using fileio.write()}
+    \item output: $out :=$ $(exc$ \textcolor{red}{= MissingRole} $\Rightarrow ``\text{MissingRole: You have insufficient permissions}"\\ |\ $\textcolor{red}{$exc =$ IndexError $\Rightarrow ``\text{Sprint not found.}"$}\\$|\ \lnot\ exc \Rightarrow ``\text{Successfully added task}")$
     \item exception: $exc :=$ author\_role $\neq$ Scrum Master $\land$ author\_role $\neq$ Business Analyst $\Rightarrow$ MissingRole
 \end{itemize}
 
 \noindent list\_tasks($n, m$)
 \begin{itemize}
-    \item output: $out :=$ A discord.embed such that it lists all the tasks of sprint $m$ in project $n$, as well as their deadlines
+    \item output: $out :=$ \textcolor{red}{$(exc =$ IndexError $\Rightarrow ``\text{Sprint not found.}"$\\$ \lnot\ exc \Rightarrow$} A discord.embed such that it lists all the tasks of sprint $m$ in project $n$, as well as their deadlines\textcolor{red}{)}
 \end{itemize}
 
-\noindent rm\_task($n, m, k$)
+\noindent rm\_task($n,$ \sout{$m,$} $k$)
 \begin{itemize}
-    \item transition: rm\_task($k$) in sprint $m$ in project $n$
-    \item output: $out :=$ $(exc \Rightarrow ``\text{MissingRole: You have insufficient permissions}"\ |\ \lnot\ exc \Rightarrow ``\text{Successfully removed task}")$
+    \item transition: \sout{rm\_task($k$) in sprint $m$ in project $n$}\\\textcolor{red}{(proj = get\_project($n$)) $\Rightarrow$ proj.rm\_task($k$)}\textcolor{red}{, and update file using fileio.write()}
+    \item output: $out :=$ $(exc$ \textcolor{red}{= MissingRole} $\Rightarrow ``\text{MissingRole: You have insufficient permissions}"\\ |\ $\textcolor{red}{$exc =$ IndexError $\Rightarrow ``\text{Sprint not found.}"$}\\$|\ $\textcolor{red}{$exc =$ KeyError $\Rightarrow ``\text{Task not found.}"$}\\$|\ \lnot\ exc \Rightarrow ``\text{Successfully removed task}")$
     \item exception: $exc :=$ author\_role $\neq$ Scrum Master $\land$ author\_role $\neq$ Business Analyst $\Rightarrow$ MissingRole
 \end{itemize}
 
 \noindent \textbf{Task Programs\\}
-\noindent add\_feedback($n, m, k, s$)
+\noindent add\_feedback($n,$ \sout{$m,$} $k, s$)
 \begin{itemize}
-    \item transition: add\_feedback($s$) in task $k$, sprint $m$, project $n$
-    \item output: $out :=$ $(exc \Rightarrow ``\text{MissingRole: You have insufficient permissions}"\ |\ \lnot\ exc \Rightarrow ``\text{Successfully added feedback}")$
+    \item transition: add\_feedback($\textcolor{red}{k,} s$) in task $k$, \sout{sprint $m$,} project $n$\textcolor{red}{, and update file using fileio.write()}
+    
+    \item output: $out :=$ $(exc$ \textcolor{red}{= MissingRole} $\Rightarrow ``\text{MissingRole: You have insufficient permissions}"\\ |\ $\textcolor{red}{$exc =$ IndexError $\Rightarrow ``\text{Sprint not found.}"$}\\$|\ $\textcolor{red}{$exc =$ KeyError $\Rightarrow ``\text{Task not found.}"$}\\$|\ \lnot\ exc \Rightarrow ``\text{Successfully added feedback}")$
+    
     \item exception: $exc :=$ author\_role $\neq$ Scrum Master $\Rightarrow$ MissingRole
 \end{itemize}
 
 \noindent get\_details($n, m, k$)
 \begin{itemize}
-    \item output: $out :=$ A discord.embed such that it shows the details of task $k$, in sprint $m$, in project $n$, using get\_details()
+    \item output: $out :=$ \textcolor{red}{($exc =$ IndexError $\Rightarrow ``\text{Sprint not found.}"\\ |\ \lnot\ exc \Rightarrow$} A discord.embed such that it shows the details of task $k$, in sprint $m$, in project $n$, using get\_details()\textcolor{red}{)}
 \end{itemize}
 
 \noindent list\_feedback($n, m, k$)
 \begin{itemize}
-    \item output: $out :=$ A discord.embed such that it lists all the feedback of task $k$, in sprint $m$, in project $n$, using get\_feedback()
+    \item output: $out :=$ \textcolor{red}{($exc =$ IndexError $\Rightarrow ``\text{Sprint not found.}"\\ |\ exc =$ KeyError $\Rightarrow ``\text{Task not found.}"\\ |\ \lnot\ exc \Rightarrow$} A discord.embed such that it lists all the feedback of task $k$, in sprint $m$, in project $n$, using get\_feedback()\textcolor{red}{)}
 \end{itemize}
 
-\noindent rm\_feedback($n, m, k, x$)
+\noindent rm\_feedback($n,$ \sout{$m,$} $k, x$)
 \begin{itemize}
-    \item transition: rm\_feedback($x$) for task $k$ in sprint $m$ in project $n$
-    \item output: $out :=$ $(exc \Rightarrow ``\text{MissingRole: You have insufficient permissions}"\ |\ \lnot\ exc \Rightarrow ``\text{Successfully removed feedback}")$
+    \item transition: rm\_feedback(\textcolor{red}{$k,$} $x$) for task $k$ \sout{in sprint $m$} in project $n$\textcolor{red}{, and update file using fileio.write()}
+    \item output: $out :=$ \textcolor{red}{($exc =$ IndexError $\Rightarrow ``\text{Sprint not found.}"\\ |\ exc =$ KeyError $\Rightarrow ``\text{Task not found.}"$} $\\ |\ \lnot\ exc \Rightarrow ``\text{Successfully removed feedback}")$
     \item exception: $exc :=$ author\_role $\neq$ Scrum Master $\Rightarrow$ MissingRole
 \end{itemize}
 
-\noindent set\_details($n, m, s$)
+\noindent set\_details($n,$ \sout{$m,$} \textcolor{red}{$k$}, $s$)
 \begin{itemize}
-    \item transition: set\_details($s$) for task $k$ in sprint $m$ in project $n$
-    \item output: $out :=$ $(exc \Rightarrow ``\text{MissingRole: You have insufficient permissions}"\ |\ \lnot\ exc \Rightarrow ``\text{Successfully set details}")$
+    \item transition: set\_details(\textcolor{red}{$k,$} $s$) for task $k$ \sout{in sprint $m$} in project $n$\textcolor{red}{, and update file using fileio.write()}
+    
+    \item output: $out :=$ \textcolor{red}{($exc =$ IndexError $\Rightarrow ``\text{Sprint not found.}"\\ |\ exc =$ KeyError $\Rightarrow ``\text{Task not found.}"$} $\\ |\ \lnot\ exc \Rightarrow ``\text{Successfully set details}")$
+    
     \item exception: $exc :=$ author\_role $\neq$ Scrum Master $\land$ author\_role $\neq$ Business Analyst $\Rightarrow$ MissingRole
 \end{itemize}
+
+\textcolor{red}{
+\subsection*{Local Functions}
+get\_project: $\mathbb{N} \rightarrow$ Project\\
+get\_project($n$) $\equiv$ project such that project $\in$ project\_list $\land$ project.key() = $n$
+}
 
 \newpage
 
@@ -1305,6 +1350,78 @@ $c = |sprints|\ \land\ c \geq 0$
 \noindent \textcolor{red}{update\_meeting($id, name, dt, m\_type, desc$)}
 \begin{itemize}
     \item \textcolor{red}{transition: $meetings := meetings.update(id, New \ Meeting(id, name, dt, m\_type, desc)$}
+\end{itemize}
+
+\newpage
+
+\section* {\textcolor{red}{File Input/Output Module}}
+
+\subsection* {\textcolor{red}{Module}}
+\textcolor{red}{FileIO}
+
+\subsection*{\textcolor{red}{Uses}}
+\textcolor{red}{Project, ProjectList}
+
+\subsection*{\textcolor{red}{Syntax}}
+\subsubsection*{\textcolor{red}{Exported Constants}}
+\textcolor{red}{N/A}
+
+\subsubsection*{\textcolor{red}{Exported Types}}
+\textcolor{red}{None}
+
+\subsubsection*{\textcolor{red}{Exported Access Programs}}
+\textcolor{red}{
+\begin{tabular}{|l|l|l|l|}
+    \hline
+    \textbf{Routine Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+    \hline
+    read & & ProjectList & \\
+    \hline
+    write & $\mathbb{N}$, String, String & & \\
+    \hline
+    create & $\mathbb{N}$, String, String & & \\
+    \hline
+    delete & $\mathbb{N}$ & & \\
+    \hline
+\end{tabular}}
+
+\subsection*{\textcolor{red}{Semantics}}
+\subsubsection*{\textcolor{red}{Environment Variables}}
+\textcolor{red}{PATH = the path to the src/data directory}
+
+\subsubsection* {\textcolor{red}{State Variables}}
+\textcolor{red}{None}
+
+\subsubsection* {\textcolor{red}{State Invariant}}
+\textcolor{red}{None}
+
+\subsubsection*{\textcolor{red}{Assumptions}}
+\begin{itemize}
+    \item \textcolor{red}{The FileIO module is a helper module for Scrumbot, dealing with reading and writing to a file. There is assumed that the inputs are strictly defined and given only by Scrumbot.}
+    \item \textcolor{red}{It is also assumed that create and delete are only called by add\_project() and rm\_project respectively.}
+    \item \textcolor{red}{The task variable in write() should always be a string that matches the function name given.}
+    \item \textcolor{red}{Exceptions are considered unnecessary in this module as all error testing of invalid inputs and cases are tested in the Scrumbot module before running this module.}
+\end{itemize}
+
+\subsubsection*{\textcolor{red}{Access Routine Semantics}}
+\noindent \textcolor{red}{read()}
+\begin{itemize}
+    \item \textcolor{red}{output: a ProjectList created from a list of files under a directory data found in the src folder. Each file would be its individual project, and the data within each folder would contain the information regarding the meetings, sprints, tasks and their components.}
+\end{itemize}
+
+\noindent \textcolor{red}{write($id, task, info$)}
+\begin{itemize}
+    \item \textcolor{red}{transition: writes to the specific project file and inserts or removes information to the file based on the task called.}
+\end{itemize}
+
+\noindent \textcolor{red}{create($id, name, desc$)}
+\begin{itemize}
+    \item \textcolor{red}{transition: creates a new file in src/data/ where the file name is the id of the project.}
+\end{itemize}
+
+\noindent \textcolor{red}{delete($id$)}
+\begin{itemize}
+    \item \textcolor{red}{transition: removes a file from the src/data/ directory where the id matches the file name.2}
 \end{itemize}
 
 \end{document}
