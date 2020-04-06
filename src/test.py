@@ -153,6 +153,12 @@ class Test_FR_BE5:
         with pytest.raises(IndexError):
             self.test_project.rm_task(0)
 
+    ## @brief Tries to remove a Task that is not in the list of Tasks
+    def test_rm_task_that_is_not_in_task_list(self):
+        with pytest.raises(KeyError):
+            self.test_project.add_sprint()
+            self.test_project.rm_task(0)
+
     ## @brief Checks if the Task's details can be updated
     def test_set_task_details(self):
         self.test_project.add_sprint()
