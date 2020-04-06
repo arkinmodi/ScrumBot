@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="Scrumbot" company="Scrumbot" webLink="https://gitlab.cas.mcmaster.ca/modia1/ScrumBot" view-date="2020-03-15" view-index="0" gantt-divider-location="515" resource-divider-location="300" version="2.8.10" locale="en_CA">
+<?xml version="1.0" encoding="UTF-8"?><project name="Scrumbot" company="Scrumbot" webLink="https://gitlab.cas.mcmaster.ca/modia1/ScrumBot" view-date="2020-03-11" view-index="0" gantt-divider-location="515" resource-divider-location="300" version="2.8.10" locale="en_CA">
     <description>
         <![CDATA[Scrum is an agile process framework widely used in industry for managing and coordinating collaborative projects. Scrum being a process based on the agile development method, follows a highly iterative process and often has heavy customer involvement, therefore it can be often be complex. It is often difficult to manage communication and coordination within the project due to the complexity of agile development processes. With Discord being a popular communication tool used by many teams of software developers today, our team would like to develop a solution to directly integrate the management of a scrum development cycle into the communication channels. Our solution will allow for better management and organization of retrospectives, stand-ups, and other scrum/agile processes used by software teams during routine communication.]]>
     </description>
@@ -118,7 +118,7 @@
         </task>
         <task id="123" name="Test Plan Due" color="#8cb6ce" meeting="true" start="2020-02-28" duration="0" complete="0" thirdDate="2020-01-22" thirdDate-constraint="0" expand="true"/>
         <task id="127" name="Revision 0 Demonstration" color="#8cb6ce" meeting="true" start="2020-03-16" duration="0" complete="0" thirdDate="2020-01-22" thirdDate-constraint="0" expand="true"/>
-        <task id="150" name="Working on Final Documentation" color="#8cb6ce" meeting="false" start="2020-03-16" duration="22" complete="0" thirdDate="2020-01-27" thirdDate-constraint="0" expand="true">
+        <task id="150" name="Working on Final Documentation" color="#8cb6ce" meeting="false" start="2020-04-01" duration="6" complete="0" thirdDate="2020-01-27" thirdDate-constraint="0" expand="true">
             <depend id="129" type="2" difference="0" hardness="Strong"/>
             <task id="578" name="Updating Problem Statement" color="#8cb6ce" meeting="false" start="2020-04-01" duration="6" complete="0" thirdDate="2020-03-15" thirdDate-constraint="0" expand="true"/>
             <task id="583" name="Updating Development Plan" color="#8cb6ce" meeting="false" start="2020-04-01" duration="6" complete="0" thirdDate="2020-03-15" thirdDate-constraint="0" expand="true"/>
@@ -126,19 +126,16 @@
             <task id="589" name="Updating Module Guide" color="#8cb6ce" meeting="false" start="2020-04-01" duration="6" complete="0" thirdDate="2020-03-15" thirdDate-constraint="0" expand="true"/>
             <task id="592" name="Updating Module Interface Specification" color="#8cb6ce" meeting="false" start="2020-04-01" duration="6" complete="0" thirdDate="2020-03-15" thirdDate-constraint="0" expand="true" cost-manual-value="0.0" cost-calculated="true"/>
             <task id="595" name="Updating Test Plan" color="#8cb6ce" meeting="false" start="2020-04-01" duration="6" complete="0" thirdDate="2020-03-15" thirdDate-constraint="0" expand="true" cost-manual-value="0.0" cost-calculated="true"/>
-            <task id="246" name="Working on Test Report" color="#8cb6ce" meeting="false" start="2020-03-16" duration="21" complete="0" thirdDate="2020-02-26" thirdDate-constraint="0" expand="true">
+            <task id="246" name="Working on Test Report" color="#8cb6ce" meeting="false" start="2020-04-01" duration="6" complete="0" thirdDate="2020-02-26" thirdDate-constraint="0" expand="true">
                 <depend id="129" type="2" difference="0" hardness="Strong"/>
-                <task id="391" name="Functional Requirements Evaluation" color="#8cb6ce" meeting="false" start="2020-03-16" duration="21" complete="0" thirdDate="2020-03-16" thirdDate-constraint="0" expand="true"/>
-                <task id="250" name="Nonfunctional Requirements Evaluation" color="#8cb6ce" meeting="false" start="2020-03-16" duration="21" complete="0" thirdDate="2020-03-16" thirdDate-constraint="0" expand="false">
-                    <task id="252" name="Usability" color="#8cb6ce" meeting="false" start="2020-03-16" duration="21" complete="0" thirdDate="2020-03-16" thirdDate-constraint="0" expand="true"/>
-                    <task id="254" name="Performance" color="#8cb6ce" meeting="false" start="2020-03-16" duration="21" complete="0" thirdDate="2020-03-16" thirdDate-constraint="0" expand="true"/>
-                </task>
-                <task id="258" name="Unit Testing" color="#8cb6ce" meeting="false" start="2020-03-16" duration="21" complete="0" thirdDate="2020-03-16" thirdDate-constraint="0" expand="true"/>
-                <task id="260" name="Changes Due to Testing" color="#8cb6ce" meeting="false" start="2020-03-16" duration="21" complete="0" thirdDate="2020-03-16" thirdDate-constraint="0" expand="true"/>
-                <task id="263" name="Automated Testing" color="#8cb6ce" meeting="false" start="2020-03-16" duration="21" complete="0" thirdDate="2020-03-16" thirdDate-constraint="0" expand="true"/>
-                <task id="265" name="Trace to Requirements" color="#8cb6ce" meeting="false" start="2020-03-16" duration="21" complete="0" thirdDate="2020-03-16" thirdDate-constraint="0" expand="true"/>
-                <task id="267" name="Trace to Modules" color="#8cb6ce" meeting="false" start="2020-03-16" duration="21" complete="0" thirdDate="2020-03-16" thirdDate-constraint="0" expand="true"/>
-                <task id="269" name="Code Coverage Metrics" color="#8cb6ce" meeting="false" start="2020-03-16" duration="21" complete="0" thirdDate="2020-03-16" thirdDate-constraint="0" expand="true"/>
+                <task id="391" name="Functional Requirements Evaluation" color="#8cb6ce" meeting="false" start="2020-04-01" duration="6" complete="0" thirdDate="2020-03-16" thirdDate-constraint="0" expand="true"/>
+                <task id="250" name="Nonfunctional Requirements Evaluation" color="#8cb6ce" meeting="false" start="2020-04-01" duration="6" complete="0" thirdDate="2020-03-16" thirdDate-constraint="0" expand="true"/>
+                <task id="258" name="Unit Testing" color="#8cb6ce" meeting="false" start="2020-04-01" duration="6" complete="0" thirdDate="2020-03-16" thirdDate-constraint="0" expand="true"/>
+                <task id="260" name="Changes Due to Testing" color="#8cb6ce" meeting="false" start="2020-04-01" duration="6" complete="0" thirdDate="2020-03-16" thirdDate-constraint="0" expand="true"/>
+                <task id="263" name="Automated Testing" color="#8cb6ce" meeting="false" start="2020-04-01" duration="6" complete="0" thirdDate="2020-03-16" thirdDate-constraint="0" expand="true"/>
+                <task id="265" name="Trace to Requirements" color="#8cb6ce" meeting="false" start="2020-04-01" duration="6" complete="0" thirdDate="2020-03-16" thirdDate-constraint="0" expand="true"/>
+                <task id="267" name="Trace to Modules" color="#8cb6ce" meeting="false" start="2020-04-01" duration="6" complete="0" thirdDate="2020-03-16" thirdDate-constraint="0" expand="true"/>
+                <task id="269" name="Code Coverage Metrics" color="#8cb6ce" meeting="false" start="2020-04-01" duration="6" complete="0" thirdDate="2020-03-16" thirdDate-constraint="0" expand="true"/>
             </task>
         </task>
         <task id="599" name="Revision 1 Demonstration" color="#8cb6ce" meeting="true" start="2020-04-02" duration="0" complete="0" thirdDate="2020-01-22" thirdDate-constraint="0" expand="true" cost-manual-value="0.00000000000000" cost-calculated="true"/>
