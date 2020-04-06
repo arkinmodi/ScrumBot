@@ -73,6 +73,8 @@
             April 4, 2020 & Arkin Modi & Added TA's to the stakeholders. Added hardware assumptions to Relevant Facts and Assumptions. Added the help command to User Documentation Requirements.\\
             April 5, 2020 & Arkin Modi & Updated various Business Events and Non-Functional Requirements\\
             April 5, 2020 & Leon So & Updated Product Use Case section\\
+            April 6, 2020 & Leon So & Rev1 updates\\
+            April 6, 2020 & Leon So & Rev1 updates\\
         \bottomrule
     \end{tabularx}
 \end{table}
@@ -139,7 +141,6 @@ The customer of the ScrumBot is any firm looking to improve efficiency in commun
     \end{itemize}
 \end{itemize}
 % \subsubsection{Other stakeholders}
-
 
 \subsection{Mandated Constraints}
 \subsubsection{Solution Constraints}
@@ -239,33 +240,47 @@ ScrumBot is a specialized chat bot (i.e. a Discord Bot) that runs on the Discord
 This product is designed to be used by software development teams using: Discord as their main communication channel, an Agile development software design methodology, and the Scrum agile process framework. \sout{Additionally, this application can be integrated with Trello, and Google Calendar and Maps.}
 
 \subsubsection{Work Partitioning}
+\begin{itemize}
+    \item \textcolor{red}{Development team attempts to initialize Scrumbot}
+    \item \textcolor{red}{Business Analyst attempts to create a project}
+    \item \textcolor{red}{Business Analyst attempts to remove a project}
+    \item \textcolor{red}{Users attempts to start sprint planning meeting}
+    \item \textcolor{red}{Users attempts to start stand-up meeting}
+    \item \textcolor{red}{Users attempts to start retrospective meeting}
+    \item \textcolor{red}{Users attempts to start grooming meeting}
+    \item \textcolor{red}{Users attempts to create meeting}
+    \item \textcolor{red}{Users attempts to remove meeting}
+    \item \textcolor{red}{Users attempts to list meetings}
+    \item \textcolor{red}{Users attempts to list tasks}
+\end{itemize}
+
 \begin{longtable}{|L{4cm}|L{3cm}|L{1.5cm}|L{6cm}|}
-    \caption{Work Partitioning}
+    \caption{\sout{Work Partitioning}}
     \label{tab:my_label}\\
     \hline
-    Event Name & Input & Output & Summary \\
+    \sout{Event Name} & \sout{Input} & \sout{Output} & \sout{Summary} \\
     \hline
-    Scrumbot Initialization & Development Firm & Discord channel & Adding the Discord bot to a Discord server for the first time\\
+    \sout{Scrumbot Initialization} & \sout{Development Firm} & \sout{Discord channel} & \sout{Adding the Discord bot to a Discord server for the first time}\\
     \hline
-    Project Creation & Business Analyst & & Adding a new project to Scrumbot\\
+    \sout{Project Creation} & \sout{Business Analyst} & & \sout{Adding a new project to Scrumbot}\\
     \hline
-    Project Removal & Business Analyst & & Removing a project from Scrumbot\\
+    \sout{Project Removal} & \sout{Business Analyst} & & \sout{Removing a project from Scrumbot}\\
     \hline
-    Sprint-planning Meeting Occurs & Development Team & Discord channel & A meeting is held where a sprint is planned, held prior to the sprint\\
+    \sout{Sprint-planning Meeting Occurs} & \sout{Development Team} & \sout{Discord channel} & \sout{A meeting is held where a sprint is planned, held prior to the sprint}\\
     \hline
-    Stand-up Meeting Occurs & Development Team & Discord channel & A meeting is held, usually daily, where members record what they have done\\
+    \sout{Stand-up Meeting Occurs} & \sout{Development Team} & \sout{Discord channel} & \sout{A meeting is held, usually daily, where members record what they have done}\\
     \hline
-    Retrospective Meeting Occurs & Development Team & Discord channel & A meeting is held where feedback is given on the previous sprint, held after each sprint\\
+    \sout{Retrospective Meeting Occurs} & \sout{Development Team} & \sout{Discord channel} & \sout{A meeting is held where feedback is given on the previous sprint, held after each sprint}\\
     \hline
-    Grooming Meeting Occurs & Business Analyst \& Development Team & Discord channel & A meeting in which the requirements of the project are specified by the Business Analyst, and communicated to the Development Team\\
+    \sout{Grooming Meeting Occurs} & \sout{Business Analyst \& Development Team} & \sout{Discord channel} & \sout{A meeting in which the requirements of the project are specified by the Business Analyst, and communicated to the Development Team}\\
     \hline
-    Meeting Creation & Any Discord member & Discord channel & Creates a scheduled meeting into the Discord channel\\
+    \sout{Meeting Creation} & \sout{Any Discord member} & \sout{Discord channel} & \sout{Creates a scheduled meeting into the Discord channel}\\
     \hline
-    Meeting Removal & Any Discord member & Discord channel & Removes a scheduled meeting from the Discord channel\\
+    \sout{Meeting Removal} & \sout{Any Discord member} & \sout{Discord channel} & \sout{Removes a scheduled meeting from the Discord channel}\\
     \hline
-    List Scheduled Meetings & Any Discord member & Discord channel & A command that lists all the scheduled meetings of a given member\\
+    \sout{List Scheduled Meetings} & \sout{Any Discord member} & \sout{Discord channel} & \sout{A command that lists all the scheduled meetings of a given member}\\
     \hline
-    List Tasks & Any Discord member & Discord & A command that lists all the scheduled tasks for a given member\\
+    \sout{List Tasks} & \sout{Any Discord member} & \sout{Discord} & \sout{A command that lists all the scheduled tasks for a given member}\\
     \hline
 \end{longtable}
 
@@ -309,7 +324,7 @@ This product is designed to be used by software development teams using: Discord
 }
 
 \noindent \textcolor{red}{\textbf{Title: }Adding feedback}\\
-\textcolor{red}{\textbf{Trigger: }USer wants to add feedback to a task}\\
+\textcolor{red}{\textbf{Trigger: }User wants to add feedback to a task}\\
 \textcolor{red}{\textbf{Pre-condition: }Scrumbot active in server, project exists, sprint exists, task exists}\\
 \textcolor{red}{\textbf{Outcome: }}
 \textcolor{red}{
