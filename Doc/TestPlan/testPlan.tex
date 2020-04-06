@@ -509,52 +509,139 @@ See Gantt Chart at the following URL, \url{https://gitlab.cas.mcmaster.ca/modia1
 
 \subsubsection{Look and Feel Requirements}
 \paragraph{Appearance Requirements}
-
+\begin{enumerate}
+    \item{\textbf{NFRT-LF-1}}\\
+    Type: Manual, Dynamic, Checklist\\
+    Initial State: ScrumBot active in Discord channel\\
+    Input: Set of all ScrumBot commands entered\\
+    Output: ScrumBot outputs text formatted according to the text format of ScrumBot\\
+    How test will be performed: The test team will run commands in the Discord chat with ScrumBot active and check if the text format is appropriate and in accordance with Discord's text format
+\end{enumerate}
 
 \paragraph{Style Requirements}
-
+\begin{enumerate}
+    \item{\textbf{NFRT-LF-2}}\\
+    Type: Manual, Usability Survey\\
+    How test will be performed: The test team will ask a sample set of users to answer questions on a usability survey after using ScrumBot for the first time. A sample survey is included in the appendix. Questions will be asked regarding their opinion on the clarity of role names, and how these roles are represented on Discord. A sample survey is included in the appendix.
+    
+    \item{\textbf{NFRT-LF-3}}\\
+    Type: Manual, Dynamic, Checklist\\
+    Initial State: ScrumBot active in Discord channel\\
+    Input: One of each role available is added\\
+    Output: ScrumBot adds the roles and permissions to the assigned users. The role names  should be colour coded.\\
+    How test will be performed: The test team will add roles in the Discord channel. One of each role available will be assigned.
+\end{enumerate}
 
 \subsubsection{Usability and Humanity Requirements}
 \paragraph{Ease of Use \& Personalization and Internationalization Requirements}
 \begin{enumerate}
-    \item{\textbf{NFRT-UH13-3}}\\
+    \item{\textbf{NFRT-UH-1}}\\
     Type: Manual, Usability Survey\\
-    How test will be performed: The test team will ask a sample set of users to answer questions on a usability survey after using ScrumBot for the first time. A sample surevy is included in the appendix.
+    How test will be performed: The test team will ask a sample set of users to answer questions on a usability survey after using ScrumBot for the first time. A sample survey is included in the appendix.
 \end{enumerate}
 
 \paragraph{Learning Requirements}
-
+\begin{enumerate}
+    \item{\textbf{NFRT-UH-2}}\\
+    Type: Dynamic, Manual\\
+    Initial State: ScrumBot active in Discord channel\\
+    Input: Help command entered\\
+    Output: ScrumBot should output help menu\\
+    How test will be performed: The test team will enter the help command into Discord chat with ScrumBot active
+\end{enumerate}
 
 \subsubsection{Performance Requirements}
 \paragraph{Response Speed}
-
-
-\paragraph{Meeting Schedule Accuracy}
-
+\begin{enumerate}
+\item{\textbf{NFRT-P-1}}\\
+    Type: Dynamic, Manual\\
+    Initial State: No commands being made\\
+    Input: Command entered\\
+    Output: Response should be received within 2 seconds of the input being sent\\
+    How test will be performed: The test team will enter a command into the Discord channel with ScrumBot active. ScrumBot should provide a response within 2ms of the command being entered. A helper method will record the time and report to the tester the total time taken.
+\end{enumerate}
 
 \subsubsection{Operational and Environmental Requirements}
 \paragraph{Expected Environment}
+\begin{enumerate}
+    \item{\textbf{NFRT-OE-1}}\\
+    Type: Dynamic, Manual\\
+    Initial State: New Discord channel without ScrumBot\\
+    Input/Condition: Add ScrumBot to the Discord channel\\
+    Output/Result: ScrumBot should be active in the Discord channel once added\\
+    How test will be performed: The test team will follow the provided installation documentation and add ScrumBot to a brand new Discord channel
+\end{enumerate}
 
 \paragraph{Requirements for Interfacing with Adjacent Systems}
 
 
 \paragraph{Installability Requirements}
-
-
+\begin{itemize}
+    \item{\textbf{NFRT-OE-2}}\\
+    Type: Dynamic, Manual\\
+    Initial State: ScrumBot not yet installed on Discord server\\
+    Input/Condition: Establish connection between Scrumbot and Discord\\
+    Output/Result: Scrumbot should connect to Discord\\
+    How test will be performed: The test team will follow documentation provided by Discord to add ScrumBot to the Discord server
+\end{itemize}
 
 \subsubsection{Maintainability and Support Requirements}
 \paragraph{Maintainability Requirements}
+\begin{enumerate}
 
+\item{\textbf{NFRT-MS1}}\\
+Type: Static, Manual, Code Inspection\\
+Initial State: N/A\\
+Input/Condition: N/A\\
+Output/Result: The code is well documented with comments\\
+How test will be performed: The test team will inspect the code and check if the code is adequately documented using comments
+
+\item{\textbf{NFRT-MS2}}\\
+Type: Static, Manual\\
+Initial State: No Doxygen documents generated yet\\
+Input/Condition: Generate Doxygen HTML and pdf\\
+Output/Result: The Doxygen documentation is successfully compiled and generated\\
+How test will be performed: The test team will try to generate Doxygen HTML and pdf
+
+\item{\textbf{NFRT-MS3}}\\
+Type: Static, Manual, Code Inspection\\
+Initial State: N/A\\
+Input/Condition: N/A\\
+Output/Result: The code documentation is easy to understand\\
+How test will be performed: The test team will review the code documentation and make sure it is easily understandable. The test team will survey other developers and verify that they too can easily understand the documentation
+\end{enumerate}
 
 \paragraph{Supportability Requirements}
+\begin{enumerate}
+\item{\textbf{NFRT-MS4-1}}\\
+Type: Dynamic, Manual\\
+Initial State: ScrumBot is active on the Discord channel\\
+Input/Condition: User wants to open help menu\\
+Output/Result: Help menu is displayed in the Discord chat\\
+How test will be performed: The test team will attempt to open the help menu in the Discord chat
 
+\end{enumerate}
 
 \paragraph{Longevity Requirements}
-
+\begin{enumerate}
+    \item{\textbf{NFRT-MS4-2}}\\
+    Type: Static, Manual, Code Inspection\\
+    Initial State: N/A\\
+    Input/Condition: N/A\\
+    Output/Result: System is modularized into classes\\
+    How test will be performed: The test team will perform a code inspection to ensure that the system is separated into modules
+\end{enumerate}
 
 \subsubsection{Security Requirements}
 \paragraph{HTTP Connections}
-
+\begin{enumerate}
+    \item{\textbf{NFRT-S1}}\\
+    Type: Static, Manual, Code Inspection\\
+    Initial State: N/A\\
+    Input/Condition: N/A\\
+    Output/Result: All connections between the system and the APIs use HTTPS requests\\
+    How test will be performed: The test team will inspect the code and check if all connections between the system and APIs use HTTP requests
+\end{enumerate}
 
 \newpage
 
@@ -621,30 +708,12 @@ See Gantt Chart at the following URL, \url{https://gitlab.cas.mcmaster.ca/modia1
     \centering
     \caption{Traceability Matrix: Non-Functional Requirement}
     \begin{adjustbox}{width=\paperwidth}
-    \begin{tabular}{l|ccccccccccccccccccc}
+    \begin{tabular}{l|cccccccccccccccccccccc}
         \textbf{Test IDs} & \multicolumn{19}{c}{\textbf{Requirement IDs}}\\
         \hline
-        ~ & \textbf{UH1} & \textbf{UH2} & \textbf{UH3} & \textbf{UH4} & \textbf{P1} & \textbf{P2} & \textbf{P3} & \textbf{OE1} & \textbf{OE2} & \textbf{OE3} & \textbf{OE4} & \textbf{OE5} & \textbf{OE6} & \textbf{OE7} & \textbf{MS1} & \textbf{MS2} & \textbf{MS3} & \textbf{MS4} & \textbf{S1}\\
-        \textbf{NFRT-UH13-1}    & X & X & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
-        \textbf{NFRT-UH13-2}    & X & X & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
-        \textbf{NFRT-UH13-3}    & X & X & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
-        \textbf{NFRT-UH4}       & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
-        \textbf{NFRT-P1}        & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
-        \textbf{NFRT-P2}        & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
-        \textbf{NFRT-P3}        & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
-        \textbf{NFRT-OE1}       & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
-        \textbf{NFRT-OE2}       & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
-        \textbf{NFRT-OE3}       & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
-        \textbf{NFRT-OE4}       & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
-        \textbf{NFRT-OE5}       & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
-        \textbf{NFRT-OE6}       & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~\\
-        \textbf{NFRT-OE7}       & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~\\
-        \textbf{NFRT-MS1}       & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~\\
-        \textbf{NFRT-MS2}       & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~\\
-        \textbf{NFRT-MS3}       & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~\\
-        \textbf{NFRT-MS4-1}     & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~\\
-        \textbf{NFRT-MS4-2}     & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~\\
-        \textbf{NFRT-S1}        & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X\\
+        ~ & \textbf{LF1} & \textbf{LF2} & \textbf{LF3} & \textbf{UH1} & \textbf{UH2} & \textbf{UH3} & \textbf{UH4} & \textbf{P1} & \textbf{P2} & \textbf{P3} & \textbf{OE1} & \textbf{OE2} & \textbf{OE3} & \textbf{OE4} & \textbf{OE5} & \textbf{OE6} & \textbf{OE7} & \textbf{MS1} & \textbf{MS2} & \textbf{MS3} & \textbf{MS4} & \textbf{S1}\\
+        \textbf{NFRT-LF-1}    & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-LF-2}    & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
     \end{tabular}
     \end{adjustbox}
     \label{Traceability Matrix: Non-Functional Requirement}
@@ -700,6 +769,8 @@ These survey questions will be used to test usability requirements.
     \item Did you find ScrumBot easy to use?
     \item Would you use ScrumBot on a regular basis?
     \item Do you agree that the language used by ScrumBot is appropriate for English speakers?
+    \item Are the role names clear and understandable?
+    \item Is the system and user commands intuitive and easy to use?
 \end{enumerate}
 % This is a section that would be appropriate for some teams.
 
