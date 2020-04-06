@@ -41,7 +41,7 @@
         \\ Leon So, sol4
         \\ Timothy Choy, choyt2
 }
-\date{Last Updated: April 5, 2020}
+\date{Last Updated: April 6, 2020}
 
 %\input{../../Comments}
 
@@ -70,6 +70,7 @@
             April 4, 2020 & Arkin Modi & Strikethrough all copied parts from template\\
             April 4, 2020 & Arkin Modi & Re-wrote the Introduction and Connection Between Requirements and Design\\
             April 5, 2020 & Arkin Modi & Changed the Modules \& Updated their hierarchy, Removed an Anticipated Change, Updated the Uses Hierarchy Between Modules, Updated the Traceability Matrix between SRS and Modules\\
+            April 6, 2020 & Arkin Modi & Moved all software decision modules (except for generic dictionary) to the behaviour-hiding section\\
         \bottomrule
     \end{tabularx}
 \end{table}
@@ -171,20 +172,24 @@ The design follows the rules layed out by \citet{ParnasEtAl1984}, as follows:
 {Hardware-Hiding Module} & ~ \\
 \midrule
 
-\multirow{1}{0.3\textwidth}{Behaviour-Hiding Module} 
-& ScrumBot Module\\         % Interface with Discord
+\multirow{5}{0.3\textwidth}{Behaviour-Hiding Module} 
+& ScrumBot Module\\                             % Interface with Discord
+& \textcolor{red}{Meeting Module}\\             % Data Structure
+& \textcolor{red}{Task Module}\\                % Data Structure
+& \textcolor{red}{Sprint Module}\\              % Data Structure
+& \textcolor{red}{Project Module}\\             % Data Structure
 \midrule
 
 \multirow{8}{0.3\textwidth}{Software Decision Module} 
-& \sout{Meeting Types Module}\\ % Data Structure
-& \sout{Meeting List Module}\\  % Data Structure
-& Meeting Module\\              % Data Structure
-& \sout{Task List Module}\\     % Data Structure
-& Task Module\\                 % Data Structure
-& Sprint Module\\               % Data Structure
-& \sout{Project List Module}\\  % Data Structure
-& Project Module\\              % Data Structure
-& Generic Dictionary Module\\   % Data Structure
+& \sout{Meeting Types Module}\\         % Data Structure
+& \sout{Meeting List Module}\\          % Data Structure
+& \sout{Meeting Module}\\               % Data Structure
+& \sout{Task List Module}\\             % Data Structure
+& \sout{Task Module}\\                  % Data Structure
+& \sout{Sprint Module}\\                % Data Structure
+& \sout{Project List Module}\\          % Data Structure
+& \sout{Project Module}\\               % Data Structure
+& Generic Dictionary Module\\           % Data Structure
 \bottomrule
 
 \end{tabular}
@@ -212,13 +217,9 @@ The design follows the rules layed out by \citet{ParnasEtAl1984}, as follows:
 \subsection{Behaviour-Hiding Module}
 
 \begin{description}
-\item[Secrets:] The contents of the required behaviours.
-\item[Services:] Includes programs that provide externally visible behaviour of
-  the system as specified in the software requirements specification (SRS)
-  documents. This module serves as a communication layer between the
-  hardware-hiding module and the software decision module. The programs in this
-  module will need to change if there are changes in the SRS.
-\item[Implemented By:] --
+\item[Secrets:] \sout{The contents of the required behaviours.}
+\item[Services:] \sout{Includes programs that provide externally visible behaviour of the system as specified in the software requirements specification (SRS) documents. This module serves as a communication layer between the hardware-hiding module and the software decision module. The programs in this module will need to change if there are changes in the SRS.}
+\item[Implemented By:] \sout{--}
 \end{description}
 
 \subsubsection{ScrumBot Module (\mref{m2})}
@@ -226,6 +227,38 @@ The design follows the rules layed out by \citet{ParnasEtAl1984}, as follows:
     \item[Secrets:] The format and structure of the input data.
     \item[Services:] Converts the input data into the data structure used by the input parameters module.
     \item[Implemented By:] scrumbot.py
+\end{description}
+
+\subsubsection{Meeting Module (\mref{m5})}
+\begin{description}
+\color{red}
+    \item[Secrets:] Data structure of a meeting
+    \item[Services:] Provides the ability to initialize, access (name, date, time, type, and description) and mutate (description only) a meeting
+    \item[Implemented By:] meeting.py, meetingTypes.py,
+\end{description}
+
+\subsubsection{Task Module (\mref{m7})}
+\begin{description}
+\color{red}
+    \item[Secrets:] Data structure of a task
+    \item[Services:] Provides the ability to initialize, access (deadline, details and feedback) and mutate (feedback and details) a task
+    \item[Implemented By:] task.py, taskList.py
+\end{description}
+
+\subsubsection{Sprint Module (\mref{m8})}
+\begin{description}
+\color{red}
+    \item[Secrets:] Data structure of a sprint
+    \item[Services:] Provides the ability to initialize, access (all tasks) and mutate (task) a sprint
+    \item[Implemented By:] sprint.py
+\end{description}
+
+\subsubsection{Project Module (\mref{m10})}
+\begin{description}
+\color{red}
+    \item[Secrets:] Data structure for a project
+    \item[Services:] Provides the ability to initialize, access (description, meetings, requirements and sprints) and mutate (description, meetings, requirements and sprints) a project
+    \item[Implemented By:] project.py, projectList.py
 \end{description}
 
 \subsection{Software Decision Module}
@@ -247,10 +280,11 @@ The design follows the rules layed out by \citet{ParnasEtAl1984}, as follows:
 
 \subsubsection{Meeting Module (\mref{m5})}
 \begin{description}
-    \item[Secrets:] Data structure of a meeting
-    \item[Services:] Provides the ability to initialize, access (name, date, time, type, and description) and mutate (description only) a meeting
-    \item[Implemented By:] meeting.py\textcolor{red}{, meetingTypes.py, meetingList.py}
+    \item[Secrets:] \sout{Data structure of a meeting}
+    \item[Services:] \sout{Provides the ability to initialize, access (name, date, time, type, and description) and mutate (description only) a meeting}
+    \item[Implemented By:] \sout{meeting.py}
 \end{description}
+\textcolor{red}{This Module has been moved to the Behaviour-Hiding Module section.}
 
 \subsubsection{Task List Module (\mref{m6})}
 \begin{description}
@@ -262,17 +296,19 @@ The design follows the rules layed out by \citet{ParnasEtAl1984}, as follows:
 
 \subsubsection{Task Module (\mref{m7})}
 \begin{description}
-    \item[Secrets:] Data structure of a task
-    \item[Services:] Provides the ability to initialize, access (deadline, details and feedback) and mutate (feedback and details) a task
-    \item[Implemented By:] task.py\textcolor{red}{, taskList.py}
+    \item[Secrets:] \sout{Data structure of a task}
+    \item[Services:] \sout{Provides the ability to initialize, access (deadline, details and feedback) and mutate (feedback and details) a task}
+    \item[Implemented By:] \sout{task.py}
 \end{description}
+\textcolor{red}{This Module has been moved to the Behaviour-Hiding Module section.}
 
 \subsubsection{Sprint Module (\mref{m8})}
 \begin{description}
-    \item[Secrets:] Data structure of a sprint
-    \item[Services:] Provides the ability to initialize, access (all tasks) and mutate (task) a sprint
-    \item[Implemented By:] sprint.py
+    \item[Secrets:] \sout{Data structure of a sprint}
+    \item[Services:] \sout{Provides the ability to initialize, access (all tasks) and mutate (task) a sprint}
+    \item[Implemented By:] \sout{sprint.py}
 \end{description}
+\textcolor{red}{This Module has been moved to the Behaviour-Hiding Module section.}
 
 \subsubsection{Project List Module (\mref{m9})}
 \begin{description}
@@ -284,10 +320,11 @@ The design follows the rules layed out by \citet{ParnasEtAl1984}, as follows:
 
 \subsubsection{Project Module (\mref{m10})}
 \begin{description}
-    \item[Secrets:] Data structure for a project
-    \item[Services:] Provides the ability to initialize, access (description, meetings, requirements and sprints) and mutate (description, meetings, requirements and sprints) a project
-    \item[Implemented By:] project.py\textcolor{red}{, projectList.py}
+    \item[Secrets:] \sout{Data structure for a project}
+    \item[Services:] \sout{Provides the ability to initialize, access (description, meetings, requirements and sprints) and mutate (description, meetings, requirements and sprints) a project}
+    \item[Implemented By:] \sout{project.py}
 \end{description}
+\textcolor{red}{This Module has been moved to the Behaviour-Hiding Module section.}
 
 \subsubsection{Generic Dictionary Module (\mref{m11})}
 \begin{description}
