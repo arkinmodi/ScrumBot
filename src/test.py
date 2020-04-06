@@ -121,6 +121,11 @@ class Test_FR_BE4:
         assert(
             self.test_project.get_feedback(0, 0) == ["Feedback"]
         )
+    
+    ## @brief Tries to add Feedback to a Sprint that is not in the list of Sprints
+    def test_add_feedback_with_no_sprint(self):
+        with pytest.raises(IndexError):
+            self.test_project.add_feedback(0, "Feedback")
 
     ## @brief Tries to add Feedback to Sprint not in the list of Sprints
     def test_get_feedback_with_no_sprint(self):
@@ -178,11 +183,6 @@ class Test_FR_BE6:
     @pytest.fixture(autouse=True)
     def setup_method(self):
         self.test_project = project.Project("Name", "Description")
-
-    ## @brief Tries to add Feedback to a Sprint that is not in the list of Sprints
-    def test_add_feedback_with_no_sprint(self):
-        with pytest.raises(IndexError):
-            self.test_project.add_feedback(0, "Feedback")
 
     ## @ brief Checks if Feedback is removed
     def test_rm_feedback(self):
