@@ -24,9 +24,6 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
         self.bot = bot
     
     # PROJECT COG 
-    @commands.command(name="addMeeting", brief="Add a meeting to a project.")
-    @commands.guild_only()
-    @commands.has_role("Scrum Master")
     ## @brief Adds meeting to a project
     #  @param project_id Project ID
     #  @param name Name of Project
@@ -35,6 +32,9 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
     #  @param meeting_type Type of meeting
     #  @param Description of project
     #  @throws TypeError Meeting type incorrect
+    @commands.command(name="addMeeting", brief="Add a meeting to a project.")
+    @commands.guild_only()
+    @commands.has_role("Scrum Master")
     async def add_meeting(self, ctx, project_id: int, name, date, time, meeting_type, *, description=None):
         print(f'[Log] add_meeting from {ctx.author}, name: {name}, date: {date}, time: {time}, desc: {description} in project: {project_id}')
 
@@ -261,6 +261,9 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
         fileio.write(self.project_list.get_last_id(), "rmMeeting", meeting_id)
         await ctx.send(f'> Removed meeting {meeting_id} from {proj.get_name()}.')
 
+    ## @brief Removes a project
+    #  @param project_id Project ID
+    #  @throws KeyError Project not found
     @commands.command(name="rmProject", aliases=["removeProject"], brief="Removes a project from the guild.")
     @commands.guild_only()
     @commands.has_role("Admin")
