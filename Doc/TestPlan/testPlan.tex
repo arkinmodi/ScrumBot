@@ -28,8 +28,8 @@
 \title{SE 3XA3: Test Plan\\ScrumBot}
 
 \author{
-	Team 304, ScrumBot
-		\\ Arkin Modi, modia1
+    Team 304, ScrumBot
+        \\ Arkin Modi, modia1
         \\ Leon So, sol4
         \\ Timothy Choy, choyt2
 }
@@ -90,7 +90,7 @@ The purpose of this document is to outline the testing, validation, and verifica
 This test plan will provide a method to fully test ScrumBot by performing tests both at a modular level using unit tests created through Pytest, as well as at higher level, through using exploratory testing and specification-based testing. The unit tests cases will also cover partition testing, fuzz testing, and boundary testing.
 
 \subsection{Acronyms, Abbreviations, and Symbols}
-	
+    
 \begin{table}[hbp]
     \caption{Table of Abbreviations}
     \label{Table}
@@ -141,7 +141,7 @@ This test plan will provide a method to fully test ScrumBot by performing tests 
         Specification-based Testing & A method of testing where test cases are built based on the requirements specification\\
         \bottomrule
     \end{tabularx}
-\end{table}	
+\end{table} 
 
 \begin{table}[]
     \centering
@@ -589,21 +589,21 @@ See Gantt Chart at the following URL, \url{https://gitlab.cas.mcmaster.ca/modia1
 \paragraph{Maintainability Requirements}
 \begin{enumerate}
 
-\item{\textbf{NFRT-MS1}}\\
+\item{\textbf{NFRT-MS-1}}\\
 Type: Static, Manual, Code Inspection\\
 Initial State: N/A\\
 Input/Condition: N/A\\
 Output/Result: The code is well documented with comments\\
 How test will be performed: The test team will inspect the code and check if the code is adequately documented using comments
 
-\item{\textbf{NFRT-MS2}}\\
+\item{\textbf{NFRT-MS-2}}\\
 Type: Static, Manual\\
 Initial State: No Doxygen documents generated yet\\
 Input/Condition: Generate Doxygen HTML and pdf\\
 Output/Result: The Doxygen documentation is successfully compiled and generated\\
 How test will be performed: The test team will try to generate Doxygen HTML and pdf
 
-\item{\textbf{NFRT-MS3}}\\
+\item{\textbf{NFRT-MS-3}}\\
 Type: Static, Manual, Code Inspection\\
 Initial State: N/A\\
 Input/Condition: N/A\\
@@ -613,7 +613,7 @@ How test will be performed: The test team will review the code documentation and
 
 \paragraph{Supportability Requirements}
 \begin{enumerate}
-\item{\textbf{NFRT-MS4-1}}\\
+\item{\textbf{NFRT-MS-4}}\\
 Type: Dynamic, Manual\\
 Initial State: ScrumBot is active on the Discord channel\\
 Input/Condition: User wants to open help menu\\
@@ -624,7 +624,7 @@ How test will be performed: The test team will attempt to open the help menu in 
 
 \paragraph{Longevity Requirements}
 \begin{enumerate}
-    \item{\textbf{NFRT-MS4-2}}\\
+    \item{\textbf{NFRT-MS-5}}\\
     Type: Static, Manual, Code Inspection\\
     Initial State: N/A\\
     Input/Condition: N/A\\
@@ -635,7 +635,7 @@ How test will be performed: The test team will attempt to open the help menu in 
 \subsubsection{Security Requirements}
 \paragraph{HTTP Connections}
 \begin{enumerate}
-    \item{\textbf{NFRT-S1}}\\
+    \item{\textbf{NFRT-S-1}}\\
     Type: Static, Manual, Code Inspection\\
     Initial State: N/A\\
     Input/Condition: N/A\\
@@ -708,12 +708,24 @@ How test will be performed: The test team will attempt to open the help menu in 
     \centering
     \caption{Traceability Matrix: Non-Functional Requirement}
     \begin{adjustbox}{width=\paperwidth}
-    \begin{tabular}{l|cccccccccccccccccccccc}
+    \begin{tabular}{l|ccccccccccccccccccc}
         \textbf{Test IDs} & \multicolumn{19}{c}{\textbf{Requirement IDs}}\\
         \hline
-        ~ & \textbf{LF1} & \textbf{LF2} & \textbf{LF3} & \textbf{UH1} & \textbf{UH2} & \textbf{UH3} & \textbf{UH4} & \textbf{P1} & \textbf{P2} & \textbf{P3} & \textbf{OE1} & \textbf{OE2} & \textbf{OE3} & \textbf{OE4} & \textbf{OE5} & \textbf{OE6} & \textbf{OE7} & \textbf{MS1} & \textbf{MS2} & \textbf{MS3} & \textbf{MS4} & \textbf{S1}\\
-        \textbf{NFRT-LF-1}    & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
-        \textbf{NFRT-LF-2}    & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        ~ & \textbf{LF1} & \textbf{LF2} & \textbf{LF3} & \textbf{UH1} & \textbf{UH2} & \textbf{UH3} & \textbf{UH4} & \textbf{P1} & \textbf{P4} & \textbf{OE1} & \textbf{OE3} & \textbf{OE5} & \textbf{OE6} & \textbf{OE7} & \textbf{MS1} & \textbf{MS2} & \textbf{MS3} & \textbf{MS4} & \textbf{S1} & \textbf{C1} & \textbf{S1}\\
+        \textbf{NFRT-LF-1}  & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-LF-2}  & ~ & X & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-LF-3}  & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-UH-1}  & ~ & ~ & ~ & X & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-UH-2}  & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-P-1}   & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-OE-1}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-OE-2}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-MS-1}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-MS-2}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-MS-3}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-MS-4}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-MS-5}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~\\
+        \textbf{NFRT-S-1}   & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~\\
     \end{tabular}
     \end{adjustbox}
     \label{Traceability Matrix: Non-Functional Requirement}
@@ -735,7 +747,7 @@ The proof of concept demonstration for ScrumBot consisted of a simple Python dis
 To resolve these issues, we have taken the list of business events from our SRS and have assigned priority to the events. In the case where ScrumBot will not be able to fulfill all the requirements in the given timeframe, ScrumBot will still be able to function as the prioritized functionalities will be implemented.\\ \\
 \noindent In regards to the chosen architectural style, we have decided on using MVC as our primary architectural style. This best suits ScrumBot as the view module will be all the input and output from Discord, our controller module will be the commands run, and our model module will be the databases containing all the meeting information.\\\\
 \noindent To tackle the issue regarding time zones, we plan on writing our times in EST or EDT, based on the date scheduled for the meeting. The choice is simply because of our current location, and makes it simpler for us to test and create meetings. However, a new feature we plan on implementing is the ability to convert between time zones given a meeting.
-	
+    
 \section{Comparison to Existing Implementation}
 N/A
 
@@ -747,7 +759,7 @@ Unit testing of internal functions will be performed for every function to ensur
 \\\\
 \noindent During integration testing, stubs and drivers will be created as needed. For the testing of internal functions, the team will aim for a coverage of at minimum 85\%.
 
-\subsection{Unit testing of output files}		
+\subsection{Unit testing of output files}       
 The only output file will be the application executable, which shall be tested for correctness as a whole as well as the fulfillment of the SRS. This testing will take the form of system testing and acceptance testing. The system testing will test the performance, the behavior under extreme/varying load, and scalability with the number of users. The acceptance testing will ensure the SRS has been fulfilled.
 
 \bibliographystyle{plainnat}
