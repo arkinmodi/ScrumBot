@@ -27,9 +27,6 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
         scrumbotCog.TESTING = False
     
     # PROJECT COG 
-    @commands.command(name="addMeeting", brief="Add a meeting to a project.")
-    @commands.guild_only()
-    @commands.has_role("Scrum Master")
     ## @brief Adds meeting to a project
     #  @param project_id Project ID
     #  @param name Name of Project
@@ -38,6 +35,9 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
     #  @param meeting_type Type of meeting
     #  @param Description of project
     #  @throws TypeError Meeting type incorrect
+    @commands.command(name="addMeeting", brief="Add a meeting to a project.")
+    @commands.guild_only()
+    @commands.has_role("Scrum Master")
     async def add_meeting(self, ctx, project_id: int, name, date, time, meeting_type, *, description=None):
         timerClass.start()
         print(f'[Log] add_meeting from {ctx.author}, name: {name}, date: {date}, time: {time}, desc: {description} in project: {project_id}')
@@ -326,6 +326,9 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
         if (scrumbotCog.TESTING):
             await ctx.send(f'> Elapsed time: {timerClass.end()} seconds.')
 
+    ## @brief Removes a project
+    #  @param project_id Project ID
+    #  @throws KeyError Project not found
     @commands.command(name="rmProject", aliases=["removeProject"], brief="Removes a project from the guild.")
     @commands.guild_only()
     @commands.has_role("Admin")
@@ -346,6 +349,10 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
         if (scrumbotCog.TESTING):
             await ctx.send(f'> Elapsed time: {timerClass.end()} seconds.')
 
+    ## @brief Removes a requirement from a project
+    #  @param project_id Project ID
+    #  @param rqe_id Requirement ID
+    #  @throws IndexError Requirement not found
     @commands.command(name="rmRqe", aliases=["removeRqe", "rmReq", "rmRequirement"], brief="Removes a requirement from a project.")
     @commands.guild_only()
     @commands.has_role("Business Analyst")
@@ -373,7 +380,9 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
         if (scrumbotCog.TESTING):
             await ctx.send(f'> Elapsed time: {timerClass.end()} seconds.')
 
-
+    ## @brief Set a descritpion for a project
+    #  @param project_id Project id
+    #  @param description Description of project
     @commands.command(name="setProjectDesc", aliases=["setProjectDescription"], brief="Set a description for a given project.")
     @commands.guild_only()
     @commands.has_role("Business Analyst")
@@ -395,6 +404,9 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
             await ctx.send(f'> Elapsed time: {timerClass.end()} seconds.')
 
     # MEETING COG
+    ## @brief Get description of a given meeting
+    #  @param project_id Project ID
+    #  @param meeting_id Meeting ID
     @commands.command(name="getMeetingDesc", aliases=["getMeetingDescription"], brief="Get the description of a given meeting.")
     @commands.guild_only()
     async def get_meeting_desc(self, ctx, project_id: int, meeting_id: int):
@@ -421,6 +433,11 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
         if (scrumbotCog.TESTING):
             await ctx.send(f'> Elapsed time: {timerClass.end()} seconds.')
 
+    ## @brief Set a meeting description
+    #  @param project_id Project_ID
+    #  @param meeting_id Meeting_ID
+    #  @param description Description
+    #  @throws KeyError Meeting not found
     @commands.command(name="setMeetingDesc", aliases=["setMeetingDescription"], brief="Set a meeting description.")
     @commands.guild_only()
     @commands.has_role("Scrum Master")
@@ -822,6 +839,7 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
 
     # MEMBER COG
     ## @brief Gets the list of roles of a specific member in a guild, or the person initiating the command if no parameter is given.
+    #  @param member A discord member's username
     @commands.command(name='role', aliases=['perms', 'roleFor'], brief="Lists the roles of a user.")
     @commands.guild_only()
     async def get_roles(self, ctx, *, member: discord.Member=None):
