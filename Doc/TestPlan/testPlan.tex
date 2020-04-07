@@ -444,7 +444,7 @@ See Gantt Chart at the following URL, \url{https://gitlab.cas.mcmaster.ca/modia1
     Type: Functional, Dynamic, Unit, Automated\\
     Initial State: Project with meetings that contains meeting with ID 0 and has a description\\
     Input: Get meeting description with ID 0\\
-    Output: "No description"\\
+    Output:``No description"\\
     How test will be performed: Pytest will run the internal commands that ScrumBot will use to get the description of a meeting from the project.
     
     \item{\textbf{FRT-BE8-8}}\\
@@ -522,7 +522,7 @@ See Gantt Chart at the following URL, \url{https://gitlab.cas.mcmaster.ca/modia1
 \begin{enumerate}
     \item{\textbf{NFRT-LF-2}}\\
     Type: Manual, Usability Survey\\
-    How test will be performed: The test team will ask a sample set of users to answer questions on a usability survey after using ScrumBot for the first time. A sample survey is included in the appendix. Questions will be asked regarding their opinion on the clarity of role names, and how these roles are represented on Discord. A sample survey is included in the appendix.
+    How test will be performed: The test team will ask a sample set of users to answer questions on a usability survey after using ScrumBot for the first time. A sample survey is included in the appendix. Questions will be asked regarding their opinion on the clarity of role names, and how these roles are represented on Discord.
     
     \item{\textbf{NFRT-LF-3}}\\
     Type: Manual, Dynamic, Checklist\\
@@ -576,49 +576,49 @@ See Gantt Chart at the following URL, \url{https://gitlab.cas.mcmaster.ca/modia1
 
 
 \paragraph{Installability Requirements}
-\begin{itemize}
+\begin{enumerate}
     \item{\textbf{NFRT-OE-2}}\\
     Type: Dynamic, Manual\\
     Initial State: ScrumBot not yet installed on Discord server\\
     Input/Condition: Establish connection between Scrumbot and Discord\\
     Output/Result: Scrumbot should connect to Discord\\
     How test will be performed: The test team will follow documentation provided by Discord to add ScrumBot to the Discord server
-\end{itemize}
+\end{enumerate}
 
 \subsubsection{Maintainability and Support Requirements}
 \paragraph{Maintainability Requirements}
 \begin{enumerate}
-
-\item{\textbf{NFRT-MS-1}}\\
-Type: Static, Manual, Code Inspection\\
-Initial State: N/A\\
-Input/Condition: N/A\\
-Output/Result: The code is well documented with comments\\
-How test will be performed: The test team will inspect the code and check if the code is adequately documented using comments
-
-\item{\textbf{NFRT-MS-2}}\\
-Type: Static, Manual\\
-Initial State: No Doxygen documents generated yet\\
-Input/Condition: Generate Doxygen HTML and pdf\\
-Output/Result: The Doxygen documentation is successfully compiled and generated\\
-How test will be performed: The test team will try to generate Doxygen HTML and pdf
-
-\item{\textbf{NFRT-MS-3}}\\
-Type: Static, Manual, Code Inspection\\
-Initial State: N/A\\
-Input/Condition: N/A\\
-Output/Result: The code documentation is easy to understand\\
-How test will be performed: The test team will review the code documentation and make sure it is easily understandable. The test team will survey other developers and verify that they too can easily understand the documentation
+    
+    \item{\textbf{NFRT-MS-1}}\\
+    Type: Static, Manual, Code Inspection\\
+    Initial State: N/A\\
+    Input/Condition: N/A\\
+    Output/Result: The code is well documented with comments\\
+    How test will be performed: The test team will inspect the code and check if the code is adequately documented using comments
+    
+    \item{\textbf{NFRT-MS-2}}\\
+    Type: Static, Manual\\
+    Initial State: No Doxygen documents generated yet\\
+    Input/Condition: Generate Doxygen HTML and pdf\\
+    Output/Result: The Doxygen documentation is successfully compiled and generated\\
+    How test will be performed: The test team will try to generate Doxygen HTML and pdf
+    
+    \item{\textbf{NFRT-MS-3}}\\
+    Type: Static, Manual, Code Inspection\\
+    Initial State: N/A\\
+    Input/Condition: N/A\\
+    Output/Result: The code documentation is easy to understand\\
+    How test will be performed: The test team will review the code documentation and make sure it is easily understandable. The test team will survey other developers and verify that they too can easily understand the documentation. A sample survey is included in the appendix.
 \end{enumerate}
 
 \paragraph{Supportability Requirements}
 \begin{enumerate}
-\item{\textbf{NFRT-MS-4}}\\
-Type: Dynamic, Manual\\
-Initial State: ScrumBot is active on the Discord channel\\
-Input/Condition: User wants to open help menu\\
-Output/Result: Help menu is displayed in the Discord chat\\
-How test will be performed: The test team will attempt to open the help menu in the Discord chat
+    \item{\textbf{NFRT-MS-4}}\\
+    Type: Dynamic, Manual\\
+    Initial State: ScrumBot is active on the Discord channel\\
+    Input/Condition: User wants to open help menu\\
+    Output/Result: Help menu is displayed in the Discord chat\\
+    How test will be performed: The test team will attempt to open the help menu in the Discord chat
 
 \end{enumerate}
 
@@ -744,7 +744,7 @@ The proof of concept demonstration for ScrumBot consisted of a simple Python dis
 \end{enumerate}
 
 \subsection{Resolution}
-To resolve these issues, we have taken the list of business events from our SRS and have assigned priority to the events. In the case where ScrumBot will not be able to fulfill all the requirements in the given timeframe, ScrumBot will still be able to function as the prioritized functionalities will be implemented.\\ \\
+To resolve these issues, we have taken the list of business events from our SRS and have assigned priority to the events. In the case where ScrumBot will not be able to fulfill all the requirements in the given time frame, ScrumBot will still be able to function as the prioritized functionalities will be implemented.\\ \\
 \noindent In regards to the chosen architectural style, we have decided on using MVC as our primary architectural style. This best suits ScrumBot as the view module will be all the input and output from Discord, our controller module will be the commands run, and our model module will be the databases containing all the meeting information.\\\\
 \noindent To tackle the issue regarding time zones, we plan on writing our times in EST or EDT, based on the date scheduled for the meeting. The choice is simply because of our current location, and makes it simpler for us to test and create meetings. However, a new feature we plan on implementing is the ability to convert between time zones given a meeting.
 	
@@ -772,7 +772,7 @@ The only output file will be the application executable, which shall be tested f
 % \subsection{Symbolic Parameters}
 % The definition of the test cases will call for SYMBOLIC\_CONSTANTS. Their values are defined in this section for easy maintenance.
 
-\subsection{Usability Survey Questions}
+\subsection{Usability Survey}
 These survey questions will be used to test usability requirements.
 \begin{enumerate}
     \item Are you 13+ years old?
@@ -781,9 +781,16 @@ These survey questions will be used to test usability requirements.
     \item Did you find ScrumBot easy to use?
     \item Would you use ScrumBot on a regular basis?
     \item Do you agree that the language used by ScrumBot is appropriate for English speakers?
-    \item Are the role names clear and understandable?
+    \item Are all the role names clear and understandable? If No, state which ones are unclear.
     \item Is the system and user commands intuitive and easy to use?
 \end{enumerate}
-% This is a section that would be appropriate for some teams.
+URL: \url{https://forms.gle/czSpsrdsUnxay9To6}
+ 
+\subsection{Maintainability and Support Survey}
+These survey questions will be used to test usability requirements.
+\begin{enumerate}
+    \item Is the documentation for ScrumBot easy to understand? (Scale from 1 to 10)
+\end{enumerate}
+URL: \url{https://forms.gle/BsDgTp3W3XGhnuz76}
 
 \end{document}
