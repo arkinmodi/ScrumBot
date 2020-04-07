@@ -21,8 +21,8 @@
 \title{SE 3XA3: Test Report\\ScrumBot}
 
 \author{
-    Team 304, ScrumBot
-        \\ Arkin Modi, modia1
+	Team 304, ScrumBot
+		\\ Arkin Modi, modia1
         \\ Leon So, sol4
         \\ Timothy Choy, choyt2
 }
@@ -48,6 +48,7 @@
             January 23, 2020 & Arkin Modi & Copy template\\
             April 5, 2020 & Arkin Modi & Started work on multiple sections\\
             April 6, 2020 & Leon So, Arkin Modi & Worked on all sections of the Test Report\\
+            April 6, 2020 & Arkin Modi & Created all matrices, and Code Coverage Section\\
         \bottomrule
     \end{tabularx}
 \end{table}
@@ -294,8 +295,8 @@ This document contains all the results of the planned tests that were defined in
     \item{\textbf{FRT-BE8-7}}\\
     Initial State: Project with meetings that contains meeting with ID 0 and has a description\\
     Input: Get meeting description with ID 0\\
-    Expected Output: "No description"\\
-    Actual Output: "No description"\\
+    Expected Output: ``No description"\\
+    Actual Output: ``No description"\\
     Result: Pass
     
     \item{\textbf{FRT-BE8-8}}\\
@@ -359,6 +360,8 @@ This document contains all the results of the planned tests that were defined in
     Result: Pass
 
     \item{\textbf{NFRT-LF-2}}\\
+    Result: 100\% Yes\\
+    Full survey results can be found at \url{https://tinyurl.com/soagezg}
 
     \item{\textbf{NFRT-LF-3}}\\
     Initial State: ScrumBot active in Discord channel\\
@@ -368,6 +371,7 @@ This document contains all the results of the planned tests that were defined in
     Result: Pass
     
     \item{\textbf{NFRT-UH-1}}\\
+    Survey results can be found at \url{https://tinyurl.com/soagezg}
 
     \item{\textbf{NFRT-UH-2}}\\
     Initial State: ScrumBot active in Discord channel\\
@@ -377,6 +381,11 @@ This document contains all the results of the planned tests that were defined in
     Result: Pass
     
     \item{\textbf{NFRT-P-1}}\\
+    Initial State: ScrumBot active in Discord channel\\
+    Input: Command entered, with timing function enabled\\
+    Expected Output: Elapsed Time $<$ 2 seconds\\
+    Actual Output: Elapsed Time $<$ 2 seconds\\
+    Result: Pass
 
     \item{\textbf{NFRT-OE-1}}\\
     Initial State: New Discord channel without ScrumBot\\
@@ -407,6 +416,12 @@ This document contains all the results of the planned tests that were defined in
     Result: Pass
 
     \item{\textbf{NFRT-MS-3}}\\
+    Developer Survey Result: Average 8.12 (out of 10)
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.5\paperwidth]{"Developer Survey Results".png}
+        \caption{Developer Survey Results}
+    \end{figure}
 
     \item{\textbf{NFRT-MS-4}}\\
     Initial State: ScrumBot is active on the Discord channel\\
@@ -431,7 +446,7 @@ This document contains all the results of the planned tests that were defined in
     
 \end{enumerate}
 
-% \section{Comparison to Existing Implementation}   
+% \section{Comparison to Existing Implementation}	
 % This section will not be appropriate for every project.
 
 \section{Unit Testing}
@@ -444,6 +459,7 @@ There were some changes made due to failing test cases. These changes primarily 
 Automated tests was carried out by the Pytest framework.
 
 \section{Trace to Requirements}
+All requirement IDs were taken from the Software Requirements Specification (SRS) document.
 
 \begin{table}[H]
     \centering
@@ -495,7 +511,6 @@ Automated tests was carried out by the Pytest framework.
         \textbf{FRT-BE10-1} & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~\\
     \end{tabular}
     \end{adjustbox}
-    \label{Traceability Matrix: Functional Requirement}
 \end{table}
 
 \newpage
@@ -524,96 +539,97 @@ Automated tests was carried out by the Pytest framework.
         \textbf{NFRT-S-1}   & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~\\
     \end{tabular}
     \end{adjustbox}
-    \label{Traceability Matrix: Non-Functional Requirement}
 \end{table}
 \end{landscape}
 
-\section{Trace to Modules}      
+\section{Trace to Modules}
+All module IDs were taken from the Module Guide document.
 
 \begin{table}[H]
     \centering
     \caption{Traceability Matrix: Functional Requirement}
-    \begin{adjustbox}{max width=0.7\paperwidth}
-    \begin{tabular}{l|ccccccccccc}
-        \textbf{Test IDs} & \multicolumn{11}{c}{\textbf{Requirement IDs}}\\
+    \begin{adjustbox}{max width=0.6\paperwidth}
+    \begin{tabular}{l|ccccccc}
+        \textbf{Test IDs} & \multicolumn{7}{c}{\textbf{Module IDs}}\\
         \hline
-        ~ & \textbf{BE1} & \textbf{BE2} & \textbf{BE3} & \textbf{BE4} & \textbf{BE5} & \textbf{BE6} & \textbf{BE7} & \textbf{BE8} & \textbf{BE9} & \textbf{BE10} & \textbf{BE11}\\
-        \textbf{FRT-BE1}    & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
-        \textbf{FRT-BE2-1}  & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
-        \textbf{FRT-BE2-2}  & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
-        \textbf{FRT-BE3-1}  & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
-        \textbf{FRT-BE3-2}  & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
-        \textbf{FRT-BE4-1}  & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
-        \textbf{FRT-BE4-2}  & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
-        \textbf{FRT-BE4-3}  & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
-        \textbf{FRT-BE4-4}  & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & X\\
-        \textbf{FRT-BE4-5}  & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
-        \textbf{FRT-BE4-6}  & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
-        \textbf{FRT-BE4-7}  & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
-        \textbf{FRT-BE4-8}  & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
-        \textbf{FRT-BE4-9}  & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
-        \textbf{FRT-BE4-10} & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
-        \textbf{FRT-BE4-11} & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
-        \textbf{FRT-BE5-1}  & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~\\
-        \textbf{FRT-BE5-2}  & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~\\
-        \textbf{FRT-BE5-3}  & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~\\
-        \textbf{FRT-BE5-4}  & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~\\
-        \textbf{FRT-BE5-5}  & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~\\
-        \textbf{FRT-BE6-1}  & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~\\
-        \textbf{FRT-BE6-2}  & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~\\
-        \textbf{FRT-BE7-1}  & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~\\
-        \textbf{FRT-BE7-2}  & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~\\
-        \textbf{FRT-BE7-3}  & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~\\
-        \textbf{FRT-BE7-4}  & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~\\
-        \textbf{FRT-BE8-1}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~\\
-        \textbf{FRT-BE8-2}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~\\
-        \textbf{FRT-BE8-3}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~\\
-        \textbf{FRT-BE8-4}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~\\
-        \textbf{FRT-BE8-5}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~\\
-        \textbf{FRT-BE8-6}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~\\
-        \textbf{FRT-BE8-7}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~\\
-        \textbf{FRT-BE8-8}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~\\
-        \textbf{FRT-BE8-9}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~\\
-        \textbf{FRT-BE8-10} & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~\\
-        \textbf{FRT-BE9-1}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~\\
-        \textbf{FRT-BE9-2}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~\\
-        \textbf{FRT-BE10-1} & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~\\
+        ~ & \textbf{M1} & \textbf{M2} & \textbf{M5} & \textbf{M7} & \textbf{M8} & \textbf{M10} & \textbf{M11}\\
+        \textbf{FRT-BE1}    & X & X & ~ & ~ & ~ & ~ & ~\\
+        \textbf{FRT-BE2-1}  & X & ~ & ~ & ~ & ~ & X & ~\\
+        \textbf{FRT-BE2-2}  & X & ~ & ~ & ~ & ~ & X & ~\\
+        \textbf{FRT-BE3-1}  & X & ~ & ~ & ~ & ~ & X & ~\\
+        \textbf{FRT-BE3-2}  & X & ~ & ~ & ~ & ~ & X & ~\\
+        \textbf{FRT-BE4-1}  & X & ~ & ~ & X & X & X & ~\\
+        \textbf{FRT-BE4-2}  & X & ~ & ~ & X & X & X & ~\\
+        \textbf{FRT-BE4-3}  & X & ~ & ~ & X & X & X & ~\\
+        \textbf{FRT-BE4-4}  & X & ~ & ~ & X & X & X & ~\\
+        \textbf{FRT-BE4-5}  & X & ~ & ~ & X & X & X & ~\\
+        \textbf{FRT-BE4-6}  & X & ~ & ~ & X & X & X & ~\\
+        \textbf{FRT-BE4-7}  & X & ~ & ~ & X & X & X & ~\\
+        \textbf{FRT-BE4-8}  & X & ~ & ~ & X & X & X & ~\\
+        \textbf{FRT-BE4-9}  & X & ~ & ~ & X & X & X & ~\\
+        \textbf{FRT-BE4-10} & X & ~ & ~ & X & X & X & ~\\
+        \textbf{FRT-BE4-11} & X & ~ & ~ & X & X & X & ~\\
+        \textbf{FRT-BE5-1}  & X & ~ & ~ & X & X & X & ~\\
+        \textbf{FRT-BE5-2}  & X & ~ & ~ & X & X & X & ~\\
+        \textbf{FRT-BE5-3}  & X & ~ & ~ & X & X & X & ~\\
+        \textbf{FRT-BE5-4}  & X & ~ & ~ & X & X & X & ~\\
+        \textbf{FRT-BE5-5}  & X & ~ & ~ & X & X & X & ~\\
+        \textbf{FRT-BE6-1}  & X & ~ & ~ & X & X & X & ~\\
+        \textbf{FRT-BE6-2}  & X & ~ & ~ & X & X & X & ~\\
+        \textbf{FRT-BE7-1}  & X & ~ & ~ & ~ & ~ & X & ~\\
+        \textbf{FRT-BE7-2}  & X & ~ & ~ & ~ & ~ & X & ~\\
+        \textbf{FRT-BE7-3}  & X & ~ & ~ & ~ & ~ & X & ~\\
+        \textbf{FRT-BE7-4}  & X & ~ & ~ & ~ & ~ & X & ~\\
+        \textbf{FRT-BE8-1}  & X & ~ & X & ~ & ~ & X & ~\\
+        \textbf{FRT-BE8-2}  & X & ~ & X & ~ & ~ & X & ~\\
+        \textbf{FRT-BE8-3}  & X & ~ & X & ~ & ~ & X & ~\\
+        \textbf{FRT-BE8-4}  & X & ~ & X & ~ & ~ & X & ~\\
+        \textbf{FRT-BE8-5}  & X & ~ & X & ~ & ~ & X & ~\\
+        \textbf{FRT-BE8-6}  & X & ~ & X & ~ & ~ & X & ~\\
+        \textbf{FRT-BE8-7}  & X & ~ & X & ~ & ~ & X & ~\\
+        \textbf{FRT-BE8-8}  & X & ~ & X & ~ & ~ & X & ~\\
+        \textbf{FRT-BE8-9}  & X & ~ & X & ~ & ~ & X & ~\\
+        \textbf{FRT-BE8-10} & X & ~ & X & ~ & ~ & X & ~\\
+        \textbf{FRT-BE9-1}  & X & ~ & X & ~ & ~ & X & ~\\
+        \textbf{FRT-BE9-2}  & X & ~ & X & ~ & ~ & X & ~\\
+        \textbf{FRT-BE10-1} & X & ~ & X & ~ & ~ & X & ~\\
     \end{tabular}
     \end{adjustbox}
-    \label{Traceability Matrix: Functional Requirement}
 \end{table}
 
-\newpage
-\begin{landscape}
 \begin{table}[H]
     \centering
     \caption{Traceability Matrix: Non-Functional Requirement}
-    \begin{adjustbox}{width=\paperwidth}
-    \begin{tabular}{l|cccccccccccccccccccccc}
-        \textbf{Test IDs} & \multicolumn{19}{c}{\textbf{Requirement IDs}}\\
+    \begin{adjustbox}{max width=0.7\paperwidth}
+    \begin{tabular}{l|ccccccc}
+        \textbf{Test IDs} & \multicolumn{7}{c}{\textbf{Module IDs}}\\
         \hline
-        ~ & \textbf{LF1} & \textbf{LF2} & \textbf{LF3} & \textbf{UH1} & \textbf{UH2} & \textbf{UH3} & \textbf{UH4} & \textbf{P1} & \textbf{P4} & \textbf{OE1} & \textbf{OE3} & \textbf{OE5} & \textbf{OE6} & \textbf{OE7} & \textbf{MS1} & \textbf{MS2} & \textbf{MS3} & \textbf{MS4} & \textbf{S1} & \textbf{C1} & \textbf{L1} & \textbf{HS1}\\
-        \textbf{NFRT-LF-1}  & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
-        \textbf{NFRT-LF-2}  & ~ & X & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
-        \textbf{NFRT-LF-3}  & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
-        \textbf{NFRT-UH-1}  & ~ & ~ & ~ & X & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
-        \textbf{NFRT-UH-2}  & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
-        \textbf{NFRT-P-1}   & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
-        \textbf{NFRT-OE-1}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
-        \textbf{NFRT-OE-2}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
-        \textbf{NFRT-MS-1}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
-        \textbf{NFRT-MS-2}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
-        \textbf{NFRT-MS-3}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
-        \textbf{NFRT-MS-4}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
-        \textbf{NFRT-MS-5}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~\\
-        \textbf{NFRT-S-1}   & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~\\
+        ~ & \textbf{M1} & \textbf{M2} & \textbf{M5} & \textbf{M7} & \textbf{M8} & \textbf{M10} & \textbf{M11}\\
+        \textbf{NFRT-LF-1}  & X & X & X & X & X & X & X\\
+        \textbf{NFRT-LF-2}  & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-LF-3}  & X & X & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-UH-1}  & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-UH-2}  & X & X & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-P-1}   & X & X & X & X & X & X & X\\
+        \textbf{NFRT-OE-1}  & X & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-OE-2}  & X & X & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-MS-1}  & X & X & X & X & X & X & X\\
+        \textbf{NFRT-MS-2}  & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-MS-3}  & ~ & X & X & X & X & X & X\\
+        \textbf{NFRT-MS-4}  & X & X & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-MS-5}  & ~ & X & X & X & X & X & X\\
+        \textbf{NFRT-S-1}   & X & X & ~ & ~ & ~ & ~ & ~\\
     \end{tabular}
     \end{adjustbox}
-    \label{Traceability Matrix: Non-Functional Requirement}
 \end{table}
-\end{landscape}
 
 \section{Code Coverage Metrics}
+Statement Coverage was calculated by the pytest-cov plugin. 66\% Statement Coverage was achieved. Statements that were not checked during testing were either used for testing or were features that were not within the scope of the requirements.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{"Statement_Coverage".png}
+    \caption{Statement Coverage Report}
+\end{figure}
 
 \bibliographystyle{plainnat}
 
