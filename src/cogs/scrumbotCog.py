@@ -349,6 +349,10 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
         if (scrumbotCog.TESTING):
             await ctx.send(f'> Elapsed time: {timerClass.end()} seconds.')
 
+    ## @brief Removes a requirement from a project
+    #  @param project_id Project ID
+    #  @param rqe_id Requirement ID
+    #  @throws IndexError Requirement not found
     @commands.command(name="rmRqe", aliases=["removeRqe", "rmReq", "rmRequirement"], brief="Removes a requirement from a project.")
     @commands.guild_only()
     @commands.has_role("Business Analyst")
@@ -376,7 +380,9 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
         if (scrumbotCog.TESTING):
             await ctx.send(f'> Elapsed time: {timerClass.end()} seconds.')
 
-
+    ## @brief Set a descritpion for a project
+    #  @param project_id Project id
+    #  @param description Description of project
     @commands.command(name="setProjectDesc", aliases=["setProjectDescription"], brief="Set a description for a given project.")
     @commands.guild_only()
     @commands.has_role("Business Analyst")
@@ -398,6 +404,9 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
             await ctx.send(f'> Elapsed time: {timerClass.end()} seconds.')
 
     # MEETING COG
+    ## @brief Get description of a given meeting
+    #  @param project_id Project ID
+    #  @param meeting_id Meeting ID
     @commands.command(name="getMeetingDesc", aliases=["getMeetingDescription"], brief="Get the description of a given meeting.")
     @commands.guild_only()
     async def get_meeting_desc(self, ctx, project_id: int, meeting_id: int):
@@ -424,6 +433,11 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
         if (scrumbotCog.TESTING):
             await ctx.send(f'> Elapsed time: {timerClass.end()} seconds.')
 
+    ## @brief Set a meeting description
+    #  @param project_id Project_ID
+    #  @param meeting_id Meeting_ID
+    #  @param description Description
+    #  @throws KeyError Meeting not found
     @commands.command(name="setMeetingDesc", aliases=["setMeetingDescription"], brief="Set a meeting description.")
     @commands.guild_only()
     @commands.has_role("Scrum Master")
