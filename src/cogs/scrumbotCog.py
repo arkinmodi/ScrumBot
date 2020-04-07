@@ -14,6 +14,7 @@ from project import *
 from projectList import ProjectList
 
 from fileio import *
+from timer import *
 
 ## @brief Discord commands related to scrumbot
 #  @details These commands are only to be used inside a guild.
