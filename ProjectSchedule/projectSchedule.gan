@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="Scrumbot" company="Scrumbot" webLink="https://gitlab.cas.mcmaster.ca/modia1/ScrumBot" view-date="2020-03-11" view-index="0" gantt-divider-location="515" resource-divider-location="300" version="2.8.10" locale="en_CA">
+<?xml version="1.0" encoding="UTF-8"?><project name="Scrumbot" company="Scrumbot" webLink="https://gitlab.cas.mcmaster.ca/modia1/ScrumBot" view-date="2020-03-10" view-index="0" gantt-divider-location="515" resource-divider-location="300" version="2.8.10" locale="en_CA">
     <description>
         <![CDATA[Scrum is an agile process framework widely used in industry for managing and coordinating collaborative projects. Scrum being a process based on the agile development method, follows a highly iterative process and often has heavy customer involvement, therefore it can be often be complex. It is often difficult to manage communication and coordination within the project due to the complexity of agile development processes. With Discord being a popular communication tool used by many teams of software developers today, our team would like to develop a solution to directly integrate the management of a scrum development cycle into the communication channels. Our solution will allow for better management and organization of retrospectives, stand-ups, and other scrum/agile processes used by software teams during routine communication.]]>
     </description>
     <view zooming-state="default:3" id="gantt-chart">
-        <field id="tpd3" name="Name" width="308" order="0"/>
-        <field id="tpd4" name="Begin date" width="101" order="1"/>
-        <field id="tpd5" name="End date" width="100" order="2"/>
+        <field id="tpd3" name="Name" width="299" order="0"/>
+        <field id="tpd4" name="Begin date" width="98" order="1"/>
+        <field id="tpd5" name="End date" width="97" order="2"/>
     </view>
     <view id="resource-table">
         <field id="0" name="Name" width="148" order="0"/>
@@ -140,7 +140,8 @@
         </task>
         <task id="599" name="Revision 1 Demonstration" color="#8cb6ce" meeting="true" start="2020-04-02" duration="0" complete="0" thirdDate="2020-01-22" thirdDate-constraint="0" expand="true" cost-manual-value="0.00000000000000" cost-calculated="true"/>
         <task id="129" name="Final Documentation Due" color="#8cb6ce" meeting="true" start="2020-04-07" duration="0" complete="0" thirdDate="2020-01-22" thirdDate-constraint="0" expand="true"/>
-        <task id="416" name="Coding" color="#8cb6ce" meeting="false" start="2020-03-05" duration="29" complete="0" thirdDate="2020-02-23" thirdDate-constraint="0" expand="false">
+        <task id="416" name="Coding" color="#8cb6ce" meeting="false" start="2020-03-05" duration="29" complete="0" thirdDate="2020-02-23" thirdDate-constraint="0" expand="true">
+            <task id="630" name="Doxygen Commenting" color="#8cb6ce" meeting="false" start="2020-03-05" duration="29" complete="0" thirdDate="2020-02-24" thirdDate-constraint="0" expand="true" cost-manual-value="0.0" cost-calculated="true"/>
             <task id="437" name="ScrumBot" color="#8cb6ce" meeting="false" start="2020-03-05" duration="29" complete="0" thirdDate="2020-02-24" thirdDate-constraint="0" expand="true"/>
             <task id="438" name="Meeting Types" color="#8cb6ce" meeting="false" start="2020-03-05" duration="29" complete="0" thirdDate="2020-02-24" thirdDate-constraint="0" expand="true"/>
             <task id="439" name="Meeting List" color="#8cb6ce" meeting="false" start="2020-03-05" duration="29" complete="0" thirdDate="2020-02-24" thirdDate-constraint="0" expand="true"/>
@@ -220,10 +221,17 @@
         <allocation task-id="501" resource-id="0" function="Default:0" responsible="false" load="100.0"/>
         <allocation task-id="503" resource-id="0" function="Default:0" responsible="false" load="100.0"/>
         <allocation task-id="589" resource-id="0" function="Default:0" responsible="false" load="100.0"/>
-        <allocation task-id="595" resource-id="0" function="Default:0" responsible="false" load="33.3"/>
+        <allocation task-id="595" resource-id="0" function="Default:0" responsible="false" load="50.0"/>
         <allocation task-id="599" resource-id="0" function="Default:0" responsible="false" load="33.3"/>
         <allocation task-id="583" resource-id="0" function="Default:0" responsible="false" load="100.0"/>
         <allocation task-id="586" resource-id="0" function="Default:0" responsible="false" load="50.0"/>
+        <allocation task-id="578" resource-id="0" function="Default:0" responsible="false" load="50.0"/>
+        <allocation task-id="391" resource-id="0" function="Default:0" responsible="false" load="50.0"/>
+        <allocation task-id="250" resource-id="0" function="Default:0" responsible="false" load="50.0"/>
+        <allocation task-id="260" resource-id="0" function="Default:0" responsible="false" load="100.0"/>
+        <allocation task-id="263" resource-id="0" function="Default:0" responsible="false" load="100.0"/>
+        <allocation task-id="265" resource-id="0" function="Default:0" responsible="false" load="100.0"/>
+        <allocation task-id="267" resource-id="0" function="Default:0" responsible="false" load="100.0"/>
         <allocation task-id="131" resource-id="1" function="1" responsible="false" load="33.3"/>
         <allocation task-id="2" resource-id="1" function="1" responsible="true" load="33.3"/>
         <allocation task-id="134" resource-id="1" function="1" responsible="true" load="33.3"/>
@@ -256,10 +264,8 @@
         <allocation task-id="226" resource-id="1" function="1" responsible="true" load="33.3"/>
         <allocation task-id="127" resource-id="1" function="1" responsible="true" load="33.3"/>
         <allocation task-id="246" resource-id="1" function="1" responsible="true" load="33.3"/>
-        <allocation task-id="250" resource-id="1" function="Default:0" responsible="false" load="100.0"/>
-        <allocation task-id="391" resource-id="1" function="1" responsible="false" load="100.0"/>
-        <allocation task-id="260" resource-id="1" function="Default:0" responsible="false" load="100.0"/>
-        <allocation task-id="267" resource-id="1" function="Default:0" responsible="false" load="100.0"/>
+        <allocation task-id="250" resource-id="1" function="Default:0" responsible="false" load="50.0"/>
+        <allocation task-id="391" resource-id="1" function="1" responsible="false" load="50.0"/>
         <allocation task-id="200" resource-id="1" function="1" responsible="false" load="50.0"/>
         <allocation task-id="205" resource-id="1" function="1" responsible="false" load="20.0"/>
         <allocation task-id="207" resource-id="1" function="Default:0" responsible="false" load="15.0"/>
@@ -292,10 +298,12 @@
         <allocation task-id="445" resource-id="1" function="1" responsible="false" load="100.0"/>
         <allocation task-id="447" resource-id="1" function="1" responsible="false" load="50.0"/>
         <allocation task-id="480" resource-id="1" function="1" responsible="false" load="50.0"/>
-        <allocation task-id="592" resource-id="1" function="1" responsible="false" load="100.0"/>
         <allocation task-id="599" resource-id="1" function="1" responsible="true" load="33.3"/>
         <allocation task-id="586" resource-id="1" function="Default:0" responsible="false" load="50.0"/>
-        <allocation task-id="595" resource-id="1" function="Default:0" responsible="false" load="33.3"/>
+        <allocation task-id="595" resource-id="1" function="Default:0" responsible="false" load="50.0"/>
+        <allocation task-id="592" resource-id="1" function="1" responsible="false" load="50.0"/>
+        <allocation task-id="578" resource-id="1" function="Default:0" responsible="false" load="50.0"/>
+        <allocation task-id="630" resource-id="1" function="1" responsible="false" load="90.0"/>
         <allocation task-id="131" resource-id="2" function="Default:0" responsible="false" load="33.3"/>
         <allocation task-id="2" resource-id="2" function="Default:0" responsible="false" load="33.3"/>
         <allocation task-id="134" resource-id="2" function="Default:0" responsible="false" load="33.3"/>
@@ -326,8 +334,6 @@
         <allocation task-id="226" resource-id="2" function="Default:0" responsible="false" load="33.3"/>
         <allocation task-id="127" resource-id="2" function="Default:0" responsible="false" load="33.3"/>
         <allocation task-id="246" resource-id="2" function="Default:0" responsible="false" load="33.3"/>
-        <allocation task-id="263" resource-id="2" function="Default:0" responsible="false" load="100.0"/>
-        <allocation task-id="265" resource-id="2" function="Default:0" responsible="false" load="100.0"/>
         <allocation task-id="205" resource-id="2" function="Default:0" responsible="false" load="80.0"/>
         <allocation task-id="203" resource-id="2" function="Default:0" responsible="false" load="80.0"/>
         <allocation task-id="207" resource-id="2" function="Default:0" responsible="false" load="15.0"/>
@@ -353,8 +359,8 @@
         <allocation task-id="480" resource-id="2" function="Default:0" responsible="false" load="50.0"/>
         <allocation task-id="443" resource-id="2" function="Default:0" responsible="false" load="50.0"/>
         <allocation task-id="599" resource-id="2" function="Default:0" responsible="false" load="33.3"/>
-        <allocation task-id="578" resource-id="2" function="Default:0" responsible="false" load="100.0"/>
-        <allocation task-id="595" resource-id="2" function="Default:0" responsible="false" load="33.3"/>
+        <allocation task-id="592" resource-id="2" function="Default:0" responsible="false" load="50.0"/>
+        <allocation task-id="630" resource-id="2" function="Default:0" responsible="false" load="10.0"/>
     </allocations>
     <vacations/>
     <previous/>
