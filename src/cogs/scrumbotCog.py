@@ -1,6 +1,6 @@
 ## @file scrumbotCog.py
 #  @author Arkin Modi, Leon So, Timothy Choy
-#  @brief A cog containing all commands related to projects.
+#  @brief A cog containing all commands related to projects. (NOTE: This file is not compatible doxygen comments)
 #  @date Mar 12, 2020
 
 import discord
@@ -448,6 +448,13 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
             await ctx.send(f'> Elapsed time: {timerClass.end()} seconds.')
 
     # SPRINT COG
+    ## @brief Add Task
+    #  @param project_id Project ID
+    #  @param name Name of Task
+    #  @param date Task Due Date
+    #  @param time Task Due Time
+    #  @param details Task Details
+    #  @throws IndexError Sprint not found
     @commands.command(name="addTask", brief="Add a task to a sprint.")
     @commands.guild_only()
     @commands.has_role("Scrum Master")
@@ -475,6 +482,11 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
         if (scrumbotCog.TESTING):
             await ctx.send(f'> Elapsed time: {timerClass.end()} seconds.')
         
+
+    ## @brief List All Tasks
+    #  @param project_id Project ID
+    #  @param sprint_id Sprint ID
+    #  @throws IndexError Sprint not found
     @commands.command(name="listTasks", brief="List all tasks of a sprint.")
     @commands.guild_only()
     async def list_tasks(self, ctx, project_id: int, sprint_id: int):
@@ -516,6 +528,11 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
         if (scrumbotCog.TESTING):
             await ctx.send(f'> Elapsed time: {timerClass.end()} seconds.')
 
+    ## @brief Remove a Task
+    #  @param project_id Project ID
+    #  @param task_id Sprint ID
+    #  @throws IndexError Sprint not found
+    #  @throws KeyError Task not found
     @commands.command(name="rmTask", aliases=["removeTask"], brief="Removes a task in a sprint.")
     @commands.guild_only()
     @commands.has_role("Scrum Master")
@@ -548,6 +565,12 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
             await ctx.send(f'> Elapsed time: {timerClass.end()} seconds.')
 
     # TASK COG
+    ## @brief Adds Feedback
+    #  @param project_id Project ID
+    #  @param task_id Task ID
+    #  @param feedback Feedback text to be added
+    #  @throws KeyError Task not found
+    #  @throws IndexError Sprint not found
     @commands.command(name="addFeedback", brief="Add feedback to a specific task.")
     @commands.guild_only()
     @commands.has_role("Scrum Master")
@@ -579,6 +602,12 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
         if (scrumbotCog.TESTING):
             await ctx.send(f'> Elapsed time: {timerClass.end()} seconds.')
 
+
+    ## @brief Get Details
+    #  @param project_id Project ID
+    #  @param task_id Task ID
+    #  @param sprint_id Sprint ID
+    #  @throws IndexError Sprint not found
     @commands.command(name="getDetails", brief="Get details of a specific task.")
     @commands.guild_only()
     async def get_details(self, ctx, project_id: int, sprint_id: int, task_id: int):
@@ -614,6 +643,12 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
         if (scrumbotCog.TESTING):
             await ctx.send(f'> Elapsed time: {timerClass.end()} seconds.')
 
+    ## @brief List Feedback
+    #  @param project_id Project ID
+    #  @param task_id Task ID
+    #  @param sprint_id Sprint ID
+    #  @throws KeyError Task not found
+    #  @throws IndexError Sprint not found
     @commands.command(name="listFeedback", brief="List all feedback from a specific task.")
     @commands.guild_only()
     async def list_feedback(self, ctx, project_id: int, sprint_id: int, task_id: int):
@@ -655,6 +690,12 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
         if (scrumbotCog.TESTING):
             await ctx.send(f'> Elapsed time: {timerClass.end()} seconds.')
 
+    ## @brief Remove Feedback
+    #  @param project_id Project ID
+    #  @param task_id Task ID
+    #  @param feedback_id Feedback ID
+    #  @throws KeyError Task not found
+    #  @throws IndexError Sprint not found
     @commands.command(name="rmFeedback", aliases=["removeFeedback"], brief="Remove a specific feedback from a specific task.")
     @commands.guild_only()
     @commands.has_role("Scrum Master")
@@ -686,6 +727,12 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
         if (scrumbotCog.TESTING):
             await ctx.send(f'> Elapsed time: {timerClass.end()} seconds.')
 
+    ## @brief Set Details
+    #  @param project_id Project ID
+    #  @param task_id Task ID
+    #  @param details Details text to be added
+    #  @throws KeyError Task not found
+    #  @throws IndexError Sprint not found
     @commands.command(name="setDetails", brief="Set the details of a specific task.")
     @commands.guild_only()
     @commands.has_any_role("Scrum Master", "Business Analyst")
