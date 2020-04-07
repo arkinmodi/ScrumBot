@@ -24,6 +24,14 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
         self.bot = bot
     
     # PROJECT COG 
+    ## @brief Adds meeting to a project
+    #  @param project_id Project ID
+    #  @param name Name of Project
+    #  @param date Date of project
+    #  @param time Time of project
+    #  @param meeting_type Type of meeting
+    #  @param Description of project
+    #  @throws TypeError Meeting type incorrect
     @commands.command(name="addMeeting", brief="Add a meeting to a project.")
     @commands.guild_only()
     @commands.has_role("Scrum Master")
@@ -48,6 +56,9 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
 
         await ctx.send(f'> Added meeting **{name}** to {proj.get_name()}.')
 
+    ## @brief Add a project
+    #  @param name Name of project
+    #  @param description Description of project
     @commands.command(name="addProject", brief="Add a project to the guild.")
     @commands.guild_only()
     @commands.has_role("Admin")
@@ -60,6 +71,9 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
 
         await ctx.send(f'> Added project **{name}**')
 
+    ## @brief Add requirement to a project
+    #  @param project_id ID of project
+    #  @param requirement Requirement to be added
     @commands.command(name="addRqe", aliases=["addRequirement", "addReq"], brief="Add a requirement to a project.")
     @commands.guild_only()
     @commands.has_role("Business Analyst")
@@ -75,6 +89,8 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
         fileio.write(self.project_list.get_last_id(), "addRqe", requirement)
         await ctx.send(f'> Added requirement to {proj.get_name()}.')
 
+    ## @brief Add sprint to a project
+    #  @param project_id Project ID
     @commands.command(name="addSprint", brief="Add a sprint to a project.")
     @commands.guild_only()
     @commands.has_role("Scrum Master")
@@ -90,6 +106,8 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
         fileio.write(self.project_list.get_last_id(), "addSprint")
         await ctx.send(f'> Added a new sprint to {proj.get_name()}.')
 
+    ## @brief Add project description
+    #  @param project_id Project ID
     @commands.command(name="getProjectDesc", aliases=["getProjectDescription", "getProjDesc"], brief="Get the description of a project.")
     @commands.guild_only()
     async def get_project_desc(self, ctx, project_id: int):
@@ -106,6 +124,8 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
         embed.add_field(name='\uFEFF', value=f'Description: {desc}')
         await ctx.send(content=None, embed=embed)
 
+    ## @brief Get requirements of a project
+    #  @param project_id Project ID
     @commands.command(name="getRqes", aliases=["getRequirements", "getReqs"], brief="Get the requirements of a project.")
     @commands.guild_only()
     async def get_rqes(self, ctx, project_id: int):
@@ -127,6 +147,8 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
         embed.add_field(name='\uFEFF', value=lst)
         await ctx.send(content=None, embed=embed)
 
+    ## @brief Get the sprints of a project
+    #  @param project_id Project ID
     @commands.command(name="getSprints", aliases=["listSprints"], brief="Get the sprints of a project.")
     @commands.guild_only()
     async def get_sprints(self, ctx, project_id: int):
@@ -149,6 +171,8 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
         embed.add_field(name='\uFEFF', value=lst)
         await ctx.send(content=None, embed=embed)
 
+    ## @brief List all meetings of a project
+    #  @param project_id Project ID
     @commands.command(name="listMeetings", brief="List all meetings of a project.")
     @commands.guild_only()
     async def list_meetings(self, ctx, project_id: int):
@@ -171,6 +195,7 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
         embed.add_field(name='\uFEFF', value=lst)
         await ctx.send(content=None, embed=embed)
 
+    ## @brief List all projects
     @commands.command(name="listProjects", aliases=["listProject"], brief="List all projects in a guild.")
     @commands.guild_only()
     async def list_projects(self, ctx):
@@ -188,6 +213,9 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
 
         await ctx.send(content=None, embed=embed)
 
+    ## @brief Remove the last sprint of a project
+    #  @param project_id Project ID
+    #  @throws IndexError Failed to remove last sprint
     @commands.command(name="rmLastSprint", aliases=["removeLastSprint", "rmSprint", "removeSprint"], brief="Remove the last sprint of a project.")
     @commands.guild_only()
     @commands.has_role("Scrum Master")
@@ -209,7 +237,10 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
         fileio.write(self.project_list.get_last_id(), "rmLastSprint")
         await ctx.send(f'> Removed last sprint from {proj.get_name()}.')
 
-
+    ## @brief Removes a meeting
+    #  @param project_id Project ID
+    #  @param meeting_id Meeting ID
+    #  @throws KeyError Meeting not found
     @commands.command(name="rmMeeting", aliases=["removeMeeting"], brief="Removes a meeting from a project.")
     @commands.guild_only()
     @commands.has_role("Scrum Master")
@@ -581,6 +612,8 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
 
         await ctx.send(content=None, embed=embed)
 
+    ## @brief Listener for error handling
+    #  @param error Error
     @commands.Cog.listener()
     async def on_command_error(self, ctx, error):
         print(f'[Log] Error {error} of type {type(error)}.')
