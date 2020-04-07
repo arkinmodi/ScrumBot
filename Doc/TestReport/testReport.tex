@@ -1,4 +1,3 @@
-% !TeX root = ./testReport.tex
 \documentclass[12pt, titlepage]{article}
 
 \usepackage{booktabs}
@@ -12,16 +11,22 @@
     urlcolor=blue
 }
 \usepackage[round]{natbib}
+\usepackage{pdflscape}
+\usepackage{adjustbox}
+\usepackage{float}
+
+% Document margins
+\usepackage[left=1in,top=1in,right=1in,bottom=1in]{geometry}
 
 \title{SE 3XA3: Test Report\\ScrumBot}
 
 \author{
-	Team 304, ScrumBot
-		\\ Arkin Modi, modia1
+    Team 304, ScrumBot
+        \\ Arkin Modi, modia1
         \\ Leon So, sol4
         \\ Timothy Choy, choyt2
 }
-\date{Last Updated: January 23, 2020}
+\date{Last Updated: April 6, 2020}
 
 %\input{../Comments}
 
@@ -34,13 +39,15 @@
 \listoftables
 \listoffigures
 
-\begin{table}[bp]
+\begin{table}[H]
     \caption{Revision History} \label{TblRevisionHistory}
     \begin{tabularx}{\textwidth}{llX}
         \toprule
             \textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
         \midrule
             January 23, 2020 & Arkin Modi & Copy template\\
+            April 5, 2020 & Arkin Modi & Started work on multiple sections\\
+            April 6, 2020 & Leon So, Arkin Modi & Worked on all sections of the Test Report\\
         \bottomrule
     \end{tabularx}
 \end{table}
@@ -49,31 +56,562 @@
 
 \pagenumbering{arabic}
 
-This document ...
+This document contains all the results of the planned tests that were defined in the Test Plan.
 
 \section{Functional Requirements Evaluation}
+\begin{enumerate}
+    \item{\textbf{FRT-BE1}}\\
+    Initial State: A Discord channel is active\\
+    Input: ScrumBot is added into the channel\\
+    Expected Output: ScrumBot welcome message\\
+    Actual Output: ScrumBot welcome message\\
+    Result: Pass
+    
+    \item{\textbf{FRT-BE2-1}}\\
+    Initial State: Empty project list\\
+    Input: Create New project, with description\\
+    Expected Output: New project created and added to list\\
+    Actual Output: New project created and added to list\\
+    Result: Pass
+
+    \item{\textbf{FRT-BE2-2}}\\
+    Initial State: Empty project list\\
+    Input: Create new project, without description\\
+    Expected Output: New project created and added to list\\
+    Actual Output: New project created and added to list\\
+    Result: Pass
+    
+    \item{\textbf{FRT-BE3-1}}\\
+    Initial State: Project list containing one project with ID 0\\
+    Input: Remove project by ID, ID is 0\\
+    Expected Output: Project list empty, project with ID 0 is removed\\
+    Actual Output: Project list empty, project with ID 0 is removed\\
+    Result: Pass
+
+    \item{\textbf{FRT-BE3-2}}\\
+    Initial State: Empty project list\\
+    Input: Remove project by ID\\
+    Expected Output: KeyError\\
+    Actual Output: KeyError\\
+    Result: Pass
+    
+    \item{\textbf{FRT-BE4-1}}\\
+    Initial State: Project with a sprint and no tasks\\
+    Input: Add a task without details\\
+    Expected Output: Task added to sprint\\
+    Actual Output: Task added to sprint\\
+    Result: Pass
+
+    \item{\textbf{FRT-BE4-2}}\\
+    Initial State: Project with a sprint and no tasks\\
+    Input: Add a task with details\\
+    Expected Output: Task added to sprint\\
+    Actual Output: Task added to sprint\\
+    Result: Pass
+    
+    \item{\textbf{FRT-BE4-3}}\\
+    Initial State: Project with no sprints and no tasks \\
+    Input: Add a task\\
+    Expected Output: IndexError\\
+    Actual Output: IndexError\\
+    Result: Pass
+    
+    \item{\textbf{FRT-BE4-4}}\\
+    Initial State: Project with a sprint and tasks \\
+    Input: Get all tasks by sprint IDs\\
+    Expected Output: A list of tasks\\
+    Actual Output: A list of tasks\\
+    Result: Pass
+    
+    \item{\textbf{FRT-BE4-5}}\\
+    Initial State: Project with sprints and tasks, contains task with ID 0 \\
+    Input: Get a single task with ID 0\\
+    Expected Output: Task with ID 0\\
+    Actual Output: Task with ID 0\\
+    Result: Pass
+    
+    \item{\textbf{FRT-BE4-6}}\\
+    Initial State: Project no sprints and no tasks\\
+    Input: Get a single task with ID 0\\
+    Expected Output: IndexError\\
+    Actual Output: IndexError\\
+    Result: Pass
+    
+    \item{\textbf{FRT-BE4-7}}\\
+    Initial State: Project no sprints and no tasks\\
+    Input: Get a list of tasks\\
+    Expected Output: IndexError\\
+    Actual Output: IndexError\\
+    Result: Pass
+    
+    \item{\textbf{FRT-BE4-8}}\\
+    Initial State: Project with a sprint and a task\\
+    Input: Add feedback to a task by task ID\\
+    Expected Output: Feedback added to task of last sprint\\
+    Actual Output: Feedback added to task of last sprint\\
+    Result: Pass
+ 
+    \item{\textbf{FRT-BE4-9}}\\
+    Initial State: Project with no sprint and no task\\
+    Input: Add feedback to a task by task ID\\
+    Expected Output: Index Error\\
+    Actual Output: Index Error\\
+    Result: Pass
+    
+    \item{\textbf{FRT-BE4-10}}\\
+    Initial State: Project a sprint, a task, and a feedback\\
+    Input: Get feedback from task using sprint ID and task ID\\
+    Expected Output: Feedback of sprint with inputted sprint ID and task with inputted task ID\\
+    Actual Output: Feedback of sprint with inputted sprint ID and task with inputted task ID\\
+    Result: Pass
+    
+    \item{\textbf{FRT-BE4-11}}\\
+    Initial State: Project with no sprint, no task\\
+    Input: Get feedback from task using sprint ID and task ID\\
+    Expected Output: IndexError\\
+    Acutal Output: IndexError\\
+    Result: Pass
+    
+    \item{\textbf{FRT-BE5-1}}\\
+    Initial State: Project with a sprint and a task\\
+    Input: Remove task by task ID\\
+    Expected Output: Task removed from last sprint\\
+    Actual Output: Task removed from last sprint\\
+    Result: Pass
+    
+    \item{\textbf{FRT-BE5-2}}\\
+    Initial State: Project with no sprint\\
+    Input: Remove task by task ID\\
+    Expected Output: IndexError\\
+    Actual Output: IndexError\\
+    Result: Pass
+    
+    \item{\textbf{FRT-BE5-3}}\\
+    Initial State: Project with a sprint and no tasks\\
+    Input: Remove task by task ID\\
+    Expected Output: KeyError\\
+    Actual Output: KeyError\\
+    Result: Pass
+    
+    \item{\textbf{FRT-BE5-4}}\\
+    Initial State: Project with a sprint and a task with ID 0\\
+    Input: Set details of task with ID 0\\
+    Expected Output: Task with ID 0 updates with new details\\
+    Actual Output: Task with ID 0 updates with new details\\
+    Result: Pass
+    
+    \item{\textbf{FRT-BE5-5}}\\
+    Initial State: Project with no sprints\\
+    Input: Set details of task with ID 0\\
+    Expected Output: IndexError\\
+    Actual Output: IndexError\\
+    Result: Pass
+    
+    \item{\textbf{FRT-BE6-1}}\\
+    Initial State: Project with a sprint, a task and feedback\\
+    Input: Remove feedback by sprint and task IDs\\
+    Expected Output: Feedback removed\\
+    Actual Output: Feedback removed\\
+    Result: Pass
+    
+    \item{\textbf{FRT-BE6-2}}\\
+    Initial State: Project with no sprint\\
+    Input: Remove feedback by sprint and task IDs\\
+    Expected Output: IndexError\\
+    Actual Output: IndexError\\
+    Result: Pass
+    
+    \item{\textbf{FRT-BE7-1}}\\
+    Initial State: Project with no requirements\\
+    Input: Add requirement\\
+    Expected Output: Requirement added\\
+    Actual Output: Requirement added\\
+    Result: Pass
+    
+    \item{\textbf{FRT-BE7-2}}\\
+    Initial State: Project with requirements\\
+    Input: Get a list of requirement\\
+    Expected Output: A list of requirements\\
+    Actual Output: A list of requirements\\
+    Result: Pass
+    
+    \item{\textbf{FRT-BE7-3}}\\
+    Initial State: Project with requirements\\
+    Input: Remove a requirement by requirement ID\\
+    Expected Output: Requirement removed\\
+    Actual Output: Requirement removed\\
+    Result: Pass
+    
+    \item{\textbf{FRT-BE7-4}}\\
+    Initial State: Project with no requirements\\
+    Input: Remove a requirement by requirement ID\\
+    Expected Output: IndexError\\
+    Actual Output: IndexError\\
+    Result: Pass
+    
+    \item{\textbf{FRT-BE8-1}}\\
+    Initial State: Project with no meetings\\
+    Input: Add a meeting with a description\\
+    Expected Output: Meeting added\\
+    Actual Output: Meeting added\\
+    Result: Pass
+    
+    \item{\textbf{FRT-BE8-2}}\\
+    Initial State: Project with no meetings\\
+    Input: Add a meeting with no description\\
+    Expected Output: Meeting added\\
+    Actual Output: Meeting added\\
+    Result: Pass
+    
+    \item{\textbf{FRT-BE8-3}}\\
+    Initial State: Project with meetings\\
+    Input: Get a meeting by meeting ID\\
+    Expected Output: Meeting with specified ID\\
+    Actual Output: Meeting with specified ID\\
+    Result: Pass
+    
+    \item{\textbf{FRT-BE8-4}}\\
+    Initial State: Project with meetings that contains meeting with ID 0\\
+    Input: Get meeting name with ID 0\\
+    Expected Output: Meeting name of meeting with ID 0\\
+    Actual Output: Meeting name of meeting with ID 0\\
+    Result: Pass
+    
+    \item{\textbf{FRT-BE8-5}}\\
+    Initial State: Project with meetings that contains meeting with ID 0\\
+    Input: Get meeting description with ID 0\\
+    Expected Output: Meeting description of meeting with ID 0\\
+    Actual Output: Meeting description of meeting with ID 0\\
+    Result: Pass
+    
+    \item{\textbf{FRT-BE8-6}}\\
+    Initial State: Project with meetings that contains meeting with ID 0 and has no description\\
+    Input: Get meeting description with ID 0\\
+    Expected Output: Meeting description of meeting with ID 0\\
+    Actual Output: Meeting description of meeting with ID 0\\
+    Result: Pass
+    
+    \item{\textbf{FRT-BE8-7}}\\
+    Initial State: Project with meetings that contains meeting with ID 0 and has a description\\
+    Input: Get meeting description with ID 0\\
+    Expected Output: "No description"\\
+    Actual Output: "No description"\\
+    Result: Pass
+    
+    \item{\textbf{FRT-BE8-8}}\\
+    Initial State: Project with no meetings\\
+    Input: Get meeting name with ID 0\\
+    Expected Output: KeyError\\
+    Actual Output: KeyError\\
+    Result: Pass
+    
+    \item{\textbf{FRT-BE8-8}}\\
+    Initial State: Project with no meetings\\
+    Input: Get meeting description with ID 0\\
+    Expected Output: KeyError\\
+    Actual Output: KeyError\\
+    Result: Pass
+    
+    \item{\textbf{FRT-BE8-9}}\\
+    Initial State: Project with no meetings\\
+    Input: Add a meeting of every meeting type (4 meetings in total)\\
+    Expected Output: Added meeting\\
+    Actual Output: Added meeting\\
+    Result: Pass
+    
+    \item{\textbf{FRT-BE8-10}}\\
+    Initial State: Project with no meetings\\
+    Input: Add a meeting of an invalid meeting type\\
+    Expected Output: TypeError\\
+    Actual Output: TypeError\\
+    Result: Pass
+    
+    \item{\textbf{FRT-BE9-1}}\\
+    Initial State: Project with meetings and contains meeting with ID 0\\
+    Input: Remove meeting with ID 0\\
+    Expected Output: Meeting with ID 0 removed\\
+    Actual Output: Meeting with ID 0 removed\\
+    Result: Pass
+    
+    \item{\textbf{FRT-BE9-2}}\\
+    Initial State: Project with meetings and contains no meetings with ID 0\\
+    Input: Remove meeting with ID 0\\
+    Expected Output: KeyError\\
+    Actual Output: KeyError\\
+    Result: Pass
+    
+    \item{\textbf{FRT-BE10-1}}\\
+    Initial State: Project with four meetings, each meeting of a different type\\
+    Input: Get a list of all meetings\\
+    Expected Output: A list of all meetings\\
+    Actual Output: A list of all meetings\\
+    Result: Pass
+\end{enumerate}
 
 \section{Nonfunctional Requirements Evaluation}
 
-\subsection{Usability}
-		
-\subsection{Performance}
+\begin{enumerate}
+    \item{\textbf{NFRT-LF-1}}\\
+    Initial State: ScrumBot active in Discord channel\\
+    Input: Set of all ScrumBot commands entered\\
+    Expected Output: ScrumBot outputs text formatted according to the text format of ScrumBot\\
+    Actual Output: ScrumBot outputs text formatted according to the text format of ScrumBot\\
+    Result: Pass
 
-\subsection{etc.}
-	
-\section{Comparison to Existing Implementation}	
+    \item{\textbf{NFRT-LF-2}}\\
 
-This section will not be appropriate for every project.
+    \item{\textbf{NFRT-LF-3}}\\
+    Initial State: ScrumBot active in Discord channel\\
+    Input: One of each role available is added\\
+    Expected Output: ScrumBot adds the roles and permissions to the assigned users. The role names should be colour coded.\\
+    Actual Output: ScrumBot adds the roles and permissions to the assigned users. The role names colour coded.\\
+    Result: Pass
+    
+    \item{\textbf{NFRT-UH-1}}\\
+
+    \item{\textbf{NFRT-UH-2}}\\
+    Initial State: ScrumBot active in Discord channel\\
+    Input: Help command entered\\
+    Expected Output: ScrumBot should output help menu\\
+    Actual Output: ScrumBot outputs help menu\\
+    Result: Pass
+    
+    \item{\textbf{NFRT-P-1}}\\
+
+    \item{\textbf{NFRT-OE-1}}\\
+    Initial State: New Discord channel without ScrumBot\\
+    Input/Condition: Add ScrumBot to the Discord channel\\
+    Expected Output: ScrumBot should be active in the Discord channel once added\\
+    Actual Output: Scrumbot is active in the Discord channel\\
+    Result: Pass
+    
+    \item{\textbf{NFRT-OE-2}}\\
+    Initial State: ScrumBot not yet installed on Discord server\\
+    Input/Condition: Establish connection between Scrumbot and Discord\\
+    Expect Result: Scrumbot should connect to Discord\\
+    Actual Result: Scrumbot connected to Discord\\
+    Result: Pass
+
+    \item{\textbf{NFRT-MS-1}}\\
+    Initial State: N/A\\
+    Input/Condition: N/A\\
+    Expected Output: The code is well documented with comments\\
+    Actual Result: The code is well documented with comments\\
+    Result: Pass
+    
+    \item{\textbf{NFRT-MS-2}}\\
+    Initial State: No Doxygen documents generated yet\\
+    Input/Condition: Generate Doxygen HTML and pdf\\
+    Expected Output: The Doxygen documentation is successfully compiled and generated\\
+    Actual Output: The Doxygen documentation is successfully compiled and generated\\
+    Result: Pass
+
+    \item{\textbf{NFRT-MS-3}}\\
+
+    \item{\textbf{NFRT-MS-4}}\\
+    Initial State: ScrumBot is active on the Discord channel\\
+    Input/Condition: User opens help menu\\
+    Expected Result: Help menu is displayed in the Discord chat\\
+    Actual Result: Help menu is displayed in the Discord chat\\
+    Result: Pass
+    
+    \item{\textbf{NFRT-MS-5}}\\
+    Initial State: N/A\\
+    Input/Condition: N/A\\
+    Expected Result: System is modularized into classes\\
+    Actual Result: System is modularized into classes\\
+    Result: Pass
+    
+    \item{\textbf{NFRT-S-1}}\\
+    Initial State: N/A\\
+    Input/Condition: N/A\\
+    Expected Result: All connections between the system and the APIs use HTTPS requests\\
+    Actual Result: All connections between the system and the APIs use HTTPS requests\\
+    Result: Pass
+    
+\end{enumerate}
+
+% \section{Comparison to Existing Implementation}   
+% This section will not be appropriate for every project.
 
 \section{Unit Testing}
+Unit tests were run for the application using the Pytest framework. Statement coverage was analyzed by a plugin called pytest-cov.
 
 \section{Changes Due to Testing}
+There were some changes made due to failing test cases. These changes primarily consisted of typos and minor common programming mistakes (i.e. forgetting to return).
 
 \section{Automated Testing}
-		
+Automated tests was carried out by the Pytest framework.
+
 \section{Trace to Requirements}
-		
-\section{Trace to Modules}		
+
+\begin{table}[H]
+    \centering
+    \caption{Traceability Matrix: Functional Requirement}
+    \begin{adjustbox}{max width=0.7\paperwidth}
+    \begin{tabular}{l|ccccccccccc}
+        \textbf{Test IDs} & \multicolumn{11}{c}{\textbf{Requirement IDs}}\\
+        \hline
+        ~ & \textbf{BE1} & \textbf{BE2} & \textbf{BE3} & \textbf{BE4} & \textbf{BE5} & \textbf{BE6} & \textbf{BE7} & \textbf{BE8} & \textbf{BE9} & \textbf{BE10} & \textbf{BE11}\\
+        \textbf{FRT-BE1}    & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{FRT-BE2-1}  & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{FRT-BE2-2}  & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{FRT-BE3-1}  & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{FRT-BE3-2}  & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{FRT-BE4-1}  & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{FRT-BE4-2}  & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{FRT-BE4-3}  & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{FRT-BE4-4}  & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & X\\
+        \textbf{FRT-BE4-5}  & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{FRT-BE4-6}  & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{FRT-BE4-7}  & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{FRT-BE4-8}  & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{FRT-BE4-9}  & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{FRT-BE4-10} & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{FRT-BE4-11} & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{FRT-BE5-1}  & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{FRT-BE5-2}  & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{FRT-BE5-3}  & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{FRT-BE5-4}  & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{FRT-BE5-5}  & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{FRT-BE6-1}  & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~\\
+        \textbf{FRT-BE6-2}  & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~\\
+        \textbf{FRT-BE7-1}  & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~\\
+        \textbf{FRT-BE7-2}  & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~\\
+        \textbf{FRT-BE7-3}  & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~\\
+        \textbf{FRT-BE7-4}  & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~\\
+        \textbf{FRT-BE8-1}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~\\
+        \textbf{FRT-BE8-2}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~\\
+        \textbf{FRT-BE8-3}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~\\
+        \textbf{FRT-BE8-4}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~\\
+        \textbf{FRT-BE8-5}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~\\
+        \textbf{FRT-BE8-6}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~\\
+        \textbf{FRT-BE8-7}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~\\
+        \textbf{FRT-BE8-8}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~\\
+        \textbf{FRT-BE8-9}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~\\
+        \textbf{FRT-BE8-10} & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~\\
+        \textbf{FRT-BE9-1}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~\\
+        \textbf{FRT-BE9-2}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~\\
+        \textbf{FRT-BE10-1} & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~\\
+    \end{tabular}
+    \end{adjustbox}
+    \label{Traceability Matrix: Functional Requirement}
+\end{table}
+
+\newpage
+\begin{landscape}
+\begin{table}[H]
+    \centering
+    \caption{Traceability Matrix: Non-Functional Requirement}
+    \begin{adjustbox}{width=\paperwidth}
+    \begin{tabular}{l|cccccccccccccccccccccc}
+        \textbf{Test IDs} & \multicolumn{19}{c}{\textbf{Requirement IDs}}\\
+        \hline
+        ~ & \textbf{LF1} & \textbf{LF2} & \textbf{LF3} & \textbf{UH1} & \textbf{UH2} & \textbf{UH3} & \textbf{UH4} & \textbf{P1} & \textbf{P4} & \textbf{OE1} & \textbf{OE3} & \textbf{OE5} & \textbf{OE6} & \textbf{OE7} & \textbf{MS1} & \textbf{MS2} & \textbf{MS3} & \textbf{MS4} & \textbf{S1} & \textbf{C1} & \textbf{L1} & \textbf{HS1}\\
+        \textbf{NFRT-LF-1}  & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-LF-2}  & ~ & X & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-LF-3}  & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-UH-1}  & ~ & ~ & ~ & X & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-UH-2}  & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-P-1}   & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-OE-1}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-OE-2}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-MS-1}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-MS-2}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-MS-3}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-MS-4}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-MS-5}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-S-1}   & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~\\
+    \end{tabular}
+    \end{adjustbox}
+    \label{Traceability Matrix: Non-Functional Requirement}
+\end{table}
+\end{landscape}
+
+\section{Trace to Modules}      
+
+\begin{table}[H]
+    \centering
+    \caption{Traceability Matrix: Functional Requirement}
+    \begin{adjustbox}{max width=0.7\paperwidth}
+    \begin{tabular}{l|ccccccccccc}
+        \textbf{Test IDs} & \multicolumn{11}{c}{\textbf{Requirement IDs}}\\
+        \hline
+        ~ & \textbf{BE1} & \textbf{BE2} & \textbf{BE3} & \textbf{BE4} & \textbf{BE5} & \textbf{BE6} & \textbf{BE7} & \textbf{BE8} & \textbf{BE9} & \textbf{BE10} & \textbf{BE11}\\
+        \textbf{FRT-BE1}    & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{FRT-BE2-1}  & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{FRT-BE2-2}  & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{FRT-BE3-1}  & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{FRT-BE3-2}  & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{FRT-BE4-1}  & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{FRT-BE4-2}  & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{FRT-BE4-3}  & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{FRT-BE4-4}  & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & X\\
+        \textbf{FRT-BE4-5}  & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{FRT-BE4-6}  & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{FRT-BE4-7}  & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{FRT-BE4-8}  & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{FRT-BE4-9}  & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{FRT-BE4-10} & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{FRT-BE4-11} & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{FRT-BE5-1}  & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{FRT-BE5-2}  & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{FRT-BE5-3}  & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{FRT-BE5-4}  & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{FRT-BE5-5}  & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{FRT-BE6-1}  & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~\\
+        \textbf{FRT-BE6-2}  & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~\\
+        \textbf{FRT-BE7-1}  & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~\\
+        \textbf{FRT-BE7-2}  & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~\\
+        \textbf{FRT-BE7-3}  & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~\\
+        \textbf{FRT-BE7-4}  & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~\\
+        \textbf{FRT-BE8-1}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~\\
+        \textbf{FRT-BE8-2}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~\\
+        \textbf{FRT-BE8-3}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~\\
+        \textbf{FRT-BE8-4}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~\\
+        \textbf{FRT-BE8-5}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~\\
+        \textbf{FRT-BE8-6}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~\\
+        \textbf{FRT-BE8-7}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~\\
+        \textbf{FRT-BE8-8}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~\\
+        \textbf{FRT-BE8-9}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~\\
+        \textbf{FRT-BE8-10} & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~\\
+        \textbf{FRT-BE9-1}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~\\
+        \textbf{FRT-BE9-2}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~\\
+        \textbf{FRT-BE10-1} & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~\\
+    \end{tabular}
+    \end{adjustbox}
+    \label{Traceability Matrix: Functional Requirement}
+\end{table}
+
+\newpage
+\begin{landscape}
+\begin{table}[H]
+    \centering
+    \caption{Traceability Matrix: Non-Functional Requirement}
+    \begin{adjustbox}{width=\paperwidth}
+    \begin{tabular}{l|cccccccccccccccccccccc}
+        \textbf{Test IDs} & \multicolumn{19}{c}{\textbf{Requirement IDs}}\\
+        \hline
+        ~ & \textbf{LF1} & \textbf{LF2} & \textbf{LF3} & \textbf{UH1} & \textbf{UH2} & \textbf{UH3} & \textbf{UH4} & \textbf{P1} & \textbf{P4} & \textbf{OE1} & \textbf{OE3} & \textbf{OE5} & \textbf{OE6} & \textbf{OE7} & \textbf{MS1} & \textbf{MS2} & \textbf{MS3} & \textbf{MS4} & \textbf{S1} & \textbf{C1} & \textbf{L1} & \textbf{HS1}\\
+        \textbf{NFRT-LF-1}  & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-LF-2}  & ~ & X & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-LF-3}  & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-UH-1}  & ~ & ~ & ~ & X & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-UH-2}  & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-P-1}   & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-OE-1}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-OE-2}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-MS-1}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-MS-2}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-MS-3}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-MS-4}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-MS-5}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-S-1}   & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~\\
+    \end{tabular}
+    \end{adjustbox}
+    \label{Traceability Matrix: Non-Functional Requirement}
+\end{table}
+\end{landscape}
 
 \section{Code Coverage Metrics}
 
