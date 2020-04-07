@@ -50,10 +50,16 @@ class Sprint():
         task = Task(name, deadline, details)
         self.tasks.add(task)
 
+    ## @brief Mutator for adding a task from a file
+    #  @param task_id ID of task
+    #  @param name Name of task
+    #  @param deadline Deadline of task
+    #  @param details of task
     def add_task_from_file(self, task_id, name, deadline, details=None):
         task = Task(name, deadline, details)
         self.tasks.update(task_id, task)
 
+    ## @brief Accessor to get id of last task added
     def get_last_task_id(self):
         return self.tasks.get_last_id()
 
@@ -65,6 +71,7 @@ class Sprint():
     ## @brief Mutator for adding feedback to a task
     #  @param index Index of task
     #  @param feedback Feedback to be added
+    #  @throws KeyError If ID does not exist
     def add_feedback(self, index, feedback):
         task = self.__get_task_by_id(index)
         if (not task):
@@ -74,6 +81,7 @@ class Sprint():
 
     ## @brief Accessor for feedback
     #  @param index Index of task
+    #  @throws KeyError If ID does not exist
     def get_feedback(self, index):
         task = self.__get_task_by_id(index)
         if (not task):
@@ -84,6 +92,7 @@ class Sprint():
     ## @brief Mutator for removing feedback from a task
     #  @param task_index Index of task
     #  @param feedback_index Index of feedback to be removed
+    #  @throws KeyError If ID does not exist
     def rm_feedback(self, task_index, feedback_index):
         task = self.__get_task_by_id(task_index)
         if (not task):
@@ -94,6 +103,7 @@ class Sprint():
     ## @brief Mutator for setting the details of a task
     #  @param index Index of task
     #  @param details Details of task
+    #  @throws KeyError If ID does not exist
     def set_details(self, index, details):
         task = self.__get_task_by_id(index)
         if (not task):

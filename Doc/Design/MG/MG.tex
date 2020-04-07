@@ -17,6 +17,10 @@
 }
 \usepackage[round]{natbib}
 
+% Different Coloured Text and Strikethrough
+\usepackage{xcolor}
+\usepackage{ulem}
+
 \newcounter{acnum}
 \newcommand{\actheacnum}{AC\theacnum}
 \newcommand{\acref}[1]{AC\ref{#1}}
@@ -37,7 +41,7 @@
         \\ Leon So, sol4
         \\ Timothy Choy, choyt2
 }
-\date{Last Updated: \today}
+\date{Last Updated: April 6, 2020}
 
 %\input{../../Comments}
 
@@ -63,6 +67,10 @@
             March 12, 2020 & Arkin Modi & Worked on Introduction, Anticipated and Unlikely Changes, Module Hierarchy, Module Decomposition, Traceability Matrix and Use Hierarchy Between Modules\\
             March 12, 2020 & Leon So & Anticipated Changes and Unlikely Changes\\
             March 13, 2020 & Arkin Modi & Worked on Use Hierarchy Between Modules, Traceability Matrix, Module Decomposition, and Module Hierarchy\\
+            April 4, 2020 & Arkin Modi & Strikethrough all copied parts from template\\
+            April 4, 2020 & Arkin Modi & Re-wrote the Introduction and Connection Between Requirements and Design\\
+            April 5, 2020 & Arkin Modi & Changed the Modules \& Updated their hierarchy, Removed an Anticipated Change, Updated the Uses Hierarchy Between Modules, Updated the Traceability Matrix between SRS and Modules\\
+            April 6, 2020 & Arkin Modi & Moved all software decision modules (except for generic dictionary) to the behaviour-hiding section\\
         \bottomrule
     \end{tabularx}
 \end{table}
@@ -72,44 +80,33 @@
 \pagenumbering{arabic}
 
 \section{Introduction}
-\subsection{Overview} 
-% Copied from Test Plan
+\subsection{Overview}
 Scrum is an Agile process framework widely used in industry for managing and coordinating collaborative projects. Scrum follows a highly iterative process and often has heavy customer involvement, therefore it can be often be complex. With Discord being a popular communication tool used by many teams of software developers today, ScrumBot provides a solution that directly integrates the management of a scrum development cycle into the communication channels. ScrumBot will allow for better management and organization of retrospectives, stand-ups, and other scrum/agile stages used by software teams within their routine communication channel. ScrumBot will provide features to add and manage Scrum meetings, as well as to store information relevant to those meetings. ScrumBot will also allow Scrum roles to be assigned to members of the Discord channel.
-
-% ScrumBot is a Discord chat bot which allows software development teams to manage their Scrum agile software development process directly within the Discord application.\\
 
 \subsection{Context}
 Prior to this document, the Software Requirements Specification (SRS) was created to outline all the functional and non-functional requirements this project must satisfy. The purpose of this document is to provide a high-level structure to the implementation of this project by decomposing the idea into modules. The decomposition into modules enables a clearer form to satisfy the requirements of the project.\\
 
 \noindent The Module Interface Specification was created in parallel to this document. It describes the operations that each module shall perform.\\
 
-\noindent The Module Guide (MG) is developed~\citep{ParnasEtAl1984}. The MG specifies the modular structure of the system and is intended to allow both designers and maintainers to easily identify the parts of the software. The potential readers of this document are as follows:
+\sout{\noindent The Module Guide (MG) is developed \mbox{~\citep{ParnasEtAl1984}}. The MG specifies the modular structure of the system and is intended to allow both designers and maintainers to easily identify the parts of the software. The potential readers of this document are as follows:}
 
 \begin{itemize}
-\item New project members: This document can be a guide for a new project member
-  to easily understand the overall structure and quickly find the
-  relevant modules they are searching for.
-\item Maintainers: The hierarchical structure of the module guide improves the
-  maintainers' understanding when they need to make changes to the system. It is
-  important for a maintainer to update the relevant sections of the document
-  after changes have been made.
-\item Designers: Once the module guide has been written, it can be used to
-  check for consistency, feasibility and flexibility. Designers can verify the
-  system in various ways, such as consistency among modules, feasibility of the
-  decomposition, and flexibility of the design.
+\item \sout{New project members: This document can be a guide for a new project member to easily understand the overall structure and quickly find the relevant modules they are searching for.}
+\item \sout{Maintainers: The hierarchical structure of the module guide improves the maintainers' understanding when they need to make changes to the system. It is important for a maintainer to update the relevant sections of the document after changes have been made.}
+\item \sout{Designers: Once the module guide has been written, it can be used to check for consistency, feasibility and flexibility. Designers can verify the system in various ways, such as consistency among modules, feasibility of the decomposition, and flexibility of the design.}
 \end{itemize}
 
-\noindent The rest of the document is organized as follows. Section \ref{SecChange} lists the anticipated and unlikely changes of the software requirements. Section \ref{SecMH} summarizes the module decomposition that was constructed according to the likely changes. Section \ref{SecConnection} specifies the connections between the software requirements and the modules. Section \ref{SecMD} gives a detailed description of the modules. Section \ref{SecTM} includes two traceability matrices. One checks the completeness of the design against the requirements provided in the SRS. The other shows the relation between anticipated changes and the modules. Section \ref{SecUse} describes the use relation between modules.
+\sout{\noindent The rest of the document is organized as follows. Section \ref{SecChange} lists the anticipated and unlikely changes of the software requirements. Section \ref{SecMH} summarizes the module decomposition that was constructed according to the likely changes. Section \ref{SecConnection} specifies the connections between the software requirements and the modules. Section \ref{SecMD} gives a detailed description of the modules. Section \ref{SecTM} includes two traceability matrices. One checks the completeness of the design against the requirements provided in the SRS. The other shows the relation between anticipated changes and the modules. Section \ref{SecUse} describes the use relation between modules.}
+
+\textcolor{red}{The Module Guide describes the structure of the system and identifies the system components as modules. The Module Guide's focus is on the hierarchy of the system modules, and not the functionality of each component. The potential readers of this document include: new project members, project maintainers, and designers.}\\
+
+\textcolor{red}{This project is organized as follows. Section \ref{SecChange} contains a list of anticipated and unlikely changes that may occur to the system design. Section \ref{SecMH} contains a overview of the module hierarchy. Section \ref{SecConnection} contains a list of connections between the SRS and the modules. Section \ref{SecMD} contains a description of each module. Section \ref{SecTM} contains two traceability matrices; one for the connections between the SRS and the modules, and another for the connections between the anticipated changes and the modules. Section \ref{SecUse} depicts the uses relation among all the modules.}
 
 \subsection{Design Principles}
 % Copied from template
-Decomposing a system into modules is a commonly accepted approach to developing
-software.  The Module Guide (MG) developed by \citep{ParnasEtAl1984} specified the modular structure of the system. A module is a work assignment for a programmer or programming team~\citep{ParnasEtAl1984}.  Decomposition of the system into modules is
-based on the principle of information hiding~\citep{Parnas1972a}.  This
-principle supports design for change, because the ``secrets'' that each module
-hides represent likely future changes.  Design for change is valuable in SC,
-where modifications are frequent, especially during initial development as the
-solution space is explored.\\
+\sout{Decomposing a system into modules is a commonly accepted approach to developing software. The Module Guide (MG) developed by \mbox{\citep{ParnasEtAl1984}} specified the modular structure of the system. A module is a work assignment for a programmer or programming team \mbox{~\citep{ParnasEtAl1984}}. Decomposition of the system into modules is based on the principle of information hiding \mbox{~\citep{Parnas1972a}}. This principle supports design for change, because the ``secrets'' that each module hides represent likely future changes. Design for change is valuable in SC, where modifications are frequent, especially during initial development as the solution space is explored.}\\
+
+\textcolor{red}{Decomposition of the system into modules is based on the principle of information hiding \mbox{~\citep{Parnas1972a}}. Each module shall contain/hide a secret that can be easily changed. This supports the idea of design for change.}\\
 
 The design follows the rules layed out by \citet{ParnasEtAl1984}, as follows:
 \begin{itemize}
@@ -122,21 +119,13 @@ The design follows the rules layed out by \citet{ParnasEtAl1984}, as follows:
 
 \section{Anticipated and Unlikely Changes} \label{SecChange}
 
-This section lists possible changes to the system. According to the likeliness
-of the change, the possible changes are classified into two
-categories. Anticipated changes are listed in Section \ref{SecAchange}, and
-unlikely changes are listed in Section \ref{SecUchange}.
+\sout{This section lists possible changes to the system. According to the likeliness of the change, the possible changes are classified into two categories. Anticipated changes are listed in Section \ref{SecAchange}, and unlikely changes are listed in Section \ref{SecUchange}.}
 
 \subsection{Anticipated Changes} \label{SecAchange}
-
-Anticipated changes are the source of the information that is to be hidden
-inside the modules. Ideally, changing one of the anticipated changes will only
-require changing the one module that hides the associated decision. The approach
-adapted here is called design for
-change.
+\sout{Anticipated changes are the source of the information that is to be hidden inside the modules. Ideally, changing one of the anticipated changes will only require changing the one module that hides the associated decision. The approach adapted here is called design for change.}
 
 \begin{description}
-\item[\refstepcounter{acnum} \actheacnum \label{acInput1}:] The format of the input data
+\item[\refstepcounter{acnum} \actheacnum \label{acInput1}:] \sout{The format of input data}
 \item[\refstepcounter{acnum} \actheacnum \label{acInput2}:] The format of discord commands
 \item[\refstepcounter{acnum} \actheacnum \label{acServer1}:] The URL used to connect to the hosting server
 \item[\refstepcounter{acnum} \actheacnum \label{acServer2}:] The format of the response from the server
@@ -145,15 +134,9 @@ change.
 
 \subsection{Unlikely Changes} \label{SecUchange}
 
-The module design should be as general as possible. However, a general system is
-more complex. Sometimes this complexity is not necessary. Fixing some design
-decisions at the system architecture stage can simplify the software design. If
-these decision should later need to be changed, then many parts of the design
-will potentially need to be modified. Hence, it is not intended that these
-decisions will be changed.
+\sout{The module design should be as general as possible. However, a general system is more complex. Sometimes this complexity is not necessary. Fixing some design decisions at the system architecture stage can simplify the software design. If these decision should later need to be changed, then many parts of the design will potentially need to be modified. Hence, it is not intended that these decisions will be changed.}
 
 \begin{description}
-\item[\refstepcounter{ucnum} \uctheucnum \label{ucIO}:] 
 \item[\refstepcounter{ucnum} \uctheucnum \label{ucInput}:] There will always be a source of input data external to the software
 \item[\refstepcounter{ucnum} \uctheucnum \label{ucInput}:] The system will be interfacing with the Discord application
 \item[\refstepcounter{ucnum} \uctheucnum \label{ucInput}:] The data structure of a meeting
@@ -163,26 +146,21 @@ decisions will be changed.
 \end{description}
 
 \section{Module Hierarchy} \label{SecMH}
-This section provides an overview of the module design. Modules are summarized
-in a hierarchy decomposed by secrets in Table \ref{TblMH}. The modules listed
-below, which are leaves in the hierarchy tree, are the modules that will
-actually be implemented.
+\sout{This section provides an overview of the module design. Modules are summarized in a hierarchy decomposed by secrets in Table \ref{TblMH}. The modules listed below, which are leaves in the hierarchy tree, are the modules that will actually be implemented.}
 
 \begin{description}
     \item [\refstepcounter{mnum} \mthemnum \label{m1}:] Hardware-Hiding Module
     \item [\refstepcounter{mnum} \mthemnum \label{m2}:] ScrumBot Module
-    \item [\refstepcounter{mnum} \mthemnum \label{m3}:] Meeting Types Module
-    % \item [\refstepcounter{mnum} \mthemnum \label{m?}:] Generic Dictionary Module
-    \item [\refstepcounter{mnum} \mthemnum \label{m4}:] Meeting List Module
+    \item [\refstepcounter{mnum} \mthemnum \label{m3}:] \sout{Meeting Types Module}
+    \item [\refstepcounter{mnum} \mthemnum \label{m4}:] \sout{Meeting List Module}
     \item [\refstepcounter{mnum} \mthemnum \label{m5}:] Meeting Module
-    \item [\refstepcounter{mnum} \mthemnum \label{m6}:] Task List Module
+    \item [\refstepcounter{mnum} \mthemnum \label{m6}:] \sout{Task List Module}
     \item [\refstepcounter{mnum} \mthemnum \label{m7}:] Task Module
     \item [\refstepcounter{mnum} \mthemnum \label{m8}:] Sprint Module
-    \item [\refstepcounter{mnum} \mthemnum \label{m9}:] Project List Module
+    \item [\refstepcounter{mnum} \mthemnum \label{m9}:] \sout{Project List Module}
     \item [\refstepcounter{mnum} \mthemnum \label{m10}:] Project Module
     \item [\refstepcounter{mnum} \mthemnum \label{m11}:] Generic Dictionary Module
 \end{description}
-
 
 \begin{table}[h!]
 \centering
@@ -194,20 +172,24 @@ actually be implemented.
 {Hardware-Hiding Module} & ~ \\
 \midrule
 
-\multirow{1}{0.3\textwidth}{Behaviour-Hiding Module} 
-& ScrumBot Module\\         % Interface with Discord
+\multirow{5}{0.3\textwidth}{Behaviour-Hiding Module} 
+& ScrumBot Module\\                             % Interface with Discord
+& \textcolor{red}{Meeting Module}\\             % Data Structure
+& \textcolor{red}{Task Module}\\                % Data Structure
+& \textcolor{red}{Sprint Module}\\              % Data Structure
+& \textcolor{red}{Project Module}\\             % Data Structure
 \midrule
 
 \multirow{8}{0.3\textwidth}{Software Decision Module} 
-& Meeting Types Module\\    % Data Structure
-& Meeting List Module\\     % Data Structure
-& Meeting Module\\          % Data Structure
-& Task List Module\\        % Data Structure
-& Task Module\\             % Data Structure
-& Sprint Module\\           % Data Structure
-& Project List Module\\     % Data Structure
-& Project Module\\          % Data Structure
-& Generic Dictionary Module\\   % Data Structure
+& \sout{Meeting Types Module}\\         % Data Structure
+& \sout{Meeting List Module}\\          % Data Structure
+& \sout{Meeting Module}\\               % Data Structure
+& \sout{Task List Module}\\             % Data Structure
+& \sout{Task Module}\\                  % Data Structure
+& \sout{Sprint Module}\\                % Data Structure
+& \sout{Project List Module}\\          % Data Structure
+& \sout{Project Module}\\               % Data Structure
+& Generic Dictionary Module\\           % Data Structure
 \bottomrule
 
 \end{tabular}
@@ -217,15 +199,13 @@ actually be implemented.
 
 \section{Connection Between Requirements and Design} \label{SecConnection}
 
-The design of the system is intended to satisfy the requirements developed in
-the SRS. In this stage, the system is decomposed into modules. The connection
-between requirements and modules is listed in Table \ref{TblRT}.
+\sout{The design of the system is intended to satisfy the requirements developed in the SRS. In this stage, the system is decomposed into modules. The connection between requirements and modules is listed in Table \ref{TblRT}.}
+\textcolor{red}{The SRS defines the requirements that the system design must fulfill. In Table \ref{TblRT}, the connections between the requirements and modules are listed.}
 
 \section{Module Decomposition} \label{SecMD}
+\sout{Modules are decomposed according to the principle of ``information hiding'' proposed by \mbox{\citet{ParnasEtAl1984}}. The \emph{Secrets} field in a module decomposition is a brief statement of the design decision hidden by the module. The \emph{Services} field specifies \emph{what} the module will do without documenting \emph{how} to do it. For each module, a suggestion for the implementing software is given under the \emph{Implemented By} title. If the entry is \emph{OS}, this means that the module is provided by the operating system or by standard programming language libraries.  Also indicate if the module will be implemented specifically for the software.}
 
-Modules are decomposed according to the principle of ``information hiding'' proposed by \citet{ParnasEtAl1984}. The \emph{Secrets} field in a module decomposition is a brief statement of the design decision hidden by the module. The \emph{Services} field specifies \emph{what} the module will do without documenting \emph{how} to do it. For each module, a suggestion for the implementing software is given under the \emph{Implemented By} title. If the entry is \emph{OS}, this means that the module is provided by the operating system or by standard programming language libraries.  Also indicate if the module will be implemented specifically for the software.
-
-Only the leaf modules in the hierarchy have to be implemented. If a dash (\emph{--}) is shown, this means that the module is not a leaf and will not have to be implemented. Whether or not this module is implemented depends on the programming language selected.
+\sout{Only the leaf modules in the hierarchy have to be implemented. If a dash (\emph{--}) is shown, this means that the module is not a leaf and will not have to be implemented. Whether or not this module is implemented depends on the programming language selected.}
 
 \subsection{Hardware Hiding Modules (\mref{m1})}
 \begin{description}
@@ -237,22 +217,10 @@ Only the leaf modules in the hierarchy have to be implemented. If a dash (\emph{
 \subsection{Behaviour-Hiding Module}
 
 \begin{description}
-\item[Secrets:] The contents of the required behaviours.
-\item[Services:] Includes programs that provide externally visible behaviour of
-  the system as specified in the software requirements specification (SRS)
-  documents. This module serves as a communication layer between the
-  hardware-hiding module and the software decision module. The programs in this
-  module will need to change if there are changes in the SRS.
-\item[Implemented By:] --
+\item[Secrets:] \sout{The contents of the required behaviours.}
+\item[Services:] \sout{Includes programs that provide externally visible behaviour of the system as specified in the software requirements specification (SRS) documents. This module serves as a communication layer between the hardware-hiding module and the software decision module. The programs in this module will need to change if there are changes in the SRS.}
+\item[Implemented By:] \sout{--}
 \end{description}
-
-% \begin{description}
-%     \item[Secrets:] The design decision based on mathematical theorems, physical facts, or programming considerations. The secrets of this module are \emph{not} described in the SRS.
-%     \item[Services:] Includes data structure and algorithms used in the system that do not provide direct interaction with the user. 
-%     % Changes in these modules are more likely to be motivated by a desire to
-%     % improve performance than by externally imposed changes.
-%     \item[Implemented By:] --
-% \end{description}
 
 \subsubsection{ScrumBot Module (\mref{m2})}
 \begin{description}
@@ -261,62 +229,102 @@ Only the leaf modules in the hierarchy have to be implemented. If a dash (\emph{
     \item[Implemented By:] scrumbot.py
 \end{description}
 
-\subsection{Software Decision Module}
-\subsubsection{Meeting Types Module (\mref{m3})}
-\begin{description}
-    \item[Secrets:] Exported type (data structure)
-    \item[Services:] None
-    \item[Implemented By:] meetingTypes.py
-\end{description}
-
-\subsubsection{Meeting List Module (\mref{m4})}
-\begin{description}
-    \item[Secrets:] Data structure for a list of meetings
-    \item[Services:] Provides the ability to add, remove, and output all data
-    \item[Implemented By:] meetingList.py
-\end{description}
-
 \subsubsection{Meeting Module (\mref{m5})}
 \begin{description}
+\color{red}
     \item[Secrets:] Data structure of a meeting
     \item[Services:] Provides the ability to initialize, access (name, date, time, type, and description) and mutate (description only) a meeting
-    \item[Implemented By:] meeting.py
-\end{description}
-
-\subsubsection{Task List Module (\mref{m6})}
-\begin{description}
-    \item[Secrets:] Data structure for a list of tasks
-    \item[Services:] Provides the ability to add, remove, and output all data
-    \item[Implemented By:] taskList.py
+    \item[Implemented By:] meeting.py, meetingTypes.py,
 \end{description}
 
 \subsubsection{Task Module (\mref{m7})}
 \begin{description}
+\color{red}
     \item[Secrets:] Data structure of a task
     \item[Services:] Provides the ability to initialize, access (deadline, details and feedback) and mutate (feedback and details) a task
-    \item[Implemented By:] task.py
+    \item[Implemented By:] task.py, taskList.py
 \end{description}
 
 \subsubsection{Sprint Module (\mref{m8})}
 \begin{description}
+\color{red}
     \item[Secrets:] Data structure of a sprint
     \item[Services:] Provides the ability to initialize, access (all tasks) and mutate (task) a sprint
     \item[Implemented By:] sprint.py
 \end{description}
 
+\subsubsection{Project Module (\mref{m10})}
+\begin{description}
+\color{red}
+    \item[Secrets:] Data structure for a project
+    \item[Services:] Provides the ability to initialize, access (description, meetings, requirements and sprints) and mutate (description, meetings, requirements and sprints) a project
+    \item[Implemented By:] project.py, projectList.py
+\end{description}
+
+\subsection{Software Decision Module}
+\subsubsection{Meeting Types Module (\mref{m3})}
+\begin{description}
+    \item[Secrets:] \sout{Exported type (data structure)}
+    \item[Services:] \sout{None}
+    \item[Implemented By:] \sout{meetingTypes.py}
+\end{description}
+\textcolor{red}{This Module has been removed.}
+
+\subsubsection{Meeting List Module (\mref{m4})}
+\begin{description}
+    \item[Secrets:] \sout{Data structure for a list of meetings}
+    \item[Services:] \sout{Provides the ability to add, remove, and output all data}
+    \item[Implemented By:] \sout{meetingList.py}
+\end{description}
+\textcolor{red}{This Module has been removed.}
+
+\subsubsection{Meeting Module (\mref{m5})}
+\begin{description}
+    \item[Secrets:] \sout{Data structure of a meeting}
+    \item[Services:] \sout{Provides the ability to initialize, access (name, date, time, type, and description) and mutate (description only) a meeting}
+    \item[Implemented By:] \sout{meeting.py}
+\end{description}
+\textcolor{red}{This Module has been moved to the Behaviour-Hiding Module section.}
+
+\subsubsection{Task List Module (\mref{m6})}
+\begin{description}
+    \item[Secrets:] \sout{Data structure for a list of tasks}
+    \item[Services:] \sout{Provides the ability to add, remove, and output all data}
+    \item[Implemented By:] \sout{taskList.py}
+\end{description}
+\textcolor{red}{This Module has been removed.}
+
+\subsubsection{Task Module (\mref{m7})}
+\begin{description}
+    \item[Secrets:] \sout{Data structure of a task}
+    \item[Services:] \sout{Provides the ability to initialize, access (deadline, details and feedback) and mutate (feedback and details) a task}
+    \item[Implemented By:] \sout{task.py}
+\end{description}
+\textcolor{red}{This Module has been moved to the Behaviour-Hiding Module section.}
+
+\subsubsection{Sprint Module (\mref{m8})}
+\begin{description}
+    \item[Secrets:] \sout{Data structure of a sprint}
+    \item[Services:] \sout{Provides the ability to initialize, access (all tasks) and mutate (task) a sprint}
+    \item[Implemented By:] \sout{sprint.py}
+\end{description}
+\textcolor{red}{This Module has been moved to the Behaviour-Hiding Module section.}
+
 \subsubsection{Project List Module (\mref{m9})}
 \begin{description}
-    \item[Secrets:] Data structure for a list of projects
-    \item[Services:] Provides the ability to add, remove, and output all data
-    \item[Implemented By:] projectList.py
+    \item[Secrets:] \sout{Data structure for a list of projects}
+    \item[Services:] \sout{Provides the ability to add, remove, and output all data}
+    \item[Implemented By:] \sout{projectList.py}
 \end{description}
+\textcolor{red}{This Module has been removed.}
 
 \subsubsection{Project Module (\mref{m10})}
 \begin{description}
-    \item[Secrets:] Data structure for a project
-    \item[Services:] Provides the ability to initialize, access (description, meetings, requirements and sprints) and mutate (description, meetings, requirements and sprints) a project
-    \item[Implemented By:] project.py
+    \item[Secrets:] \sout{Data structure for a project}
+    \item[Services:] \sout{Provides the ability to initialize, access (description, meetings, requirements and sprints) and mutate (description, meetings, requirements and sprints) a project}
+    \item[Implemented By:] \sout{project.py}
 \end{description}
+\textcolor{red}{This Module has been moved to the Behaviour-Hiding Module section.}
 
 \subsubsection{Generic Dictionary Module (\mref{m11})}
 \begin{description}
@@ -339,16 +347,16 @@ requirements and between the modules and the anticipated changes.
         \textbf{Requirements} & \textbf{Modules}\\
         \midrule
         BE1 & \mref{m2}\\
-        BE2 & \mref{m2}, \mref{m9}, \mref{m10}, \mref{m11}\\
-        BE3 & \mref{m2}, \mref{m9}, \mref{m11}\\
-        BE4 & \mref{m2}, \mref{m8}, \mref{m9}, \mref{m10}, \mref{m11}\\
-        BE5 & \mref{m2}, \mref{m8}, \mref{m9}, \mref{m10}, \mref{m11}\\
-        BE6 & \mref{m2}, \mref{m8}, \mref{m9}, \mref{m10}, \mref{m11}\\
-        BE7 & \mref{m2}, \mref{m8}, \mref{m9}, \mref{m10}, \mref{m11}\\
-        BE8 & \mref{m2}, \mref{m9}, \mref{m10}, \mref{m11}\\
-        BE9 & \mref{m2}, \mref{m9}, \mref{m10}, \mref{m11}\\
-        BE10 & \mref{m2}, \mref{m9}, \mref{m10}, \mref{m11}\\
-        BE11 & \mref{m2}, \mref{m8}, \mref{m9}, \mref{m10}, \mref{m11}\\
+        BE2 & \mref{m2}, \sout{\mref{m9},}\mref{m10}, \mref{m11}\\
+        BE3 & \mref{m2}, \sout{\mref{m9},} \mref{m11}\\
+        BE4 & \mref{m2}, \mref{m8}, \sout{\mref{m9},} \mref{m10}, \mref{m11}\\
+        BE5 & \mref{m2}, \mref{m8}, \sout{\mref{m9},} \mref{m10}, \mref{m11}\\
+        BE6 & \mref{m2}, \mref{m8}, \sout{\mref{m9},} \mref{m10}, \mref{m11}\\
+        BE7 & \mref{m2}, \mref{m8}, \sout{\mref{m9},} \mref{m10}, \mref{m11}\\
+        BE8 & \mref{m2}, \sout{\mref{m9},} \mref{m10}, \mref{m11}\\
+        BE9 & \mref{m2}, \sout{\mref{m9},} \mref{m10}, \mref{m11}\\
+        BE10 & \mref{m2}, \sout{\mref{m9},} \mref{m10}, \mref{m11}\\
+        BE11 & \mref{m2}, \mref{m8}, \sout{\mref{m9},} \mref{m10}, \mref{m11}\\
         LF1 & \mref{m2}\\
         LF2 & \mref{m2}\\
         LF3 & \mref{m2}\\
@@ -389,7 +397,7 @@ requirements and between the modules and the anticipated changes.
         \toprule
         \textbf{AC} & \textbf{Modules}\\
         \midrule
-        \acref{acInput1} & \mref{m2}\\
+        \sout{\acref{acInput1}} & \sout{\mref{m2}}\\
         \acref{acInput2} & \mref{m2}\\
         \acref{acServer1} & \mref{m2}\\
         \acref{acServer2} & \mref{m2}\\
@@ -402,12 +410,20 @@ requirements and between the modules and the anticipated changes.
 
 \section{Use Hierarchy Between Modules} \label{SecUse}
 
-In this section, the uses hierarchy between modules is provided. \citet{Parnas1978} said of two programs A and B that A {\em uses} B if correct execution of B may be necessary for A to complete the task described in its specification. That is, A {\em uses} B if there exist situations in which the correct functioning of A depends upon the availability of a correct implementation of B.  Figure \ref{FigUH} illustrates the use relation between the modules. It can be seen that the graph is a directed acyclic graph (DAG). Each level of the hierarchy offers a testable and usable subset of the system, and modules in the higher level of the hierarchy are essentially simpler because they use modules from the lower levels.
+\sout{In this section, the uses hierarchy between modules is provided. \mbox{\citet{Parnas1978}} said of two programs A and B that A {\em uses} B if correct execution of B may be necessary for A to complete the task described in its specification. That is, A {\em uses} B if there exist situations in which the correct functioning of A depends upon the availability of a correct implementation of B.}
+Figure \ref{FigUH} illustrates the use relation between the modules. It can be seen that the graph is a directed acyclic graph (DAG). Each level of the hierarchy offers a testable and usable subset of the system, and modules in the higher level of the hierarchy are essentially simpler because they use modules from the lower levels.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.7\textwidth]{"UsesHierarchy".png}
-    \caption{Use hierarchy among modules}
+    \includegraphics[width=0.7\textwidth]{"UsesHierarchy_rev0".png}
+    \caption{\sout{Use hierarchy among modules}}
+    \label{FigUH}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{"UsesHierarchy_rev1".png}
+    \caption{\textcolor{red}{Use hierarchy among modules}}
     \label{FigUH}
 \end{figure}
 

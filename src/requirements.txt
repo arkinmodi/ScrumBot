@@ -12,6 +12,7 @@ discord == 1.0.1
 
 # test.py: 6
 pytest == 5.3.5
+pytest-cov == 2.8.1
 
 # scrumbot.py: 9
 python_dotenv == 0.11.0

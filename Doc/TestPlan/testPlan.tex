@@ -18,6 +18,10 @@
 \usepackage{adjustbox}
 \usepackage{booktabs}
 
+% Different Coloured Text and Strikethrough
+\usepackage{xcolor}
+\usepackage{ulem}
+
 % Document margins
 \usepackage[left=1in,top=1in,right=1in,bottom=1in]{geometry}
 
@@ -29,7 +33,7 @@
         \\ Leon So, sol4
         \\ Timothy Choy, choyt2
 }
-\date{Last Updated: February 28, 2020}
+\date{Last Updated: April 6, 2020}
 
 %\input{../Comments}
 
@@ -65,6 +69,7 @@
             February 28, 2020 & Arkin Modi & Worked on Traceability Matrices and Tests for FRs\\
             February 28, 2020 & Leon So, Timothy Choy & Proofread Document\\
             February 28, 2020 & Everyone & Final Revisions\\
+            April 6, 2020 & Arkin Modi, Leon So & Revised all test cases\\
         \bottomrule
     \end{tabularx}
 \end{table}
@@ -168,351 +173,437 @@ Scrum is an Agile process framework widely used in industry for managing and coo
 The test team will consist of all the members of the project: Arkin Modi, Leon So, and Timothy Choy.
 
 \subsection{Automated Testing Approach}
-Testing shall be automated with the use of the GitLab's CI/CD tool and the Pytest framework. The tests will be run every time a commit is pushed to the repository.
+Testing shall be \textcolor{red}{partially} automated with the use of \sout{the GitLab's CI/CD tool and }the Pytest framework. The tests will be run every time a commit is pushed to the repository.
 
 \subsection{Testing Tools}
-The unit tests will be written using the Pytest framework. Static testing will be done with the use of Pylint.
+The unit tests will be written using the Pytest framework. Static testing will be done with the use of Pylint. \textcolor{red}{Manual testing will be done by the test team.}
 
 \subsection{Testing Schedule}
 See Gantt Chart at the following URL, \url{https://gitlab.cas.mcmaster.ca/modia1/ScrumBot/-/blob/master/ProjectSchedule/}.
 
 \section{System Test Description}
 \subsection{Tests for Functional Requirements}
+\textcolor{red}{\textbf{All previous test cases have been changed.}}
 
 \subsubsection{Installation}
-
 \begin{enumerate}
     \item{\textbf{FRT-BE1}}\\
-    Type: Specification-based, Dynamic, Manual\\
+    Type: Functional, Dynamic, Manual\\
     Initial State: A Discord channel is active\\
     Input: ScrumBot is added into the channel\\
-    Output: Various notifications, such as a link to documentation and basic commands\\
-    How test will be performed: ScrumBot will be manually added to a Discord channel\\
+    Output: ScrumBot welcome message\\
+    How test will be performed: ScrumBot will be manually added to a Discord channel.\\
 \end{enumerate}
 
 \subsubsection{Project Creation}
-
 \begin{enumerate}
     \item{\textbf{FRT-BE2-1}}\\
-    Type: Specification-based, Dynamic, Manual, Boundary\\
-    Initial State: ScrumBot active in Discord channel\\
-    Input: Add project command is entered, with specified details\\
-    Output: Confirmation message\\
-    How test will be performed: The test will be performed manually through commands entered in Discord. Manual testing will focus if the notifications are sent to the correct people as well as the interactions between ScrumBot and the tester\\
-    
-    \item{\textbf{FRT-BE2-2}}
-    Type: Specification-based, Dynamic, Unit, Boundary\\
-    Initial State: ScrumBot active in Discord channel\\
-    Input: Pytest file is run\\
-    Output: Pytest output\\
-    How test will be performed: The test will be performed through Pytest, where tests will run the command to add a project, focusing on the parameters entered to create projects\\
+    Type: Functional, Dynamic, Unit, Automated\\
+    Initial State: Empty project list\\
+    Input: Create New project, with description\\
+    Output: New project created and added to list\\
+    How test will be performed: Pytest will run the internal commands that ScrumBot will use to create a project.
+
+    \item{\textbf{FRT-BE2-2}}\\
+    Type: Functional, Dynamic, Unit, Automated\\
+    Initial State: Empty project list\\
+    Input: Create new project, without description\\
+    Output: New project created and added to list\\
+    How test will be performed: Pytest will run the internal commands that ScrumBot will use to create a project.
 \end{enumerate}
 
 \subsubsection{Project Removal}
-
 \begin{enumerate}
     \item{\textbf{FRT-BE3-1}}\\
-    Type: Specification-based, Dynamic, Manual, Boundary\\
-    Initial State: ScrumBot active in Discord channel\\
-    Input: Remove project command is entered with project ID\\
-    Output: The system shall as the Business Analyst of the project for confirmation. If confirmed, the project should be removed from project list. The system shall then ask if the project has been completed or cancelled. All project collaborators should be notified that the project has been removed.\\
-    How test will be performed: The test team will attempt to remove a project in the Discord channel using an chat member account that is assigned with the role of Business Analyst. This test will be done manually in the chat channel where commands to remove a project will be entered. Boundary cases will also be tested, such as attempting to remove a project from an empty project list\\
-    
+    Type: Functional, Dynamic, Unit, Automated\\
+    Initial State: Project list containing one project with ID 0\\
+    Input: Remove project by ID, ID is 0\\
+    Output: Project list empty, project with ID 0 is removed\\
+    How test will be performed: Pytest will run the internal commands that ScrumBot will use to remove a project.
+
     \item{\textbf{FRT-BE3-2}}\\
-    Type: Dynamic, Unit, Boundary\\
-    Initial State: ScrumBot active in Discord channel\\
-    Input: Pytest file is run\\
-    Output: Pytest output\\
-    How test will be performed: The test will be performed through Pytest, where the test will run the command to add a project, focusing on the parameters entered to remove projects. The Pytest file will also include tests which tests boundary conditions, such as attempting to remove a project from an empty project list\\
+    Type: Functional, Dynamic, Unit, Automated\\
+    Initial State: Empty project list\\
+    Input: Remove project by ID\\
+    Output: KeyError\\
+    How test will be performed: Pytest will run the internal commands that ScrumBot will use to remove a project.
 \end{enumerate}
 
 \subsubsection{Sprint-Planning Meeting}
-
 \begin{enumerate}
     \item{\textbf{FRT-BE4-1}}\\
-    Type: Dynamic, Manual\\
-    Initial State: ScrumBot active in Discord channel\\
-    Input: Sprint-planning meeting command is run\\
-    Output: ScrumBot outputs message stating that a sprint-planning meeting has started with relevant commands for sprint-planning meetings\\
-    How test will be performed: A tester will execute the command to start the meeting from a user account assigned to the role of Scrum Master\\
-    
+    Type: Functional, Dynamic, Unit, Automated\\
+    Initial State: Project with a sprint and no tasks\\
+    Input: Add a task without details\\
+    Output: Task added to sprint\\
+    How test will be performed: Pytest will run the internal commands that ScrumBot will use to add task to a sprint.
+
     \item{\textbf{FRT-BE4-2}}\\
-    Type: Specification-based, Dynamic, Manual\\
-    Initial State: ScrumBot active in Discord channel, Sprint-planning meeting in progress\\
-    Input: Progress information is entered\\
-    Output: ScrumBot stores or shows information based on the input\\
-    How test will be performed: A tester with the Scrum Master role will run commands to see if they can add goals, feedback, backlog tasks, tasks, as well as update the Trello board. A tester with the Development Team role will run commands to check whether or not they can see new feedback, updated backlog tasks, new goals, as well as assign tasks and update the Trello board\\
+    Type: Functional, Dynamic, Unit, Automated\\
+    Initial State: Project with a sprint and no tasks\\
+    Input: Add a task with details\\
+    Output: Task added to sprint\\
+    How test will be performed: Pytest will run the internal commands that ScrumBot will use to add task to a sprint.
+    
+    \item{\textbf{FRT-BE4-3}}\\
+    Type: Functional, Dynamic, Unit, Automated\\
+    Initial State: Project with no sprints and no tasks \\
+    Input: Add a task\\
+    Output: IndexError\\
+    How test will be performed: Pytest will run the internal commands that ScrumBot will use to add task to a sprint.
+    
+    \item{\textbf{FRT-BE4-4}}\\
+    Type: Functional, Dynamic, Unit, Automated\\
+    Initial State: Project with a sprint and tasks \\
+    Input: Get all tasks by sprint IDs\\
+    Output: A list of tasks\\
+    How test will be performed: Pytest will run the internal commands that ScrumBot will use to get all tasks from sprint.
+    
+    \item{\textbf{FRT-BE4-5}}\\
+    Type: Functional, Dynamic, Unit, Automated\\
+    Initial State: Project with sprints and tasks, contains task with ID 0 \\
+    Input: Get a single task with ID 0\\
+    Output: Task with ID 0\\
+    How test will be performed: Pytest will run the internal commands that ScrumBot will use to get a single task from sprint.
+    
+    \item{\textbf{FRT-BE4-6}}\\
+    Type: Functional, Dynamic, Unit, Automated\\
+    Initial State: Project no sprints and no tasks\\
+    Input: Get a single task with ID 0\\
+    Output: IndexError\\
+    How test will be performed: Pytest will run the internal commands that ScrumBot will use to get a single task from a sprint.
+    
+    \item{\textbf{FRT-BE4-7}}\\
+    Type: Functional, Dynamic, Unit, Automated\\
+    Initial State: Project no sprints and no tasks\\
+    Input: Get a list of tasks\\
+    Output: IndexError\\
+    How test will be performed: Pytest will run the internal commands that ScrumBot will use to get a list of tasks from a sprint.
+    
+    \item{\textbf{FRT-BE4-8}}\\
+    Type: Functional, Dynamic, Unit, Automated\\
+    Initial State: Project with a sprint and a task\\
+    Input: Add feedback to a task by task ID\\
+    Output: Feedback added to task of last sprint\\
+    How test will be performed: Pytest will run the internal commands that ScrumBot will use to add feedback to a task in the last sprint.
+ 
+     
+    \item{\textbf{FRT-BE4-9}}\\
+    Type: Functional, Dynamic, Unit, Automated\\
+    Initial State: Project with no sprint and no task\\
+    Input: Add feedback to a task by task ID\\
+    Output: Index Error\\
+    How test will be performed: Pytest will run the internal commands that ScrumBot will use to add feedback to a task in the last sprint.
+    
+    \item{\textbf{FRT-BE4-10}}\\
+    Type: Functional, Dynamic, Unit, Automated\\
+    Initial State: Project a sprint, a task, and a feedback\\
+    Input: Get feedback from task using sprint ID and task ID\\
+    Output: Feedback of sprint with inputted sprint ID and task with inputted task ID\\
+    How test will be performed: Pytest will run the internal commands that ScrumBot will use to get feedback from task and sprint.
+    
+    \item{\textbf{FRT-BE4-11}}\\
+    Type: Functional, Dynamic, Unit, Automated\\
+    Initial State: Project with no sprint, no task\\
+    Input: Get feedback from task using sprint ID and task ID\\
+    Output: IndexError\\
+    How test will be performed: Pytest will run the internal commands that ScrumBot will use to get feedback from task and sprint.
 \end{enumerate}
 
 \subsubsection{Stand-up Meeting}
-
 \begin{enumerate}
     \item{\textbf{FRT-BE5-1}}\\
-    Type: Dynamic, Manual\\
-    Initial State: ScrumBot active in Discord channel\\
-    Input: Stand-up meeting command is run\\
-    Output: ScrumBot outputs message stating the stand-up meeting has started with relevant commands for stand-up meetings\\
-    How test will be performed: A tester will execute the command to start the meeting from an user account assigned the role of Scrum Master\\
+    Type: Functional, Dynamic, Unit, Automated\\
+    Initial State: Project with a sprint and a task\\
+    Input: Remove task by task ID\\
+    Output: Task removed from last sprint\\
+    How test will be performed: Pytest will run the internal commands that ScrumBot will use to remove a task from the last sprint.
     
     \item{\textbf{FRT-BE5-2}}\\
-    Type: Specification-based, Dynamic, Manual\\
-    Initial State: ScrumBot active in Discord channel, Stand-up meeting in progress\\
-    Input: Progress information is entered\\
-    Output: ScrumBot stores progress information and the corresponding details\\
-    How test will be performed: A tester with Scrum Master role will start a stand-up meeting in the channel. The members of the test team will test commands to add and update progress from various user accounts with the Development Team role and Scrum Master role\\
+    Type: Functional, Dynamic, Unit, Automated\\
+    Initial State: Project with no sprint\\
+    Input: Remove task by task ID\\
+    Output: IndexError\\
+    How test will be performed: Pytest will run the internal commands that ScrumBot will use to remove a task from the last sprint.
+    
+    \item{\textbf{FRT-BE5-3}}\\
+    Type: Functional, Dynamic, Unit, Automated\\
+    Initial State: Project with a sprint and no tasks\\
+    Input: Remove task by task ID\\
+    Output: KeyError\\
+    How test will be performed: Pytest will run the internal commands that ScrumBot will use to remove a task from the last sprint.
+    
+    \item{\textbf{FRT-BE5-4}}\\
+    Type: Functional, Dynamic, Unit, Automated\\
+    Initial State: Project with a sprint and a task with ID 0\\
+    Input: Set details of task with ID 0\\
+    Output: Task with ID 0 updates with new details\\
+    How test will be performed: Pytest will run the internal commands that ScrumBot will use to set description of a task from the last sprint.
+    
+    \item{\textbf{FRT-BE5-5}}\\
+    Type: Functional, Dynamic, Unit, Automated\\
+    Initial State: Project with no sprints\\
+    Input: Set details of task with ID 0\\
+    Output: IndexError\\
+    How test will be performed: Pytest will run the internal commands that ScrumBot will use to set description of a task from the last sprint.
 \end{enumerate}
 
 \subsubsection{Retrospective Meeting}
-
 \begin{enumerate}
     \item{\textbf{FRT-BE6-1}}\\
-    Type: Dynamic, Manual\\
-    Initial State: ScrumBot active in Discord channel\\
-    Input: Retrospective meeting command is run\\
-    Output: ScrumBot outputs message stating the stand-up meeting has started with relevant commands for retrospective meetings\\
-    How test will be performed: A tester will execute the command to start the meeting from an user account assigned the role of Scrum Master\\
+    Type: Functional, Dynamic, Unit, Automated\\
+    Initial State: Project with a sprint, a task and feedback\\
+    Input: Remove feedback by sprint and task IDs\\
+    Output: Feedback removed\\
+    How test will be performed: Pytest will run the internal commands that ScrumBot will use to remove feedback from specified sprint and task.
     
     \item{\textbf{FRT-BE6-2}}\\
-    Type: Specification-based, Dynamic, Manual\\
-    Initial State: ScrumBot active in Discord channel, Retrospective meeting in progress\\
-    Input: Feedback and details are entered using command\\
-    Output: ScrumBot stores the feedback and corresponding details and feedback is visible to all members of the development team\\
-    How test will be performed: A tester with Scrum Master role will start a retrospective meeting in the channel. A tester with the role of Scrum Master will add feedback. Another member of the test team with the role of Development Team will see if the feedback and feedback details are visible\\
+    Type: Functional, Dynamic, Unit, Automated\\
+    Initial State: Project with no sprint\\
+    Input: Remove feedback by sprint and task IDs\\
+    Output: IndexError\\
+    How test will be performed: Pytest will run the internal commands that ScrumBot will use to remove feedback from specified sprint and task.
 \end{enumerate}
 
 \subsubsection{Grooming Meeting}
-
 \begin{enumerate}
     \item{\textbf{FRT-BE7-1}}\\
-    Type: Specification-based, Dynamic, Manual\\
-    Initial State: ScrumBot active in Discord channel\\
-    Input: Grooming meeting command is run\\
-    Output: ScrumBot outputs message stating the grooming meeting has started with relevant commands for grooming meetings\\
-    How test will be performed: A tester will execute the command to start the meeting from an user account assigned the role of Scrum Master\\
+    Type: Functional, Dynamic, Unit, Automated\\
+    Initial State: Project with no requirements\\
+    Input: Add requirement\\
+    Output: Requirement added\\
+    How test will be performed: Pytest will run the internal commands that ScrumBot will use to add a requirement to the project.
     
     \item{\textbf{FRT-BE7-2}}\\
-    Type: Specification-based, Dynamic, Manual\\
-    Initial State: ScrumBot active in Discord channel, Grooming meeting in progress\\
-    Input: Project requirements, project tasks, and deadlines are entered\\
-    Output: ScrumBot stores the information and shows any necessary information\\
-    How test will be performed: A tester with the role of Business Analyst will enter project requirements, project tasks, and deadlines using commands. A tester with the role of Scrum Master or Development Team will see all updates regarding project requirements, tasks and deadlines. A tester with the role of Business Analyst will see the same information\\
+    Type: Functional, Dynamic, Unit, Automated\\
+    Initial State: Project with requirements\\
+    Input: Get a list of requirement\\
+    Output: A list of requirements\\
+    How test will be performed: Pytest will run the internal commands that ScrumBot will use to get a list of requirements to the project.
+    
+    \item{\textbf{FRT-BE7-3}}\\
+    Type: Functional, Dynamic, Unit, Automated\\
+    Initial State: Project with requirements\\
+    Input: Remove a requirement by requirement ID\\
+    Output: Requirement removed\\
+    How test will be performed: Pytest will run the internal commands that ScrumBot will use to remove a requirement from the project.
+    
+    \item{\textbf{FRT-BE7-4}}\\
+    Type: Functional, Dynamic, Unit, Automated\\
+    Initial State: Project with no requirements\\
+    Input: Remove a requirement by requirement ID\\
+    Output: IndexError\\
+    How test will be performed: Pytest will run the internal commands that ScrumBot will use to remove a requirement from the project.
 \end{enumerate}
 
 \subsubsection{Add a Meeting}
-
 \begin{enumerate}
     \item{\textbf{FRT-BE8-1}}\\
-    Type: Dynamic, Unit\\
-    Initial State: ScrumBot active in Discord channel\\
-    Input: Pytest file is run\\
-    Output: Pytest output\\
-    How test will be performed: The test will be performed through Pytest, where tests will run the command to add meetings, focusing on the parameters entered to create meetings\\
+    Type: Functional, Dynamic, Unit, Automated\\
+    Initial State: Project with no meetings\\
+    Input: Add a meeting with a description\\
+    Output: Meeting added\\
+    How test will be performed: Pytest will run the internal commands that ScrumBot will use to add a meeting to the project.
     
     \item{\textbf{FRT-BE8-2}}\\
-    Type: Specification-based, Dynamic, Boundary, Manual\\
-    Initial State: ScrumBot active in Discord channel\\
-    Input: Cancel meeting command is entered, with a specified meeting\\
-    Output: The specified meeting will be removed, otherwise an error message is raised\\
-    How test will be performed: The test will be performed manually through commands entered in Discord. Manual testing primarily will focus on if notifications are sent to the proper people (development team members, business analysts and scrum masters), as well as the interactions between ScrumBot and the tester\\
+    Type: Functional, Dynamic, Unit, Automated\\
+    Initial State: Project with no meetings\\
+    Input: Add a meeting with no description\\
+    Output: Meeting added\\
+    How test will be performed: Pytest will run the internal commands that ScrumBot will use to add a meeting to the project.
+    
+    \item{\textbf{FRT-BE8-3}}\\
+    Type: Functional, Dynamic, Unit, Automated\\
+    Initial State: Project with meetings\\
+    Input: Get a meeting by meeting ID\\
+    Output: Meeting with specified ID\\
+    How test will be performed: Pytest will run the internal commands that ScrumBot will use to get a meeting from the project.
+    
+    \item{\textbf{FRT-BE8-4}}\\
+    Type: Functional, Dynamic, Unit, Automated\\
+    Initial State: Project with meetings that contains meeting with ID 0\\
+    Input: Get meeting name with ID 0\\
+    Output: Meeting name of meeting with ID 0\\
+    How test will be performed: Pytest will run the internal commands that ScrumBot will use to get the name of a meeting from the project.
+    
+    \item{\textbf{FRT-BE8-5}}\\
+    Type: Functional, Dynamic, Unit, Automated\\
+    Initial State: Project with meetings that contains meeting with ID 0\\
+    Input: Get meeting description with ID 0\\
+    Output: Meeting description of meeting with ID 0\\
+    How test will be performed: Pytest will run the internal commands that ScrumBot will use to get the description of a meeting from the project.
+    
+    \item{\textbf{FRT-BE8-6}}\\
+    Type: Functional, Dynamic, Unit, Automated\\
+    Initial State: Project with meetings that contains meeting with ID 0 and has no description\\
+    Input: Get meeting description with ID 0\\
+    Output: Meeting description of meeting with ID 0\\
+    How test will be performed: Pytest will run the internal commands that ScrumBot will use to get the description of a meeting from the project.
+    
+    \item{\textbf{FRT-BE8-7}}\\
+    Type: Functional, Dynamic, Unit, Automated\\
+    Initial State: Project with meetings that contains meeting with ID 0 and has a description\\
+    Input: Get meeting description with ID 0\\
+    Output: "No description"\\
+    How test will be performed: Pytest will run the internal commands that ScrumBot will use to get the description of a meeting from the project.
+    
+    \item{\textbf{FRT-BE8-8}}\\
+    Type: Functional, Dynamic, Unit, Automated\\
+    Initial State: Project with no meetings\\
+    Input: Get meeting name with ID 0\\
+    Output: KeyError\\
+    How test will be performed: Pytest will run the internal commands that ScrumBot will use to get the name of a meeting from the project.
+    
+    \item{\textbf{FRT-BE8-8}}\\
+    Type: Functional, Dynamic, Unit, Automated\\
+    Initial State: Project with no meetings\\
+    Input: Get meeting description with ID 0\\
+    Output: KeyError\\
+    How test will be performed: Pytest will run the internal commands that ScrumBot will use to get the description of a meeting from the project.
+    
+    \item{\textbf{FRT-BE8-9}}\\
+    Type: Functional, Dynamic, Unit, Automated\\
+    Initial State: Project with no meetings\\
+    Input: Add a meeting of every meeting type (4 meetings in total)\\
+    Output: Added meeting\\
+    How test will be performed: Pytest will run the internal commands that ScrumBot will use to add a meeting to the project.
+    
+    \item{\textbf{FRT-BE8-10}}\\
+    Type: Functional, Dynamic, Unit, Automated\\
+    Initial State: Project with no meetings\\
+    Input: Add a meeting of an invalid meeting type\\
+    Output: TypeError\\
+    How test will be performed: Pytest will run the internal commands that ScrumBot will use to add a meeting to the project.
 \end{enumerate}
 
 \subsubsection{Cancel a Meeting}
 
 \begin{enumerate}
     \item{\textbf{FRT-BE9-1}}\\
-    Type: Dynamic, Boundary, Unit\\
-    Initial State: ScrumBot active in Discord channel\\
-    Input: Pytest file is run\\
-    Output: Pytest output\\
-    How test will be performed: The test will be performed through Pytest, where tests will run the command to cancel meetings, in situations where the meeting exists and where the meeting does not exist\\
+    Type: Functional, Dynamic, Unit, Automated\\
+    Initial State: Project with meetings and contains meeting with ID 0\\
+    Input: Remove meeting with ID 0\\
+    Output: Meeting with ID 0 removed\\
+    How test will be performed: Pytest will run the internal commands that ScrumBot will use to remove a meeting from the project.
     
     \item{\textbf{FRT-BE9-2}}\\
-    Type: Specification-based, Dynamic, Manual\\
-    Initial State: ScrumBot active in Discord channel\\
-    Input: Cancel meeting command is entered, with a specified meeting\\
-    Output: The specified meeting will be removed, otherwise an error message is raised\\
-    How test will be performed: The test will be performed manually through commands entered in Discord. Manual testing primarily will focus on if notifications are sent to the proper people (development team members, business analysts and scrum masters)\\
+    Type: Functional, Dynamic, Unit, Automated\\
+    Initial State: Project with meetings and contains no meetings with ID 0\\
+    Input: Remove meeting with ID 0\\
+    Output: KeyError\\
+    How test will be performed: Pytest will run the internal commands that ScrumBot will use to remove a meeting from the project.
 \end{enumerate}
 
 \subsubsection{List Scheduled Meetings}
-
 \begin{enumerate}
     \item{\textbf{FRT-BE10-1}}\\
-    Type: Specification-based, Dynamic, Boundary, Unit\\
-    Initial State: ScrumBot active in Discord channel\\
-    Input: Pytest file is run\\
-    Output: Pytest output\\
-    How test will be performed: The test will be performed through Pytest, where tests will run the command to list meetings, in situations where there are meetings scheduled and when there are no meetings\\
-    
-    \item{\textbf{FRT-BE10-2}}\\
-    Type: Specification-based, Dynamic, Boundary, Manual\\
-    Initial State: ScrumBot active in Discord channel\\
-    Input: The list scheduled meetings command is entered into Discord\\
-    Output: ScrumBot should list out the list of scheduled meetings\\
-    How test will be performed: The test will be performed manually through commands entered in Discord. Test cases be similar to the unit tests above\\
-\end{enumerate}
-
-\subsubsection{See Tasks}
-
-\begin{enumerate}
-    \item{\textbf{FRT-BE11}}\\
-    Type: Specification-based, Dynamic, Manual\\
-    Initial State: ScrumBot active in Discord channel\\
-    Input: The see tasks command is entered into Discord\\
-    Output: A link to the Trello Kanban board, if integrated\\
-    How test will be performed: The test will be performed manually through commands entered in Discord\\
+    Type: Functional, Dynamic, Unit, Automated\\
+    Initial State: Project with four meetings, each meeting of a different type\\
+    Input: Get a list of all meetings\\
+    Output: A list of all meetings\\
+    How test will be performed: Pytest will run the internal commands that ScrumBot will use to get a list of meetings from the project.
 \end{enumerate}
 
 \subsection{Tests for Non-Functional Requirements}
+\textcolor{red}{\textbf{All previous test cases have been changed.}}
 
 \subsubsection{Look and Feel Requirements}
 \paragraph{Appearance Requirements}
 \begin{enumerate}
-\item{\textbf{NFRT-UH13-1}}\\
-Type: Manual, Dynamic, Checklist\\
-Initial State: ScrumBot active in Discord channel\\
-Input: Set of all ScrumBot commands entered\\
-Output: ScrumBot outputs text formatted according to the text format of ScrumBot\\
-How test will be performed: The test team will run commands in the Discord chat with ScrumBot active and check if the text format is appropriate and in accordance with Discord's text format
+    \item{\textbf{NFRT-LF-1}}\\
+    Type: Manual, Dynamic, Checklist\\
+    Initial State: ScrumBot active in Discord channel\\
+    Input: Set of all ScrumBot commands entered\\
+    Output: ScrumBot outputs text formatted according to the text format of ScrumBot\\
+    How test will be performed: The test team will run commands in the Discord chat with ScrumBot active and check if the text format is appropriate and in accordance with Discord's text format
 \end{enumerate}
 
 \paragraph{Style Requirements}
 \begin{enumerate}
-\item{\textbf{NFRT-UH13-2}}\\
-Type: Manual, Dynamic, Checklist\\
-Initial State: ScrumBot active in Discord channel\\
-Input: One of each role available is added\\
-Output: ScrumBot adds the roles and permissions to the assigned users. The role names should be short, clear, and descriptive. The roles should be colour coded\\
-How test will be performed: The test team will add roles in the Discord channel. One of each role available will be assigned
+    \item{\textbf{NFRT-LF-2}}\\
+    Type: Manual, Usability Survey\\
+    How test will be performed: The test team will ask a sample set of users to answer questions on a usability survey after using ScrumBot for the first time. A sample survey is included in the appendix. Questions will be asked regarding their opinion on the clarity of role names, and how these roles are represented on Discord. A sample survey is included in the appendix.
+    
+    \item{\textbf{NFRT-LF-3}}\\
+    Type: Manual, Dynamic, Checklist\\
+    Initial State: ScrumBot active in Discord channel\\
+    Input: One of each role available is added\\
+    Output: ScrumBot adds the roles and permissions to the assigned users. The role names  should be colour coded.\\
+    How test will be performed: The test team will add roles in the Discord channel. One of each role available will be assigned.
 \end{enumerate}
 
 \subsubsection{Usability and Humanity Requirements}
 \paragraph{Ease of Use \& Personalization and Internationalization Requirements}
 \begin{enumerate}
-\item{\textbf{NFRT-UH13-3}}\\
-Type: Manual, Usability Survey\\
-How test will be performed: The test team will ask a sample set of users to answer questions on a usability survey after using ScrumBot for the first time
+    \item{\textbf{NFRT-UH-1}}\\
+    Type: Manual, Usability Survey\\
+    How test will be performed: The test team will ask a sample set of users to answer questions on a usability survey after using ScrumBot for the first time. A sample survey is included in the appendix.
 \end{enumerate}
 
 \paragraph{Learning Requirements}
 \begin{enumerate}
-\item{\textbf{NFRT-UH4}}\\
-Type: Dynamic, Manual\\
-Initial State: ScrumBot active in Discord channel\\
-Input: Help command entered\\
-Output: ScrumBot should output help menu\\
-How test will be performed: The test team will enter the help command into Discord chat with ScrumBot active
+    \item{\textbf{NFRT-UH-2}}\\
+    Type: Dynamic, Manual\\
+    Initial State: ScrumBot active in Discord channel\\
+    Input: Help command entered\\
+    Output: ScrumBot should output help menu\\
+    How test will be performed: The test team will enter the help command into Discord chat with ScrumBot active
 \end{enumerate}
 
 \subsubsection{Performance Requirements}
 \paragraph{Response Speed}
 \begin{enumerate}
-\item{\textbf{NFRT-P1}}\\
-Type: Dynamic, Manual\\
-Initial State: No commands being made\\
-Input: Command entered\\
-Output: Response should be received within 2 seconds of the input being sent\\
-How test will be performed: The test team will enter a command into the Discord channel with ScrumBot active. ScrumBot should provide a response within 2ms of the command being entered
-\end{enumerate}
-
-\paragraph{Meeting Schedule Accuracy}
-\begin{enumerate}
-\item{\textbf{NFRT-P2}}\\
-Type: Dynamic, Manual\\
-Initial State: No meetings schedules\\
-Input: Schedule meeting command with meeting details\\
-Output: The meeting is added to the meeting list with the correct location\\
-How test will be performed: The test team will enter the command to schedule a meeting and the meeting details into the Discord channel with ScrumBot active
-
-\item{\textbf{NFRT-P3}}\\
-Type: Dynamic, Manual\\
-Initial State: No meetings schedules\\
-Input: Schedule meeting command with meeting details\\
-Output: The meeting is added to the meeting list with the correct time\\
-How test will be performed: The test team will enter the command to schedule a meeting and the meeting details into the Discord channel with ScrumBot active
+\item{\textbf{NFRT-P-1}}\\
+    Type: Dynamic, Manual\\
+    Initial State: No commands being made\\
+    Input: Command entered\\
+    Output: Response should be received within 2 seconds of the input being sent\\
+    How test will be performed: The test team will enter a command into the Discord channel with ScrumBot active. ScrumBot should provide a response within 2ms of the command being entered. A helper method will record the time and report to the tester the total time taken.
 \end{enumerate}
 
 \subsubsection{Operational and Environmental Requirements}
 \paragraph{Expected Environment}
 \begin{enumerate}
-
-\item{\textbf{NFRT-OE1}}\\
-Type: Dynamic, Manual\\
-Initial State: New Discord channel without ScrumBot\\
-Input/Condition: Add ScrumBot to the Discord channel\\
-Output/Result: ScrumBot should be fully functional in the Discord channel once added\\
-How test will be performed: The test team will follow the provided installation documentation and add ScrumBot to a brand new Discord channel
+    \item{\textbf{NFRT-OE-1}}\\
+    Type: Dynamic, Manual\\
+    Initial State: New Discord channel without ScrumBot\\
+    Input/Condition: Add ScrumBot to the Discord channel\\
+    Output/Result: ScrumBot should be active in the Discord channel once added\\
+    How test will be performed: The test team will follow the provided installation documentation and add ScrumBot to a brand new Discord channel
 \end{enumerate}
+
 \paragraph{Requirements for Interfacing with Adjacent Systems}
-\begin{enumerate}
 
-\item{\textbf{NFRT-OE2}}\\
-Type: Dynamic, Manual\\
-Initial State: ScrumBot added to Discord channel not yet connected to users' Google services\\
-Input/Condition: User wants to connect their Google services to ScrumBot\\
-Output/Result: ScrumBot should be connect to the User's Google account through Google API services\\
-How test will be performed: The test team will attempt to connect their Google services to ScrumBot
-
-\item{\textbf{NFRT-OE3}}\\
-Type: Dynamic, Manual\\
-Initial State: ScrumBot not yet registered as a public bot\\
-Input/Condition: ScrumBot register with Discord API services and deployed publically\\
-Output/Result: ScrumBot should be a public bot registered with Discord\\
-How test will be performed: The test team will follow documentation provided by Discord to add ScrumBot as a public bot
-
-\item{\textbf{NFRT-OE4}}\\
-Type: Dynamic, Manual\\
-Initial State: ScrumBot added to Discord channel not yet connected to users' Trello services\\
-Input/Condition: User wants to connect their Trello services to ScrumBot\\
-Output/Result: ScrumBot should be connect to the User's Trello account through Trello API services\\
-How test will be performed: The test team will attempt to connect their Trello services to ScrumBot
-\end{enumerate}
 
 \paragraph{Installability Requirements}
-\begin{enumerate}
-
-\item{\textbf{NFRT-OE5}}\\
-Type: Dynamic, Manual\\
-Initial State: ScrumBot not yet added to Discord channel\\
-Input/Condition: User without expertise in Discord bots wants to install ScrumBot\\
-Output/Result: ScrumBot added to Discord channel\\
-How test will be performed: An inexperienced user will attempt to add ScrumBot to a Discord channel by following the provided documentation
-
-\item{\textbf{NFRT-OE6}}\\
-Type: Dynamic, Manual\\
-Initial State: ScrumBot not yet added to Discord channel\\
-Input/Condition: Start installation of ScrumBot\\
-Output/Result: ScrumBot takes less than 5 minutes to install\\
-How test will be performed: Test team will install ScrumBot and time the installation
-
-\item{\textbf{NFRT-OE7}}\\
-Type: Dynamic, Manual\\
-Initial State: ScrumBot installed\\
-Input/Condition: Start uninstalling Scrumbot\\
-Output/Result: ScrumBot is uninstalled\\
-How test will be performed: The test team will attempt to uninstall ScrumBot
-\end{enumerate}
-
+\begin{itemize}
+    \item{\textbf{NFRT-OE-2}}\\
+    Type: Dynamic, Manual\\
+    Initial State: ScrumBot not yet installed on Discord server\\
+    Input/Condition: Establish connection between Scrumbot and Discord\\
+    Output/Result: Scrumbot should connect to Discord\\
+    How test will be performed: The test team will follow documentation provided by Discord to add ScrumBot to the Discord server
+\end{itemize}
 
 \subsubsection{Maintainability and Support Requirements}
 \paragraph{Maintainability Requirements}
 \begin{enumerate}
 
-\item{\textbf{NFRT-MS1}}\\
+\item{\textbf{NFRT-MS-1}}\\
 Type: Static, Manual, Code Inspection\\
 Initial State: N/A\\
 Input/Condition: N/A\\
 Output/Result: The code is well documented with comments\\
 How test will be performed: The test team will inspect the code and check if the code is adequately documented using comments
 
-\item{\textbf{NFRT-MS2}}\\
+\item{\textbf{NFRT-MS-2}}\\
 Type: Static, Manual\\
 Initial State: No Doxygen documents generated yet\\
 Input/Condition: Generate Doxygen HTML and pdf\\
 Output/Result: The Doxygen documentation is successfully compiled and generated\\
 How test will be performed: The test team will try to generate Doxygen HTML and pdf
 
-\item{\textbf{NFRT-MS3}}\\
+\item{\textbf{NFRT-MS-3}}\\
 Type: Static, Manual, Code Inspection\\
 Initial State: N/A\\
 Input/Condition: N/A\\
@@ -522,46 +613,46 @@ How test will be performed: The test team will review the code documentation and
 
 \paragraph{Supportability Requirements}
 \begin{enumerate}
-
-\item{\textbf{NFRT-MS4-1}}\\
+\item{\textbf{NFRT-MS-4}}\\
 Type: Dynamic, Manual\\
 Initial State: ScrumBot is active on the Discord channel\\
 Input/Condition: User wants to open help menu\\
 Output/Result: Help menu is displayed in the Discord chat\\
 How test will be performed: The test team will attempt to open the help menu in the Discord chat
+
 \end{enumerate}
 
 \paragraph{Longevity Requirements}
 \begin{enumerate}
-
-\item{\textbf{NFRT-MS4-2}}\\
-Type: Static, Manual, Code Inspection\\
-Initial State: N/A\\
-Input/Condition: N/A\\
-Output/Result: System is modularized into classes\\
-How test will be performed: The test team will perform a code inspection to ensure that the system is separated into modules
+    \item{\textbf{NFRT-MS-5}}\\
+    Type: Static, Manual, Code Inspection\\
+    Initial State: N/A\\
+    Input/Condition: N/A\\
+    Output/Result: System is modularized into classes\\
+    How test will be performed: The test team will perform a code inspection to ensure that the system is separated into modules
 \end{enumerate}
 
 \subsubsection{Security Requirements}
 \paragraph{HTTP Connections}
 \begin{enumerate}
-
-\item{\textbf{NFRT-S1}}\\
-Type: Static, Manual, Code Inspection\\
-Initial State: N/A\\
-Input/Condition: N/A\\
-Output/Result: All connections between the system and the APIs use HTTPS requests\\
-How test will be performed: The test team will inspect the code and check if all connections between the system and APIs use HTTP requests
+    \item{\textbf{NFRT-S-1}}\\
+    Type: Static, Manual, Code Inspection\\
+    Initial State: N/A\\
+    Input/Condition: N/A\\
+    Output/Result: All connections between the system and the APIs use HTTPS requests\\
+    How test will be performed: The test team will inspect the code and check if all connections between the system and APIs use HTTP requests
 \end{enumerate}
 
 \newpage
-\begin{landscape}
+
 \subsection{Traceability Between Test Cases and Requirements}
-\noindent Test IDs correspond to the tests found in this document. Requirement IDs correspond to the requirements found in the SRS.
+\noindent Test IDs correspond to the tests found in this document. Requirement IDs correspond to the requirements found in the SRS. \\
+\textcolor{red}{\textbf{Tables were updated to reflect new test cases.}}
 
 \begin{table}[H]
     \centering
     \caption{Traceability Matrix: Functional Requirement}
+    \begin{adjustbox}{max width=0.7\paperwidth}
     \begin{tabular}{l|ccccccccccc}
         \textbf{Test IDs} & \multicolumn{11}{c}{\textbf{Requirement IDs}}\\
         \hline
@@ -573,51 +664,68 @@ How test will be performed: The test team will inspect the code and check if all
         \textbf{FRT-BE3-2}  & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
         \textbf{FRT-BE4-1}  & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
         \textbf{FRT-BE4-2}  & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{FRT-BE4-3}  & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{FRT-BE4-4}  & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & X\\
+        \textbf{FRT-BE4-5}  & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{FRT-BE4-6}  & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{FRT-BE4-7}  & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{FRT-BE4-8}  & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{FRT-BE4-9}  & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{FRT-BE4-10} & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{FRT-BE4-11} & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
         \textbf{FRT-BE5-1}  & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~\\
         \textbf{FRT-BE5-2}  & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{FRT-BE5-3}  & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{FRT-BE5-4}  & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{FRT-BE5-5}  & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~\\
         \textbf{FRT-BE6-1}  & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~\\
         \textbf{FRT-BE6-2}  & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~\\
         \textbf{FRT-BE7-1}  & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~\\
         \textbf{FRT-BE7-2}  & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~\\
+        \textbf{FRT-BE7-3}  & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~\\
+        \textbf{FRT-BE7-4}  & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~\\
         \textbf{FRT-BE8-1}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~\\
         \textbf{FRT-BE8-2}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~\\
+        \textbf{FRT-BE8-3}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~\\
+        \textbf{FRT-BE8-4}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~\\
+        \textbf{FRT-BE8-5}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~\\
+        \textbf{FRT-BE8-6}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~\\
+        \textbf{FRT-BE8-7}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~\\
+        \textbf{FRT-BE8-8}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~\\
+        \textbf{FRT-BE8-9}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~\\
+        \textbf{FRT-BE8-10} & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~\\
         \textbf{FRT-BE9-1}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~\\
         \textbf{FRT-BE9-2}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~\\
         \textbf{FRT-BE10-1} & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~\\
-        \textbf{FRT-BE10-2} & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~\\
-        \textbf{FRT-BE11}   & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X\\
     \end{tabular}
+    \end{adjustbox}
     \label{Traceability Matrix: Functional Requirement}
 \end{table}
 
+\newpage
+\begin{landscape}
 \begin{table}[H]
     \centering
     \caption{Traceability Matrix: Non-Functional Requirement}
     \begin{adjustbox}{width=\paperwidth}
-    \begin{tabular}{l|ccccccccccccccccccc}
+    \begin{tabular}{l|cccccccccccccccccccccc}
         \textbf{Test IDs} & \multicolumn{19}{c}{\textbf{Requirement IDs}}\\
         \hline
-        ~ & \textbf{UH1} & \textbf{UH2} & \textbf{UH3} & \textbf{UH4} & \textbf{P1} & \textbf{P2} & \textbf{P3} & \textbf{OE1} & \textbf{OE2} & \textbf{OE3} & \textbf{OE4} & \textbf{OE5} & \textbf{OE6} & \textbf{OE7} & \textbf{MS1} & \textbf{MS2} & \textbf{MS3} & \textbf{MS4} & \textbf{S1}\\
-        \textbf{NFRT-UH13-1}    & X & X & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
-        \textbf{NFRT-UH13-2}    & X & X & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
-        \textbf{NFRT-UH13-3}    & X & X & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
-        \textbf{NFRT-UH4}       & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
-        \textbf{NFRT-P1}        & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
-        \textbf{NFRT-P2}        & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
-        \textbf{NFRT-P3}        & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
-        \textbf{NFRT-OE1}       & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
-        \textbf{NFRT-OE2}       & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
-        \textbf{NFRT-OE3}       & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
-        \textbf{NFRT-OE4}       & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
-        \textbf{NFRT-OE5}       & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
-        \textbf{NFRT-OE6}       & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~\\
-        \textbf{NFRT-OE7}       & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~\\
-        \textbf{NFRT-MS1}       & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~\\
-        \textbf{NFRT-MS2}       & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~\\
-        \textbf{NFRT-MS3}       & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~\\
-        \textbf{NFRT-MS4-1}     & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~\\
-        \textbf{NFRT-MS4-2}     & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~\\
-        \textbf{NFRT-S1}        & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X\\
+        ~ & \textbf{LF1} & \textbf{LF2} & \textbf{LF3} & \textbf{UH1} & \textbf{UH2} & \textbf{UH3} & \textbf{UH4} & \textbf{P1} & \textbf{P4} & \textbf{OE1} & \textbf{OE3} & \textbf{OE5} & \textbf{OE6} & \textbf{OE7} & \textbf{MS1} & \textbf{MS2} & \textbf{MS3} & \textbf{MS4} & \textbf{S1} & \textbf{C1} & \textbf{L1} & \textbf{HS1}\\
+        \textbf{NFRT-LF-1}  & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-LF-2}  & ~ & X & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-LF-3}  & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-UH-1}  & ~ & ~ & ~ & X & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-UH-2}  & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-P-1}   & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-OE-1}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-OE-2}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-MS-1}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-MS-2}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-MS-3}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-MS-4}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-MS-5}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-S-1}   & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~\\
     \end{tabular}
     \end{adjustbox}
     \label{Traceability Matrix: Non-Functional Requirement}
@@ -673,6 +781,8 @@ These survey questions will be used to test usability requirements.
     \item Did you find ScrumBot easy to use?
     \item Would you use ScrumBot on a regular basis?
     \item Do you agree that the language used by ScrumBot is appropriate for English speakers?
+    \item Are the role names clear and understandable?
+    \item Is the system and user commands intuitive and easy to use?
 \end{enumerate}
 % This is a section that would be appropriate for some teams.
 

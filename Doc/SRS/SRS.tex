@@ -14,8 +14,7 @@
 
 % Different Coloured Text and Strikethrough
 \usepackage{xcolor}
-\usepackage{soul}
-\setstcolor{red}
+\usepackage{ulem}
 
 % Document margins
 \usepackage[left=1in,top=1in,right=1in,bottom=1in]{geometry}
@@ -39,7 +38,7 @@
         \\ Leon So, sol4
         \\ Timothy Choy, choyt2
 }
-\date{Last Updated: February 9, 2020}
+\date{Last Updated: April 5, 2020}
 
 %\input{../Comments}
 
@@ -72,6 +71,10 @@
             February 9, 2020 & Timothy Choy & Worked on Work Partitioning, Individual Product Use Cases\\
             February 9, 2020 & Everyone & Final Revision\\
             April 4, 2020 & Arkin Modi & Added TA's to the stakeholders. Added hardware assumptions to Relevant Facts and Assumptions. Added the help command to User Documentation Requirements.\\
+            April 5, 2020 & Arkin Modi & Updated various Business Events and Non-Functional Requirements\\
+            April 5, 2020 & Leon So & Updated Product Use Case section\\
+            April 6, 2020 & Leon So & Rev1 updates\\
+            April 6, 2020 & Leon So & Rev1 updates\\
         \bottomrule
     \end{tabularx}
 \end{table}
@@ -138,7 +141,6 @@ The customer of the ScrumBot is any firm looking to improve efficiency in commun
     \end{itemize}
 \end{itemize}
 % \subsubsection{Other stakeholders}
-
 
 \subsection{Mandated Constraints}
 \subsubsection{Solution Constraints}
@@ -235,43 +237,208 @@ It is assumed that the user will be deploying the Discord bot on Discord. It is 
 ScrumBot is a specialized chat bot (i.e. a Discord Bot) that runs on the Discord application. ScrumBot will allow users to better manage software development projects using the Scrum Agile Framework. The ScrumBot will have features which help software development teams organize and record Scrum meeting information, as well as features which will help software development teams stay on track. This will allow better organization of Scrum sprints, meetings  (i.e. sprint-planning, retrospectives  and  stand-ups) and  improve  efficiency  within  the communication channel.
 
 \subsubsection{The Context of the Work}
-This product is designed to be used by software development teams using: Discord as their main communication channel, an Agile development software design methodology, and the Scrum agile process framework. Additionally, this application can be integrated with Trello, and Google Calendar and Maps.
+This product is designed to be used by software development teams using: Discord as their main communication channel, an Agile development software design methodology, and the Scrum agile process framework. \sout{Additionally, this application can be integrated with Trello, and Google Calendar and Maps.}
 
 \subsubsection{Work Partitioning}
+\begin{itemize}
+    \item \textcolor{red}{Development team attempts to initialize Scrumbot}
+    \item \textcolor{red}{Business Analyst attempts to create a project}
+    \item \textcolor{red}{Business Analyst attempts to remove a project}
+    \item \textcolor{red}{Users attempts to start sprint planning meeting}
+    \item \textcolor{red}{Users attempts to start stand-up meeting}
+    \item \textcolor{red}{Users attempts to start retrospective meeting}
+    \item \textcolor{red}{Users attempts to start grooming meeting}
+    \item \textcolor{red}{Users attempts to create meeting}
+    \item \textcolor{red}{Users attempts to remove meeting}
+    \item \textcolor{red}{Users attempts to list meetings}
+    \item \textcolor{red}{Users attempts to list tasks}
+\end{itemize}
+
 \begin{longtable}{|L{4cm}|L{3cm}|L{1.5cm}|L{6cm}|}
-    \caption{Work Partitioning}
+    \caption{\sout{Work Partitioning}}
     \label{tab:my_label}\\
     \hline
-    Event Name & Input & Output & Summary \\
+    \sout{Event Name} & \sout{Input} & \sout{Output} & \sout{Summary} \\
     \hline
-    Scrumbot Initialization & Development Firm & Discord channel & Adding the Discord bot to a Discord server for the first time\\
+    \sout{Scrumbot Initialization} & \sout{Development Firm} & \sout{Discord channel} & \sout{Adding the Discord bot to a Discord server for the first time}\\
     \hline
-    Project Creation & Business Analyst & & Adding a new project to Scrumbot\\
+    \sout{Project Creation} & \sout{Business Analyst} & & \sout{Adding a new project to Scrumbot}\\
     \hline
-    Project Removal & Business Analyst & & Removing a project from Scrumbot\\
+    \sout{Project Removal} & \sout{Business Analyst} & & \sout{Removing a project from Scrumbot}\\
     \hline
-    Sprint-planning Meeting Occurs & Development Team & Discord channel & A meeting is held where a sprint is planned, held prior to the sprint\\
+    \sout{Sprint-planning Meeting Occurs} & \sout{Development Team} & \sout{Discord channel} & \sout{A meeting is held where a sprint is planned, held prior to the sprint}\\
     \hline
-    Stand-up Meeting Occurs & Development Team & Discord channel & A meeting is held, usually daily, where members record what they have done\\
+    \sout{Stand-up Meeting Occurs} & \sout{Development Team} & \sout{Discord channel} & \sout{A meeting is held, usually daily, where members record what they have done}\\
     \hline
-    Retrospective Meeting Occurs & Development Team & Discord channel & A meeting is held where feedback is given on the previous sprint, held after each sprint\\
+    \sout{Retrospective Meeting Occurs} & \sout{Development Team} & \sout{Discord channel} & \sout{A meeting is held where feedback is given on the previous sprint, held after each sprint}\\
     \hline
-    Grooming Meeting Occurs & Business Analyst \& Development Team & Discord channel & A meeting in which the requirements of the project are specified by the Business Analyst, and communicated to the Development Team\\
+    \sout{Grooming Meeting Occurs} & \sout{Business Analyst \& Development Team} & \sout{Discord channel} & \sout{A meeting in which the requirements of the project are specified by the Business Analyst, and communicated to the Development Team}\\
     \hline
-    Meeting Creation & Any Discord member & Discord channel & Creates a scheduled meeting into the Discord channel\\
+    \sout{Meeting Creation} & \sout{Any Discord member} & \sout{Discord channel} & \sout{Creates a scheduled meeting into the Discord channel}\\
     \hline
-    Meeting Removal & Any Discord member & Discord channel & Removes a scheduled meeting from the Discord channel\\
+    \sout{Meeting Removal} & \sout{Any Discord member} & \sout{Discord channel} & \sout{Removes a scheduled meeting from the Discord channel}\\
     \hline
-    List Scheduled Meetings & Any Discord member & Discord channel & A command that lists all the scheduled meetings of a given member\\
+    \sout{List Scheduled Meetings} & \sout{Any Discord member} & \sout{Discord channel} & \sout{A command that lists all the scheduled meetings of a given member}\\
     \hline
-    List Tasks & Any Discord member & Discord & A command that lists all the scheduled tasks for a given member\\
+    \sout{List Tasks} & \sout{Any Discord member} & \sout{Discord} & \sout{A command that lists all the scheduled tasks for a given member}\\
     \hline
 \end{longtable}
 
 \subsubsection{Individual Product Use Cases}
-This product is primarily used by software development firms, from start-ups to large companies, as these companies will be the most likely users of the Scrum agile framework. They would enjoy the benefits of using Discord as a means for quick communication, with integrated abilities to work on projects using Scrum.\\
+\sout{This product is primarily used by software development firms, from start-ups to large companies, as these companies will be the most likely users of the Scrum agile framework. They would enjoy the benefits of using Discord as a means for quick communication, with integrated abilities to work on projects using Scrum.}\\
 
-Another use case could be students who want to plan projects and work on them through the Scrum method. A lot of students would benefit from this over other forms of communication, such as Slack, a large portion of students already have access to Discord.
+\sout{Another use case could be students who want to plan projects and work on them through the Scrum method. A lot of students would benefit from this over other forms of communication, such as Slack, a large portion of students already have access to Discord.}\\
+
+\noindent \textcolor{red}{\textbf{Title: }Adding ScrumBot to Discord server}\\
+\textcolor{red}{\textbf{Trigger: }Development firm adds ScrumBot to Discord server}\\
+\textcolor{red}{\textbf{Pre-condition: }Active Discord server exists}\\
+\textcolor{red}{\textbf{Outcome: }}
+\textcolor{red}{
+\begin{enumerate}
+    \item ScrumBot asks for administrative permissions from admin
+    \item System provides and introduction and lists basics commands
+    \item System notifies members of the Discord server that ScrumBot has been added
+\end{enumerate}
+}
+
+\noindent \textcolor{red}{\textbf{Title: }Adding project}\\
+\textcolor{red}{\textbf{Trigger: }Business Analyst wants to add a new project}\\
+\textcolor{red}{\textbf{Pre-condition: }Scrumbot active in server}\\
+\textcolor{red}{\textbf{Outcome: }}
+\textcolor{red}{
+\begin{enumerate}
+    \item Project added to project list
+    \item System notifies members of the Discord server that a project has been added
+\end{enumerate}
+}
+
+\noindent \textcolor{red}{\textbf{Title: }Removing project}\\
+\textcolor{red}{\textbf{Trigger: }Business Analyst wants to remove a project}\\
+\textcolor{red}{\textbf{Pre-condition: }Scrumbot active in server and project exists}\\
+\textcolor{red}{\textbf{Outcome: }}
+\textcolor{red}{
+\begin{enumerate}
+    \item Project removed from project list
+    \item System notifies members of the Discord server that a project has been removed
+\end{enumerate}
+}
+
+\noindent \textcolor{red}{\textbf{Title: }Adding feedback}\\
+\textcolor{red}{\textbf{Trigger: }User wants to add feedback to a task}\\
+\textcolor{red}{\textbf{Pre-condition: }Scrumbot active in server, project exists, sprint exists, task exists}\\
+\textcolor{red}{\textbf{Outcome: }}
+\textcolor{red}{
+\begin{enumerate}
+    \item Feedback added to task
+    \item System notifies members of the Discord server that feedback has been added to the task
+\end{enumerate}
+}
+
+\noindent \textcolor{red}{\textbf{Title: }Adding task}\\
+\textcolor{red}{\textbf{Trigger: }Scrum Master wants to add a task}\\
+\textcolor{red}{\textbf{Pre-condition: }Scrumbot active in server, project \& sprint exists}\\
+\textcolor{red}{\textbf{Outcome: }}
+\textcolor{red}{
+\begin{enumerate}
+    \item Task added to sprint
+    \item System notifies members of the Discord server that a task has been added
+\end{enumerate}
+}
+
+\noindent \textcolor{red}{\textbf{Title: }Adding sprint}\\
+\textcolor{red}{\textbf{Trigger: }Scrum Master wants to add a sprint}\\
+\textcolor{red}{\textbf{Pre-condition: }Scrumbot active in server, project exists}\\
+\textcolor{red}{\textbf{Outcome: }}
+\textcolor{red}{
+\begin{enumerate}
+    \item Sprint added to project
+    \item System notifies members of the Discord server that a sprint has been added
+\end{enumerate}
+}
+
+\noindent \textcolor{red}{\textbf{Title: }Adding meeting}\\
+\textcolor{red}{\textbf{Trigger: }User wants to add a meeting}\\
+\textcolor{red}{\textbf{Pre-condition: }Scrumbot active in server, project exists}\\
+\textcolor{red}{\textbf{Outcome: }}
+\textcolor{red}{
+\begin{enumerate}
+    \item Meeting added
+    \item System notifies members of the Discord server that a meeting has been added
+\end{enumerate}
+}
+
+\noindent \textcolor{red}{\textbf{Title: }Seeing feedback}\\
+\textcolor{red}{\textbf{Trigger: }User wants to see feedback}\\
+\textcolor{red}{\textbf{Pre-condition: }Scrumbot active in server, feedback exists}\\
+\textcolor{red}{\textbf{Outcome: }}
+\textcolor{red}{
+\begin{enumerate}
+    \item System displays feedback requested
+\end{enumerate}
+}
+
+\noindent \textcolor{red}{\textbf{Title: }Seeing task}\\
+\textcolor{red}{\textbf{Trigger: }User wants to see task}\\
+\textcolor{red}{\textbf{Pre-condition: }Scrumbot active in server, task exists}\\
+\textcolor{red}{\textbf{Outcome: }}
+\textcolor{red}{
+\begin{enumerate}
+    \item System displays task requested
+\end{enumerate}
+}
+
+\noindent \textcolor{red}{\textbf{Title: }Seeing sprint}\\
+\textcolor{red}{\textbf{Trigger: }User wants to see sprint}\\
+\textcolor{red}{\textbf{Pre-condition: }Scrumbot active in server, sprint exists}\\
+\textcolor{red}{\textbf{Outcome: }}
+\textcolor{red}{
+\begin{enumerate}
+    \item System displays sprint requested
+\end{enumerate}
+}
+
+\noindent \textcolor{red}{\textbf{Title: }Seeing project}\\
+\textcolor{red}{\textbf{Trigger: }User wants to see project}\\
+\textcolor{red}{\textbf{Pre-condition: }Scrumbot active in server, project exists}\\
+\textcolor{red}{\textbf{Outcome: }}
+\textcolor{red}{
+\begin{enumerate}
+    \item System displays project requested
+\end{enumerate}
+}
+
+\noindent \textcolor{red}{\textbf{Title: }Removing meeting}\\
+\textcolor{red}{\textbf{Trigger: }User wants to remove meeting}\\
+\textcolor{red}{\textbf{Pre-condition: }Scrumbot active in server, meeting exists}\\
+\textcolor{red}{\textbf{Outcome: }}
+\textcolor{red}{
+\begin{enumerate}
+    \item Meeting removed from list
+    \item System notifies that meeting has been removed
+\end{enumerate}
+}
+
+\noindent \textcolor{red}{\textbf{Title: }Removing sprint}\\
+\textcolor{red}{\textbf{Trigger: }Scrum Master wants to remove sprint}\\
+\textcolor{red}{\textbf{Pre-condition: }Scrumbot active in server, sprint exists}\\
+\textcolor{red}{\textbf{Outcome: }}
+\textcolor{red}{
+\begin{enumerate}
+    \item Sprint removed from list
+    \item System notifies that sprint has been removed
+\end{enumerate}
+}
+
+\noindent \textcolor{red}{\textbf{Title: }Removing task}\\
+\textcolor{red}{\textbf{Trigger: }Scrum Master wants to remove task}\\
+\textcolor{red}{\textbf{Pre-condition: }Scrumbot active in server, task exists}\\
+\textcolor{red}{\textbf{Outcome: }}
+\textcolor{red}{
+\begin{enumerate}
+    \item Task removed from list
+    \item System notifies that task has been removed
+\end{enumerate}
+}
 
 \subsection{Functional Requirements}
 \begin{enumerate}[{BE}1.]
@@ -281,27 +448,27 @@ Another use case could be students who want to plan projects and work on them th
             \begin{enumerate}
                 \item The system shall ask for administrative permissions to the Discord channel
                 \item The system shall provide an introduction and basic commands list in the channel
-                \item The system shall provide a link to access Scrumbot's documentation
+                \item \sout{The system shall provide a link to access Scrumbot's documentation}
             \end{enumerate}
         \item Viewpoint: Development Team
             \begin{enumerate}
                 \item The system shall notify the development team that ScrumBot has been added to the channel
                 \item The system shall provide an introduction and basic commands list in the channel
-                \item The system shall provide a link to access Scrumbot's documentation
+                \item \sout{The system shall provide a link to access Scrumbot's documentation}
             \end{enumerate}
             
         \item Viewpoint: Business Analyst
             \begin{enumerate}
                 \item The system shall notify the Business Analyst that ScrumBot has been added to the channel
                 \item The system shall provide an introduction and basic commands list in the channel
-                \item The system shall provide a link to access Scrumbot's documentation
+                \item \sout{The system shall provide a link to access Scrumbot's documentation}
             \end{enumerate}
             
         \item Viewpoint: Scrum Master
             \begin{enumerate}
                 \item The system shall notify the Scrum Master that ScrumBot has been added to the channel
                 \item The system shall provide an introduction and basic commands list in the channel
-                \item The system shall provide a link to access Scrumbot's documentation
+                \item \sout{The system shall provide a link to access Scrumbot's documentation}
             \end{enumerate}
     \end{enumerate}
 
@@ -315,19 +482,19 @@ Another use case could be students who want to plan projects and work on them th
 	        \begin{enumerate}
 	            \item The system shall update the project list of the development team
 	            \item The system shall notify the development team of the new project
-	            \item The system shall notify the development team of the scheduled first meeting
+	            \item \sout{The system shall notify the development team of the scheduled first meeting}
 	        \end{enumerate}
 		\item Viewpoint: Business Analyst
 			\begin{enumerate}
 			    \item The system shall prompt the Business Analyst for the project details (name, description, product owner)
-			    \item The system shall prompt the Business Analyst for first meeting details
+			    \item \sout{The system shall prompt the Business Analyst for first meeting details}
 			    \item The system shall append the project and its details to the project list
 			\end{enumerate}
 		\item Viewpoint: Scrum Master
 			\begin{enumerate}
 			    \item The system shall update the project list of the Scrum Master
 			    \item The system shall notify the Scrum Master of the new project
-			    \item The system shall notify the Scrum Master of the scheduled first meeting
+			    \item \sout{The system shall notify the Scrum Master of the scheduled first meeting}
 			\end{enumerate}
 	\end{enumerate}
 
@@ -344,9 +511,9 @@ Another use case could be students who want to plan projects and work on them th
 	        \end{enumerate}
 		\item Viewpoint: Business Analyst
 			\begin{enumerate}
-			    \item The system shall ask the Business Analyst for confirmation
-			    \item The system shall update the project list of
-			    \item The system shall ask the Business Analyst if the project is completed or cancelled
+			    \item \sout{The system shall ask the Business Analyst for confirmation}
+			    \item The system shall update the project list \sout{of}
+			    \item \sout{The system shall ask the Business Analyst if the project is completed or cancelled}
 			\end{enumerate}
 		\item Viewpoint: Scrum Master
 			\begin{enumerate}
@@ -364,10 +531,10 @@ Another use case could be students who want to plan projects and work on them th
 	    \item Viewpoint: Development Team
 	        \begin{enumerate}
 	            \item The system shall allow the Development Team to see new feedback
-	            \item The system shall allow the Development Team to see the updated backlog tasks
-	            \item The system shall allow the Development Team to see new goals
-	            \item The system shall allow the Development Team to assign tasks to its developers
-	            \item The system shall update the Trello Kanban board
+	            \item The system shall allow the Development Team to see the updated \sout{backlog} tasks
+	            \item \sout{The system shall allow the Development Team to see new goals}
+	            \item \sout{The system shall allow the Development Team to assign tasks to its developers}
+	            \item \sout{The system shall update the Trello Kanban board}
 	        \end{enumerate}
 		\item Viewpoint: Business Analyst
 			\begin{enumerate}
@@ -375,11 +542,11 @@ Another use case could be students who want to plan projects and work on them th
 			\end{enumerate}
 		\item Viewpoint: Scrum Master
 			\begin{enumerate}
-	            \item The system shall allow the Scrum Master to add goals for the sprint
+	            \item \sout{The system shall allow the Scrum Master to add goals for the sprint}
 	            \item The system shall allow the Scrum Master to add feedback
-	            \item The system shall allow the Scrum Master to add backlog tasks
+	            \item \sout{The system shall allow the Scrum Master to add backlog tasks}
 	            \item The system shall allow the Scrum Master to add tasks
-	            \item The system shall update the Trello Kanban board
+	            \item \sout{The system shall update the Trello Kanban board}
 			\end{enumerate}
 	\end{enumerate}
 
@@ -391,7 +558,7 @@ Another use case could be students who want to plan projects and work on them th
 	        \end{enumerate}
 	    \item Viewpoint: Development Team
 	        \begin{enumerate}
-	            \item The system shall allow the development team to update and record their progress
+	            \item The system shall allow the development team to update and record their progress \textcolor{red}{in the form of tasks}
 	        \end{enumerate}
 		\item Viewpoint: Business Analyst
 			\begin{enumerate}
@@ -399,7 +566,7 @@ Another use case could be students who want to plan projects and work on them th
 			\end{enumerate}
 		\item Viewpoint: Scrum Master
 			\begin{enumerate}
-			    \item The system shall allow the Scrum Master to update and record their progress
+			    \item The system shall allow the Scrum Master to update and record their progress \textcolor{red}{in the form of tasks}
 			\end{enumerate}
 	\end{enumerate}
 
@@ -452,23 +619,23 @@ Another use case could be students who want to plan projects and work on them th
 	    \item Viewpoint: Development Team
 	        \begin{enumerate}
 	            \item The system shall notify the invited members of the Development Team
-	            \item The system shall prompt the invited members of the Development Team to accept or decline the meeting invitation
+	            \item \sout{The system shall prompt the invited members of the Development Team to accept or decline the meeting invitation}
 	        \end{enumerate}
 		\item Viewpoint: Business Analyst
 			\begin{enumerate}
 	            \item The system shall prompt the user for the meeting subject, time, location, and room
-	            \item The system shall prompt the user for the meeting participants
-	            \item The system shall invite the participants
+	            \item \sout{The system shall prompt the user for the meeting participants}
+	            \item \sout{The system shall invite the participants}
 	            \item The system shall notify the invited Business Analyst if applicable
-	            \item The system shall prompt the invited Business Analyst to accept or decline the meeting invitation, if applicable
+	            \item \sout{The system shall prompt the invited Business Analyst to accept or decline the meeting invitation, if applicable}
 			\end{enumerate}
 		\item Viewpoint: Scrum Master
 			\begin{enumerate}
 	            \item The system shall prompt the user for the meeting subject, time, location, and room
-	            \item The system shall prompt the user for the meeting participants
+	            \item \sout{The system shall prompt the user for the meeting participants}
 	            \item The system shall invite the participants
-	            \item The system shall notify the invited Scrum Master if applicable
-	            \item The system shall prompt the invited Scrum Master to accept or decline the meeting invitation, if applicable
+	            \item The system shall notify the \sout{invited} Scrum Master if applicable
+	            \item \sout{The system shall prompt the invited Scrum Master to accept or decline the meeting invitation, if applicable}
 			\end{enumerate}
 	\end{enumerate}
 	
@@ -520,7 +687,7 @@ Another use case could be students who want to plan projects and work on them th
 	        \end{enumerate}
 	    \item Viewpoint: Development Team
 	        \begin{enumerate}
-	            \item The system shall display the Trello Kanban board
+	            \item The system shall display \sout{the Trello Kanban board} \textcolor{red}{a list of all tasks for the project and sprint}
 	        \end{enumerate}
 		\item Viewpoint: Business Analyst
 			\begin{enumerate}
@@ -528,7 +695,7 @@ Another use case could be students who want to plan projects and work on them th
 			\end{enumerate}
 		\item Viewpoint: Scrum Master
 			\begin{enumerate}
-	            \item The system shall display the Trello kanban board
+	            \item The system shall display \sout{the Trello Kanban board} \textcolor{red}{a list of all tasks for the project and sprint}
 			\end{enumerate}
 	\end{enumerate}
 \end{enumerate}
@@ -570,9 +737,11 @@ Another use case could be students who want to plan projects and work on them th
 \end{enumerate}
 \subsubsection{Precision or Accuracy Requirements}
 \begin{enumerate}[start=2, label={P\arabic*.}]
-    \item The system shall have a meeting locations and schedules accuracy greater than 70\%
-    \item All meeting times should be accurate to within 30 seconds
+    \item \sout{The system shall have a meeting locations and schedules accuracy greater than 70\%}
+    \item \sout{All meeting times should be accurate to within 30 seconds}
 \end{enumerate}
+\textcolor{red}{N/A}
+
 \subsubsection{Reliability and Availability Requirements}
 \begin{enumerate}[start=4, label={P\arabic*.}]
     \item The system shall load and use the correct data for the team
@@ -585,10 +754,11 @@ Another use case could be students who want to plan projects and work on them th
 \end{enumerate}
 \subsubsection{Requirements for Interfacing with Adjacent Systems}
 \begin{enumerate}[start=2, label={OE\arabic*.}]
-    \item The system shall connect to Google's API services
+    \item \sout{The system shall connect to Google's API services}
     \item The system shall connect to Discord's API services
-    \item The system shall connect to Trello's API services
+    \item \sout{The system shall connect to Trello's API services}
 \end{enumerate}
+
 \subsubsection{Installability Requirement}
 \begin{enumerate}[start=5, label={OE\arabic*.}]
     \item It shall be possible for a customer with no special expertise to install the application
@@ -720,7 +890,7 @@ There are currently no foreseen costs for this project. All software products us
 
 \subsection{User Documentation and Training}
 \subsubsection{User Documentation Requirements}
-\st{N/A}
+\sout{N/A}
 \textcolor{red}{The application will have a set of help menus that will list all the functions available to the user and how to use them.}
 
 \subsubsection{Training Requirements}
