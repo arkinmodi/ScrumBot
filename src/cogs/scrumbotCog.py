@@ -792,6 +792,7 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
 
     # MEMBER COG
     ## @brief Gets the list of roles of a specific member in a guild, or the person initiating the command if no parameter is given.
+    #  @param member A discord member's username
     @commands.command(name='role', aliases=['perms', 'roleFor'], brief="Lists the roles of a user.")
     @commands.guild_only()
     async def get_roles(self, ctx, *, member: discord.Member=None):
