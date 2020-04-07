@@ -24,6 +24,9 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
         self.bot = bot
     
     # PROJECT COG 
+    @commands.command(name="addMeeting", brief="Add a meeting to a project.")
+    @commands.guild_only()
+    @commands.has_role("Scrum Master")
     ## @brief Adds meeting to a project
     #  @param project_id Project ID
     #  @param name Name of Project
@@ -32,9 +35,6 @@ class scrumbotCog(commands.Cog, name="Scrumbot Commands"):
     #  @param meeting_type Type of meeting
     #  @param Description of project
     #  @throws TypeError Meeting type incorrect
-    @commands.command(name="addMeeting", brief="Add a meeting to a project.")
-    @commands.guild_only()
-    @commands.has_role("Scrum Master")
     async def add_meeting(self, ctx, project_id: int, name, date, time, meeting_type, *, description=None):
         print(f'[Log] add_meeting from {ctx.author}, name: {name}, date: {date}, time: {time}, desc: {description} in project: {project_id}')
 
