@@ -589,21 +589,21 @@ See Gantt Chart at the following URL, \url{https://gitlab.cas.mcmaster.ca/modia1
 \paragraph{Maintainability Requirements}
 \begin{enumerate}
 
-\item{\textbf{NFRT-MS1}}\\
+\item{\textbf{NFRT-MS-1}}\\
 Type: Static, Manual, Code Inspection\\
 Initial State: N/A\\
 Input/Condition: N/A\\
 Output/Result: The code is well documented with comments\\
 How test will be performed: The test team will inspect the code and check if the code is adequately documented using comments
 
-\item{\textbf{NFRT-MS2}}\\
+\item{\textbf{NFRT-MS-2}}\\
 Type: Static, Manual\\
 Initial State: No Doxygen documents generated yet\\
 Input/Condition: Generate Doxygen HTML and pdf\\
 Output/Result: The Doxygen documentation is successfully compiled and generated\\
 How test will be performed: The test team will try to generate Doxygen HTML and pdf
 
-\item{\textbf{NFRT-MS3}}\\
+\item{\textbf{NFRT-MS-3}}\\
 Type: Static, Manual, Code Inspection\\
 Initial State: N/A\\
 Input/Condition: N/A\\
@@ -613,7 +613,7 @@ How test will be performed: The test team will review the code documentation and
 
 \paragraph{Supportability Requirements}
 \begin{enumerate}
-\item{\textbf{NFRT-MS4-1}}\\
+\item{\textbf{NFRT-MS-4}}\\
 Type: Dynamic, Manual\\
 Initial State: ScrumBot is active on the Discord channel\\
 Input/Condition: User wants to open help menu\\
@@ -624,7 +624,7 @@ How test will be performed: The test team will attempt to open the help menu in 
 
 \paragraph{Longevity Requirements}
 \begin{enumerate}
-    \item{\textbf{NFRT-MS4-2}}\\
+    \item{\textbf{NFRT-MS-5}}\\
     Type: Static, Manual, Code Inspection\\
     Initial State: N/A\\
     Input/Condition: N/A\\
@@ -635,7 +635,7 @@ How test will be performed: The test team will attempt to open the help menu in 
 \subsubsection{Security Requirements}
 \paragraph{HTTP Connections}
 \begin{enumerate}
-    \item{\textbf{NFRT-S1}}\\
+    \item{\textbf{NFRT-S-1}}\\
     Type: Static, Manual, Code Inspection\\
     Initial State: N/A\\
     Input/Condition: N/A\\
@@ -711,9 +711,21 @@ How test will be performed: The test team will attempt to open the help menu in 
     \begin{tabular}{l|cccccccccccccccccccccc}
         \textbf{Test IDs} & \multicolumn{19}{c}{\textbf{Requirement IDs}}\\
         \hline
-        ~ & \textbf{LF1} & \textbf{LF2} & \textbf{LF3} & \textbf{UH1} & \textbf{UH2} & \textbf{UH3} & \textbf{UH4} & \textbf{P1} & \textbf{P2} & \textbf{P3} & \textbf{OE1} & \textbf{OE2} & \textbf{OE3} & \textbf{OE4} & \textbf{OE5} & \textbf{OE6} & \textbf{OE7} & \textbf{MS1} & \textbf{MS2} & \textbf{MS3} & \textbf{MS4} & \textbf{S1}\\
-        \textbf{NFRT-LF-1}    & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
-        \textbf{NFRT-LF-2}    & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        ~ & \textbf{LF1} & \textbf{LF2} & \textbf{LF3} & \textbf{UH1} & \textbf{UH2} & \textbf{UH3} & \textbf{UH4} & \textbf{P1} & \textbf{P4} & \textbf{OE1} & \textbf{OE3} & \textbf{OE5} & \textbf{OE6} & \textbf{OE7} & \textbf{MS1} & \textbf{MS2} & \textbf{MS3} & \textbf{MS4} & \textbf{S1} & \textbf{C1} & \textbf{L1} & \textbf{HS1}\\
+        \textbf{NFRT-LF-1}  & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-LF-2}  & ~ & X & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-LF-3}  & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-UH-1}  & ~ & ~ & ~ & X & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-UH-2}  & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-P-1}   & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-OE-1}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-OE-2}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-MS-1}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-MS-2}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-MS-3}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-MS-4}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-MS-5}  & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~\\
+        \textbf{NFRT-S-1}   & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~\\
     \end{tabular}
     \end{adjustbox}
     \label{Traceability Matrix: Non-Functional Requirement}
